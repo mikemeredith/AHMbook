@@ -1,0 +1,17 @@
+TODO
+
+  * Stop simNmix spewing out warnings.
+  
+  * Get new function name for 'data.fn' in chapter 21
+
+
+CHANGES in 0.1.0.9000
+
+  * Changed version numbering; the final '9nnn' indicates a development version (suggestion of Hadley Wickham).
+  
+  * Changed NAMESPACE export command to only export functions needed to run the book script.
+  
+  * Split the monster file AHM_funcs_30_11_2015.r into smaller files for each function.
+  
+  
+  

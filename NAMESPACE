@@ -1,0 +1,66 @@
+# NAMESPACE for AHMbook package
+
+importFrom("grDevices", "colorRampPalette", "devAskNewPage",
+             "topo.colors")
+importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
+           "lines", "matplot", "par", "plot", "points", "polygon",
+           "rect", "segments", "text", "title")
+importFrom("methods", "as", "is", "new")
+importFrom("stats", "as.formula", "coef", "confint", "dbinom",
+           "dnbinom", "dnorm", "dpois", "fitted", "integrate", "lm",
+           "model.frame", "model.matrix", "model.offset", "optim",
+           "plogis", "qlogis", "quantile", "rbinom", "residuals",
+           "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif",
+           "var", "vcov")
+importFrom("utils", "head", "stack")
+importFrom("unmarked", "unmarkedEstimate")
+# importFrom("raster", 
+# importFrom("plotrix", 
+# importFrom("RandomFields", 
+# importFrom("sp", 
+
+
+# Chapter 1
+export("sim.fn")
+
+# Chapter 3
+# export("body", "color", "damage", "mites", "pop", "sex", "wing")
+
+# Chapter 4
+export("data.fn")
+
+# Chapter 6
+export("simNmix", "ppc.plot", "plot.Nmix.resi", "map.Nmix.resi", "Nhat", "simpleNmix", "playRN")
+
+# Chapter 7
+export("fitstats", "fitstats2")
+export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
+
+# Chapter 8
+export("sim.ldata", "sim.pdata", "simHDS")
+
+# Chapter 9
+export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "pcount.spHDS")
+export("e2dist")
+# export("image.scale")
+
+# Chapter 10
+export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
+
+# Chapter 11
+export("simComm")
+
+# Chapter 15
+export("simDynocc.fn")
+
+# Chapter 20
+export("spatial.exp")
+
+# Chapter 21
+# export("data.fn") # NAME CLASH
+
+exportMethods(predict)
+
+
+
+
