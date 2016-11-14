@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simDynocc.fn - section 15.??
 
@@ -9,7 +9,7 @@
 simDynocc.fn <- function(M = 250, J = 3, K = 10, mean.psi1 = 0.4, beta.Xpsi1 = 0,
 range.phi = c(0.5, 1), beta.Xphi = 0, range.gamma = c(0, 0.5), beta.Xgamma = 0, range.p = c(0.1, 0.9), beta.Xp = 0, range.sd.site = c(0, 0), range.sd.survey = c(0, 0), seed = Sys.time()) {
 #
-# Written by Marc Kéry, 4 Dec 2014
+# Written by Marc Kery, 4 Dec 2014
 #
 # Function to simulate detection/nondetection data under a very general
 #     dynamic site-occ model, including:
@@ -32,14 +32,14 @@ range.phi = c(0.5, 1), beta.Xphi = 0, range.gamma = c(0, 0.5), beta.Xgamma = 0, 
 # Function arguments:
 # -------------------
 # LATER: need number pixels per side of square ------------------
-# M – Number of sites
-# J – Number of replicate surveys within a year (= season)
-# K – Number of years (or 'seasons')
-# mean.psi1 – average occupancy probability in first year
-# range.p – bounds of uniform distribution from which annual p drawn
-# range.psi and range.gamma – same for survival and colonization probability
+# M - Number of sites
+# J - Number of replicate surveys within a year (= season)
+# K - Number of years (or 'seasons')
+# mean.psi1 - average occupancy probability in first year
+# range.p - bounds of uniform distribution from which annual p drawn
+# range.psi and range.gamma - same for survival and colonization probability
 # -------------------
-# beta.Xpsi1, beta.Xphi, beta.Xgamma, beta.Xp – coefficients of
+# beta.Xpsi1, beta.Xphi, beta.Xgamma, beta.Xp - coefficients of
 # environmental covariates in probabilities of initial occupancy, persistence,
 # colonization and detection.
 # spatial corr : LATER: need those for each covariate field --------
@@ -47,7 +47,7 @@ range.phi = c(0.5, 1), beta.Xphi = 0, range.gamma = c(0, 0.5), beta.Xgamma = 0, 
 # range.sd.site: sd of normal distribution to model logit-normal noise in p
 # at the site level in the first and the last year of the simulation
 # range.sd.survey: sd of normal distribution to model logit-normal noise in p
-# at the site/year/rep = ‘survey’ level, in the first and the last year
+# at the site/year/rep = 'survey' level, in the first and the last year
 #
 # For the sd and error.rate arguments, if the two values in the range are the
 # same, a constant value is assumed over time, while if they are different, a
@@ -72,12 +72,12 @@ Xp <- array(runif(M*J*K,-2,2),dim=c(M,J,K))  # Observ. cov.
 
 # (1) Simulate all parameter values
 # (a) State process parameters
-psi[,1] <- plogis(logit(mean.psi1) + beta.Xpsi1 * Xpsi1) # psi1
+psi[,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1) # psi1
 mean.phi <- runif(n = K-1, min = range.phi[1], max = range.phi[2])
 mean.gamma <- runif(n = K-1, min = range.gamma[1], max = range.gamma[2])
 for(k in 1:(K-1)){
-   phi[,k] <- plogis(logit(mean.phi[k]) + beta.Xphi * Xphi[,k])
-   gamma[,k] <- plogis(logit(mean.gamma[k]) + beta.Xgamma * Xgamma[,k])
+   phi[,k] <- plogis(qlogis(mean.phi[k]) + beta.Xphi * Xphi[,k])
+   gamma[,k] <- plogis(qlogis(mean.gamma[k]) + beta.Xgamma * Xgamma[,k])
 }
 
 # (b) Observation process parameters
@@ -89,7 +89,7 @@ for(i in 1:M){
     eps1 <- rnorm(n = M, mean = 0, sd = sd.site[k])   # Site random eff.
     eps2 <- rnorm(n = J, mean = 0, sd = sd.survey[k]) # Survey random eff.
     for(j in 1:J){
-      p[i,j,k] <- plogis(logit(mean.p[k])+beta.Xp*Xp[i,j,k]+eps1[i]+eps2[j])
+      p[i,j,k] <- plogis(qlogis(mean.p[k])+beta.Xp*Xp[i,j,k]+eps1[i]+eps2[j])
     }
   }
 }
@@ -123,7 +123,7 @@ lines(year, mean.p , type = "l", col = "red", lwd = 2, lty = 2)
 # Plot apparent occupancy
 psi.app <- apply(apply(y, c(1,3), max), 2, mean)
 lines(year, psi.app, type = "l", col = "black", lwd = 2)
-text(0.85*K, 0.1, labels = "red solid – true occupancy\n red dashed – detection\n black – observed occupancy", cex = 0.7)
+text(0.85*K, 0.1, labels = "red solid - true occupancy\n red dashed - detection\n black - observed occupancy", cex = 0.7)
 
 
 # Compute annual population occupancy

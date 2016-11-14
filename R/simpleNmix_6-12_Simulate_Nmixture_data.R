@@ -25,11 +25,11 @@ for(j in 1:nrep){
    C[,j] <- rbinom(n = nyear, size = N, prob =p[,j])
 }
 par(mfrow = c(3, 2))
-curve(exp(beta0 + beta1 * x), 1, nyear, main = "Expected abundance (lambda) over time", frame = F, lwd = 2, ylab = "lambda", xlab = "Time")
+curve(function(x) exp(beta0 + beta1 * x), 1, nyear, main = "Expected abundance (lambda) over time", frame = F, lwd = 2, ylab = "lambda", xlab = "Time")
 plot(Time, N, main = "Realized abundance (N) over time", frame = F)
-curve(plogis(alpha0 +alpha1 * x), 1, nyear, main = "p over time", frame = F, lwd = 2, xlab = "Time", ylab = "p (at averate temp)")
+curve(function(x) plogis(alpha0 +alpha1 * x), 1, nyear, main = "p over time", frame = F, lwd = 2, xlab = "Time", ylab = "p (at averate temp)")
 matplot(Time, C, main = "Counts (C) over time", frame = F)
-curve(plogis(alpha0 + alpha2 * x), -2, 2, main = "p vs. Temperature", frame = F, lwd = 2, xlab = "Temperature", ylab = "p (at start of study)")
+curve(function(x) plogis(alpha0 + alpha2 * x), -2, 2, main = "p vs. Temperature", frame = F, lwd = 2, xlab = "Temperature", ylab = "p (at start of study)")
 matplot(temp, C, main = "Counts (C) over time", frame = F)
 
 return(list(nyear=nyear, nrep=nrep, beta0=beta0, beta1=beta1, alpha0=alpha0, alpha1=alpha1, alpha2=alpha2, N=N, C=C, Time=Time, temp = temp, p = p))

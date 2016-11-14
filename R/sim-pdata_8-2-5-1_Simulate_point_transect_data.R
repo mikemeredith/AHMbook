@@ -18,11 +18,10 @@ sim.pdata <- function(N=1000, sigma=1, B=3, keep.all=FALSE) {
 
 # Plot the detection function
 par(mfrow = c(1,2))
-curve(exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
+curve(function(x) exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
 text(0.8*B, 0.9, paste("sigma:", sigma))
 
 # Simulate and plot simulated data
-library(plotrix)
 u1 <-runif(N, 0, 2*B)           # (u1,u2) coordinates of N individuals
 u2 <- runif(N, 0, 2*B)
 d <- sqrt((u1 - B)^2 + (u2 - B)^2) # distance to center point of square

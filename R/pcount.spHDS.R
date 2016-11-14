@@ -71,7 +71,8 @@ function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
             bin.ijk <- dbinom(y.ijk, k.ijk, p.ijk)
             bin.ijk[which(is.na(bin.ijk))] <- 1
             bin.ik.mat <- matrix(bin.ijk[ijk.to.ikj], M * (K +1), J, byrow = TRUE)
-            g.ik <- rowProds(bin.ik.mat)
+            # g.ik <- rowProds(bin.ik.mat)
+            g.ik <- sapply(bin.ik.mat, 1, prod)
             #g.ik <- exp(rowSums(log(bin.ik.mat)))
             if (identical(mixture, "P")) {
                 f.ik <- dpois(k.ik, theta.ik)

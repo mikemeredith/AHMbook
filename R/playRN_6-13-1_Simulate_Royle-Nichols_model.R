@@ -20,7 +20,6 @@ data <- simNmix(nsite = M, nvisit = J, mean.lam = mean.abundance, mean.p = mean.
 y <- data$C          # Copy counts C into y
 y[y>0] <- 1          # Turn counts >0 into 1
 # Load unmarked, format data and summarize
-library(unmarked)
 umf <- unmarkedFrameOccu(y=y, siteCovs= data.frame(cov2 = data$site.cov[,2], cov3 = data$site.cov[,3]), obsCovs = list(obscov = data$survey.cov))
 # Fit data-generating model
 fm <- occuRN(~cov3+obscov ~cov2, data=umf)

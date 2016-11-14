@@ -14,8 +14,6 @@ sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE, B=B, model=
 #   sigma: scale of half-normal detection function
 #   B: circle radius
 #   keep.all: return the data for y=0 individuals or not
-library(raster)      # Load required packages
-library(plotrix)
 
 # Create coordinates for 30 x 30 grid
 delta <- (2*B-0)/30                # '2D bin width'

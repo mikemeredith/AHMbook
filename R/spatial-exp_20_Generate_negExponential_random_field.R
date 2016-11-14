@@ -19,8 +19,8 @@ spatial.exp <- function(variance = 1, theta = 1, size = 50, show.plot = TRUE){
 # show.plot: if TRUE, plots of the data will be displayed;
 #  set to FALSE if you are running simulations or use inside of other fct's.
 
-library(raster)
-library(RandomFields)
+# library(raster)
+# library(RandomFields)
 
 # Generate correlated random variables in a square
 RFoptions(seed=NA)

@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # sim3Occ - section 10.10 p604
 
@@ -12,7 +12,7 @@ sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xp
 #   "time effects" at the middle and the lower levels and
 #   effects of one distinct covariate at each level.
 #
-# Written by Marc Kéry, 2014
+# Written by Marc Kery, 2014
 #
 # Function arguments:
 # nunit: Number of main units (large quadrats)
@@ -44,29 +44,29 @@ covC <- array(runif(nunit*nsubunit*nrep, -2, 2),
    dim=c(nunit, nsubunit, nrep) )
 
 # Simulate psi, theta and p and plot all
-psi <- plogis(logit(mean.psi) + beta.Xpsi * covA + rnorm(nunit, 0, sd.logit.psi))
+psi <- plogis(qlogis(mean.psi) + beta.Xpsi * covA + rnorm(nunit, 0, sd.logit.psi))
 theta.time.effect <- runif(nsubunit, theta.time.range[1], theta.time.range[2])
 p.time.effect <- runif(nrep, p.time.range[1], p.time.range[2])
 
 for(j in 1:nsubunit){
-   theta[,j] <- plogis(logit(mean.theta) + theta.time.effect[j]+ (beta.Xtheta*covB)[,j] + array(rnorm(nunit*nsubunit, 0, sd.logit.theta), dim = c(nunit, nsubunit))[,j])
+   theta[,j] <- plogis(qlogis(mean.theta) + theta.time.effect[j]+ (beta.Xtheta*covB)[,j] + array(rnorm(nunit*nsubunit, 0, sd.logit.theta), dim = c(nunit, nsubunit))[,j])
    for(k in 1:nrep){
-      p[,j,k] <- plogis(logit(mean.p) + p.time.effect[k] + (beta.Xp*covC)[,j,k]+ array(rnorm(nunit*nsubunit*nrep, 0,sd.logit.p),dim =c(nunit, nsubunit, nrep))[,j,k])
+      p[,j,k] <- plogis(qlogis(mean.p) + p.time.effect[k] + (beta.Xp*covC)[,j,k]+ array(rnorm(nunit*nsubunit*nrep, 0,sd.logit.p),dim =c(nunit, nsubunit, nrep))[,j,k])
    }
 }
 
 # Visualisation of covariate relationships of psi, theta and p
 par(mfrow = c(1,3), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.5)
 plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = F)
-curve(plogis(logit(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
-plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red – time variation)", frame = F)
+curve(function(x) plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = F)
 for(j in 1:nsubunit){
-   curve(plogis(logit(mean.theta) + theta.time.effect[j] +
+   curve(function(x) plogis(qlogis(mean.theta) + theta.time.effect[j] +
    beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
 }
-plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red – replicate variation)", frame = F)
+plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = F)
 for(k in 1:nrep){
-   curve(plogis(logit(mean.p) + p.time.effect[k] +
+   curve(function(x) plogis(qlogis(mean.p) + p.time.effect[k] +
    beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
 }
 

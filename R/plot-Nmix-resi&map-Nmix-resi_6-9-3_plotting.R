@@ -5,13 +5,12 @@
 
 
 # Function to produce some residual plots in Section 6.9.3
-plot.Nmix.resi <- function(fmP, fmNB, fmZIP){
+plot_Nmix_resi <- function(fmP, fmNB, fmZIP){
 # Function does diagnostic plots for one Nmix model fitted with all three
 #   mixture distributions currently availabe in unmarked:
 #   Poisson, negative binomial and zero-inflated Poisson
 # For each, fitted values vs. observed data and
 #   residuals vs. fitted values are plotted.
-library(unmarked)
 
 # Plot fitted vs. observed data
 par(mfrow = c(2,3), mar = c(4,4,2,2), cex = 1.2)
@@ -52,11 +51,10 @@ map.Nmix.resi <- function(fm, x = tits$coordx, y = tits$coordy){
 #    object named fm, which was fit by function pcount in unmarked
 # Function arguments are the fitted model object and the x and y coordinates
 #    of every site
-library(sp)
 mean.resi <- apply(residuals(fm), 1, mean, na.rm = TRUE)
 mean.resi[mean.resi == "NaN"] <- mean(mean.resi, na.rm = TRUE)
 spdata <- data.frame(residuals = mean.resi, x = x, y = y)
-coordinates(spdata) <- c("x", "y")
-plot(bubble(spdata, "residuals", col = c("blue", "red"), main = paste("Average residuals of fitted N-mixture model")))
+sp::coordinates(spdata) <- c("x", "y")
+plot(sp::bubble(spdata, "residuals", col = c("blue", "red"), main = paste("Average residuals of fitted N-mixture model")))
 }
 

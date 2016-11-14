@@ -164,20 +164,20 @@ occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
 if(show.plot){
   par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
   # (1) Species-specific and community responses of occupancy to 'habitat'
-  curve(plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
+  curve(function(x) plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
   xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(plogis(beta0[k] + beta1[k] * x), -2, 2, add = T)
+    curve(function(x) plogis(beta0[k] + beta1[k] * x), -2, 2, add = T)
   }
-  curve(plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(function(x) plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = T)
 
   # (2) Species-specific and community responses of detection to 'wind'
-  curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+  curve(function(x) plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
   xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
+    curve(function(x) plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
   }
-  curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(function(x) plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
 }
 
 devAskNewPage(ask = TRUE)
@@ -289,20 +289,20 @@ occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
 if(show.plot){
   par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
   # (1) Species-specific and community responses of occupancy to 'habitat'
-  curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
+  curve(function(x) exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
   ylab = "Expected abundance (lambda)")
   for(k in 1:nspec){
-    curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
+    curve(function(x) exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
   }
-  curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(function(x) exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
 
   # (2) Species-specific and community responses of detection to 'wind'
-  curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+  curve(function(x) plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
   xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
+    curve(function(x) plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
   }
-  curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(function(x) plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
 }
 
 devAskNewPage(ask = TRUE)

@@ -1,5 +1,6 @@
 \name{simComm}
 \alias{simComm}
+\encoding{UTF-8}
 \title{
 Simulate community occupancy or community abundance data
 }
@@ -84,7 +85,7 @@ Specifically, the data are simulated under the following linear models:
 \code{lambda[i,k] <- exp(beta0[k] + beta1[k] * habitat[i]} \tab E(N) \cr
 \code{p[i,j,k] <- plogis(alpha0[k] + alpha1[k] * wind[i,j]} \tab Detection }
 
-Species-specific heterogeneity in intercepts and slopes is modelled by up to four independent normal distributions (note: no correlation between the intercepts as in Dorazio et al. (2006) or Kéry & Royle (2008))
+Species-specific heterogeneity in intercepts and slopes is modelled by up to four independent normal distributions (note: no correlation between the intercepts as in Dorazio et al. (2006) or KÃ©ry & Royle (2008))
 
 \bold{(1) for \code{type = "det/nondet"} (i.e., community occupancy)}
 \tabular{ll}{
@@ -134,13 +135,13 @@ A list with the arguments supplied and the following additional elements:
 \references{
 Dorazio et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854
 
-Kéry & Royle (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
+KÃ©ry & Royle (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
 
 Royle & Dorazio (2005) 
 
 Yamaura et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
 
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 11.2
+KÃ©ry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 11.2
 
 }
 \author{

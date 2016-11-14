@@ -28,7 +28,7 @@ covA <- rnorm(M)
 covB <- rnorm(M)
 
 # Ecological process: Simulate occurrence z at each site
-psi <- plogis(logit(mean.psi) + beta1 * covB)
+psi <- plogis(qlogis(mean.psi) + beta1 * covB)
 (z <- rbinom(M, 1, psi))    # Realized occurrence at each site
 cat("   Number of occupied sites ( among", M ,"):", sum(z), "\n")
 

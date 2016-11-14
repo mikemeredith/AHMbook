@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{e2dist}
 \alias{e2dist}
 \title{

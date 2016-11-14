@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{simHDSopen}
 \alias{simHDSopen}
 \title{
@@ -58,10 +59,10 @@ Wait...
 %% ...
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.5.4.1
+KÃ©ry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.5.4.1
 }
 \author{
-Marc Kéry & Andy Royle
+Marc KÃ©ry & Andy Royle
 }
 \note{
 For "point" the realized density is [(area of circle) /(area of  square)]*lambda

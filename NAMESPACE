@@ -13,11 +13,12 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif",
            "var", "vcov")
 importFrom("utils", "head", "stack")
-importFrom("unmarked", "unmarkedEstimate")
-# importFrom("raster", 
-# importFrom("plotrix", 
-# importFrom("RandomFields", 
-# importFrom("sp", 
+importFrom("unmarked", "unmarkedEstimate", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
+  "getData", "linearComb", "SE", "predict")
+importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues")
+importFrom("plotrix", "draw.circle")
+importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
+importFrom("sp", "bubble", "coordinates<-")
 
 
 # Chapter 1
@@ -30,7 +31,9 @@ export("sim.fn")
 export("data.fn")
 
 # Chapter 6
-export("simNmix", "ppc.plot", "plot.Nmix.resi", "map.Nmix.resi", "Nhat", "simpleNmix", "playRN")
+export("simNmix", "ppc.plot", "plot_Nmix_resi", "map.Nmix.resi", "simpleNmix", "playRN")
+export("plot.Nmix.resi") # defunct
+# Nhat taken out
 
 # Chapter 7
 export("fitstats", "fitstats2")
