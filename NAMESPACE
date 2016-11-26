@@ -14,8 +14,9 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "var", "vcov")
 importFrom("utils", "head", "stack")
 importFrom("unmarked", "unmarkedEstimate", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
-  "getData", "linearComb", "SE", "predict")
-importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues")
+  "getData", "linearComb", "SE", "predict", "coef")
+importClassesFrom("unmarked", "unmarkedFitPCount")
+importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues", "image")
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
 importFrom("sp", "bubble", "coordinates<-")

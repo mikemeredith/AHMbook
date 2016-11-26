@@ -1,13 +1,14 @@
-pcount.spHDS <-
-function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
-          method = "BFGS", se = TRUE, engine = c("C", "R"), 
-          detmod=c("logistic","halfnorm","hazard"), ...)
+# Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
+# Marc Kéry & Andy Royle, Academic Press, 2016.
+
+# pcount.spHDS - section 9.8.4 p540 --- SEE ERRATA 
+
+# Function fits spatial hierarchical distance sampling model
+# unmarked model fitting function introduced in Section 9.8.4)
+
+pcount.spHDS <- function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
+    method = "BFGS", se = TRUE, engine = c("C", "R"), ...)
 {
-    
-    if(detmod=="hazard")
-     stop("hazard not implemented yet")
-    if(engine=="C")
-     stop("Engine == C not implemented yet.")
     mixture <- match.arg(mixture, c("P", "NB", "ZIP"))
     if (!is(data, "unmarkedFramePCount"))
         stop("Data is not an unmarkedFramePCount object.")
@@ -53,27 +54,17 @@ function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
         navec <- is.na(y.ijk)
         ijk <- expand.grid(k = 0:K, j = 1:J, i = 1:M)
         ijk.to.ikj <- with(ijk, order(i, k, j))
-        
         nll <- function(parms) {
             theta.i <- exp(X %*% parms[1:nAP] + X.offset)
-            
-            the.parm<- -1*exp(parms[(nAP+1):(nAP+nDP)])
-            
-           if(detmod=="logistic")
-            p.ij <- 2.0*plogis(V %*% the.parm +  V.offset)
-           
-           if(detmod=="halfnorm")
-              p.ij <- exp(V %*% the.parm +  V.offset)
-            
+            p.ij <- 2*plogis(V %*% parms[(nAP + 1):(nAP + nDP)] +
+                V.offset)
             theta.ik <- rep(theta.i, each = K + 1)
             p.ijk <- rep(p.ij, each = K + 1)
-           
             bin.ijk <- dbinom(y.ijk, k.ijk, p.ijk)
             bin.ijk[which(is.na(bin.ijk))] <- 1
-            bin.ik.mat <- matrix(bin.ijk[ijk.to.ikj], M * (K +1), J, byrow = TRUE)
-            # g.ik <- rowProds(bin.ik.mat)
-            g.ik <- sapply(bin.ik.mat, 1, prod)
-            #g.ik <- exp(rowSums(log(bin.ik.mat)))
+            bin.ik.mat <- matrix(bin.ijk[ijk.to.ikj], M * (K +
+                1), J, byrow = TRUE)
+            g.ik <- rowProds(bin.ik.mat)
             if (identical(mixture, "P")) {
                 f.ik <- dpois(k.ik, theta.ik)
             }
@@ -111,22 +102,22 @@ function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
     }
     fmAIC <- 2 * fm$value + 2 * nP
     stateName <- "Abundance"
-    stateEstimates <- unmarked::unmarkedEstimate(name = stateName, short.name = "lam",
+    stateEstimates <- unmarked:::unmarkedEstimate(name = stateName, short.name = "lam",
         estimates = ests[1:nAP], covMat = as.matrix(covMat[1:nAP,
             1:nAP]), invlink = "exp", invlinkGrad = "exp")
-    detEstimates <- unmarked::unmarkedEstimate(name = "Detection", short.name = "p",
+    detEstimates <- unmarked:::unmarkedEstimate(name = "Detection", short.name = "p",
         estimates = ests[(nAP + 1):(nAP + nDP)], covMat = as.matrix(covMat[(nAP +
             1):(nAP + nDP), (nAP + 1):(nAP + nDP)]), invlink = "logistic",
         invlinkGrad = "logistic.grad")
     estimateList <- unmarked:::unmarkedEstimateList(list(state = stateEstimates,
         det = detEstimates))
     if (identical(mixture, "NB")) {
-        estimateList@estimates$alpha <- unmarked::unmarkedEstimate(name = "Dispersion",
+        estimateList@estimates$alpha <- unmarked:::unmarkedEstimate(name = "Dispersion",
             short.name = "alpha", estimates = ests[nP], covMat = as.matrix(covMat[nP,
                 nP]), invlink = "exp", invlinkGrad = "exp")
     }
     if (identical(mixture, "ZIP")) {
-        estimateList@estimates$psi <- unmarked::unmarkedEstimate(name = "Zero-inflation",
+        estimateList@estimates$psi <- unmarked:::unmarkedEstimate(name = "Zero-inflation",
             short.name = "psi", estimates = ests[nP], covMat = as.matrix(covMat[nP,
                 nP]), invlink = "logistic", invlinkGrad = "logistic.grad")
     }
@@ -136,3 +127,5 @@ function (formula, data, K, mixture = c("P", "NB", "ZIP"), starts,
         nllFun = nll, K = K, mixture = mixture)
     return(umfit)
 }
+
+

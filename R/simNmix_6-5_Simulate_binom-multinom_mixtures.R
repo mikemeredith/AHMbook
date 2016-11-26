@@ -94,6 +94,9 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 # show.plot: if TRUE, plots of the data will be displayed; set to FALSE
 #      if you are running simulations.
 
+x <- NULL
+logit <- plogis # Fix issues with 'curve'
+
 # Create indices
 nrep <- rep(nvisit, nsite)                   # No. visits (reps) per site
 site <- 1:nsite                              # Site index at site level
@@ -169,18 +172,18 @@ devAskNewPage(ask = TRUE)
 par(mfrow = c(2, 2), cex.main = 1)
 barplot(table(s), main = "Number unsuitable and suitable sites", col = "grey")
 plot(site.cov[,1], s, ylim = c(0,1), main = "'Suitability' & site covariate 1")
-curve(function(x) plogis(alpha.theta + beta1.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+curve(logit(alpha.theta + beta1.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
 plot(site.cov[,2], s, ylim = c(0,1), main = "'Suitability' & site covariate 2")
-curve(function(x) plogis(alpha.theta + beta2.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+curve(logit(alpha.theta + beta2.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
 plot(site.cov[,3], s, ylim = c(0,1), main = "'Suitability' & site covariate 3")
-curve(function(x) plogis(alpha.theta + beta3.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+curve(logit(alpha.theta + beta3.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
 
 # Plots features of the abundance part of the system
 par(mfrow = c(3, 3), cex.main = 1)
 ylim = c(min(exp(log.lam.partial))-1, max(N))
-curve(function(x) exp(log(mean.lam) + beta2.lam * x), -2, 2, xlab = "Site covariate 2", main = "Site covariate 2 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
-curve(function(x) exp(log(mean.lam) + beta3.lam * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
-curve(function(x) exp(log(mean.lam) + beta4.lam * x), -2, 2, xlab = "Site covariate 4", main = "Site covariate 4 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+curve(exp(log(mean.lam) + beta2.lam * x), -2, 2, xlab = "Site covariate 2", main = "Site covariate 2 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+curve(exp(log(mean.lam) + beta3.lam * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+curve(exp(log(mean.lam) + beta4.lam * x), -2, 2, xlab = "Site covariate 4", main = "Site covariate 4 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
 plot(site.cov[,2], exp(log.lam.partial), col = "red", xlab = "Site covariate 2", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
 plot(site.cov[,3], exp(log.lam.partial), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
 plot(site.cov[,4], exp(log.lam.partial), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
@@ -295,11 +298,11 @@ p <- pp  ;  DH <- NA
 if(show.plot){
 devAskNewPage(ask = TRUE)
 par(mfrow = c(3,2), cex.main = 1)
-curve(function(x) plogis(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
-curve(function(x) plogis(qlogis(mean.p) + beta5.p * x), -2, 2, xlab = "Site covariate 5", main = "Site covariate 5 & detection", ylab = "p", col = "red", lwd = 3)
-curve(function(x) plogis(qlogis(mean.p) + beta6.p * x), -2, 2, xlab = "Site covariate 6", main = "Site covariate 6 & detection", ylab = "p", col = "red", lwd = 3)
-curve(function(x) plogis(qlogis(mean.p) + beta.p.survey * x), -2, 2, xlab = "Survey covariate", main = "Survey covariate & detection", ylab = "p", col = "red", lwd = 3)
-curve(function(x) plogis(qlogis(mean.p) + beta.p.N * x), log(0+1), log(max(N)+1), xlab = "Effect of log(N+1) in logit(p)", ylab = "p", col = "red", lwd = 3)
+curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
+curve(logit(qlogis(mean.p) + beta5.p * x), -2, 2, xlab = "Site covariate 5", main = "Site covariate 5 & detection", ylab = "p", col = "red", lwd = 3)
+curve(logit(qlogis(mean.p) + beta6.p * x), -2, 2, xlab = "Site covariate 6", main = "Site covariate 6 & detection", ylab = "p", col = "red", lwd = 3)
+curve(logit(qlogis(mean.p) + beta.p.survey * x), -2, 2, xlab = "Survey covariate", main = "Survey covariate & detection", ylab = "p", col = "red", lwd = 3)
+curve(logit(qlogis(mean.p) + beta.p.N * x), log(0+1), log(max(N)+1), xlab = "Effect of log(N+1) in logit(p)", ylab = "p", col = "red", lwd = 3)
 
 par(mfrow = c(2,2), cex.main = 1)
 hist(eta.p.site, col = "grey", main = "Random site eff. in p", breaks = 50)

@@ -24,7 +24,7 @@ gr <- expand.grid(grx,grx)         # Create grid coordinates
 V <- exp(-e2dist(gr,gr)/1)
 x <- t(chol(V))%*%rnorm(900)
 par(mar=c(3,3,3,6))
-image(rasterFromXYZ(cbind(gr,x)), col=topo.colors(10))
+image(rasterFromXYZ(cbind(as.matrix(gr),x)), col=topo.colors(10)) # need to convert gr to a matrix
 draw.circle(3, 3, B)
 points(3, 3, pch="+", cex=3)
 image.scale(x, col=topo.colors(10))
