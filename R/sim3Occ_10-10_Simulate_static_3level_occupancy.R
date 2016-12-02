@@ -30,6 +30,7 @@ sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xp
 # p.time.range: range of p 'intercepts' for replicates
 # beta.Xp: effect on p of covariate C (unit by subunit by replicate)
 # sd.logit.p: SD of logit(p)
+x <- NULL ; rm(x) # Fudge to stop R CMD check complaining.
 
 # Create data structures
 z <- psi <- array(NA, dim = nunit)  # Unit occurrence
@@ -58,15 +59,15 @@ for(j in 1:nsubunit){
 # Visualisation of covariate relationships of psi, theta and p
 par(mfrow = c(1,3), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.5)
 plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = F)
-curve(function(x) plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
 plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = F)
 for(j in 1:nsubunit){
-   curve(function(x) plogis(qlogis(mean.theta) + theta.time.effect[j] +
+   curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
    beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
 }
 plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = F)
 for(k in 1:nrep){
-   curve(function(x) plogis(qlogis(mean.p) + p.time.effect[k] +
+   curve(plogis(qlogis(mean.p) + p.time.effect[k] +
    beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
 }
 

@@ -15,9 +15,14 @@ spline.prep <- function(cov, nknot = NA){
 # Prepares fixed part of covariate as a quadratic polynomial
 
 # Determine number and position of knots
-ifelse(is.na(nknot),
-n.knots <- max(5, min(round(length(unique(cov))/4), 35)),
-n.knots <- nknot)
+# ifelse(is.na(nknot),
+# n.knots <- max(5, min(round(length(unique(cov))/4), 35)),
+# n.knots <- nknot)
+if(is.na(nknot)) {
+  n.knots <- max(5, min(round(length(unique(cov))/4), 35))
+} else {
+  n.knots <- nknot
+}
 prob.tmp <- seq(0,1, length = n.knots + 2)
 prob <- prob.tmp[-c(1, length(prob.tmp))]
 knots <- quantile(unique(cov), probs = prob)

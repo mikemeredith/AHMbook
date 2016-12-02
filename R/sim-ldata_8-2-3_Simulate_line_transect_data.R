@@ -16,7 +16,7 @@ sim.ldata <- function(N = 200, sigma = 30){
 # of x=distance only for individuals that are captured
 par(mfrow = c(1,2))
 # Plot the detection function
-curve(function(x) exp(-x^2/(2*sigma^2)), 0, 100, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
+curve(exp(-x^2/(2*sigma^2)), 0, 100, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
 text(80, 0.9, paste("sigma:", sigma))
 xall <- runif(N, -100,100) # Distances of all N individuals
 hist(abs(xall), nclass=10, xlab = "Distance (x)", col = "grey", main = "True (grey) \nand observed distances (blue)")

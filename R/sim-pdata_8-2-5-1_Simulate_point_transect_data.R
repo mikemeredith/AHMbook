@@ -15,10 +15,11 @@ sim.pdata <- function(N=1000, sigma=1, B=3, keep.all=FALSE) {
 #    sigma: scale of half-normal detection function
 #    B: circle radias
 #    keep.all: return the data for y = 0 individuals or not
+x <- NULL ; rm(x) # Kludge to keep R CMD check happy
 
 # Plot the detection function
 par(mfrow = c(1,2))
-curve(function(x) exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
+curve(exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
 text(0.8*B, 0.9, paste("sigma:", sigma))
 
 # Simulate and plot simulated data
