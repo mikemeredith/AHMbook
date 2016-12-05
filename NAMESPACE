@@ -20,6 +20,7 @@ importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
 importFrom("sp", "bubble", "coordinates<-")
+importFrom("matrixStats", "rowProds")
 
 
 # Chapter 1
@@ -56,6 +57,9 @@ export("simComm")
 
 # Chapter 15
 export("simDynocc.fn")
+
+# Chapter 17
+export("simDCM")
 
 # Chapter 20
 export("spatial.exp")

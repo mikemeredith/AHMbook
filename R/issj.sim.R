@@ -7,9 +7,9 @@
 #   (introduced in Section 9.7.1)
 
 issj.sim <-
-function(B=300, db=db, lam=lamnew,sigma=sigma,phi=phi, gamma=gamma,  npoints=npoints, nyrs=nyrs, nbsize=-1.02){
+function(B, db, lam, sigma, phi, gamma, npoints, nyrs, nbsize=-1.02){
 
-
+nD <- length(db) - 1 # Number of distance classes
 
 parms<- c(lam=lam,phi=phi, gamma=gamma, sigma=sigma)
 
@@ -41,8 +41,8 @@ NcList<-list(Nc,Nc,Nc,Nc,Nc,Nc)
 for (y in 1:nyrs){
 for (j in 1:J){
   if (Nsim[j,y]==0) next
-  junk<-rmultinom(1, Nsim[j,y],pcc)
-  tt<-rep( (which(junk!=0) - 0.5), (junk[which(junk!=0)]) )
+  junk <- rmultinom(1, Nsim[j,y], pcc)
+  tt <-rep( (which(junk!=0) - 0.5), (junk[which(junk!=0)]) )
   Ndist<-cbind(rep(j,Nsim[j,y]),tt )
   NcList[[y]]<-rbind(NcList[[y]], Ndist)
 }}

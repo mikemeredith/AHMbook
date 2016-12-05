@@ -81,6 +81,11 @@ The functions are listed by chapter below.
   \tabular{ll}{
   \code{\link{simDynocc.fn}} \tab Simulation of data under a dynamic occupancy model under a wide range of conditions} }
   
+\section{Chapter 17}{
+ 
+  \tabular{ll}{
+  \code{\link{simDCM}} \tab Simulate detection/nondetection data under a general dynamic community (site-occupancy) model} }
+  
 \section{Chapter 20}{
  
   \tabular{ll}{
