@@ -14,7 +14,7 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "var", "vcov")
 importFrom("utils", "head", "stack")
 importFrom("unmarked", "unmarkedEstimate", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
-  "getData", "linearComb", "SE", "predict", "coef")
+  "getData", "linearComb", "SE", "predict", "coef", "fitted", "residuals", "vcov", "confint")
 importClassesFrom("unmarked", "unmarkedFitPCount")
 importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues", "image")
 importFrom("plotrix", "draw.circle")
@@ -47,7 +47,7 @@ export("sim.ldata", "sim.pdata", "simHDS")
 # Chapter 9
 export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "pcount.spHDS")
 export("e2dist")
-# export("image.scale")
+export("image.scale")
 
 # Chapter 10
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")

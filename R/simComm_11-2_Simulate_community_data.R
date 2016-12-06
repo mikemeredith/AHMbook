@@ -99,6 +99,9 @@ mean.p=0.25, sig.lp=1, mu.beta.lp=0, sig.beta.lp=0, show.plot = TRUE) {
 
 # Code for simulating binary detection/nondetection data
 #   (according to a community occupancy model)
+
+if(FALSE) x <- NULL # A kludge to cope with 'curve's odd way of using 'x'
+
 if(type=="det/nondet"){
 # Prepare structures to hold data
   y.all <- y.obs <- p <- array(NA, c(nsite, nrep, nspec))
@@ -162,22 +165,23 @@ occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
   # (1) Species-specific and community responses of occupancy to habitat
   # (2) Species-specific and community responses of detection to wind
 if(show.plot){
+  logit <- plogis
   par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
   # (1) Species-specific and community responses of occupancy to 'habitat'
-  curve(function(x) plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
+  curve(logit(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
   xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(function(x) plogis(beta0[k] + beta1[k] * x), -2, 2, add = T)
+    curve(logit(beta0[k] + beta1[k] * x), -2, 2, add = T)
   }
-  curve(function(x) plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(logit(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = T)
 
   # (2) Species-specific and community responses of detection to 'wind'
-  curve(function(x) plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+  curve(logit(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
   xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(function(x) plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
+    curve(logit(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
   }
-  curve(function(x) plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(logit(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
 }
 
 devAskNewPage(ask = TRUE)
@@ -188,6 +192,7 @@ devAskNewPage(ask = TRUE)
   # (5) Sites where a species was missed
   # (6) True and observed histogram of site-specific species richness
 if(show.plot){
+  logit <- plogis
   par(mfrow = c(2,2), cex.axis = 1.3, cex.lab = 1.3)
   mapPalette1 <- colorRampPalette(c("white", "black"))
   mapPalette2 <- colorRampPalette(c("white", "yellow", "orange", "red"))
@@ -289,20 +294,20 @@ occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
 if(show.plot){
   par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
   # (1) Species-specific and community responses of occupancy to 'habitat'
-  curve(function(x) exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
+  curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
   ylab = "Expected abundance (lambda)")
   for(k in 1:nspec){
-    curve(function(x) exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
+    curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
   }
-  curve(function(x) exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
 
   # (2) Species-specific and community responses of detection to 'wind'
-  curve(function(x) plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+  curve(logit(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
   xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
   for(k in 2:nspec){
-    curve(function(x) plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
+    curve(logit(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
   }
-  curve(function(x) plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
+  curve(logit(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
 }
 
 devAskNewPage(ask = TRUE)

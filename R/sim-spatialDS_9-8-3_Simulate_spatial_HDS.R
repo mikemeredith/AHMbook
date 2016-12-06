@@ -6,7 +6,7 @@
 # Function generates data under spatial hierarchical distance sampling model
 #   (introduced in Section 9.8.3)
 
-sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE, B=B, model="halfnorm"){
+sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE, B=3, model="halfnorm"){
 # Function simulates coordinates of individuals on a square
 # Square is [0,2B] x [0,2B], with a count location on the point (B, B)
 #   N: total population size in the square
@@ -43,7 +43,7 @@ d <- sqrt((u1 - B)^2 + (u2-B)^2)   # distance to center point of square
 N.real <- sum(d<= B)               # Population size inside of count circle
 
 # Can only count individuals in the circle, so set to zero detection probability of individuals in the corners (thereby truncating them)
-# p <- ifelse(d< B, 1, 0) * exp(-d*d/(2*(sigma^2)))
+# p <- ifelse(d < B, 1, 0) * exp(-d*d/(2*(sigma^2)))
 # We do away with the circle constraint here.
 if(model=="hazard")
    p <- 1-exp(-exp(-d*d/(2*sigma*sigma)))
@@ -51,10 +51,10 @@ if(model=="halfnorm")
    p <- exp(-d*d/(2*sigma*sigma))
 # Now we decide whether each individual is detected or not
 y <- rbinom(N, 1, p)                                           # detected or not
-points(u1[d<= B], u2[d<= B], pch = 16, col = "black", cex = 1) # not detected
+points(u1[d <= B], u2[d <= B], pch = 16, col = "black", cex = 1) # not detected
 points(u1[y==1], u2[y==1], pch = 16, col = "red", cex = 1)     # detected
 
-# Put all of the data in a matrix
+# Put all of the data in a matrix ## matrix? what matrix?
 if(!keep.all){
    u1 <- u1[y==1]
    u2 <- u2[y==1]

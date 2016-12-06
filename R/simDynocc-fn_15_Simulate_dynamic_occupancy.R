@@ -7,7 +7,9 @@
 # Function to generate data under a non-spatial dynamic occupancy model
 
 simDynocc.fn <- function(M = 250, J = 3, K = 10, mean.psi1 = 0.4, beta.Xpsi1 = 0,
-range.phi = c(0.5, 1), beta.Xphi = 0, range.gamma = c(0, 0.5), beta.Xgamma = 0, range.p = c(0.1, 0.9), beta.Xp = 0, range.sd.site = c(0, 0), range.sd.survey = c(0, 0), seed = Sys.time()) {
+range.phi = c(0.5, 1), beta.Xphi = 0, range.gamma = c(0, 0.5), beta.Xgamma = 0,
+  range.p = c(0.1, 0.9), beta.Xp = 0, range.sd.site = c(0, 0), range.sd.survey = c(0, 0),
+  seed = Sys.time(), show.plot = TRUE) {
 #
 # Written by Marc Kery, 4 Dec 2014
 #
@@ -118,13 +120,14 @@ for(i in 1:M){                     # Loop over sites
 
 # (4) Plots and computation of derived quantities
 # Plot realised occupancy
-plot(year, apply(z, 2, mean), type = "l", xlab = "Year", ylab = "Occupancy or Detection prob.", col = "red", xlim = c(0,K+1), ylim = c(0,1), lwd = 2, lty = 1, frame.plot = FALSE, las = 1)
-lines(year, mean.p , type = "l", col = "red", lwd = 2, lty = 2)
-# Plot apparent occupancy
 psi.app <- apply(apply(y, c(1,3), max), 2, mean)
-lines(year, psi.app, type = "l", col = "black", lwd = 2)
-text(0.85*K, 0.1, labels = "red solid - true occupancy\n red dashed - detection\n black - observed occupancy", cex = 0.7)
-
+if(show.plot) {
+  plot(year, apply(z, 2, mean), type = "l", xlab = "Year", ylab = "Occupancy or Detection prob.", col = "red", xlim = c(0,K+1), ylim = c(0,1), lwd = 2, lty = 1, frame.plot = FALSE, las = 1)
+  lines(year, mean.p , type = "l", col = "red", lwd = 2, lty = 2)
+  # Plot apparent occupancy
+  lines(year, psi.app, type = "l", col = "black", lwd = 2)
+  text(0.85*K, 0.1, labels = "red solid - true occupancy\n red dashed - detection\n black - observed occupancy", cex = 0.7)
+}
 
 # Compute annual population occupancy
 for(i in 1:M){
@@ -136,5 +139,10 @@ mean.psi <- apply(psi, 2, mean)              # Average psi over sites
 
 # Return data
 return(list(M=M, J=J, K=K, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
-range.phi=range.phi, beta.Xphi=beta.Xphi, range.gamma=range.gamma, beta.Xgamma=beta.Xgamma, range.p=range.p, beta.Xp=beta.Xp, range.sd.site=range.sd.site, range.sd.survey=range.sd.survey, sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, psi=psi, mean.psi=mean.psi, psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, seed=as.numeric(seed)))
+  range.phi=range.phi, beta.Xphi=beta.Xphi, range.gamma=range.gamma,
+  beta.Xgamma=beta.Xgamma, range.p=range.p, beta.Xp=beta.Xp,
+  range.sd.site=range.sd.site, range.sd.survey=range.sd.survey,
+  sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi,
+  mean.gamma=mean.gamma, mean.p=mean.p, psi=psi, mean.psi=mean.psi,
+  psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, seed=as.numeric(seed)))
 }

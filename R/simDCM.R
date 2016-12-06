@@ -306,42 +306,42 @@ for(t in 1:nyear){   # Years
  
 # (5) Plots of stuff
 if(show.plot){
-par(mfrow = c(3, 2), mar = c(5,5,4,3), cex.lab = 1.2)
-devAskNewPage(ask = TRUE)
- 
-# Get predicted covariate relationships and plot them in single graph
-pred.cov <- seq(-2, 2, length.out = 100)
-psi.pred <- phi.pred <- gamma.pred <- p.pred <- array(dim = c(length(pred.cov), nspec))
-for(s in 1:nspec){
-  psi.pred[,s] <- plogis(beta0.lpsi[s] + beta1.lpsi[s] * pred.cov)
-  phi.pred[,s] <- plogis(mean(beta0.lphi[s,]) + beta1.lphi[s] * pred.cov)
-  gamma.pred[,s] <- plogis(mean(beta0.lgamma[s,]) + beta1.lgamma[s] * pred.cov)
-  p.pred[,s] <- plogis(mean(beta0.lp[s,]) + beta1.lp[s] * pred.cov)
-}
-matplot(pred.cov, psi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Initial occupancy prob.', las = 1, frame = F)
-matplot(pred.cov, phi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Persistence (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Persistence prob.', las = 1, frame = F)
-matplot(pred.cov, gamma.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Colonization (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Colonization prob.', las = 1, frame = F)
-matplot(pred.cov, p.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Detection (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Detection prob.', las = 1, frame = F)
- 
-# Plot the average seasonal product of availability and detection
-# (ignoring the other terms in the model for detection)
-matplot(month, p.season, type = 'l', lty = 1, lwd = 2, main = 'Seasonal pattern in p over the years \n(only seasonal terms, same for all species)', xlab = 'Month', ylab = 'Detection probability', ylim = c(0,1))
- 
-# Histo of detection
-hist(p, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Detection probability p\n (all species, sites etc.)')
- 
- 
-# Annual (and species-specific) variation in persistence, colonisation, and detection
-matplot(t(plogis(beta0.lphi)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Persistence intercept', main = 'Average persistence per year and species', las = 1, frame = F)
-matplot(t(plogis(beta0.lgamma)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Colonization intercept', main = 'Average colonization per year and species', las = 1, frame = F)
-matplot(t(plogis(beta0.lp)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Detection intercept', main = 'Average detection per year and species', las = 1, frame = F)
- 
-# Histo of true mean occupancy probability (all species and years)
-hist(mean.psi, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Mean occupancy probability psi1\n (all species and years)')
- 
-# Plot realised and apparent proportion of occupied sites
-matplot(year, mean.psi, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('True occupancy (', nspec, ' species, ', nsite, ' sites)', sep = '') )
-matplot(year, psi.obs, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('Observed occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''))
+  par(mfrow = c(3, 2), mar = c(5,5,4,3), cex.lab = 1.2)
+  devAskNewPage(ask = TRUE)
+   
+  # Get predicted covariate relationships and plot them in single graph
+  pred.cov <- seq(-2, 2, length.out = 100)
+  psi.pred <- phi.pred <- gamma.pred <- p.pred <- array(dim = c(length(pred.cov), nspec))
+  for(s in 1:nspec){
+    psi.pred[,s] <- plogis(beta0.lpsi[s] + beta1.lpsi[s] * pred.cov)
+    phi.pred[,s] <- plogis(mean(beta0.lphi[s,]) + beta1.lphi[s] * pred.cov)
+    gamma.pred[,s] <- plogis(mean(beta0.lgamma[s,]) + beta1.lgamma[s] * pred.cov)
+    p.pred[,s] <- plogis(mean(beta0.lp[s,]) + beta1.lp[s] * pred.cov)
+  }
+  matplot(pred.cov, psi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Initial occupancy prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, phi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Persistence (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Persistence prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, gamma.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Colonization (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Colonization prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, p.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Detection (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Detection prob.', las = 1, frame = FALSE)
+   
+  # Plot the average seasonal product of availability and detection
+  # (ignoring the other terms in the model for detection)
+  matplot(month, p.season, type = 'l', lty = 1, lwd = 2, main = 'Seasonal pattern in p over the years \n(only seasonal terms, same for all species)', xlab = 'Month', ylab = 'Detection probability', ylim = c(0,1))
+   
+  # Histo of detection
+  hist(p, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Detection probability p\n (all species, sites etc.)')
+   
+   
+  # Annual (and species-specific) variation in persistence, colonisation, and detection
+  matplot(t(plogis(beta0.lphi)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Persistence intercept', main = 'Average persistence per year and species', las = 1, frame = FALSE)
+  matplot(t(plogis(beta0.lgamma)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Colonization intercept', main = 'Average colonization per year and species', las = 1, frame = FALSE)
+  matplot(t(plogis(beta0.lp)), type = 'l', lty = 1, lwd = 2, ylim = c(0,1), xlab = 'Year', ylab = 'Detection intercept', main = 'Average detection per year and species', las = 1, frame = FALSE)
+   
+  # Histo of true mean occupancy probability (all species and years)
+  hist(mean.psi, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Mean occupancy probability psi1\n (all species and years)')
+   
+  # Plot realised and apparent proportion of occupied sites
+  matplot(year, mean.psi, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('True occupancy (', nspec, ' species, ', nsite, ' sites)', sep = '') )
+  matplot(year, psi.obs, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('Observed occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''))
 }
  
 # Return data

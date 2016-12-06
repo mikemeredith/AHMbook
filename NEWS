@@ -3,6 +3,14 @@ TODO
   * Stop simNmix spewing out warnings.
   
   
+CHANGES in 0.1.0.9005
+
+  * simDynocc.fn get show.plot argument
+  
+CHANGES in 0.1.0.9004
+
+  * Added simDCM and more help pages
+ 
 CHANGES in 0.1.0.9001
 
   * Took out Nhat and data.fn for chapter 21.
