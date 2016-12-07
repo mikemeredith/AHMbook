@@ -3,6 +3,12 @@ TODO
   * Stop simNmix spewing out warnings.
   
   
+CHANGES in 0.1.0.9006
+
+  * New function simDynocc to replace simDynocc.fn
+  
+  * image.scale no longer exported, as it is seen by R as a method for the S3 generic 'image'.
+  
 CHANGES in 0.1.0.9005
 
   * simDynocc.fn get show.plot argument

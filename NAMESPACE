@@ -47,7 +47,7 @@ export("sim.ldata", "sim.pdata", "simHDS")
 # Chapter 9
 export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "pcount.spHDS")
 export("e2dist")
-export("image.scale")
+# export("image.scale") # Seen by R as a method for S3 generic 'image'
 
 # Chapter 10
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
@@ -56,7 +56,7 @@ export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
 export("simComm")
 
 # Chapter 15
-export("simDynocc.fn")
+export("simDynocc")
 
 # Chapter 17
 export("simDCM")

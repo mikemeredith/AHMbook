@@ -79,7 +79,7 @@ The functions are listed by chapter below.
 \section{Chapter 15}{
  
   \tabular{ll}{
-  \code{\link{simDynocc.fn}} \tab Simulation of data under a dynamic occupancy model under a wide range of conditions} }
+  \code{\link{simDynocc}} \tab Simulation of data under a dynamic occupancy model under a wide range of conditions} }
   
 \section{Chapter 17}{
  
@@ -94,8 +94,8 @@ The functions are listed by chapter below.
 \section{UTILITY FUNCTIONS}{
 
   \tabular{ll}{
-  \code{\link{e2dist}} \tab Compute Euclidean distances \cr
-  \code{\link{image.scale}} \tab Draw scale for image (from SCR book, introduced in AHM1 chapter 9) }
+  \code{\link{e2dist}} \tab Compute Euclidean distances} %% \cr
+  %%\code{\link{image.scale}} \tab Draw scale for image (from SCR book, introduced in AHM1 chapter 9) }
 }
 
 \author{
