@@ -4,7 +4,7 @@ importFrom("grDevices", "colorRampPalette", "devAskNewPage",
              "topo.colors")
 importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
            "lines", "matplot", "par", "plot", "points", "polygon",
-           "rect", "segments", "text", "title")
+           "rect", "segments", "text", "title", "axis")
 importFrom("methods", "as", "is", "new")
 importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "dnbinom", "dnorm", "dpois", "fitted", "integrate", "lm",

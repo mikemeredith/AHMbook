@@ -9,9 +9,9 @@
 #   (introduced in Section 11.2)
 
 simComm <- function(type="det/nondet", nsite=30, nrep=3, nspec=100,
-mean.psi=0.25, sig.lpsi=1, mu.beta.lpsi=0, sig.beta.lpsi=0,
-mean.lambda=2, sig.loglam=1, mu.beta.loglam=1, sig.beta.loglam=1,
-mean.p=0.25, sig.lp=1, mu.beta.lp=0, sig.beta.lp=0, show.plot = TRUE) {
+  mean.psi=0.25, sig.lpsi=1, mu.beta.lpsi=0, sig.beta.lpsi=0,
+  mean.lambda=2, sig.loglam=1, mu.beta.loglam=1, sig.beta.loglam=1,
+  mean.p=0.25, sig.lp=1, mu.beta.lp=0, sig.beta.lp=0, show.plot = TRUE) {
 #
 # Function simulates data from repeated sampling of a metacommunity
 #   (or spatially structured community) according the model of
@@ -138,7 +138,7 @@ if(type=="det/nondet"){
   for(k in 1:nspec){
     z[,k] <- rbinom(nsite, 1, psi[,k])
   }
-occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
+  occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
 
   # Measurement of presence/absence (simulate observation)
   for(k in 1:nspec) {
@@ -165,8 +165,8 @@ occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
   # (1) Species-specific and community responses of occupancy to habitat
   # (2) Species-specific and community responses of detection to wind
 if(show.plot){
-  logit <- plogis
-  par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
+  logit <- plogis  # so that "logit" appears in the y-axis label
+  op <- par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3) ; on.exit(par(op))
   # (1) Species-specific and community responses of occupancy to 'habitat'
   curve(logit(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
   xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
@@ -184,7 +184,7 @@ if(show.plot){
   curve(logit(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
 }
 
-devAskNewPage(ask = TRUE)
+oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
 
 # More plots
   # (3) True presence/absence
@@ -216,10 +216,13 @@ if(show.plot){
     ylab = "Sites")
 
   # (6) True and observed distribution of site-specific species richness
-  plot(table(S.true), col = "red", xlab = "Number of species per site",
-    xlim = c(0, max(S.true)), ylab = "Frequency",
+  # plot(table(S.true), col = "red", xlab = "Number of species per site",
+    # xlim = c(0, max(S.true)), ylab = "Frequency",
+    # main = "True (red) vs. observed (blue) \n number of species per site")
+  # points(table(S.obs+(nspec/100)), col = "blue")
+  plotSpeciesTables(S.true, S.obs,  xlab = "Number of species per site",
     main = "True (red) vs. observed (blue) \n number of species per site")
-  points(table(S.obs+(nspec/100)), col = "blue")
+  # See file "unexported.R" for details of this function.
 }
 
   # Output
@@ -234,7 +237,7 @@ if(show.plot){
 # Code for simulating community abundance data
 #   (according to a community abundance model)
 if(type=="counts"){
-# Prepare structures to hold data
+  # Prepare structures to hold data
   y.all <- y.obs <- p <- array(NA, c(nsite, nrep, nspec))
   dimnames(y.all) <- dimnames(y.obs) <- dimnames(p) <-
     list(paste("site", 1:nsite, sep=""),
@@ -269,8 +272,8 @@ if(type=="counts"){
   for(k in 1:nspec){
     N[,k] <- rpois(nsite, lambda[,k])
   }
-tmp <- apply(N, 2, sum)
-occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
+  tmp <- apply(N, 2, sum)
+  occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
 
   # Measurement of abundance (simulate counts)
   for(k in 1:nspec) {
@@ -291,59 +294,59 @@ occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
   # Two panels of plots
   # (1) Species-specific and community responses of lambda to habitat
   # (2) Species-specific and community responses of detection to wind
-if(show.plot){
-  par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
-  # (1) Species-specific and community responses of occupancy to 'habitat'
-  curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
-  ylab = "Expected abundance (lambda)")
-  for(k in 1:nspec){
-    curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
+  if(show.plot){
+    op <- par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3) ; on.exit(par(op))
+    # (1) Species-specific and community responses of occupancy to 'habitat'
+    curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
+    ylab = "Expected abundance (lambda)")
+    for(k in 1:nspec){
+      curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = T)
+    }
+    curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
+
+    # (2) Species-specific and community responses of detection to 'wind'
+    curve(logit(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+    xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
+    for(k in 2:nspec){
+      curve(logit(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
+    }
+    curve(logit(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
   }
-  curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = T)
 
-  # (2) Species-specific and community responses of detection to 'wind'
-  curve(logit(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
-  xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
-  for(k in 2:nspec){
-    curve(logit(alpha0[k] + alpha1[k] * x), -2, 2, add = T)
-  }
-  curve(logit(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = T)
-}
+oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
 
-devAskNewPage(ask = TRUE)
-
-# More plots
-# (3) True abundance N (log10 + 1)
-# (4) Observed detection frequencies (log10 + 1)
-# (5) Ratio of max count to true N
-# (6) log(max count) vs. log (true N)
-
-if(show.plot){
-  par(mfrow = c(2,2), mar = c(5,6,4,2), cex.axis = 1.3, cex.lab = 1.3)
-  mapPalette <- colorRampPalette(c("yellow", "orange", "red"))
-  # (3) True abundance matrix (log(N+1)) for all species
-# mapPalette was 2 before
-  image(x = 1:nspec, y = 1:nsite, z = log10(t(N)+1), col = mapPalette(100),
-   main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = T, xlim = c(0, nspec+1),
-  zlim = c(0, log10(max(N))), xlab = "Species", ylab = "Sites")
-  # (4) Observed maximum counts for all species
-  image(x = 1:nspec, y = 1:nsite, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
-    xlim = c(0, nspec+1), frame = T, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
+  # More plots
+  # (3) True abundance N (log10 + 1)
+  # (4) Observed detection frequencies (log10 + 1)
   # (5) Ratio of max count to true N
-  ratio <- ymax.obs/N
-  ratio[ratio == "NaN"] <- 1
-  image(x = 1:nspec, y = 1:nsite, z = t(ratio), col = mapPalette(100),
-    main = paste("Ratio of max count to true abundance (N)"),
-    xlim = c(0, nspec+1), frame = T, xlab = "Species", ylab = "Sites",
-    zlim = c(0, 1))
+  # (6) log(max count) vs. log (true N)
 
-  # (6) True N and observed max count versus 'habitat'
-  lims <- c(0, log10(max(N+1)))
-  plot(log(N), log(ymax.obs), xlab = "True abundance (log10(N+1))",
-   ylab = "Observed max count \n(log10(max+1))", xlim = lims, ylim = lims,
-   main = "Observed vs. true N (log10 scale)" )
-  abline(0,1)
-}
+  if(show.plot){
+    par(mfrow = c(2,2), mar = c(5,6,4,2), cex.axis = 1.3, cex.lab = 1.3)
+    mapPalette <- colorRampPalette(c("yellow", "orange", "red"))
+    # (3) True abundance matrix (log(N+1)) for all species
+  # mapPalette was 2 before
+    image(x = 1:nspec, y = 1:nsite, z = log10(t(N)+1), col = mapPalette(100),
+     main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = T, xlim = c(0, nspec+1),
+    zlim = c(0, log10(max(N))), xlab = "Species", ylab = "Sites")
+    # (4) Observed maximum counts for all species
+    image(x = 1:nspec, y = 1:nsite, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
+      xlim = c(0, nspec+1), frame = T, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
+    # (5) Ratio of max count to true N
+    ratio <- ymax.obs/N
+    ratio[ratio == "NaN"] <- 1
+    image(x = 1:nspec, y = 1:nsite, z = t(ratio), col = mapPalette(100),
+      main = paste("Ratio of max count to true abundance (N)"),
+      xlim = c(0, nspec+1), frame = T, xlab = "Species", ylab = "Sites",
+      zlim = c(0, 1))
+
+    # (6) True N and observed max count versus 'habitat'
+    lims <- c(0, log10(max(N+1)))
+    plot(log(N), log(ymax.obs), xlab = "True abundance (log10(N+1))",
+     ylab = "Observed max count \n(log10(max+1))", xlim = lims, ylim = lims,
+     main = "Observed vs. true N (log10 scale)" )
+    abline(0,1)
+  }
 
   # Output
   return(list(type=type, nsite=nsite, nrep=nrep, nspec=nspec,

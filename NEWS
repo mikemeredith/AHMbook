@@ -2,6 +2,9 @@ TODO
 
   * Stop simNmix spewing out warnings.
   
+CHANGES in 0.1.0.9007
+
+  * simComm restores previous 'par' and 'devAskNewPage' settings on exit
   
 CHANGES in 0.1.0.9006
 
