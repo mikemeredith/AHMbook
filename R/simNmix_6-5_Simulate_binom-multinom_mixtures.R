@@ -167,48 +167,48 @@ for(j in 2:nvisit){
 
 # Visualization of suitability and abundance
 if(show.plot){
-devAskNewPage(ask = TRUE)
-# Plots features of the suitability part of the system
-par(mfrow = c(2, 2), cex.main = 1)
-barplot(table(s), main = "Number unsuitable and suitable sites", col = "grey")
-plot(site.cov[,1], s, ylim = c(0,1), main = "'Suitability' & site covariate 1")
-curve(logit(alpha.theta + beta1.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
-plot(site.cov[,2], s, ylim = c(0,1), main = "'Suitability' & site covariate 2")
-curve(logit(alpha.theta + beta2.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
-plot(site.cov[,3], s, ylim = c(0,1), main = "'Suitability' & site covariate 3")
-curve(logit(alpha.theta + beta3.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk))
+  # Plots features of the suitability part of the system
+  op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op), add=TRUE)
+  barplot(table(s), main = "Number unsuitable and suitable sites", col = "grey")
+  plot(site.cov[,1], s, ylim = c(0,1), main = "'Suitability' & site covariate 1")
+  curve(logit(alpha.theta + beta1.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+  plot(site.cov[,2], s, ylim = c(0,1), main = "'Suitability' & site covariate 2")
+  curve(logit(alpha.theta + beta2.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
+  plot(site.cov[,3], s, ylim = c(0,1), main = "'Suitability' & site covariate 3")
+  curve(logit(alpha.theta + beta3.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
 
-# Plots features of the abundance part of the system
-par(mfrow = c(3, 3), cex.main = 1)
-ylim = c(min(exp(log.lam.partial))-1, max(N))
-curve(exp(log(mean.lam) + beta2.lam * x), -2, 2, xlab = "Site covariate 2", main = "Site covariate 2 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
-curve(exp(log(mean.lam) + beta3.lam * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
-curve(exp(log(mean.lam) + beta4.lam * x), -2, 2, xlab = "Site covariate 4", main = "Site covariate 4 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
-plot(site.cov[,2], exp(log.lam.partial), col = "red", xlab = "Site covariate 2", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
-plot(site.cov[,3], exp(log.lam.partial), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
-plot(site.cov[,4], exp(log.lam.partial), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
-plot(site.cov[,2], exp(log.lam), col = "red", xlab = "Site covariate 2", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
-plot(site.cov[,3], exp(log.lam), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
-plot(site.cov[,4], exp(log.lam), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
+  # Plots features of the abundance part of the system
+  par(mfrow = c(3, 3), cex.main = 1)
+  ylim = c(min(exp(log.lam.partial))-1, max(N))
+  curve(exp(log(mean.lam) + beta2.lam * x), -2, 2, xlab = "Site covariate 2", main = "Site covariate 2 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+  curve(exp(log(mean.lam) + beta3.lam * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+  curve(exp(log(mean.lam) + beta4.lam * x), -2, 2, xlab = "Site covariate 4", main = "Site covariate 4 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
+  plot(site.cov[,2], exp(log.lam.partial), col = "red", xlab = "Site covariate 2", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
+  plot(site.cov[,3], exp(log.lam.partial), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
+  plot(site.cov[,4], exp(log.lam.partial), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(excl. site random effects)", ylim = ylim)
+  plot(site.cov[,2], exp(log.lam), col = "red", xlab = "Site covariate 2", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
+  plot(site.cov[,3], exp(log.lam), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
+  plot(site.cov[,4], exp(log.lam), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
 
-par(mfrow = c(1, 3), cex = 1)
-plot(site.cov[,2], N, col = "red", xlab = "Site covariate 2", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
-plot(site.cov[,3], N, col = "red", xlab = "Site covariate 3", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
-plot(site.cov[,4], N, col = "red", xlab = "Site covariate 4", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
+  par(mfrow = c(1, 3), cex = 1)
+  plot(site.cov[,2], N, col = "red", xlab = "Site covariate 2", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
+  plot(site.cov[,3], N, col = "red", xlab = "Site covariate 3", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
+  plot(site.cov[,4], N, col = "red", xlab = "Site covariate 4", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
 
-if(Neg.Bin == TRUE){
-xlim <- c(min(c(N.P, N.NB)), max(c(N.P, N.NB)))
-par(mfrow = c(1, 1), cex.main = 1)
-hist(N.NB, breaks = 60, col = "red", main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N", xlim = xlim)
-hist(N.P, breaks = 60, col = "blue", add = TRUE)
-}
-if(Neg.Bin == FALSE){
-xlim <- c(min(c(N.P, N.PLN)), max(c(N.P, N.PLN)))
-par(mfrow = c(1, 2), cex.main = 1)
-hist(eta.lam, col = "grey", main = "Random site effects in abundance")
-hist(N.PLN, breaks = 60, col = "red", main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N", xlim = xlim)
-hist(N.P, breaks = 60, col = "blue", add = TRUE)
-}
+  if(Neg.Bin == TRUE){
+    xlim <- c(min(c(N.P, N.NB)), max(c(N.P, N.NB)))
+    par(mfrow = c(1, 1), cex.main = 1)
+    hist(N.NB, breaks = 60, col = "red", main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N", xlim = xlim)
+    hist(N.P, breaks = 60, col = "blue", add = TRUE)
+  }
+  if(Neg.Bin == FALSE){
+    xlim <- c(min(c(N.P, N.PLN)), max(c(N.P, N.PLN)))
+    par(mfrow = c(1, 2), cex.main = 1)
+    hist(eta.lam, col = "grey", main = "Random site effects in abundance")
+    hist(N.PLN, breaks = 60, col = "red", main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N", xlim = xlim)
+    hist(N.P, breaks = 60, col = "blue", add = TRUE)
+  }
 }
 
 # Simulate observation process conditional on true state N
@@ -296,48 +296,48 @@ p <- pp  ;  DH <- NA
 
 # Plots and summaries of observation process
 if(show.plot){
-devAskNewPage(ask = TRUE)
-par(mfrow = c(3,2), cex.main = 1)
-curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
-curve(logit(qlogis(mean.p) + beta5.p * x), -2, 2, xlab = "Site covariate 5", main = "Site covariate 5 & detection", ylab = "p", col = "red", lwd = 3)
-curve(logit(qlogis(mean.p) + beta6.p * x), -2, 2, xlab = "Site covariate 6", main = "Site covariate 6 & detection", ylab = "p", col = "red", lwd = 3)
-curve(logit(qlogis(mean.p) + beta.p.survey * x), -2, 2, xlab = "Survey covariate", main = "Survey covariate & detection", ylab = "p", col = "red", lwd = 3)
-curve(logit(qlogis(mean.p) + beta.p.N * x), log(0+1), log(max(N)+1), xlab = "Effect of log(N+1) in logit(p)", ylab = "p", col = "red", lwd = 3)
+  devAskNewPage(ask = TRUE)
+  par(mfrow = c(3,2), cex.main = 1)
+  curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
+  curve(logit(qlogis(mean.p) + beta5.p * x), -2, 2, xlab = "Site covariate 5", main = "Site covariate 5 & detection", ylab = "p", col = "red", lwd = 3)
+  curve(logit(qlogis(mean.p) + beta6.p * x), -2, 2, xlab = "Site covariate 6", main = "Site covariate 6 & detection", ylab = "p", col = "red", lwd = 3)
+  curve(logit(qlogis(mean.p) + beta.p.survey * x), -2, 2, xlab = "Survey covariate", main = "Survey covariate & detection", ylab = "p", col = "red", lwd = 3)
+  curve(logit(qlogis(mean.p) + beta.p.N * x), log(0+1), log(max(N)+1), xlab = "Effect of log(N+1) in logit(p)", ylab = "p", col = "red", lwd = 3)
 
-par(mfrow = c(2,2), cex.main = 1)
-hist(eta.p.site, col = "grey", main = "Random site eff. in p", breaks = 50)
-hist(eta.p.visit, col = "grey", main = "Random visit eff. in p", breaks = 50)
-hist(eta.p.survey, col = "grey", main = "Random site-survey eff. in p", breaks = 50)
-hist(eta.p.ind, col = "grey", main = "Random ind. eff. in p", breaks = 50)
+  par(mfrow = c(2,2), cex.main = 1)
+  hist(eta.p.site, col = "grey", main = "Random site eff. in p", breaks = 50)
+  hist(eta.p.visit, col = "grey", main = "Random visit eff. in p", breaks = 50)
+  hist(eta.p.survey, col = "grey", main = "Random site-survey eff. in p", breaks = 50)
+  hist(eta.p.ind, col = "grey", main = "Random ind. eff. in p", breaks = 50)
 
 
-par(mfrow = c(3,2), cex.main = 1)
-matplot(site.cov[,3], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
-matplot(site.cov[,3], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
-matplot(site.cov[,5], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 5", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
-matplot(site.cov[,5], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 5", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
-matplot(site.cov[,6], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
-matplot(site.cov[,6], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
+  par(mfrow = c(3,2), cex.main = 1)
+  matplot(site.cov[,3], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
+  matplot(site.cov[,3], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
+  matplot(site.cov[,5], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 5", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
+  matplot(site.cov[,5], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 5", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
+  matplot(site.cov[,6], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
+  matplot(site.cov[,6], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
 
-par(mfrow = c(2,2), cex.main = 1)
-matplot(survey.cov, apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
-matplot(survey.cov, apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
-matplot(N, apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Local abundance (N)", ylab = "p", main = "Detection probability", ylim = c(0,1), pch = 1)
-hist(p, col = "grey", main = "Realized detection probability \n(blue=mean)", breaks = 50)
-abline(v = mean(p, na.rm = TRUE), col = "blue", lwd = 2)
+  par(mfrow = c(2,2), cex.main = 1)
+  matplot(survey.cov, apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
+  matplot(survey.cov, apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
+  matplot(N, apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Local abundance (N)", ylab = "p", main = "Detection probability", ylim = c(0,1), pch = 1)
+  hist(p, col = "grey", main = "Realized detection probability \n(blue=mean)", breaks = 50)
+  abline(v = mean(p, na.rm = TRUE), col = "blue", lwd = 2)
 
-# .... and of the observed counts
-par(mfrow = c(3,3), cex.main = 1)
-hist(C, col = "grey", main = "Observed counts", breaks = 50)
-matplot(site.cov[,1], C, xlab = "Site covariate 1", ylab = "Counts", main = "Obs. counts vs. site covariate 1")
-matplot(site.cov[,2], C, xlab = "Site covariate 2", ylab = "Counts", main = "Obs. counts vs. site covariate 2")
-matplot(site.cov[,3], C, xlab = "Site covariate 3", ylab = "Counts", main = "Obs. counts vs. site covariate 3")
-matplot(site.cov[,4], C, xlab = "Site covariate 4", ylab = "Counts", main = "Obs. counts vs. site covariate 4")
-matplot(site.cov[,5], C, xlab = "Site covariate 5", ylab = "Counts", main = "Obs. counts vs. site covariate 5")
-matplot(site.cov[,6], C, xlab = "Site covariate 6", ylab = "Counts", main = "Obs. counts vs. site covariate 6")
-matplot(survey.cov, C, xlab = "Survey covariate", ylab = "Counts", main = "Obs. counts vs. survey covariate")
-plot(rep(N, nvisit), C, xlab = "True state (abundance N)", ylab = "Obs.state (counts C)", main = "Obs. counts vs. true abundance", xlim = c(min(N,C), max(N,C)), ylim = c(min(N,C), max(N,C)))
-abline(0,1)
+  # .... and of the observed counts
+  par(mfrow = c(3,3), cex.main = 1)
+  hist(C, col = "grey", main = "Observed counts", breaks = 50)
+  matplot(site.cov[,1], C, xlab = "Site covariate 1", ylab = "Counts", main = "Obs. counts vs. site covariate 1")
+  matplot(site.cov[,2], C, xlab = "Site covariate 2", ylab = "Counts", main = "Obs. counts vs. site covariate 2")
+  matplot(site.cov[,3], C, xlab = "Site covariate 3", ylab = "Counts", main = "Obs. counts vs. site covariate 3")
+  matplot(site.cov[,4], C, xlab = "Site covariate 4", ylab = "Counts", main = "Obs. counts vs. site covariate 4")
+  matplot(site.cov[,5], C, xlab = "Site covariate 5", ylab = "Counts", main = "Obs. counts vs. site covariate 5")
+  matplot(site.cov[,6], C, xlab = "Site covariate 6", ylab = "Counts", main = "Obs. counts vs. site covariate 6")
+  matplot(survey.cov, C, xlab = "Survey covariate", ylab = "Counts", main = "Obs. counts vs. survey covariate")
+  plot(rep(N, nvisit), C, xlab = "True state (abundance N)", ylab = "Obs.state (counts C)", main = "Obs. counts vs. true abundance", xlim = c(min(N,C), max(N,C)), ylim = c(min(N,C), max(N,C)))
+  abline(0,1)
 }
 
 # Compute naive ‘overdispersion coefficients’ at level latent N and observed C

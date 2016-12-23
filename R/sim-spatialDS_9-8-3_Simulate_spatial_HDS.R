@@ -6,7 +6,8 @@
 # Function generates data under spatial hierarchical distance sampling model
 #   (introduced in Section 9.8.3)
 
-sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE, B=3, model="halfnorm"){
+sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE,
+  B=3, model="halfnorm", show.plot=TRUE){
 # Function simulates coordinates of individuals on a square
 # Square is [0,2B] x [0,2B], with a count location on the point (B, B)
 #   N: total population size in the square
@@ -23,11 +24,7 @@ gr <- expand.grid(grx,grx)         # Create grid coordinates
 # Create spatially correlated covariate x and plot it
 V <- exp(-e2dist(gr,gr)/1)
 x <- t(chol(V))%*%rnorm(900)
-par(mar=c(3,3,3,6))
-image(rasterFromXYZ(cbind(as.matrix(gr),x)), col=topo.colors(10)) # need to convert gr to a matrix
-draw.circle(3, 3, B)
-points(3, 3, pch="+", cex=3)
-image.scale(x, col=topo.colors(10))
+
 
 # Simulate point locations as function of habitat covariate x
 probs <- exp(beta*x)/sum(exp(beta*x)) # probability of point in pixel (sum = 1)
@@ -35,12 +32,10 @@ pixel.id <- sample(1:900, N, replace=TRUE, prob=probs)
 # could simulate randomly within the pixel but it won't matter so place centrally
 u1 <- gr[pixel.id,1]
 u2 <- gr[pixel.id,2]
-points(u1, u2, pch=20, col='black', cex = 0.8)  # plot points
-title("Extremely cool figure")         # express your appreciation of all this
 
 d <- sqrt((u1 - B)^2 + (u2-B)^2)   # distance to center point of square
 #plot(u1, u2, pch = 1, main = "Point transect")
-N.real <- sum(d<= B)               # Population size inside of count circle
+N.real <- sum(d <= B)               # Population size inside of count circle
 
 # Can only count individuals in the circle, so set to zero detection probability of individuals in the corners (thereby truncating them)
 # p <- ifelse(d < B, 1, 0) * exp(-d*d/(2*(sigma^2)))
@@ -51,9 +46,18 @@ if(model=="halfnorm")
    p <- exp(-d*d/(2*sigma*sigma))
 # Now we decide whether each individual is detected or not
 y <- rbinom(N, 1, p)                                           # detected or not
-points(u1[d <= B], u2[d <= B], pch = 16, col = "black", cex = 1) # not detected
-points(u1[y==1], u2[y==1], pch = 16, col = "red", cex = 1)     # detected
 
+if(show.plot) {
+  op <- par(mar=c(3,3,3,6)) ; on.exit(par(op))
+  image(rasterFromXYZ(cbind(as.matrix(gr),x)), col=topo.colors(10)) # need to convert gr to a matrix
+  draw.circle(3, 3, B)
+  points(3, 3, pch="+", cex=3)
+  image_scale(x, col=topo.colors(10))
+  points(u1, u2, pch=20, col='black', cex = 0.8)  # plot points
+  title("Extremely cool figure")         # express your appreciation of all this
+  points(u1[d <= B], u2[d <= B], pch = 16, col = "black", cex = 1) # not detected
+  points(u1[y==1], u2[y==1], pch = 16, col = "red", cex = 1)     # detected
+}
 # Put all of the data in a matrix ## matrix? what matrix?
 if(!keep.all){
    u1 <- u1[y==1]

@@ -6,7 +6,7 @@
 # Function to simulate data under hierarchical distance sampling protocol (line or point)
 #   (introduced in Section 8.5.1)
 simHDS  <- function(type="line", nsites = 100, mean.lambda = 2,
-   beta.lam  = 1, mean.sigma = 1, beta.sig = -0.5, B = 3, discard0=TRUE){
+   beta.lam  = 1, mean.sigma = 1, beta.sig = -0.5, B = 3, discard0=TRUE, show.plot=TRUE){
 #
 # Function simulates hierarchical distance sampling (HDS) data under
 #   either a line (type = "line") or a point (type = "point")
@@ -20,7 +20,7 @@ simHDS  <- function(type="line", nsites = 100, mean.lambda = 2,
 #        slope of log-linear regression of scale parameter of
 #        half-normal detection function on wind speed
 #     B: strip half width
-#
+
 # Get covariates
 habitat <- rnorm(nsites)                    # habitat covariate
 wind <- runif(nsites, -2, 2)                # wind covariate
@@ -90,32 +90,33 @@ if(discard0)
   data <- data[!is.na(data[,2]),]
 
 # Visualisation
+if(show.plot) {
   if(type=="line"){       # For line transect
-   par(mfrow = c(1, 3))
-   hist(data[,"d"], col = "lightblue", breaks = 20, main =
+    op <- par(mfrow = c(1, 3)) ; on.exit(par(op))
+    hist(data[,"d"], col = "lightblue", breaks = 20, main =
       "Frequency of distances", xlab = "Distance")
-   ttt <- table(data[,1])
-   n <- rep(0, nsites)
-   n[as.numeric(rownames(ttt))] <- ttt
-   plot(habitat, n, main = "Observed counts (n) vs. habitat")
-   plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    ttt <- table(data[,1])
+    n <- rep(0, nsites)
+    n[as.numeric(rownames(ttt))] <- ttt
+    plot(habitat, n, main = "Observed counts (n) vs. habitat")
+    plot(wind, n, main = "Observed counts (n) vs. wind speed")
   }
 
   if(type=="point"){       # For point transect
-   par(mfrow = c(2,2))
-   plot(data[,"u"], data[,"v"], pch = 16, main =
+    op <- par(mfrow = c(2,2)) ; on.exit(par(op))
+    plot(data[,"u"], data[,"v"], pch = 16, main =
       "Located individuals in point transects", xlim = c(0, 2*B),
       ylim = c(0, 2*B), col = data[,1], asp = 1)
-   points(B, B, pch = "+", cex = 3, col = "black")
-   # library(plotrix)
-   draw.circle(B, B, B)
-   hist(data[,"d"], col = "lightblue", breaks = 20, main =
+    points(B, B, pch = "+", cex = 3, col = "black")
+    plotrix::draw.circle(B, B, B)
+    hist(data[,"d"], col = "lightblue", breaks = 20, main =
       "Frequency of distances", xlab = "Distance")
-   ttt <- table(data[,1])
-   n <- rep(0, nsites)
-   n[as.numeric(rownames(ttt))] <- ttt
-   plot(habitat, n, main = "Observed counts (n) vs. habit")
-   plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    ttt <- table(data[,1])
+    n <- rep(0, nsites)
+    n[as.numeric(rownames(ttt))] <- ttt
+    plot(habitat, n, main = "Observed counts (n) vs. habit")
+    plot(wind, n, main = "Observed counts (n) vs. wind speed")
+  }
 }
 
 # Output

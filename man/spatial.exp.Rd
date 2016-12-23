@@ -33,7 +33,7 @@ A  list with the following components:
  \item{grid }{the grid corresponding to field, equivalent to \code{expand.grid(1:size, 1:size)}}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 20
+Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Chapter 20
 
 }
 \author{

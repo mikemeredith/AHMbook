@@ -8,12 +8,15 @@ Simulate static occupancy data
 Function to generate a static occupancy data set with really wiggly covariate relationships
 in occupancy and detection probability}
 \usage{
-wigglyOcc(seed = 1)
+wigglyOcc(seed = 1, show.plot = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{seed}{
 Seed for random number generator
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

@@ -8,7 +8,7 @@ Simulate non-hierarchical point transect (= point count) data
 Function simulates coordinates of individuals on a square with a count location at the center point.
 }
 \usage{
-sim.pdata(N = 1000, sigma = 1, B = 3, keep.all = FALSE)
+sim.pdata(N = 1000, sigma = 1, B = 3, keep.all = FALSE, show.plot = TRUE)
 }
 \arguments{
   \item{N}{
@@ -22,6 +22,9 @@ circle radius; the data are simulated over a square of side 2 * B, but individua
 }
   \item{keep.all}{
 if TRUE, the data for all individuals are returned; if FALSE, only for individuals detected.
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

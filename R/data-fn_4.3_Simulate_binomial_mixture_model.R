@@ -29,7 +29,7 @@ data.fn <- function(M = 267, J = 3, mean.lambda = 2, beta1 = -2, beta2 = 2, beta
 #        set to FALSE if you are running simulations.
 
 logit <- plogis
-x <- NULL # deals with R CMD check issues with 'curve'
+if(FALSE) x <- NULL # deals with R CMD check issues with 'curve'
 
 # Create covariates
 elev <- runif(n = M, -1, 1)                         # Scaled elevation
@@ -45,12 +45,12 @@ psi.true <- mean(N>0)                   # True occupancy in sample
 
 # Plots
 if(show.plot){
-par(mfrow = c(2, 2), cex.main = 1)
-devAskNewPage(ask = TRUE)
-curve(exp(beta0 + beta1*x), -1, 1, col = "red", main = "Relationship lambda-elevation \nat average forest cover", frame.plot = F, xlab = "Scaled elevation")
-plot(elev, lambda, xlab = "Scaled elevation", main = "Relationship lambda-elevation \nat observed forest cover", frame.plot = F)
-curve(exp(beta0 + beta2*x), -1, 1, col = "red", main = "Relationship lambda-forest \ncover at average elevation", xlab = "Scaled forest cover", frame.plot = F)
-plot(forest, lambda, xlab = "Scaled forest cover", main = "Relationship lambda-forest cover \nat observed elevation", frame.plot = F)
+  op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op))
+  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  curve(exp(beta0 + beta1*x), -1, 1, col = "red", main = "Relationship lambda-elevation \nat average forest cover", frame.plot = FALSE, xlab = "Scaled elevation")
+  plot(elev, lambda, xlab = "Scaled elevation", main = "Relationship lambda-elevation \nat observed forest cover", frame.plot = FALSE)
+  curve(exp(beta0 + beta2*x), -1, 1, col = "red", main = "Relationship lambda-forest \ncover at average elevation", xlab = "Scaled forest cover", frame.plot = F)
+  plot(forest, lambda, xlab = "Scaled forest cover", main = "Relationship lambda-forest cover \nat observed elevation", frame.plot = FALSE)
 }
 
 # Model for observations

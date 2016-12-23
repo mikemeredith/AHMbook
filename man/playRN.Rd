@@ -8,7 +8,7 @@ Function to play Royle-Nichols model
 Function generates replicated count data under the Nmix model of Royle (2004), then 'degrades' the data to detection/nondetection and fits the RN model (Royle & Nichols 2003) using \pkg{unmarked} and estimates site-specific abundance.
 }
 \usage{
-playRN(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3)
+playRN(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, show.plot = TRUE)
 }
 \arguments{
   \item{M}{
@@ -22,6 +22,9 @@ Expected abundance at each site.
 }
   \item{mean.detection}{
 Expected detection at each survey at each site.
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

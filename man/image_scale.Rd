@@ -1,5 +1,5 @@
-\name{image.scale}
-\alias{image.scale}
+\name{image_scale}
+\alias{image_scale}
 \encoding{UTF-8}
 \title{
 Helper function to draw scale for image
@@ -8,7 +8,7 @@ Helper function to draw scale for image
 Plots a scale in the right margin of a plot, typically an image plot.
 }
 \usage{
-image.scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "ranges"))
+image_scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "ranges"))
 }
 \arguments{
   \item{z}{

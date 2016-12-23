@@ -10,7 +10,7 @@ Function simulates hierarchical distance sampling (HDS) data under either a line
 }
 \usage{
 simHDS(type = "line", nsites = 100, mean.lambda = 2, beta.lam = 1,
-  mean.sigma = 1, beta.sig = -0.5, B = 3, discard0 = TRUE)
+  mean.sigma = 1, beta.sig = -0.5, B = 3, discard0 = TRUE, show.plot = TRUE)
 }
 \arguments{
   \item{type}{
@@ -36,6 +36,9 @@ the strip half-width or circle radius
 }
   \item{discard0}{
 If TRUE, subset to sites at which individuals were captured. You may or may not want to do this depending on how the model is formulated so be careful.
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

@@ -5,7 +5,10 @@
 
 # Function to simulate data for static 3-level occupancy models
 #   (introduced in Section 10.10)
-sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2), beta.Xp = -1, sd.logit.p = 0){
+sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xpsi = 1,
+  sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, 
+  sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2), beta.Xp = -1, sd.logit.p = 0,
+  show.plot = TRUE){
 #
 # Function generates 3-level occupancy data
 #   with possibility of site-specific random variation at every level,
@@ -30,7 +33,7 @@ sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xp
 # p.time.range: range of p 'intercepts' for replicates
 # beta.Xp: effect on p of covariate C (unit by subunit by replicate)
 # sd.logit.p: SD of logit(p)
-x <- NULL ; rm(x) # Fudge to stop R CMD check complaining.
+if(FALSE) x <- NULL # Fudge to stop R CMD check complaining.
 
 # Create data structures
 z <- psi <- array(NA, dim = nunit)  # Unit occurrence
@@ -57,20 +60,21 @@ for(j in 1:nsubunit){
 }
 
 # Visualisation of covariate relationships of psi, theta and p
-par(mfrow = c(1,3), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.5)
-plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = F)
-curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
-plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = F)
-for(j in 1:nsubunit){
-   curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
-   beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
+if(show.plot) {
+  op <- par(mfrow = c(1,3), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.5) ; on.exit(par(op))
+  plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = F)
+  curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+  plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = F)
+  for(j in 1:nsubunit){
+     curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
+     beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
+  }
+  plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = F)
+  for(k in 1:nrep){
+     curve(plogis(qlogis(mean.p) + p.time.effect[k] +
+     beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
+  }
 }
-plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = F)
-for(k in 1:nrep){
-   curve(plogis(qlogis(mean.p) + p.time.effect[k] +
-   beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
-}
-
 # Sample three nested Bernoulli distributions
 # with probabilities psi, z*theta and a * p
 for (i in 1:nunit) {

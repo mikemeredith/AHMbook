@@ -8,7 +8,11 @@ Simulate data for static 3-level occupancy models
 Function generates 3-level occupancy data with possibility of site-specific random variation at every level, "time effects" at the middle and the lower levels and effects of one distinct covariate at each level.
 }
 \usage{
-sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2, 2), beta.Xp = -1, sd.logit.p = 0)
+sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, 
+  mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0, 
+  mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0, 
+  mean.p = 0.4, p.time.range = c(-2, 2), beta.Xp = -1, sd.logit.p = 0,
+  show.plot=TRUE)
 }
 \arguments{
   \item{nunit}{
@@ -52,6 +56,9 @@ effect on p of covariate C (unit by subunit by replicate)
 }
   \item{sd.logit.p}{
 SD of logit(p)
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 \value{

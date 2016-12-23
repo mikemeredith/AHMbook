@@ -7,7 +7,8 @@
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
 #   (introduced in Section 10.12.1)
 
-simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3, beta1 = 1, alpha1 = -1, Tmax = 10){
+simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3, 
+  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE){
 #
 # Function simulates time-to-detection occupancy design data under model
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
@@ -40,9 +41,13 @@ lambda <- exp(log(mean.lambda) + alpha1 * covA)
 ttd <- ttd.temp
 ttd[z == 0] <- NA           # Censored if unoccupied
 ttd[ttd.temp >= Tmax] <- NA # Censored if ttd >= Tmax
-hist(ttd, breaks = length(ttd)/3, col = "gold", main =
-   "Observed distribution of time to detection\n(censored cases (red line) excluded)", xlim = c(0, Tmax), xlab = "Measured time to detection")
-abline(v = Tmax, col = "red", lwd = 3)
+
+if(show.plot) {
+  hist(ttd, breaks = length(ttd)/3, col = "gold",
+    main = "Observed distribution of time to detection\n(censored cases (red line) excluded)", xlim = c(0, Tmax),
+    xlab = "Measured time to detection")
+  abline(v = Tmax, col = "red", lwd = 3)
+}
 
 # Number of sites where detected
 (n.obs <- sum(ttd < Tmax, na.rm = TRUE))

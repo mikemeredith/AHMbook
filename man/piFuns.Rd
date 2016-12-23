@@ -28,7 +28,7 @@ matrix of detection probabilities at each site for each observation
 \details{
 \code{instRemPiFun} defines the relationship between the multinomial cell probabilities and the underlying detection probability parameters (i.e., a pi function) in a removal design with unequal length of sampling periods. 
 
-\code{crPiFun} defines a pi function for capture-recapture design with 3 surveys (introduced in Section 7.8) 
+\code{crPiFun} defines a pi function for capture-recapture design with 3 surveys (defined in Section 7.8.5). NOTE that this is not the same as the custom \code{crPiFun} defined in Section 7.9.1. 
 
 \code{crPiFun.Mb} defines a pi function for capture-recapture design with 3 surveys  and behavioural response (introduced in Section 7.8.2) 
 

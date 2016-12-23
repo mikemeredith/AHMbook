@@ -8,7 +8,8 @@ Simulate N-mixture data under a time-for-space substitution design
 A simple function to simulate data under binomial N-mixture model where you have a single site that is survyed over 'nyear' primary sampling periods ('seasons', 'years'), within each of which there are 'nrep' secondary samples.
 }
 \usage{
-simpleNmix(nyear = 12, nrep = 4, beta0 = 2, beta1 = 0.1, alpha0 = 0.5, alpha1 = -0.1, alpha2 = 1)
+simpleNmix(nyear = 12, nrep = 4, beta0 = 2, beta1 = 0.1,
+  alpha0 = 0.5, alpha1 = -0.1, alpha2 = 1, show.plot = TRUE)
 }
 
 \arguments{
@@ -32,6 +33,9 @@ the Time coefficient of a logit-linear model for detection (p).
 }
   \item{alpha2}{
 the coefficient of a survey-specific covariate such as temperature (temp).
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

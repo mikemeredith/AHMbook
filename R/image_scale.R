@@ -4,7 +4,7 @@
 # Helper function to draw scale for image (from SCR book)
 # (introduced somewhere in Chapter 9)
 
-image.scale <-
+image_scale <-
 function (z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", 
     "ranges")) 
 {

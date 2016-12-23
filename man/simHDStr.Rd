@@ -10,7 +10,7 @@ A general function for simulating hierarchical distance sampling (HDS) data comb
 \usage{
 simHDStr(type = "line", method = "removal", nsites = 200, lambda.group = 1,
   alpha0 = 0, alpha1 = 0, beta0 = 1, beta1 = 0.5, p.avail = 0.75, K = 3,
-  p.double = c(0.4, 0.6), B = 3, discard0 = FALSE)
+  p.double = c(0.4, 0.6), B = 3, discard0 = FALSE, show.plot = TRUE)
 }
 \arguments{
   \item{type}{
@@ -51,6 +51,9 @@ strip half width
 }
   \item{discard0}{
 whether to discard or keep the data from sites with nobody detected
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

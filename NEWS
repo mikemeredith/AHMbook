@@ -1,7 +1,13 @@
 TODO
 
-  * Stop simNmix spewing out warnings.
+  * Stop simNmix, playRN spewing out warnings.
   
+CHANGES in 0.1.0.9008
+
+  * All simulation functions that produce plots have a 'show.plot' argument and restore previous 'par' and 'devAskNewPage' settings on exit.
+  
+  * 'image.scale' is defunct and replaced with 'image_scale'.
+
 CHANGES in 0.1.0.9007
 
   * simComm restores previous 'par' and 'devAskNewPage' settings on exit

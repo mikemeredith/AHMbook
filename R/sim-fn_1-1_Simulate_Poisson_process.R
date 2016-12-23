@@ -47,7 +47,8 @@ psi <- mean(z)              # Realized occupancy in sampled sites
 
 # Visualisation
 if(show.plot){
-par(mfrow = c(2, 2), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.3, cex.main = 1.3)
+op <- par(mfrow = c(2, 2), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.3, cex.main = 1.3)
+on.exit(par(op))
 
 # (1) Visualize point pattern
 plot(u1, u2, xlab = "x coord", ylab = "y coord", cex = 1, pch = 16, asp = 1,

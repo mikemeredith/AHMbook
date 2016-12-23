@@ -189,7 +189,7 @@ for(t in 1:nyear){   # Years
 
 # (5) Plots of stuff
 if(show.plot){
-  par(mfrow = c(2, 2))
+  op <- par(mfrow = c(2, 2)) ; on.exit(par(op))
 
   # Get predicted covariate relationships and plot them in single graph
   pred.cov <- seq(-2, 2, length.out = 100)

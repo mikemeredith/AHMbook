@@ -86,10 +86,20 @@ The functions are listed by chapter below.
   \tabular{ll}{
   \code{\link{simDCM}} \tab Simulate detection/nondetection data under a general dynamic community (site-occupancy) model} }
   
+\section{Chapter 15}{
+ 
+  \tabular{ll}{
+  \code{\link{simDynocc}} \tab Simulate non-spatial dynamic occupancy data} }
+
+\section{Chapter 17}{
+ 
+  \tabular{ll}{
+  \code{\link{simDCM}} \tab Simulate detection/nondetection data under a general dynamic community (site-occupancy) model} }
+
 \section{Chapter 20}{
  
   \tabular{ll}{
-  \code{\link{spatial.exp}} \tab ...} }
+  \code{\link{spatial.exp}} \tab Gaussian random field with negative exponential correlation} }
   
 \section{UTILITY FUNCTIONS}{
 

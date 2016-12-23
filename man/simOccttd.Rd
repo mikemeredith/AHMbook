@@ -8,9 +8,8 @@ Simulate time-to-detection occupancy data
 Function simulates time-to-detection occupancy design data under model of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
 }
 \usage{
-simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3, beta1 = 1, alpha1 = -1, Tmax = 10)
+simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3, beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{M}{
 Number of sites
@@ -29,6 +28,9 @@ slope of continuous covariate A on log(lambda)
 }
   \item{Tmax}{
 maximum search time (in arbitrary units, which are same as response), response will be censored at Tmax
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

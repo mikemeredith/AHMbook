@@ -9,7 +9,7 @@ Simulation of distance sampling data.
 Simulates non-hierarchical line transect data under CDS. It subjects N individuals to sampling, and then retains the value of distance from transect only for individuals that are captured.
 }
 \usage{
-sim.ldata(N = 200, sigma = 30)
+sim.ldata(N = 200, sigma = 30, show.plot = TRUE)
 }
 \arguments{
   \item{N}{
@@ -17,6 +17,9 @@ number of individuals along transect with distance u(-100, 100)
 }
   \item{sigma}{
 scale parameter of half-normal detection function
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 

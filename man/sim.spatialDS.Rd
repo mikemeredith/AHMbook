@@ -9,7 +9,7 @@ Simulates data under spatial hierarchical distance sampling model
 Function simulates coordinates of individuals on a square
 }
 \usage{
-sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3, model = "halfnorm")
+sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3, model = "halfnorm", show.plot=TRUE)
 }
 \arguments{
   \item{N}{
@@ -29,6 +29,9 @@ circle radius; the data are simulated over a square of side 2 * B %, but individ
 }
   \item{model}{
 The detection function used, either "halfnorm" or "hazard".
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 \value{

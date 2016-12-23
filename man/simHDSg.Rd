@@ -10,7 +10,8 @@ Simulates hierarchical distance sampling (HDS) data for groups under either a li
 }
 \usage{
 simHDSg(type = "line", nsites = 100, lambda.group = 0.75, alpha0 = 0,
-  alpha1 = 0.5, beta0 = 1, beta1 = 0.5, B = 4, discard0 = TRUE)
+  alpha1 = 0.5, 
+  beta0 = 1, beta1 = 0.5, B = 4, discard0 = TRUE, show.plot = TRUE)
 }
 \arguments{
   \item{type}{
@@ -39,6 +40,9 @@ strip half width
 }
   \item{discard0}{
 whether to discard or keep the data from sites with nobody detected
+}
+  \item{show.plot}{
+choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
 }
 \value{
