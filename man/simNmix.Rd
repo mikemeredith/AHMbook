@@ -145,9 +145,9 @@ A list with the arguments input and the following additional elements:
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.5
 
-Royle (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60,108-115
+Royle (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60, 108-115
 
-Royle et al (2007)
+Royle et al (2007) Hierarchical spatial models of abundance and occurrence from imperfect survey data. \emph{Ecological Monographs}, 77, 465-481.
 
 Kéry (2008) Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships, \emph{Auk} 125, 336-345
 }

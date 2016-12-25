@@ -5,12 +5,13 @@
 Simulate HDS time-removal or double-observer data
 }
 \description{
-A general function for simulating hierarchical distance sampling (HDS) data combined with a time-removal (with 3 removal periods) or double-observer protocol, either for a line (type = "line") or a point (type = "point") transect protocol    and with method = "removal" or method = "double". Also produces plots of the output.
+A general function for simulating hierarchical distance sampling (HDS) data combined with a time-removal (with 3 removal periods) or double-observer protocol, either for a line or a point transect protocol and with method = "removal" or method = "double". Also produces plots of the output.
 }
 \usage{
-simHDStr(type = "line", method = "removal", nsites = 200, lambda.group = 1,
-  alpha0 = 0, alpha1 = 0, beta0 = 1, beta1 = 0.5, p.avail = 0.75, K = 3,
-  p.double = c(0.4, 0.6), B = 3, discard0 = FALSE, show.plot = TRUE)
+simHDStr(type = c("line", "point"), method=c("removal", "double"), nsites = 200,
+  lambda.group = 1, alpha0 = 0, alpha1 = 0, beta0 = 1, beta1 = 0.5,
+  p.avail = 0.75, K = 3, p.double = c(0.4, 0.6),
+  B = 3, discard0 = FALSE, show.plot = TRUE)
 }
 \arguments{
   \item{type}{

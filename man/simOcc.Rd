@@ -8,7 +8,10 @@ Simulate data for static occupancy models under wide range of conditions
 Function to simulate occupancy measurements replicated at M sites during J occasions. Population closure is assumed for each site. Expected occurrence may be affected by elevation (elev), forest cover (forest) and their interaction. Expected detection probability may be affected by elevation, wind speed (wind) and their interaction.
 }
 \usage{
-simOcc(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1), alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE)
+simOcc(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1,
+  mean.detection = 0.3, time.effects = c(-1, 1),
+  alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5,
+  b = 2, show.plot = TRUE)
 }
 \arguments{
   \item{M}{
@@ -30,7 +33,7 @@ Main effect of forest cover on occurrence
 Interaction effect on occurrence of elevation and forest cover
 }
   \item{mean.detection}{
-Mean detection prob. at value 0 of detection covariates 
+Mean detection prob. at value 0 of detection covariates
 }
   \item{time.effects}{
 bounds (on logit scale) for uniform distribution from which time effects gamma will be drawn

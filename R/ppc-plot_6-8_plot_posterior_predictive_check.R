@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # ppc.plot - section 68 p253
 
@@ -8,7 +8,8 @@
 # for a fitted model object with JAGS, as in that section
 
 ppc.plot <- function(fm){
-par(mfrow = c(2,2), mar = c(5,5,3,2), cex.lab = 1.3, cex.axis = 1.3)
+op <- par(mfrow = c(2,2), mar = c(5,5,3,2), cex.lab = 1.3, cex.axis = 1.3)
+on.exit(par(op))
 # Function plots results from posterior predictive check
 #   in AHM section 6-8 for a fitted model object with JAGS
 fit.a <- fm$sims.list$fit.actual    # Extract posterior samples

@@ -8,7 +8,8 @@ Simulate open hierarchical distance sampling data
 Simulates distance sampling data from a multi-season (or multi-year) model, incorporating habitat and detection covariates, temporary emigration, and a trend in abundance or density.
 }
 \usage{
-simHDSopen(type = "line", nsites = 100, mean.lam = 2, beta.lam = 0, mean.sig = 1, beta.sig = 0,
+simHDSopen(type=c("line", "point"), nsites = 100,
+  mean.lam = 2, beta.lam = 0, mean.sig = 1, beta.sig = 0,
   B = 3, discard0 = TRUE, nreps = 2, phi = 0.7, nyears = 5, beta.trend = 0)
 }
 \arguments{

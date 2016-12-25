@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simHDS  - section 8.5.1 p444
 
 # Function to simulate data under hierarchical distance sampling protocol (line or point)
 #   (introduced in Section 8.5.1)
-simHDS  <- function(type="line", nsites = 100, mean.lambda = 2,
+simHDS  <- function(type=c("line", "point"), nsites = 100, mean.lambda = 2,
    beta.lam  = 1, mean.sigma = 1, beta.sig = -0.5, B = 3, discard0=TRUE, show.plot=TRUE){
 #
 # Function simulates hierarchical distance sampling (HDS) data under
@@ -20,6 +20,8 @@ simHDS  <- function(type="line", nsites = 100, mean.lambda = 2,
 #        slope of log-linear regression of scale parameter of
 #        half-normal detection function on wind speed
 #     B: strip half width
+
+type <- match.arg(type)
 
 # Get covariates
 habitat <- rnorm(nsites)                    # habitat covariate

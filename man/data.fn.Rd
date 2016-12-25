@@ -63,6 +63,9 @@ A list with the input arguments and the following additional elements:
  \item{psi.obs }{ Observed occupancy in sample}
 
 }
+\note{
+The colours used for points in some of the plots indicate different temporal replicates.
+}
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 4.3
 }

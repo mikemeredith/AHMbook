@@ -6,11 +6,11 @@
 Simulate data under HDS protocol with groups
 }
 \description{
-Simulates hierarchical distance sampling (HDS) data for groups under either a line (type = "line") or a point (type = "point") transect protocol and using a half-normal detection function (Buckland et al. 2001).
+Simulates hierarchical distance sampling (HDS) data for groups under either a line or a point transect protocol and using a half-normal detection function (Buckland et al. 2001).
 }
 \usage{
-simHDSg(type = "line", nsites = 100, lambda.group = 0.75, alpha0 = 0,
-  alpha1 = 0.5, 
+simHDSg(type = c("line", "point"), nsites = 100, lambda.group = 0.75,
+  alpha0 = 0, alpha1 = 0.5,
   beta0 = 1, beta1 = 0.5, B = 4, discard0 = TRUE, show.plot = TRUE)
 }
 \arguments{
@@ -58,10 +58,10 @@ A list with the values of the arguments entered and the following additional ele
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.2.1
 
-Buckland et al (2001) 
+Buckland et al (2001) \emph{Introduction to distance sampling: estimating abundance of biological populations}. Oxford University Press, Oxford, UK.
 }
 
 \examples{
 # Run with the default arguments and look at the structure of the output:
-str(simHDSg)
+str(simHDSg())
 }

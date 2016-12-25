@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simOcc - section 10.5 p577
 
@@ -7,7 +7,7 @@
 #   (introduced in Section 10.5)
 simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1), alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE){
 #
-# Written by Marc Kéry, 21 March 2015
+# Written by Marc Kery, 21 March 2015
 #
 # Function to simulate occupancy measurements replicated at M sites
 # during J occasions.

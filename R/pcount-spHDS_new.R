@@ -1,7 +1,7 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
-# pcount.spHDS - section 9.8.4 p540 --- SEE ERRATA 
+# pcount.spHDS - section 9.8.4 p540 --- SEE ERRATA
 
 # Function fits spatial hierarchical distance sampling model
 # unmarked model fitting function introduced in Section 9.8.4)
@@ -64,7 +64,8 @@ pcount.spHDS <- function (formula, data, K, mixture = c("P", "NB", "ZIP"), start
             bin.ijk[which(is.na(bin.ijk))] <- 1
             bin.ik.mat <- matrix(bin.ijk[ijk.to.ikj], M * (K +
                 1), J, byrow = TRUE)
-            g.ik <- rowProds(bin.ik.mat)
+            # g.ik <- rowProds(bin.ik.mat)
+            g.ik <- apply(bin.ik.mat, 1, prod)
             if (identical(mixture, "P")) {
                 f.ik <- dpois(k.ik, theta.ik)
             }

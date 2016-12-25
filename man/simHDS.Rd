@@ -6,10 +6,10 @@
 Simulate data under hierarchical distance sampling protocol (line or point)
 }
 \description{
-Function simulates hierarchical distance sampling (HDS) data under either a line (type = "line") or a point (type = "point") transect protocol.
+Function simulates hierarchical distance sampling (HDS) data under either a line or a point transect protocol.
 }
 \usage{
-simHDS(type = "line", nsites = 100, mean.lambda = 2, beta.lam = 1,
+simHDS(type=c("line", "point"), nsites = 100, mean.lambda = 2, beta.lam = 1,
   mean.sigma = 1, beta.sig = -0.5, B = 3, discard0 = TRUE, show.plot = TRUE)
 }
 \arguments{

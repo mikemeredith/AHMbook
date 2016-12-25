@@ -5,10 +5,11 @@
 Simulate time-to-detection occupancy data
 }
 \description{
-Function simulates time-to-detection occupancy design data under model of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
+Function simulates time-to-detection occupancy design data under model of Garrard et al. (2008), also see Bornand et al. (2014)
 }
 \usage{
-simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3, beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE)
+simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
+  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE)
 }
 \arguments{
   \item{M}{
@@ -27,10 +28,10 @@ slope of continuous covariate B on logit(psi)
 slope of continuous covariate A on log(lambda)
 }
   \item{Tmax}{
-maximum search time (in arbitrary units, which are same as response), response will be censored at Tmax
+maximum search time (in arbitrary units, which are same as response), response will be censored at \code{Tmax}
 }
   \item{show.plot}{
-choose whether to show plots or not. Set to FALSE when using function in simulations.
+choose whether to show plots or not. Set to FALSE when running  many simulations.
 }
 }
 

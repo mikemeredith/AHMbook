@@ -5,7 +5,7 @@
 Calculates the pair-wise distances between two sets of points
 }
 \description{
-Calculates the euclidian distance between each of the points defined by the coordinates in 'x' and each of those in 'y'.
+Calculates the Euclidian distance between each of the points defined by the coordinates in 'x' and each of those in 'y'.
 }
 \usage{
 e2dist(x, y)
@@ -19,7 +19,7 @@ a 2-column matrix or data frame with the x and y coordinates of a second set of 
 }
 }
 \value{
-A \code{nrows(x)} x \code{nrows(y)} matrix with the pair-wise distances. 
+A \code{nrows(x)} x \code{nrows(y)} matrix with the pair-wise distances.
 }
 
 \author{

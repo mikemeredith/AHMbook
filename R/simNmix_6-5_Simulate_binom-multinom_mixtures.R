@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simNmix - section 6.5 p241
 
@@ -36,7 +36,7 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 #   may affect all three levels. Hence, the function permits to simulate the
 #   case where a single site covariate affects different levels in the process
 #   (e.g., abundance and detection) in opposing directions (as for instance
-#   in Kéry, Auk, 2008)
+#   in Kery, Auk, 2008)
 # Density-dependent detection can be modelled as a logistic-linear effect
 #   of local abundance (centered and log(x+1) transformed)
 # Overdispersion in detection is modelled via normal random effects (the eps
@@ -48,7 +48,7 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 # Data may be generated under one specific open-population model when
 #    argument 'open.N' is set to TRUE.
 #
-# Written by Marc Kéry, 2014-2015
+# Written by Marc Kery, 2014-2015
 #
 # Function arguments
 # nsite: number of sites
@@ -94,8 +94,8 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 # show.plot: if TRUE, plots of the data will be displayed; set to FALSE
 #      if you are running simulations.
 
-x <- NULL
-logit <- plogis # Fix issues with 'curve'
+if(FALSE) x <- NULL # Fix issues with 'curve'
+logit <- plogis # allows 'logit' to appear in axis label instead of 'plogis'
 
 # Create indices
 nrep <- rep(nvisit, nsite)                   # No. visits (reps) per site
@@ -147,28 +147,27 @@ log.lam <- log.lam.partial + eta.lam
 N.PLN <- rpois(n = nsite, lambda = s * exp(log.lam))
 
 if(Neg.Bin == TRUE){   # Negative-binomial N's fed into variable N ....
-N <- N.NB
-}
-if(Neg.Bin == FALSE){ # ... or else those from PLN mixture
-N <- N.PLN
+  N <- N.NB
+} else { # ... or else those from PLN mixture
+  N <- N.PLN
 }
 Ntotal <- sum(N)     # Add up N over all M sites
 
 # Ecological process when population open (open.N == TRUE)
 N.open <- matrix(NA, nrow = nsite, ncol = nvisit)
 if(open.N){
-N.open[,1] <- N
-for(j in 2:nvisit){
-   N.open[,j] <- rpois(nsite, N.open[,j-1])
-}
-#cor(N.open)
-#matplot(1:nvisit, t(N.open), type = 'l')
+  N.open[,1] <- N
+  for(j in 2:nvisit){
+     N.open[,j] <- rpois(nsite, N.open[,j-1])
+  }
+  #cor(N.open)
+  #matplot(1:nvisit, t(N.open), type = 'l')
 }
 
 # Visualization of suitability and abundance
 if(show.plot){
   oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk))
-  # Plots features of the suitability part of the system
+  # Page 1: Plots features of the suitability part of the system
   op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op), add=TRUE)
   barplot(table(s), main = "Number unsuitable and suitable sites", col = "grey")
   plot(site.cov[,1], s, ylim = c(0,1), main = "'Suitability' & site covariate 1")
@@ -178,7 +177,7 @@ if(show.plot){
   plot(site.cov[,3], s, ylim = c(0,1), main = "'Suitability' & site covariate 3")
   curve(logit(alpha.theta + beta3.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
 
-  # Plots features of the abundance part of the system
+  # Page 2: Plots features of the abundance part of the system
   par(mfrow = c(3, 3), cex.main = 1)
   ylim = c(min(exp(log.lam.partial))-1, max(N))
   curve(exp(log(mean.lam) + beta2.lam * x), -2, 2, xlab = "Site covariate 2", main = "Site covariate 2 & lambda", ylab = "partial lambda", col = "red", lwd = 3)
@@ -191,23 +190,26 @@ if(show.plot){
   plot(site.cov[,3], exp(log.lam), col = "red", xlab = "Site covariate 3", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
   plot(site.cov[,4], exp(log.lam), col = "red", xlab = "Site covariate 4", ylab = "lambda", main = "Marginal lambda \n(incl. site random effects)", ylim = ylim)
 
+  # Page 3: Realized adundances
   par(mfrow = c(1, 3), cex = 1)
   plot(site.cov[,2], N, col = "red", xlab = "Site covariate 2", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
   plot(site.cov[,3], N, col = "red", xlab = "Site covariate 3", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
   plot(site.cov[,4], N, col = "red", xlab = "Site covariate 4", ylab = "N", main = "Realized abundance (N)", ylim = ylim)
 
+  # Page 4: Random site effects if !Neg.Bin, histogram for N for both
   if(Neg.Bin == TRUE){
     xlim <- c(min(c(N.P, N.NB)), max(c(N.P, N.NB)))
     par(mfrow = c(1, 1), cex.main = 1)
-    hist(N.NB, breaks = 60, col = "red", main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N", xlim = xlim)
-    hist(N.P, breaks = 60, col = "blue", add = TRUE)
-  }
-  if(Neg.Bin == FALSE){
+    # hist(N.NB, breaks = 60, col = "red", main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N", xlim = xlim)
+    # hist(N.P, breaks = 60, col = "blue", add = TRUE)
+    histCount(N.P, N.NB, main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N")
+  } else {
     xlim <- c(min(c(N.P, N.PLN)), max(c(N.P, N.PLN)))
     par(mfrow = c(1, 2), cex.main = 1)
     hist(eta.lam, col = "grey", main = "Random site effects in abundance")
-    hist(N.PLN, breaks = 60, col = "red", main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N", xlim = xlim)
-    hist(N.P, breaks = 60, col = "blue", add = TRUE)
+    # hist(N.PLN, breaks = 60, col = "red", main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N", xlim = xlim)
+    # hist(N.P, breaks = 60, col = "blue", add = TRUE)
+    histCount(N.P, N.PLN, main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N")
   }
 }
 
@@ -296,7 +298,8 @@ p <- pp  ;  DH <- NA
 
 # Plots and summaries of observation process
 if(show.plot){
-  devAskNewPage(ask = TRUE)
+  # devAskNewPage(ask = TRUE) ## cruft
+  # Page 5: Effects on p
   par(mfrow = c(3,2), cex.main = 1)
   curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
   curve(logit(qlogis(mean.p) + beta5.p * x), -2, 2, xlab = "Site covariate 5", main = "Site covariate 5 & detection", ylab = "p", col = "red", lwd = 3)
@@ -304,13 +307,14 @@ if(show.plot){
   curve(logit(qlogis(mean.p) + beta.p.survey * x), -2, 2, xlab = "Survey covariate", main = "Survey covariate & detection", ylab = "p", col = "red", lwd = 3)
   curve(logit(qlogis(mean.p) + beta.p.N * x), log(0+1), log(max(N)+1), xlab = "Effect of log(N+1) in logit(p)", ylab = "p", col = "red", lwd = 3)
 
+  # Page 6: Random effects in p
   par(mfrow = c(2,2), cex.main = 1)
   hist(eta.p.site, col = "grey", main = "Random site eff. in p", breaks = 50)
   hist(eta.p.visit, col = "grey", main = "Random visit eff. in p", breaks = 50)
   hist(eta.p.survey, col = "grey", main = "Random site-survey eff. in p", breaks = 50)
   hist(eta.p.ind, col = "grey", main = "Random ind. eff. in p", breaks = 50)
 
-
+  # Page 7: partial p and p (site covars)
   par(mfrow = c(3,2), cex.main = 1)
   matplot(site.cov[,3], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
   matplot(site.cov[,3], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 3", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
@@ -319,6 +323,7 @@ if(show.plot){
   matplot(site.cov[,6], apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
   matplot(site.cov[,6], apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Site covariate 6", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
 
+  # Page 8: partial p and p (survey covars), p and realised p
   par(mfrow = c(2,2), cex.main = 1)
   matplot(survey.cov, apply(plogis(logit.p.partial), c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "Partial p", main = "Partial expected detection \n(no random effects)", ylim = c(0,1), pch = 1)
   matplot(survey.cov, apply(p, c(1,2), mean, na.rm = TRUE), col = "red", xlab = "Survey covariate", ylab = "p", main = "Detection probability (with random effects)", ylim = c(0,1), pch = 1)
@@ -326,9 +331,10 @@ if(show.plot){
   hist(p, col = "grey", main = "Realized detection probability \n(blue=mean)", breaks = 50)
   abline(v = mean(p, na.rm = TRUE), col = "blue", lwd = 2)
 
-  # .... and of the observed counts
+  # Page 9: Observed counts
   par(mfrow = c(3,3), cex.main = 1)
-  hist(C, col = "grey", main = "Observed counts", breaks = 50)
+  # hist(C, col = "grey", main = "Observed counts", breaks = 50)
+  histCount(C, NULL, color = "grey", main = "Observed counts", xlab = "C")
   matplot(site.cov[,1], C, xlab = "Site covariate 1", ylab = "Counts", main = "Obs. counts vs. site covariate 1")
   matplot(site.cov[,2], C, xlab = "Site covariate 2", ylab = "Counts", main = "Obs. counts vs. site covariate 2")
   matplot(site.cov[,3], C, xlab = "Site covariate 3", ylab = "Counts", main = "Obs. counts vs. site covariate 3")
@@ -340,7 +346,7 @@ if(show.plot){
   abline(0,1)
 }
 
-# Compute naive ‘overdispersion coefficients’ at level latent N and observed C
+# Compute naive 'overdispersion coefficients' at level latent N and observed C
 odcN <- round(var(N)/mean(N),2)     # Overdispersion coefficient
 if(open.N){
 odcN <- round(var(c(N.open))/mean(N.open),2)     # Overdispersion coefficient

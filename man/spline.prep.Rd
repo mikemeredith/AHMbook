@@ -30,7 +30,7 @@ Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10
 
 Crainiceanu, C.M., Ruppert, D., & Wand, M.P. (2005) Bayesian analysis for penalized spline regression using WinBUGS. \emph{Journal of Statistical Software}, 14.
 
-Zuur et al. (2012)
+Zuur, A.F., Saveliev, A.A., Ieno, E.N. (2012) \emph{Zero-inflated Models and Generalized Linear Mixed Models with R}. Highlands Statistics
 }
 \author{
 Kéry & Royle

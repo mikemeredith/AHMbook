@@ -7,7 +7,7 @@
 #   (introduced in Section 9.8.3)
 
 sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE,
-  B=3, model="halfnorm", show.plot=TRUE){
+  B=3, model=c("halfnorm", "hazard"), show.plot=TRUE){
 # Function simulates coordinates of individuals on a square
 # Square is [0,2B] x [0,2B], with a count location on the point (B, B)
 #   N: total population size in the square
@@ -15,6 +15,8 @@ sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE,
 #   sigma: scale of half-normal detection function
 #   B: circle radius
 #   keep.all: return the data for y=0 individuals or not
+
+model <- match.arg(model)
 
 # Create coordinates for 30 x 30 grid
 delta <- (2*B-0)/30                # '2D bin width'

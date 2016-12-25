@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # plot.Nmix.resi and map.Nmix.resi - section 6.9.3 p261
 
@@ -13,30 +13,30 @@ plot_Nmix_resi <- function(fmP, fmNB, fmZIP){
 #   residuals vs. fitted values are plotted.
 
 # Plot fitted vs. observed data
-par(mfrow = c(2,3), mar = c(4,4,2,2), cex = 1.2)
+op <- par(mfrow = c(2,3), mar = c(4,4,2,2), cex = 1.2) ; on.exit(par(op))
 tmp1 <- range(c(fitted(fmP), fitted(fmNB), fitted(fmZIP)), na.rm = T)
 limits1 = round(c(tmp1[1], tmp1[2]))
 tmp2 <- range(c(residuals(fmP), residuals(fmNB), residuals(fmZIP)), na.rm = T)
 limits2 = round(c(tmp2[1], tmp2[2]))
 
-plot(fitted(fmP)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (P)", frame = F, ylim = limits1)
+plot(fitted(fmP)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (P)", frame = FALSE, ylim = limits1)
 abline(0,1, lwd = 3 )
 abline(lm(c(fitted(fmP))~ c(fmP@data@y)), col = "blue", lwd = 3)
-plot(fitted(fmNB)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (NB)", frame = F, ylim = limits1)
+plot(fitted(fmNB)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (NB)", frame = FALSE, ylim = limits1)
 abline(0,1, lwd = 3)
 abline(lm(c(fitted(fmNB))~ c(fmP@data@y)), col = "blue", lwd = 3)
-plot(fitted(fmZIP)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (ZIP)", frame = F, ylim = limits1)
+plot(fitted(fmZIP)~ fmP@data@y, xlab = "Observed data", ylab = "Fitted values (ZIP)", frame = FALSE, ylim = limits1)
 abline(0,1, lwd = 3)
 abline(lm(c(fitted(fmZIP)) ~ c(fmP@data@y)), col = "blue", lwd = 3)
 
 # Plot residuals vs. fitted values
-plot(residuals(fmP)~ fitted(fmP), xlab = "Fitted values (P)", ylab = "Residuals", frame = F, xlim = limits1, ylim = limits2)
+plot(residuals(fmP)~ fitted(fmP), xlab = "Fitted values (P)", ylab = "Residuals", frame = FALSE, xlim = limits1, ylim = limits2)
 abline(h = 0, lwd = 2)
 abline(lm(c(residuals(fmP)) ~ c(fitted(fmP))), col = "blue", lwd = 3)
-plot(residuals(fmNB)~ fitted(fmNB), xlab = "Fitted values (NB)", ylab = "Residuals", frame = F, xlim = limits1, ylim = limits2)
+plot(residuals(fmNB)~ fitted(fmNB), xlab = "Fitted values (NB)", ylab = "Residuals", frame = FALSE, xlim = limits1, ylim = limits2)
 abline(h = 0, lwd = 2)
 abline(lm(c(residuals(fmNB)) ~ c(fitted(fmNB))), col = "blue", lwd = 3)
-plot(residuals(fmZIP)~ fitted(fmZIP), xlab = "Fitted values (ZIP)", ylab = "Residuals", frame = F, xlim = limits1, ylim = limits2)
+plot(residuals(fmZIP)~ fitted(fmZIP), xlab = "Fitted values (ZIP)", ylab = "Residuals", frame = FALSE, xlim = limits1, ylim = limits2)
 abline(h = 0, lwd = 2)
 abline(lm(c(residuals(fmZIP)) ~ c(fitted(fmZIP))), col = "blue", lwd = 3)
 }

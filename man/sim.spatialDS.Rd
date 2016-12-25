@@ -9,7 +9,8 @@ Simulates data under spatial hierarchical distance sampling model
 Function simulates coordinates of individuals on a square
 }
 \usage{
-sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3, model = "halfnorm", show.plot=TRUE)
+sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3,
+  model=c("halfnorm", "hazard"), show.plot=TRUE)
 }
 \arguments{
   \item{N}{

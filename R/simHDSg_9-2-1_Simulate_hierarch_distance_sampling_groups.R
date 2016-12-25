@@ -1,12 +1,12 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simHDSg - section 9.2.1 p466
 
 # Function to simulate data under HDS protocol with groups
 #  (introduced in Section 9.2.1)
 
-simHDSg <- function(type = "line", nsites = 100, lambda.group = 0.75, alpha0 = 0, alpha1 =
+simHDSg <- function(type = c("line", "point"), nsites = 100, lambda.group = 0.75, alpha0 = 0, alpha1 =
 0.5, beta0 = 1, beta1 = 0.5, B = 4, discard0 = TRUE, show.plot=TRUE){
 #
 # Function simulates hierarchical distance sampling (HDS) data for groups under
@@ -21,6 +21,9 @@ simHDSg <- function(type = "line", nsites = 100, lambda.group = 0.75, alpha0 = 0
 # mean of the number of groups per unit area to habitat
 # B: strip half width
 #
+
+type <- match.arg(type)
+
 # Get covariates
 habitat <- rnorm(nsites) # Simulated covariate
 # Simulate abundance model for groups (Poisson GLM for N)
@@ -50,7 +53,8 @@ for(i in 1:nsites){
   }
   if(type=="point"){
     # Simulation of data on a circle of radius B (algorithm of Wallin)
-    angle <- runif(N[i], 0, 2*p)
+    # angle <- runif(N[i], 0, 2*p)
+    angle <- runif(N[i], 0, 2*pi) ### Must surely be 'pi' !!
     r2 <- runif(N[i], 0, 1)
     r <- B*sqrt(r2)
     u1 <- r*cos(angle) + B

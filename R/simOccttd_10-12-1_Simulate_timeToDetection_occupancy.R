@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simOccttd - section 10.12.1 p616
 
@@ -13,7 +13,7 @@ simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
 # Function simulates time-to-detection occupancy design data under model
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
 #
-# Written by Marc Kéry, 24 April 2015
+# Written by Marc Kery, 24 April 2015
 #
 # Function arguments:
 # M: Number of sites

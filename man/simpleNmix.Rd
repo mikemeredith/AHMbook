@@ -5,7 +5,7 @@
 Simulate N-mixture data under a time-for-space substitution design
 }
 \description{
-A simple function to simulate data under binomial N-mixture model where you have a single site that is survyed over 'nyear' primary sampling periods ('seasons', 'years'), within each of which there are 'nrep' secondary samples.
+A simple function to simulate data under binomial N-mixture model where you have a single site that is surveyed over 'nyear' primary sampling periods ('seasons', 'years'), within each of which there are 'nrep' secondary samples.
 }
 \usage{
 simpleNmix(nyear = 12, nrep = 4, beta0 = 2, beta1 = 0.1,
@@ -40,7 +40,7 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 
 \value{
-A list with the values of the arguments input and the following additional elements"
+A list with the values of the arguments input and the following additional elements:
 \item{N }{The realised number of individuals at each primary season, a vector of length \code{nyear}}
 \item{C }{The number of individuals counted at each survey, a \code{nyear x nrep} matrix.}
 \item{Time }{The Time covariate, a vector of length \code{nyear}.}

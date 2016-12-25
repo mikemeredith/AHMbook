@@ -1,77 +1,77 @@
 simDynocc <- function(nsite = 250, nrep = 3, nyear = 10, year.impact = 5,
-   mean.psi1 = 0.4, beta.Xpsi1 = 0, 
-   range.phi = c(0.5, 1), impact.phi = 0, beta.Xphi = 0, 
-   range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0, 
+   mean.psi1 = 0.4, beta.Xpsi1 = 0,
+   range.phi = c(0.5, 1), impact.phi = 0, beta.Xphi = 0,
+   range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
    range.p = c(0.1, 0.9), beta.Xp = 0,
-   range.beta1.season = c(0, 0), range.beta2.season = c(0, 0), 
-   range.sd.site = c(0, 0), range.sd.survey = c(0, 0), 
+   range.beta1.season = c(0, 0), range.beta2.season = c(0, 0),
+   range.sd.site = c(0, 0), range.sd.survey = c(0, 0),
    range.sd.site.survey = c(0, 0), show.plot = TRUE) {
 #
-# Written by Marc Kéry, 4 Dec 2014
+# Written by Marc Kery, 4 Dec 2014
 #
 # Adapted on 18-20 October 2016
 #
-# Function to simulate detection/nondetection data under a general 
+# Function to simulate detection/nondetection data under a general
 #     dynamic site-occ model, including:
 #   * annual variation in the probabilities of patch persistence, colonization
 #     and detection is specified by the bounds of a uniform distribution.
 #   * one covariate is allowed to affect a parameter: a site covariate for psi1,
-#     a site-by-year covariate for phi and gamma and an 
+#     a site-by-year covariate for phi and gamma and an
 #     observational covariate for p
-#   * Additional detection heterogeneity at the site-, the survey, or the 
-#     site-by-survey level, with the possibility of a temporal trend in 
-#     this heterogeneity over the years. E.g., an annual trend in 
-#     detection heterogeneity at the site or the survey level is specified 
+#   * Additional detection heterogeneity at the site-, the survey, or the
+#     site-by-survey level, with the possibility of a temporal trend in
+#     this heterogeneity over the years. E.g., an annual trend in
+#     detection heterogeneity at the site or the survey level is specified
 #     by the first and second value, which correspond to the heterogeneity in
 #     the first and the last year Hence, range.sd.site = c(0, 1) will result in
-#     a linear trend in the magnitude of site heterogeneity in detection 
+#     a linear trend in the magnitude of site heterogeneity in detection
 #     from 0 in the first year to 1 in the last year.
-#   * Additional detection heterogeneity that varies over the season 
+#   * Additional detection heterogeneity that varies over the season
 #     (= occasion) according to a quadratic effect of occasion number
 #     (to model phenology of an insect species for instance).
 #   * Simulation of data under a BACI (before-after-control-impact) design,
-#     where some event happens in a given year and *reduces* phi or gamma 
+#     where some event happens in a given year and *reduces* phi or gamma
 #     by a stated percentage (only reductions, no increases allowed !)
 
 # Function arguments:
 # -------------------
 # ** Sample size arguments **
-# nsite – Number of sites
-# nrep – Number of replicate surveys within a year (= season)
-# nyear – Number of years (or 'seasons')
-# year.impact – Year when some impact happens (for BACI design)
+# nsite - Number of sites
+# nrep - Number of replicate surveys within a year (= season)
+# nyear - Number of years (or 'seasons')
+# year.impact - Year when some impact happens (for BACI design)
 #
 # ** Arguments to set intercepts of regressions **
-# mean.psi1 – average occupancy probability in first year
-# range.p – bounds of uniform distribution from which annual p drawn 
-# range.psi and range.gamma – same for survival and colonization probability
+# mean.psi1 - average occupancy probability in first year
+# range.p - bounds of uniform distribution from which annual p drawn
+# range.psi and range.gamma - same for survival and colonization probability
 # -------------------
 #
 # ** Arguments to set slopes of regressions **
-# beta.Xpsi1, beta.Xphi, beta.Xgamma, beta.Xp – covariate coefficients of 
+# beta.Xpsi1, beta.Xphi, beta.Xgamma, beta.Xp - covariate coefficients of
 #      prob. of initial occupancy, persistence, colonization and detection.
 # -------------------
 #
-# *** Args. for detection heterogeneity among sites, surveys, and occasions 
+# *** Args. for detection heterogeneity among sites, surveys, and occasions
 # range.sd.site: sd of normal distribution to model logit-normal noise in p
 #      at the site level in the first and the last year of the simulation
 # range.sd.survey: sd of normal distribution to model logit-normal noise in p
-#      ONLY at the rep = ‘survey’ level, in the first and the last year.
-# range.sd.site.survey: sd of normal distribution to model logit-normal noise 
-#      in p at the site/year/rep = ‘survey’ level, in the first and the 
+#      ONLY at the rep = 'survey' level, in the first and the last year.
+# range.sd.site.survey: sd of normal distribution to model logit-normal noise
+#      in p at the site/year/rep = 'survey' level, in the first and the
 #      last year.
 # For these arguments, if the two values in the range are the
 #      same, a constant value is assumed over time, while if they are different,
 #      a linear trend is assumed over time.
-# range.beta1.season is the range of the annual variation in the linear effect 
-#     of season (i.e., of month 1-12) on the product of 
-#     availability and detection linear and quadratic effect of season 
+# range.beta1.season is the range of the annual variation in the linear effect
+#     of season (i.e., of month 1-12) on the product of
+#     availability and detection linear and quadratic effect of season
 # range.beta2.season is the same for the quadratic effect of season
 # -------------------
 #
 # ** Arguments for the BACI design **
 # year.impact: year in which an impact happens, which affects phi and gamma
-# impact.phi: effect in percent on annual phi (must be zero or negative, 
+# impact.phi: effect in percent on annual phi (must be zero or negative,
 #     e.g., impact.phi = -20 for a 20% reduction in phi)
 # impact.gamma: effect in percent on annual gamma
 #
@@ -80,7 +80,7 @@ simDynocc <- function(nsite = 250, nrep = 3, nyear = 10, year.impact = 5,
 site <- 1:nsite                             # Sites
 year <- 1:nyear                             # Years
 month <- 1:nrep                            # Months (= visit)
-psi <- muZ <- z <- array(dim = c(nsite, nyear), dimnames = 
+psi <- muZ <- z <- array(dim = c(nsite, nyear), dimnames =
 list(paste('Site', site, sep = ''), paste('Year', year, sep = ''))) # Occupancy, occurrence
 phi <- gamma <- array(NA, dim = c(nsite, (nyear-1)), dimnames =
    list(paste('Site', site, sep = ''), paste('Year', year[-nyear], sep = ''))) # Survival, colonisation
@@ -139,8 +139,8 @@ for(i in 1:nsite){     # Sites
     eps2 <- rnorm(n = nrep, sd = sd.survey[t]) # Zero-mean survey random eff.
       # ZM site.survey ranef.
     for(j in 1:nrep){ # Months
-      p[i,j,t] <- plogis(qlogis(mean.p[t]) + beta.Xp*Xp[i,j,t] + 
-        eps1[i] + eps2[j] + eps3[i,j,t] + 
+      p[i,j,t] <- plogis(qlogis(mean.p[t]) + beta.Xp*Xp[i,j,t] +
+        eps1[i] + eps2[j] + eps3[i,j,t] +
         beta1[t] * (j - (nrep/2)) + beta2[t] * (j - (nrep/2))^2)
     }
   }
@@ -219,9 +219,9 @@ if(show.plot){
 
 # Return data
 return(list(nsite=nsite, nrep=nrep, nyear=nyear, year.impact = year.impact, impact = impact, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
-range.phi=range.phi, impact.phi = impact.phi, beta.Xphi=beta.Xphi, phi.effect = phi.effect, range.gamma=range.gamma, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, gamma.effect = gamma.effect, range.p=range.p, beta.Xp=beta.Xp, range.sd.site=range.sd.site, range.sd.survey=range.sd.survey, 
+range.phi=range.phi, impact.phi = impact.phi, beta.Xphi=beta.Xphi, phi.effect = phi.effect, range.gamma=range.gamma, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, gamma.effect = gamma.effect, range.p=range.p, beta.Xp=beta.Xp, range.sd.site=range.sd.site, range.sd.survey=range.sd.survey,
 range.beta1.season = range.beta1.season, range.beta2.season = range.beta2.season, beta1 = beta1, beta2 = beta2, p.season = p.season,
 sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, psi=psi, mean.psi=mean.psi, n.occ = n.occ, psi.fs = psi.fs, psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, eps3 = eps3))
-} 
+}
 
 

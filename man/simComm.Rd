@@ -8,14 +8,14 @@ Simulate community occupancy or community abundance data
 Function to simulate community occupancy or community abundance data with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in Section 11.2)
 }
 \usage{
-simComm(type = "det/nondet", nsite = 30, nrep = 3, nspec = 100, 
+simComm(type = c("det/nondet", "counts"), nsite = 30, nrep = 3, nspec = 100,
   mean.psi = 0.25, sig.lpsi = 1, mu.beta.lpsi = 0, sig.beta.lpsi = 0,
   mean.lambda = 2, sig.loglam = 1, mu.beta.loglam = 1, sig.beta.loglam = 1,
   mean.p = 0.25, sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, show.plot = TRUE)
 }
 \arguments{
   \item{type}{
-"det/nondet" or "counts"; choose whether you want to simulate detection/nondetection data or count data
+choose whether you want to simulate detection/nondetection ("det/nondet") data or count data ("counts").
 }
   \item{nsite}{
 number of sites
@@ -119,9 +119,9 @@ A list with the arguments supplied and the following additional elements:
   \item{Ntotal.obs}{observed species richness}
   \item{S.true}{true number of species occuring at each site}
   \item{S.obs}{observed number of species occuring at each site}
-  
+
 \bold{(2) for \code{type = "counts"} (i.e., community count)}
- 
+
   \item{lambda}{\code{lambda[i, k]} expected number of individuals for site i and species k}
   \item{p}{\code{p[i, j, k]} detection probability for site i, occasion j and species k}
   \item{N}{\code{N[i, k]} true number present for site i and species k}
@@ -130,14 +130,14 @@ A list with the arguments supplied and the following additional elements:
   \item{ymax.obs}{\code{ymax.obs[i, k]} maximum nuumber observed for site i and species k}
   \item{Ntotal.fs}{finite sample (or conditional) species richness}
   \item{Ntotal.obs}{observed species richness}
-   
+
 }
 \references{
 Dorazio et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854
 
 Kéry & Royle (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
 
-Royle & Dorazio (2005) 
+Dorazio & Royle (2005) Estimating size and composition of biological communities by modeling the occurrence of species. \emph{J American Statistical Association}, 100, 389-398.
 
 Yamaura et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
 

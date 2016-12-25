@@ -6,7 +6,7 @@
 Simulation of distance sampling data.
 }
 \description{
-Simulates non-hierarchical line transect data under CDS. It subjects N individuals to sampling, and then retains the value of distance from transect only for individuals that are captured.
+Simulates non-hierarchical line transect data under conventional distance sampling (CDS). It subjects N individuals to sampling, and then retains the value of distance from transect only for individuals that are captured.
 }
 \usage{
 sim.ldata(N = 200, sigma = 30, show.plot = TRUE)

@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # data.fn - section 4.3 p135
 
@@ -28,8 +28,8 @@ data.fn <- function(M = 267, J = 3, mean.lambda = 2, beta1 = -2, beta2 = 2, beta
 #     show.plot: if TRUE, plots of the data will be displayed;
 #        set to FALSE if you are running simulations.
 
-logit <- plogis
 if(FALSE) x <- NULL # deals with R CMD check issues with 'curve'
+logit <- plogis # so 'logit' is displayed on y axis
 
 # Create covariates
 elev <- runif(n = M, -1, 1)                         # Scaled elevation
@@ -47,9 +47,10 @@ psi.true <- mean(N>0)                   # True occupancy in sample
 if(show.plot){
   op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op))
   oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  # Page 1: lambda relationships
   curve(exp(beta0 + beta1*x), -1, 1, col = "red", main = "Relationship lambda-elevation \nat average forest cover", frame.plot = FALSE, xlab = "Scaled elevation")
   plot(elev, lambda, xlab = "Scaled elevation", main = "Relationship lambda-elevation \nat observed forest cover", frame.plot = FALSE)
-  curve(exp(beta0 + beta2*x), -1, 1, col = "red", main = "Relationship lambda-forest \ncover at average elevation", xlab = "Scaled forest cover", frame.plot = F)
+  curve(exp(beta0 + beta2*x), -1, 1, col = "red", main = "Relationship lambda-forest \ncover at average elevation", xlab = "Scaled forest cover", frame.plot = FALSE)
   plot(forest, lambda, xlab = "Scaled forest cover", main = "Relationship lambda-forest cover \nat observed elevation", frame.plot = FALSE)
 }
 
@@ -65,17 +66,20 @@ psi.obs <- mean(apply(C,1,max)>0)       # Observed occupancy in sample
 
 # More plots
 if(show.plot){
-par(mfrow = c(2, 2))
-curve(logit(alpha0 + alpha1*x), -1, 1, col = "red", main = "Relationship p-elevation \nat average wind speed", xlab = "Scaled elevation", frame.plot = F)
-matplot(elev, p, xlab = "Scaled elevation", main = "Relationship p-elevation\n at observed wind speed", pch = "*", frame.plot = F)
-curve(logit(alpha0 + alpha2*x), -1, 1, col = "red", main = "Relationship p-wind speed \n at average elevation", xlab = "Scaled wind speed", frame.plot = F)
-matplot(wind, p, xlab = "Scaled wind speed", main = "Relationship p-wind speed \nat observed elevation", pch = "*", frame.plot = F)
+  # Page 2: p relationships
+  par(mfrow = c(2, 2))
+  curve(logit(alpha0 + alpha1*x), -1, 1, col = "red", main = "Relationship p-elevation \nat average wind speed", xlab = "Scaled elevation", frame.plot = FALSE)
+  matplot(elev, p, xlab = "Scaled elevation", main = "Relationship p-elevation\n at observed wind speed", pch = "*", frame.plot = FALSE)
+  curve(logit(alpha0 + alpha2*x), -1, 1, col = "red", main = "Relationship p-wind speed \n at average elevation", xlab = "Scaled wind speed", frame.plot = FALSE)
+  matplot(wind, p, xlab = "Scaled wind speed", main = "Relationship p-wind speed \nat observed elevation", pch = "*", frame.plot = FALSE)
 
-matplot(elev, C, xlab = "Scaled elevation", main = "Relationship counts and elevation", pch = "*", frame.plot = F)
-matplot(forest, C, xlab = "Scaled forest cover", main = "Relationship counts and forest cover", pch = "*", frame.plot = F)
-matplot(wind, C, xlab = "Scaled wind speed", main = "Relationship counts and wind speed", pch = "*", frame.plot = F)
-desc <- paste('Counts at', M, 'sites during', J, 'surveys')
-hist(C, main = desc, breaks = 50, col = "grey")
+  # Page 3: counts
+  matplot(elev, C, xlab = "Scaled elevation", main = "Relationship counts and elevation", pch = "*", frame.plot = FALSE)
+  matplot(forest, C, xlab = "Scaled forest cover", main = "Relationship counts and forest cover", pch = "*", frame.plot = FALSE)
+  matplot(wind, C, xlab = "Scaled wind speed", main = "Relationship counts and wind speed", pch = "*", frame.plot = FALSE)
+  desc <- paste('Counts at', M, 'sites during', J, 'surveys')
+  # hist(C, main = desc, breaks = 50, col = "grey")
+  histCount(C, NULL, color = "grey", main = desc)
 }
 
 # Output

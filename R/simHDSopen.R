@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # simHDSopen - section 9.5.4.1 p499
 
@@ -7,27 +7,30 @@
 #   (introduced in Section 9.5.4.1)
 
 simHDSopen <-
-function(type="line", nsites = 100, mean.lam = 2, 
-beta.lam = 0, mean.sig = 1, beta.sig = 0, B = 3, discard0=TRUE, nreps=2, phi=0.7, nyears=5, beta.trend = 0){ 
+function(type=c("line", "point"), nsites = 100, mean.lam = 2,
+beta.lam = 0, mean.sig = 1, beta.sig = 0, B = 3, discard0=TRUE, nreps=2, phi=0.7, nyears=5, beta.trend = 0){
 # Function simulates hierarchical distance sampling data under either a
 #   line (type = "line") or a point (type = "point") transect protocol.
-# Simulates a LIST OF LISTS of individual observations. 
+# Simulates a LIST OF LISTS of individual observations.
 #   element [[i]][[j]] is the individual observations for replicate j of year i
 # Function arguments:
 #   nsites: Number of sites (spatial replication)
-#   alpha.lam (= log(mean.lambda)), beta.lam: intercept and 
-#      slope of log-linear regression of expected lambda 
+#   alpha.lam (= log(mean.lambda)), beta.lam: intercept and
+#      slope of log-linear regression of expected lambda
 #      on a habitat covariate
 #   alpha.sig (= log(mean.sigma)), beta.sig: intercept and
-#      slope of log-linear regression of scale parameter of 
+#      slope of log-linear regression of scale parameter of
 #      half-normal detection function on wind speed
 #   B: strip half width
 #
 #   more things here
 #
-#   
-#  Note: for "point" the realized density is 
+#
+#  Note: for "point" the realized density is
 #[(area of circle) /(area of  square)]*lambda
+
+type <- match.arg(type)
+
 parmvec <- c(mean.lam, beta.lam, mean.sig, beta.sig, phi, beta.trend)
 names(parmvec)<- c("mean.lam", "beta.lam", "mean.sig", "beta.sig", "phi", "beta.trend")
 
@@ -39,11 +42,11 @@ M <-lambda <- matrix(NA, nrow=nsites, ncol=nyears)
 Na <- wind <- array(NA,dim=c(nsites,nreps,nyears))
 Na.real <- array(0, dim =c(nsites,nreps,nyears))
 for(i in 1:nyears){
-lambda[,i] <- exp(log(mean.lam) + beta.lam*habitat + beta.trend*(i-nyears/2) ) 
+lambda[,i] <- exp(log(mean.lam) + beta.lam*habitat + beta.trend*(i-nyears/2) )
 # density per "square"
 M[,i] <- rpois(nsites, lambda[,i])           # site-specific abundances
 Na[,,i] <- matrix(rbinom(nsites*nreps, M[,i],phi), nrow=nsites, byrow=FALSE)
-wind[,,i] <- runif(nsites*nreps, -2, 2)   # Wind covariate 
+wind[,,i] <- runif(nsites*nreps, -2, 2)   # Wind covariate
 }
 
 # Detection probability model (site specific)
@@ -70,12 +73,12 @@ for(i in 1:nsites){
     d <- runif(Na[i,rep,yr], 0, B)
     Na.real[i,rep,yr]<- sum(d<=B)
     p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
-    # Determine if individuals are captured or not 
+    # Determine if individuals are captured or not
     y <- rbinom(Na[i,rep,yr], 1, p)
     u1 <- u2 <- rep(NA, Na[i,rep,yr])   # coordinates (u,v)
     # Subset to "captured" individuals only
     d <- d[y==1]
-    u1 <- u1[y==1] 
+    u1 <- u1[y==1]
     u2 <- u2[y==1]
     y <- y[y==1]
   }
@@ -84,21 +87,21 @@ for(i in 1:nsites){
     # Simulation data on a square
      u1 <- runif(Na[i,rep,yr], 0, 2*B)
      u2 <- runif(Na[i,rep,yr], 0, 2*B)
-  if(1==1){
-   angle <- runif(Na[i,rep,yr], 0, 360)
+  if(1==1){ ############ what is this cruft ?? !! #####################
+   angle <- runif(Na[i,rep,yr], 0, 360) # 360? degrees??
     dd<- B*sqrt(runif(Na[i,rep,yr],0,1))
     u1<- dd*cos(angle) + (B)
     u2<- dd*sin(angle) + (B)
  }
- 
+
     d <- sqrt((u1-B)^2 + (u2-B)^2)
     Na.real[i,rep,yr]<- sum(d<= B)
  if(is.na(Na.real[i,rep,yr])) browser()
     p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
     # But we can only count individuals on a circle so we truncate p here
-    pp <- ifelse(d < B, 1, 0) * p 
+    pp <- ifelse(d < B, 1, 0) * p
     y <- rbinom(Na[i,rep,yr], 1, pp)  # Det./non-detection of each individual
-cat("n : ", sum(y==1), fill=TRUE)
+# cat("n : ", sum(y==1), fill=TRUE) #### What is this? ???
     # Subset to "captured" individuals only
     u1 <- u1[y==1]
     u2 <- u2[y==1]
@@ -106,7 +109,7 @@ cat("n : ", sum(y==1), fill=TRUE)
     y <- y[y==1]
   }
 
-  # Compile things into a matrix and insert NA if no individuals were 
+  # Compile things into a matrix and insert NA if no individuals were
   # captured at site i. Coordinates (u,v) are not used here.
   if(sum(y) > 0)
     data <- rbind(data, cbind(rep(i, sum(y)), y, u1, u2, d))
@@ -119,7 +122,7 @@ list.yr[[rep]]<- data
 outlist[[yr]]<- list.yr
 }
 # Subset to sites at which individuals were captured. You may or may not
-#  want to do this depending on how the model is formulated so be careful. 
+#  want to do this depending on how the model is formulated so be careful.
 if(discard0)
   data <- data[!is.na(data[,2]),]
 list(data=outlist, B=B, nsites=nsites, habitat=habitat, wind=wind, M.true= M, K=nreps,nyears=nyears,Na=Na, Na.real=Na.real,
