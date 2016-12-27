@@ -25,9 +25,6 @@ importFrom("sp", "bubble", "coordinates<-")
 # Chapter 1
 export("sim.fn")
 
-# Chapter 3
-# export("body", "color", "damage", "mites", "pop", "sex", "wing")
-
 # Chapter 4
 export("data.fn")
 

@@ -1,6 +1,6 @@
 TODO
 
-  * FIND sim.spatialHDS! (NB not the same a sim.spatialDS.)
+  * FIND sim.spatialHDS! (NB not the same as sim.spatialDS.)
 
   * Stop simNmix, playRN spewing out warnings.
 
@@ -14,6 +14,12 @@ TODO
     = apparent S3 methods: image.scale, plot.Nmix.resi.
     
   * Finish debugging simHDSopen("point",...)
+
+CHANGES in 0.1.0.9010
+
+  * Dragonflies data set added.
+  
+  * Changed 1 character in a help file that was preventing the manual from compiling.
 
 CHANGES in 0.1.0.9009
 

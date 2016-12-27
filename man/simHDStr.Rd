@@ -67,7 +67,7 @@ A list with the values of the arguments and the following additional elements:
 \item{params }{a vector with the input arguments}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.3.2
+KÃ©ry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.3.2
 
 }
 
