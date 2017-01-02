@@ -43,7 +43,7 @@ simComm <- function(type=c("det/nondet", "counts"), nsite=30, nrep=3, nspec=100,
 #
 #   Species-specific heterogeneity in intercepts and slopes is modelled
 #   by up to four independent normal distributions (note: no correlation
-#   between the intercepts as in Dorazio et al. (2006) or Kéry & Royle (2008))
+#   between the intercepts as in Dorazio et al. (2006) or Kery & Royle (2008))
 #
 #  (1) for a type = "det/nondet" (i.e., community occupancy)
 #  *********************************************************

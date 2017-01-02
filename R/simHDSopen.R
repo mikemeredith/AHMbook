@@ -59,68 +59,61 @@ sigma <- exp(log(mean.sig) + beta.sig*wind)
 outlist <-list()
 for(yr in 1:nyears){
 
-list.yr <-list()
-for(rep in 1:nreps){
-data <- NULL
-for(i in 1:nsites){
-  if(Na[i,rep,yr]==0){
-    data <- rbind(data, c(i,NA,NA,NA,NA)) # save site, y=1, u1, u2, d
-    next
-  }
-  if(type=="line"){
-    # Simulation of distances, uniformly, for each ind. in pop.
-    # note it piles up all M[i] guys on one side of the transect
-    d <- runif(Na[i,rep,yr], 0, B)
-    Na.real[i,rep,yr]<- sum(d<=B)
-    p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
-    # Determine if individuals are captured or not
-    y <- rbinom(Na[i,rep,yr], 1, p)
-    u1 <- u2 <- rep(NA, Na[i,rep,yr])   # coordinates (u,v)
-    # Subset to "captured" individuals only
-    d <- d[y==1]
-    u1 <- u1[y==1]
-    u2 <- u2[y==1]
-    y <- y[y==1]
-  }
+  list.yr <-list()
+  for(rep in 1:nreps){
+    data <- NULL
+    for(i in 1:nsites){
+      if(Na[i,rep,yr]==0){
+        data <- rbind(data, c(i,NA,NA,NA,NA)) # save site, y=1, u1, u2, d
+        next
+      }
+      if(type=="line"){
+        # Simulation of distances, uniformly, for each ind. in pop.
+        # note it piles up all M[i] guys on one side of the transect
+        d <- runif(Na[i,rep,yr], 0, B)
+        Na.real[i,rep,yr]<- sum(d<=B)
+        p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
+        # Determine if individuals are captured or not
+        y <- rbinom(Na[i,rep,yr], 1, p)
+        u1 <- u2 <- rep(NA, Na[i,rep,yr])   # coordinates (u,v)
+        # Subset to "captured" individuals only
+        d <- d[y==1]
+        u1 <- u1[y==1]
+        u2 <- u2[y==1]
+        y <- y[y==1]
+      }
 
-  if(type=="point"){
-    # Simulation data on a square
-     u1 <- runif(Na[i,rep,yr], 0, 2*B)
-     u2 <- runif(Na[i,rep,yr], 0, 2*B)
-  if(1==1){ ############ what is this cruft ?? !! #####################
-   angle <- runif(Na[i,rep,yr], 0, 360) # 360? degrees??
-    dd<- B*sqrt(runif(Na[i,rep,yr],0,1))
-    u1<- dd*cos(angle) + (B)
-    u2<- dd*sin(angle) + (B)
- }
+      if(type=="point"){
+        angle <- runif(Na[i,rep,yr], 0, 2*pi)
+        dd<- B*sqrt(runif(Na[i,rep,yr],0,1))
+        u1<- dd*cos(angle) + (B)
+        u2<- dd*sin(angle) + (B)
 
-    d <- sqrt((u1-B)^2 + (u2-B)^2)
-    Na.real[i,rep,yr]<- sum(d<= B)
- if(is.na(Na.real[i,rep,yr])) browser()
-    p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
-    # But we can only count individuals on a circle so we truncate p here
-    pp <- ifelse(d < B, 1, 0) * p
-    y <- rbinom(Na[i,rep,yr], 1, pp)  # Det./non-detection of each individual
-# cat("n : ", sum(y==1), fill=TRUE) #### What is this? ???
-    # Subset to "captured" individuals only
-    u1 <- u1[y==1]
-    u2 <- u2[y==1]
-    d <- d[y==1]
-    y <- y[y==1]
-  }
+        d <- sqrt((u1-B)^2 + (u2-B)^2)
+        Na.real[i,rep,yr]<- sum(d<= B)
+        p <- exp(-d *d / (2 * (sigma[i,rep,yr]^2)))
+        # But we can only count individuals on a circle so we truncate p here
+        pp <- ifelse(d < B, 1, 0) * p
+        y <- rbinom(Na[i,rep,yr], 1, pp)  # Det./non-detection of each individual
+        # Subset to "captured" individuals only
+        u1 <- u1[y==1]
+        u2 <- u2[y==1]
+        d <- d[y==1]
+        y <- y[y==1]
+      }
 
-  # Compile things into a matrix and insert NA if no individuals were
-  # captured at site i. Coordinates (u,v) are not used here.
-  if(sum(y) > 0)
-    data <- rbind(data, cbind(rep(i, sum(y)), y, u1, u2, d))
-  else
-    data <- rbind(data, c(i,NA,NA,NA,NA)) # make a row of missing data
-
-  }
-list.yr[[rep]]<- data
-}
-outlist[[yr]]<- list.yr
-}
+      # Compile things into a matrix and insert NA if no individuals were
+      # captured at site i. Coordinates (u,v) are not used here.
+      if(sum(y) > 0) {
+        data <- rbind(data, cbind(rep(i, sum(y)), y, u1, u2, d))
+      } else {
+        data <- rbind(data, c(i,NA,NA,NA,NA)) # make a row of missing data
+      }
+    } # end for(sites)
+    list.yr[[rep]]<- data
+  } # end for(rep)
+  outlist[[yr]]<- list.yr
+} # end for(year)
 # Subset to sites at which individuals were captured. You may or may not
 #  want to do this depending on how the model is formulated so be careful.
 if(discard0)

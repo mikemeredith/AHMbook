@@ -1,5 +1,5 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
-# Marc Kéry & Andy Royle, Academic Press, 2016.
+# Marc Kery & Andy Royle, Academic Press, 2016.
 
 # sim.pdata  - section 8.2.5.1 p410
 

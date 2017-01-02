@@ -54,7 +54,8 @@ The functions are listed by chapter below.
   \item{\code{\link{simHDStr}}}{ Simulate data under a time-removal/distance sampling design (Section 9.3.2)}
   \item{\code{\link{simHDSopen}}}{ Simulate open hierarchical distance sampling data}
   \item{\code{\link{issj.sim}}}{ Simulate data under the open distance sampling protocol for the Island Scrub Jays (Section 9.7.1)}
-  \item{\code{\link{sim.spatialDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (Section 9.8.3)}
+  \item{\code{\link{sim.spatialDS}}}{ Simulate data under a basic spatial distance sampling model  (Section 9.8.3)}
+  \item{\code{\link{sim.spatialHDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (Section 9.8.5)}
   \item{\code{\link{pcount.spHDS}}}{ Fit a spatial hierarchical distance sampling model using a hacked version of the pcount function in unmarked (Section 9.8.4)}
   } }
 
@@ -90,7 +91,8 @@ The functions are listed by chapter below.
 \section{UTILITY FUNCTIONS}{
   \describe{
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
-  %%\item{\code{\link{image.scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
+  \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
+  \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold) }
   } }
 
 \section{DATA SETS}{

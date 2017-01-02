@@ -1,24 +1,32 @@
 TODO
 
-  * FIND sim.spatialHDS! (NB not the same as sim.spatialDS.)
-
   * Stop simNmix, playRN spewing out warnings.
 
   * Add information about the plots to the help pages.
 
-  * Write/check Value sections for simHDS, simHDSopen, wigglyOcc help pages.
+  * Write/check Value sections for simHDS, simHDSopen help pages.
 
   * Deal with remaining NOTEs from R CMD check:
     = use of 'tits' as default for map.Nmix.resi.
     = foreign function call to a different package ("nll_pcount" in "unmarked").
     = apparent S3 methods: image.scale, plot.Nmix.resi.
-    
-  * Finish debugging simHDSopen("point",...)
+    = Unexported objects imported by ':::' calls:
+        'unmarked:::getDesign' 'unmarked:::unmarkedEstimateList'
+
+CHANGES in 0.1.0.9011
+
+  * Fixed use of 360 instead of 2*pi in simHDSopen and simHDStr.
+  
+  * Added sim.spatialHDS.
+  
+  * Removed unnecessary output from wigglyOcc.
+  
+  * Add bigCrossCorr
 
 CHANGES in 0.1.0.9010
 
   * Dragonflies data set added.
-  
+
   * Changed 1 character in a help file that was preventing the manual from compiling.
 
 CHANGES in 0.1.0.9009

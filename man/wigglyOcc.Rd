@@ -10,7 +10,6 @@ in occupancy and detection probability}
 \usage{
 wigglyOcc(seed = 1, show.plot = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{seed}{
 Seed for random number generator
@@ -26,11 +25,9 @@ A list with the following elements:
   \item{J }{Number of replicate surveys}
   \item{Xsite }{Simulated site covariate, a vector of length M}
   \item{Xsurvey }{Simulated survey covariate, a M x J matrix}
-  \item{x.index }{??, a vector of length M x J}
   \item{psi }{Occupancy probability, a vector of length M}
   \item{z }{Realised occupancy, a 0/1 vector of length M}
   \item{p }{Detection probability, a M x J matrix}
-  \item{p.ordered }{??, a vector of length M x J}
   \item{y }{detection history, a M x J matrix of 0/1}
 }
 \references{

@@ -53,8 +53,7 @@ for(i in 1:nsites){
   }
   if(type=="point"){
     # Simulation of data on a circle of radius B (algorithm of Wallin)
-    # angle <- runif(N[i], 0, 2*p)
-    angle <- runif(N[i], 0, 2*pi) ### Must surely be 'pi' !!
+    angle <- runif(N[i], 0, 2*pi)
     r2 <- runif(N[i], 0, 1)
     r <- B*sqrt(r2)
     u1 <- r*cos(angle) + B

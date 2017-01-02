@@ -20,6 +20,7 @@ importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
 importFrom("sp", "bubble", "coordinates<-")
+importFrom("coda", "crosscorr")
 
 
 # Chapter 1
@@ -42,7 +43,8 @@ export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
 export("sim.ldata", "sim.pdata", "simHDS")
 
 # Chapter 9
-export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "pcount.spHDS")
+export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS",
+  "pcount.spHDS")
 export("e2dist")
 export("image_scale")
 export("image.scale") # Seen by R as a method for S3 generic 'image' # defunct
@@ -64,6 +66,6 @@ export("spatial.exp")
 
 exportMethods(predict)
 
-
+export("bigCrossCorr")
 
 

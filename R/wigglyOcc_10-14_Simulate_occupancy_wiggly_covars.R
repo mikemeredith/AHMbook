@@ -62,6 +62,6 @@ if(show.plot) {
   points(Xsurvey, jitter(y, amount = 0.02))
 }
 
-return(list(M = M, J = J, Xsite = Xsite, Xsurvey = Xsurvey, x.index = x.index, psi = psi, z = z, p = p, p.ordered = p.ordered, y = y))
+return(list(M = M, J = J, Xsite = Xsite, Xsurvey = Xsurvey, psi = psi, z = z, p = p, y = y))
 }
 

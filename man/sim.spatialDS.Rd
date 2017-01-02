@@ -3,10 +3,18 @@
 \encoding{UTF-8}
 
 \title{
-Simulates data under spatial hierarchical distance sampling model
+Simulates data for a basic spatial distance sampling model
 }
 \description{
-Function simulates coordinates of individuals on a square
+Generates data with the following steps:
+
+1. Simulate a spatially correlated habitat covariate (x) over a grid of pixels covering a square. 
+
+2. Distribute the population of N individuals over the square with probability of location in a pixel related to the covariate.
+
+3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with either a half normal or a hazard rate detection function. (Note that individuals outside the circle of radius \code{B} can be detected.)
+
+4. If \code{keep.all = FALSE}, return the locations of only the individuals detected.
 }
 \usage{
 sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3,
