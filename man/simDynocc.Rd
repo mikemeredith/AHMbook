@@ -46,7 +46,7 @@ Year when some impact happens (for BACI design)
 average occupancy probability in first year
 }
   \item{beta.Xpsi1}{
-coefficients of environmental covariates in probability of initial occupancy.
+coefficients of environmental covariate in probability of initial occupancy.
 }
   \item{range.phi}{
 bounds of uniform distribution from which annual persistence is drawn
@@ -55,7 +55,7 @@ bounds of uniform distribution from which annual persistence is drawn
 effect in percent on annual phi (must be zero or negative, e.g., impact.phi = -20 for a 20\% reduction in phi)
 }
   \item{beta.Xphi}{
-coefficients of environmental covariates in probability of persistence.
+coefficients of environmental covariate in probability of persistence.
 }
   \item{range.gamma}{
 bounds of uniform distribution from which annual colonisation is drawn
@@ -63,13 +63,13 @@ bounds of uniform distribution from which annual colonisation is drawn
   \item{impact.gamma}{
 effect in percent on annual gamma (must be zero or negative, e.g., impact.gamma = -20 for a 20\% reduction in gamma)
 }  \item{beta.Xgamma}{
-coefficients of environmental covariates in probability of colonization.
+coefficients of environmental covariate in probability of colonization.
 }
   \item{range.p}{
 bounds of uniform distribution from which annual p is drawn
 }
   \item{beta.Xp}{
-coefficients of environmental covariates in probability of detection.
+coefficients of environmental covariate in probability of detection.
 }
  \item{range.beta1.season}{
 the range of the annual variation in the linear effect of season (i.e., of month 1-12) on the product of availability and detection linear and quadratic effect of season 
@@ -96,29 +96,29 @@ A list with the values of the arguments input and the following additional eleme
   \item{impact }{a 0/1 vector of length nyear - 1 indicating if an impact applies to the interval}
   \item{phi.effect }{additive effect of impact on persistence, a vector of length nyear - 1}
   \item{gamma.effect }{additive effect of impact on colonisation, a vector of length nyear - 1}
-  \item{beta1 }{linear effect of season on the product of availability and detection, a vector of length nyear}
-  \item{beta2 }{quadratic effect of season on the product of availability and detection, a vector of length nyear}
-  \item{mean.phi }{mean persistence for each interval, a vector of length nyear - 1}
-  \item{mean.gamma }{mean colonisation for each interval, a vector of length nyear - 1}
+  \item{beta1 }{linear effect of occasion on the product of availability and detection, a vector of length nyear}
+  \item{beta2 }{quadratic effect of occasion on the product of availability and detection, a vector of length nyear}
+  \item{mean.phi }{mean persistence for each interval before application of any BACI effect, a vector of length nyear - 1}
+  \item{mean.gamma }{mean colonisation for each interval before application of any BACI effect, a vector of length nyear - 1}
   \item{mean.p }{mean detection probability for each year, a vector of length nyear}
   \item{psi }{annual occupancy for each site, a nsite x nyear matrix}
   \item{mean.psi }{average occupancy over sites, a vector of length nyear}
   \item{n.occ }{number of occupied sites, a vector of length nyear}
   \item{psi.fs }{finite-sample occupancy proportion, a vector of length nyear}
   \item{psi.app }{apparent occupancy over sites, a vector of length nyear}
-  \item{z }{true occurence state, a nsite x nyear matrix of 0/1}
-  \item{phi }{true persistence, a nsite x nyear-1 matrix}
-  \item{gamma }{true colonisation, a nsite x nyear-1 matrix}
-  \item{p }{true detection probability, a nsite x nrep x nyear array}
-  \item{y }{detection history, a nsite x nrep x nyear array}
+  \item{z }{true occurrence state, a nsite x nyear matrix of 0/1}
+  \item{phi }{persistence, a nsite x nyear-1 matrix}
+  \item{gamma }{colonisation, a nsite x nyear-1 matrix}
+  \item{p }{detection probability, a nsite x nrep x nyear array}
+  \item{y }{the observed detection history, a nsite x nrep x nyear array}
   \item{Xpsi1 }{covariate affecting initial occupancy, a vector of length nsite}
   \item{Xphi }{covariate affecting persistence, a nsite x nyear matrix}
   \item{Xgamma }{covariate affecting colonisation, a nsite x nyear matrix}
   \item{Xp }{covariate affecting probability of detection, a nsite x nrep x nyear array}
-  \item{eps3 }{the array of site/survey random effects, a nsite x nrep x nyear array}
+  \item{eps3 }{the array of site/rep/year random effects, a nsite x nrep x nyear array}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 15
+Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Chapter 16
 
 }
 \author{

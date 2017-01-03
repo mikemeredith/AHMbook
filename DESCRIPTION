@@ -1,7 +1,8 @@
 Package: AHMbook
 Type: Package
 Title: Functions for the Book 'Applied Hierarchical Modeling in Ecology'
-Version: 0.1.0.9011
+Version: 0.1.1
+Date: 2017-01-03
 Depends: unmarked
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda
 Suggests:

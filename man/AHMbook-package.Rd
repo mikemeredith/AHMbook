@@ -73,7 +73,7 @@ The functions are listed by chapter below.
   \item{\code{\link{simComm}}}{ Simulate community occupancy or abundance data }
   } }
 
-\section{Chapter 15}{
+\section{Chapter 16}{
   \describe{
   \item{\code{\link{simDynocc}}}{ Simulate data under a dynamic occupancy model under a wide range of conditions}
   } }
