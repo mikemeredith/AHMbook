@@ -88,6 +88,17 @@ The functions are listed by chapter below.
   \item{\code{\link{spatial.exp}}}{ Generate Gaussian random field with negative exponential correlation}
   } }
 
+\section{DATA SETS}{
+  \describe{
+  \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
+  \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} }
+  \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014}
+  \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands}
+  \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland}
+  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines}
+
+  } }
+
 \section{UTILITY FUNCTIONS}{
   \describe{
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
@@ -95,10 +106,6 @@ The functions are listed by chapter below.
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
   } }
 
-\section{DATA SETS}{
-  \describe{
-  \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
-  \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} } } }
 
 \author{
 Marc Kéry, Andy Royle, Mike Meredith

@@ -1,3 +1,8 @@
+CHANGES in 0.1.1.9000 (devel)
+
+  * Added more examples to the help pages for simulation functions.
+  
+  * Added the MHB2014, SwissSquirrels, ttdPeregrine and wagtail data sets.
 
 CHANGES in 0.1.1
 
