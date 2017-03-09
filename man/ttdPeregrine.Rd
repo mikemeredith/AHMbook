@@ -35,11 +35,13 @@ Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysi
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.12
 }
 \examples{
+# Using the built-in data set instead of the TXT file for the example in Section 
+#  10.12 of the book is easy, as the format is the same as the file.
+?ttdPeregrine  # check the description of the data
 data(ttdPeregrine)
-str(ttdPeregrine)
+# Instead of data <- read.table("ttdPeregrine.txt", header = TRUE, sep = "\t") do:
+data <- ttdPeregrine
 
-# Check the MinOfDay entry:
-all(with(ttdPeregrine, (Start.hour - 6) * 60 + Start.minute == MinOfDay))
-
+# Then continue with the rest of the analysis on p.618
 }
 \keyword{datasets}
