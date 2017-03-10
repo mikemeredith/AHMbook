@@ -13,9 +13,8 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif",
            "var", "vcov")
 importFrom("utils", "head", "stack")
-importFrom("unmarked", "unmarkedEstimate", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
-  "getData", "linearComb", "SE", "predict", "coef", "fitted", "residuals", "vcov", "confint")
-importClassesFrom("unmarked", "unmarkedFitPCount")
+importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
+  "coef", "fitted", "residuals", "vcov", "confint")
 importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues", "image")
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
@@ -32,8 +31,6 @@ export("data.fn")
 # Chapter 6
 export("simNmix", "ppc.plot", "map.Nmix.resi", "simpleNmix", "playRN")
 export("plot_Nmix_resi")
-export("plot.Nmix.resi") # defunct
-# Nhat taken out
 
 # Chapter 7
 export("fitstats", "fitstats2")
@@ -43,11 +40,10 @@ export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
 export("sim.ldata", "sim.pdata", "simHDS")
 
 # Chapter 9
-export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS",
-  "pcount.spHDS")
+export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")
+#  "pcount.spHDS" # now in unmarked
 export("e2dist")
 export("image_scale")
-export("image.scale") # Seen by R as a method for S3 generic 'image' # defunct
 
 # Chapter 10
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
@@ -63,8 +59,6 @@ export("simDCM")
 
 # Chapter 20
 export("spatial.exp")
-
-exportMethods(predict)
 
 export("bigCrossCorr")
 

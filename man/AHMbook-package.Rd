@@ -56,7 +56,6 @@ The functions are listed by chapter below.
   \item{\code{\link{issj.sim}}}{ Simulate data under the open distance sampling protocol for the Island Scrub Jays (Section 9.7.1)}
   \item{\code{\link{sim.spatialDS}}}{ Simulate data under a basic spatial distance sampling model  (Section 9.8.3)}
   \item{\code{\link{sim.spatialHDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (Section 9.8.5)}
-  \item{\code{\link{pcount.spHDS}}}{ Fit a spatial hierarchical distance sampling model using a hacked version of the pcount function in unmarked (Section 9.8.4)}
   } }
 
 \section{Chapter 10}{
@@ -91,11 +90,12 @@ The functions are listed by chapter below.
 \section{DATA SETS}{
   \describe{
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
+  \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway}
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} }
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014}
-  \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland}
   \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines}
+  \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands}
 
   } }
 

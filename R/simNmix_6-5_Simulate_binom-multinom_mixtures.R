@@ -256,13 +256,18 @@ for(i in occ.sites){      # Loop over occupied sites (with N>0)
       p[i,j,n] <- plogis(logit.p[i,j,n])
       # Get individual detection histories: NA out non-existing inds.
       # (i.e., at sites where N=0)
-      prob <- inds[i,j,n] * p[i,j,n]     # NA out non-existing individuals
-      DH[i,j,n] <- rbinom(n=1, size = 1, prob = prob)
-      }
-   }
+      # prob <- inds[i,j,n] * p[i,j,n]     # NA out non-existing individuals
+      # DH[i,j,n] <- rbinom(n=1, size = 1, prob = prob) # a warning every time prob is NA
+      if(!is.na(inds[i,j,n]))
+        DH[i,j,n] <- rbinom(n=1, size = 1, prob = p[i, j, n]) ## MM 2017-03-10
+      # else ... the value stays as NA
+    }
+  }
 }
-DH <- DH[,,-nslice]    # Get rid of unused last slice
-p <- p[,,-nslice]      # Get rid of unused last slice
+# DH <- DH[,,-nslice]    # Get rid of unused last slice
+# p <- p[,,-nslice]      # Get rid of unused last slice
+DH <- DH[,,-nslice, drop=FALSE]    # Get rid of unused last slice ## MM 2017-03-10
+p <- p[,,-nslice, drop=FALSE]      # Get rid of unused last slice
 
 # Get counts C by tallying up detection histories (DH)
 # Also get the sum over sites of max counts

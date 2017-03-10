@@ -1,7 +1,21 @@
+CHANGES in 0.1.1.9002 (devel)
+
+  * Removed pcount.spHDS and predict methods for unmarkedFit objects, as these are now incorporated into the unmarked package.
+
+  * Removed default arguments for the coordinates in map.Nmix.resi, making it more generally useful.
+
+  * plot.Nmix.resi and image.scale no longer exported, replaced by plot_Nmix_resi and image_scale.
+
+  * Fixed slew of warnings produced by simNmix, also dropping of dimensions with small numbers of individuals.
+
+CHANGES in 0.1.1.9001 (devel)
+
+  * Added Finnmark data set and help pages for data sets
+
 CHANGES in 0.1.1.9000 (devel)
 
   * Added more examples to the help pages for simulation functions.
-  
+
   * Added the MHB2014, SwissSquirrels, ttdPeregrine and wagtail data sets.
 
 CHANGES in 0.1.1

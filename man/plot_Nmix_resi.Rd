@@ -1,5 +1,6 @@
 \name{plot_Nmix_resi}
 \alias{plot_Nmix_resi}
+\alias{plot.Nmix.resi}
 \encoding{UTF-8}
 \title{
 Produce some residual plots
@@ -33,7 +34,7 @@ Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.
  Marc Kéry
 }
 \note{
-This function appears in the text as 'plot.Nmix.resi'; renamed to avoid confusion with generic 'plot' functions.
+This function appears in the text as \code{plot.Nmix.resi}; renamed to avoid confusion with generic \code{plot} functions.
 }
 
 \examples{

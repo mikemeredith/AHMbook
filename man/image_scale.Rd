@@ -1,5 +1,6 @@
 \name{image_scale}
 \alias{image_scale}
+\alias{image.scale}
 \encoding{UTF-8}
 \title{
 Helper function to draw scale for image
@@ -43,6 +44,10 @@ Royle, J.A., Chandler, R.B., Sollmann, R., & Gardner, B. (2014) \emph{Spatial ca
 \author{
 Borrowed from the \pkg{SCRbook} package.
 }
+\note{
+This function appears in the text as \code{image.scale}; renamed to avoid confusion with generic \code{image} functions.
+}
+
 \examples{
 ## TO DO - would need to do an image plot first.
 }

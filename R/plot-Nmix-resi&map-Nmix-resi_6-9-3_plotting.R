@@ -46,7 +46,7 @@ abline(lm(c(residuals(fmZIP)) ~ c(fitted(fmZIP))), col = "blue", lwd = 3)
 
 
 # Function to produce a map of the residuals in Section 6.9.3
-map.Nmix.resi <- function(fm, x = tits$coordx, y = tits$coordy){
+map.Nmix.resi <- function(fm, x, y){
 # Function produces a map of the mean residuals from an N-mixture model
 #    object named fm, which was fit by function pcount in unmarked
 # Function arguments are the fitted model object and the x and y coordinates

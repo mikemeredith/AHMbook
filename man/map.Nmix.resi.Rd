@@ -8,7 +8,7 @@ Mapping of residuals
 Produces a map of the mean residuals from an N-mixture model fit by function \code{pcount} in \pkg{unmarked}. Used in Section 6.9.3 to produce maps of Switzerland with the residuals for each site.
 }
 \usage{
-map.Nmix.resi(fm, x = tits$coordx, y = tits$coordy)
+map.Nmix.resi(fm, x, y)
 }
 \arguments{
   \item{fm}{
@@ -32,7 +32,7 @@ Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.
 Marc Kéry
 }
 \note{
-The current defaults only work if the data object \code{tits} is in the workspace. This is the case when the code for section 6.9.3 is run, but not in general. These defaults  may be removed in future versions.
+In previous versions, the defaults were \code{x = tits$coordx} and \code{y = tits$coordy}, but those defaults only worked if the data object \code{tits} was in the workspace. To run the code on page 263 of AHM1, you now need to specify the coordinates, eg, \code{map.Nmix.resi(fm5, x = tits$coordx, y = tits$coordy)}.
 }
 
 \examples{
