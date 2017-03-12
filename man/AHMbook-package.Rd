@@ -94,6 +94,7 @@ The functions are listed by chapter below.
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} }
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland}
+  \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from 2004 to 2013}
   \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands}
 
