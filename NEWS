@@ -1,30 +1,14 @@
-CHANGES in 0.1.1.9004 (devel)
+CHANGES in 0.1.2
 
-  * Added formal Depends on unmarked (>= 0.12)
+  * Function pcount.spHDS and predict methods for unmarkedFit objects have moved to the unmarked package v.0.12; AHMbook now Depends on unmarked (>=0.12).
 
-CHANGES in 0.1.1.9003 (devel)
-
-  * Added SwissTits data set.
-
-CHANGES in 0.1.1.9002 (devel)
-
-  * Removed pcount.spHDS and predict methods for unmarkedFit objects, as these are now incorporated into the unmarked package.
+  * Added the MHB2014, SwissSquirrels, SwissTits, Finnmark, ttdPeregrine and wagtail data sets; see the help files for ways to use these instead of .csv files with the code in the book.
 
   * Removed default arguments for the coordinates in map.Nmix.resi, making it more generally useful.
 
-  * plot.Nmix.resi and image.scale no longer exported, replaced by plot_Nmix_resi and image_scale.
-
-  * Fixed slew of warnings produced by simNmix, also dropping of dimensions with small numbers of individuals.
-
-CHANGES in 0.1.1.9001 (devel)
-
-  * Added Finnmark data set and help pages for data sets
-
-CHANGES in 0.1.1.9000 (devel)
+  * Fixed: slew of warnings produced by simNmix, also dropping of dimensions with small numbers of individuals.
 
   * Added more examples to the help pages for simulation functions.
-
-  * Added the MHB2014, SwissSquirrels, ttdPeregrine and wagtail data sets.
 
 CHANGES in 0.1.1
 
