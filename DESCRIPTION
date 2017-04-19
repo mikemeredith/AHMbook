@@ -1,9 +1,9 @@
 Package: AHMbook
 Type: Package
 Title: Functions and Data for the Book 'Applied Hierarchical Modeling in Ecology'
-Version: 0.1.1.9003
-Date: 2017-03-10
-Depends: R (>= 2.10), unmarked
+Version: 0.1.1.9004
+Date: 2017-04-15
+Depends: R (>= 2.10), unmarked (>= 0.12)
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda
 Suggests:
 Author: Marc Kery and Andy Royle

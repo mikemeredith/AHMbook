@@ -28,12 +28,12 @@ The list \code{MHB2014} has the data for 2014.
       \item body.mass : body mass in g.
       \item wing.span : wing span in cm.
     }}}
-\describe{    
+\describe{
   \item{\bold{sites }}{a data frame with a row for each 1x1 km quadrat, including 1 quadrat not surveyed in 2014, and the following columns:
 
     \enumerate{
       \item siteID : an alphanumeric site identifier.
-      \item coordx : the x coordinate of the centre of the quadrat (CRS = CH1903/LV03, EPSG 21781).
+      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.
       \item elev : the mean elevation of the quadrat, m.
       \item rlength : the length of the route walked in the quadrat, km.
@@ -41,7 +41,7 @@ The list \code{MHB2014} has the data for 2014.
       \item forest : percentage forest cover.
       \item obs14 : identifying number of the observer.
     }}}
-\describe{    
+\describe{
   \item{\bold{counts }}{a sites x replicates x species array of counts}
 
   \item{\bold{date }}{a sites x replicates matrix with Julian dates of the surveys, 1 April = 1}
@@ -54,7 +54,7 @@ The list \code{MHB2014} has the data for 2014.
 Section 11.3 of the book has code to read in data from a CSV file, "MHB_2014.csv". This is a huge file, because the site data are repeated for all 158 species and the species data are repeated for all 267 sites. The \code{MHB2014} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
 }
 \source{
-Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
+Swiss Ornithological Institute
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 11.3

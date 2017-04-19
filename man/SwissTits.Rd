@@ -24,21 +24,21 @@ The list \code{SwissTits} has the data for six species of tits from 2004 to 2013
       \item latname : a 6-letter abbreviation of the Latin name.
       \item name : the English name.
     }}}
-\describe{    
+\describe{
   \item{\bold{sites }}{a data frame with a row for each 1x1 km quadrat and the following columns:
 
     \enumerate{
       \item siteID : an alphanumeric site identifier.
-      \item coordx : the x coordinate of the centre of the quadrat (CRS = CH1903/LV03, EPSG 21781).
+      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.
-      \item AQ     : an identifier for the 10km x 10km "Atlas Quadrat" within which the site falls.
+      \item AQ : an identifier for the 10km x 10km "Atlas Quadrat" within which the site falls.
       \item AQ.coordx : the x coordinate of the centre of the AQ.
-      \item coordy : the y coordinate of the centre of the AQ.
+      \item AQ.coordy : the y coordinate of the centre of the AQ.
       \item elev : the mean elevation of the quadrat, m.
       \item rlength : the length of the route walked in the quadrat, km.
       \item forest : percentage forest cover.
     }}}
-\describe{    
+\describe{
   \item{\bold{counts }}{a sites x replicates x years x species array of counts}
 
   \item{\bold{date }}{a sites x replicates x years array with Julian dates of the surveys, 1 April = 1}
@@ -59,7 +59,7 @@ A new method for recording breeding territories was introduced in 2004, but the 
 Sections 6.9.1 and 6.13.1 of the book have code to read in data from a CSV file, "SwissTits_mhb_2004_2013.csv". The \code{SwissTits} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
 }
 \source{
-Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
+Swiss Ornithological Institute
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Sections 6.9.1 and 6.13.1.

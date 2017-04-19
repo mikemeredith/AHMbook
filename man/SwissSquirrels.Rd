@@ -16,7 +16,7 @@ The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows an
 
     \enumerate{
       \item spec.name : the species name.
-      \item coordx : the x coordinate of the centre of the quadrat (CRS = CH1903/LV03, EPSG 21781).
+      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.
       \item ele : the mean elevation of the quadrat, m.
       \item route : the length of the route walked in the quadrat, km.
@@ -27,7 +27,7 @@ The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows an
     }}
 
 \source{
-Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
+Swiss Ornithological Institute
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.9
