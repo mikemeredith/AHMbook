@@ -17,7 +17,7 @@ The list \code{MHB2014} has the data for 2014.
 \code{MHB2014} is a list with 5 elements:
 
 \describe{
-  \item{\bold{species }}{a data frame with a row for each species, including 5 species not recorded in 2014, and the following columns:
+  \item{\bold{species }}{a data frame with row for 158 species, including 13 species not recorded in 2014, and the following columns:
 
     \enumerate{
       \item specid : a numeric species ID based on phylogeny.
@@ -29,7 +29,7 @@ The list \code{MHB2014} has the data for 2014.
       \item wing.span : wing span in cm.
     }}}
 \describe{
-  \item{\bold{sites }}{a data frame with a row for each 1x1 km quadrat, including 1 quadrat not surveyed in 2014, and the following columns:
+  \item{\bold{sites }}{a data frame with rows for 267 1x1 km quadrat, including 1 quadrat not surveyed in 2014, and the following columns:
 
     \enumerate{
       \item siteID : an alphanumeric site identifier.
@@ -37,7 +37,7 @@ The list \code{MHB2014} has the data for 2014.
       \item coordy : the y coordinate of the centre of the quadrat.
       \item elev : the mean elevation of the quadrat, m.
       \item rlength : the length of the route walked in the quadrat, km.
-      \item nsurvey : the number of replicate surveys done in the quadrat, km.
+      \item nsurvey : the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.
       \item forest : percentage forest cover.
       \item obs14 : identifying number of the observer.
     }}}

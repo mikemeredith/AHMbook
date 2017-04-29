@@ -1,14 +1,14 @@
 Package: AHMbook
 Type: Package
 Title: Functions and Data for the Book 'Applied Hierarchical Modeling in Ecology'
-Version: 0.1.3
-Date: 2017-04-20
+Version: 0.1.3.9000
+Date: 2017-04-22
 Depends: R (>= 2.10), unmarked (>= 0.12)
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda
 Suggests:
 Author: Marc Kery, Andy Royle, Mike Meredith
 Maintainer: Mike Meredith <mmeredith@wcs.org>
-Description: Provides functions and data sets to accompany the book 'Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS' by Marc Kery and Andy Royle. The first volume appeared early in 2016 (ISBN: 978-0-12-801378-6, <https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook>; the second volume is in  preparation and additional functions will be added to this package.
+Description: Provides functions and data sets to accompany the book 'Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS' by Marc Kery and Andy Royle. The first volume appeared early in 2016 (ISBN: 978-0-12-801378-6, <https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook>); the second volume is in  preparation and additional functions will be added to this package.
 License: GPL (>=3)
 NeedsCompilation: no
 URL: https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/,
