@@ -12,13 +12,13 @@ Generates data with the following steps:
 
 2. Distribute the population of N individuals over the square with probability of location in a pixel related to the covariate.
 
-3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with either a half normal or a hazard rate detection function. (Note that individuals outside the circle of radius \code{B} can be detected.)
+3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with either a half normal or a logit detection function. (Note that all the individuals in the square can be detected.)
 
 4. If \code{keep.all = FALSE}, return the locations of only the individuals detected.
 }
 \usage{
 sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3,
-  model=c("logit", "halfnorm", "hazard"), lambda = B/3, show.plot=TRUE)
+  model=c("logit", "halfnorm"), lambda = B/3, useHabitat, show.plot=TRUE)
 }
 \arguments{
   \item{N}{
@@ -34,13 +34,16 @@ scale parameter of detection function
 if TRUE, the data for all individuals are returned; if FALSE, only for individuals detected.
 }
   \item{B}{
-circle radius; the data are simulated over a square of side 2 * B. This is usually set so that the probability of detection of individuals outside the circle is negligable, eg, \code{B = 3*sigma}. %, but individuals outside the circle of radius B are not detected. % In this case they ARE detected.
+distance from the observer to the side of the square. This is usually set so that the probability of detection of individuals outside the square is negligable, eg, \code{B = 3*sigma}.
 }
   \item{model}{
-The detection function used, can be "logit", "halfnorm" or "hazard": see Details.
+The detection function used, can be "logit" or "halfnorm": see Details.
 }
   \item{lambda}{
 The scale parameter for the spatially autocorrelated Habitat covariate.
+}
+  \item{useHabitat}{
+If the output from a previous simulation is provided, the same Habitat covariate will be used (and \code{lambda} will be ignored).
 }
   \item{show.plot}{
 choose whether to show plots or not. Set to FALSE when using function in simulations.
@@ -48,8 +51,6 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 \details{
 The "logit" detection function is \code{2*plogis(-d^2/(2*sigma^2))}, which corresponds to the detection model implemented in \code{unmarked::pcount.spHDS}.
-
-The hazard rate detection model used here is \code{p <- 1-exp(-exp(-d^2/(2*sigma^2)))}. This has no shape parameter, and probability of detection when \code{d = 0} is \code{p(0) = 1-exp(-exp(0)) = 0.632}. This is chosen so that the complementary log-log of p has only a quadratic term of distance: \code{-(1/(2*sigma^2)) * d^2}. See Kéry & Royle (2016) p.540 for details.
 }
 \value{
 A list with the values of the input arguments and the following additional elements:
