@@ -1,3 +1,7 @@
+CHANGES in 0.1.3.9001 (devel)
+
+  * More improvements to sim.spatialDS: old "hazard" detection function removed; option to use the Habitat covariate from a previous run.
+
 CHANGES in 0.1.3.9000 (devel)
 
   * New "logit" detection function added to sim.spatialDS function and pixel.id added to output. New examples in the help file.
