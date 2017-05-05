@@ -2,15 +2,16 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Fix help page for image_scale
   
-  * Fix queries in help pages for: issj.sim
-  * Fix issj.sim: doesn't work with alternative values of arguments.
-  
-  * Help pages without examples: issj.sim, image_scale, fitstats, fitstats2, piFuns,
+  * Help pages without examples: image_scale, fitstats, fitstats2, piFuns,
       plot_Nmix_resi, ppc.plot
   
   * Return Values for piFuns, simHDS, simHDSopen
 
 CHANGES in 0.1.3.9002 (devel)
+
+  * Minor tweaks to help pages and plots
+  
+  * Fixed: bugs in issj.sim which produced errors with argument values other than those in the book; tidied up ambiguity in help page with nsites and npoints; added example.
 
 CHANGES in 0.1.3.9001 (devel)
 
