@@ -72,6 +72,10 @@ Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.
 Kéry & Royle
 }
 
+\note{
+Kéry & Royle (2016, p.535 and discussion p.540) and earlier versions of \code{AHMbook} included a hazard rate detection function. This is problematic because the detection probability at distance zero is less than 1 (\code{p(0) < 1}) and should not be used. It is replaced here with the \code{logit} detection function, which does have \code{p(0) = 1}.
+}
+
 \examples{
 # Generate data with the default arguments and look at the structure:
 tmp <- sim.spatialDS()

@@ -48,7 +48,7 @@ number of removal periods (of equal length)
 detection probability for first and second observer
 }
   \item{B}{
-strip half width
+strip half width or radius of the circle
 }
   \item{discard0}{
 whether to discard or keep the data from sites with nobody detected

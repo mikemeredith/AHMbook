@@ -56,15 +56,14 @@ for(s in 1:nsites){
   if(s <= show.plot) {
     img<- rasterFromXYZ(cbind(gr,z))
     image(img, col=topo.colors(10))
-    draw.circle(3,3,B)
-    points(3,3,pch=20,cex=1.5)
+    #draw.circle(3,3,B)
     image_scale(z,col=topo.colors(10))
-    points(u1,u2,pch=20,col='red')
+    points(u1,u2,pch=16,col='black')
 
-    points(u1[d<= B], u2[d<= B], pch = 16, col = "black")
-    points(u1[y==1], u2[y==1], pch = 16, col = "blue")
-    points(3, 3,   ,pch = "+", cex = 3)
-    draw.circle(3, 3,   B)
+    # points(u1[d<= B], u2[d<= B], pch = 16, col = "black")
+    points(u1[y==1], u2[y==1], pch = 16, col = "red")
+    points(B, B,   ,pch = "+", cex = 3)
+    # draw.circle(3, 3,   B)
   }
   
   if(sum(y)>0) {

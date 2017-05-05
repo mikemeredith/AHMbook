@@ -27,7 +27,7 @@ the expected number of individuals in the square of side = 2*B if the habitat co
 scale parameter of the half-normal detection function
 }
   \item{B}{
-circle radius; the data are simulated over a square of side 2 * B
+distance from the observer to the side of the square. This is usually set so that the probability of detection of individuals outside the square is negligable, eg, \code{B = 3*sigma}.
 }
   \item{nsites}{
 number of sites

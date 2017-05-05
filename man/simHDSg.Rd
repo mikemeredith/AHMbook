@@ -36,7 +36,7 @@ intercept of log-linear model relating the Poisson mean of the number of groups 
 slope of log-linear model relating the Poisson mean of the number of groups per unit area to habitat
 }
   \item{B}{
-strip half width
+strip half width or the radius of the circle
 }
   \item{discard0}{
 whether to discard or keep the data from sites with nobody detected
@@ -66,7 +66,7 @@ Buckland et al (2001) \emph{Introduction to distance sampling: estimating abunda
 str(simHDSg())
 
 str(simHDSg(type = "line"))     # Defaults for line transect data
-str(simHDSg(type = "point"))    # Default for point transect data
+str(simHDSg(type = "point"))    # Defaults for point transect data
 str(simHDSg(lambda.group = 5))  # Much larger groups
 str(simHDSg(lambda.group = 5, alpha1 = 0)) # No effect of groups size on p
 }

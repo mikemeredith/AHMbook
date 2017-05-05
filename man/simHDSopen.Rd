@@ -32,7 +32,7 @@ intercept of log-linear regression of scale parameter of half-normal detection f
 slope of log-linear regression of scale parameter of half-normal detection function on wind speed
 }
   \item{B}{
-strip half width, or maximum distance
+strip half width, or maximum distance from the observer for point counts
 }
   \item{discard0}{
 Discard sites at which no individuals were captured. You may or may not want to do this depending on how the model is formulated so be careful.
