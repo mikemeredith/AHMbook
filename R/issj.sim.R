@@ -9,86 +9,87 @@
 issj.sim <-
 function(B, db, lam, sigma, phi, gamma, npoints, nyrs, nbsize=-1.02){
 
+stopifnot(min(db) == 0 && max(db) == B)
+lam <- as.vector(lam)
+sigma <- as.vector(sigma)
+stopifnot(length(lam) == length(sigma))
+nsites <- length(lam) # number of grid cells
+stopifnot(phi >= 0 && phi <= 1)
+stopifnot(gamma >= 0)
+stopifnot(npoints <= nsites)
+
 nD <- length(db) - 1 # Number of distance classes
 
-parms<- c(lam=lam,phi=phi, gamma=gamma, sigma=sigma)
-
-J=dim(lam)[1] #number of grid cells
-
-cell<-sort(sample(1:J, npoints, replace=FALSE))
-
-Nsim<-matrix(0,nrow=npoints, ncol=nyrs)
-
+Nsim <- matrix(0, nrow=nsites, ncol=nyrs) # simulated number of birds by site and year
 #yr 1 as before
-Nsim[,1]<-rnbinom (n=npoints, size=exp(nbsize), mu=lam[cell,1]) #generate individual countes per grid cell/point count circle
+Nsim[,1]<-rnbinom (n=nsites, size=exp(nbsize), mu=lam) #generate individual counts per grid cell/point count circle
 for(y in 2:nyrs){
-  Nsim[,y]<-rbinom(npoints,Nsim[,y-1], phi) + rpois(npoints,Nsim[,y-1]*gamma)
+  Nsim[,y]<-rbinom(nsites, Nsim[, y-1], phi) + rpois(nsites, Nsim[, y-1]*gamma)
 }
+
 #generate distance from hypothetical point count locations
-#first set prob for an individual to be in a 1-m distance class from the center point
+# first, set prob for an individual to be in a 1m distance class from the center point
+rc <- 1:B
+ri <- (0:(B-1))
+ar <- pi * (rc^2 - ri^2)
+pcc <- ar/sum(ar)
 
-rc<-1:B
-ri<-(0:(B-1))
-ar<-NULL
-for (i in 1:B) {
-   ar[i]<-pi * (rc[i]^2 - ri[i]^2)
-}
-pcc<-ar/sum(ar)
-
-Nc<-matrix(nrow=0, ncol=2)
-NcList<-list(Nc,Nc,Nc,Nc,Nc,Nc)
+NcList <- vector("list", nyrs)
 
 for (y in 1:nyrs){
-for (j in 1:J){
-  if (Nsim[j,y]==0) next
-  junk <- rmultinom(1, Nsim[j,y], pcc)
-  tt <-rep( (which(junk!=0) - 0.5), (junk[which(junk!=0)]) )
-  Ndist<-cbind(rep(j,Nsim[j,y]),tt )
-  NcList[[y]]<-rbind(NcList[[y]], Ndist)
-}}
+  NcList[[y]] <- matrix(nrow=0, ncol=2)
+  for (j in 1:nsites){  # This is for all sites
+    if (Nsim[j,y]==0) next
+    junk <- rmultinom(1, Nsim[j,y], pcc) # count of birds in each 1m band
+    tt <-rep( (which(junk!=0) - 0.5), (junk[which(junk!=0)]) ) # distance from centre
+    Ndist <- cbind(rep(j,Nsim[j,y]), tt )
+    NcList[[y]]<-rbind(NcList[[y]], Ndist)
+  }
+}
 
 # for each sampling point generate detection data based on distance of individuals within a max of 300m
 # and the detection model from the paper
+cell<-sort(sample(1:nsites, npoints, replace=FALSE))
 
-detec<-NULL
-detList<-list(detec, detec,detec,detec,detec,detec)
+detList <- vector("list", nyrs)
 
 for (y in 1:nyrs){
-for (j in 1:J) {
-  dvec<-NcList[[y]][ which(NcList[[y]][,1]==j)  ,2 ]
-  if(length(dvec)==0) {
-   det<-c(rep(0,length(db)-1))
-   } else {
-   pvec<-exp(-dvec*dvec/(2*(sigma[j]^2)))
-   dets<-dvec[rbinom(length(dvec),1,pvec )==1]
-   det<-table(cut(dets, db, include.lowest=T))
+  for (j in cell) {
+    dvec <- NcList[[y]][NcList[[y]][,1]==j, 2]
+    if(length(dvec)==0) {
+      det <- rep(0, nD)
+    } else {
+      pvec <- exp(-dvec^2/(2*(sigma[j]^2)))
+      dets <- dvec[rbinom(length(dvec),1,pvec )==1]
+      det <- table(cut(dets, db, include.lowest=TRUE))
+    }
+    detList[[y]]<-rbind(detList[[y]],det)
   }
-  detList[[y]]<-rbind(detList[[y]],det)
- }
 }
 
-# nsites x nyears matrix of total detections
+# **npoints** x nyears matrix of total detections
 y<-sapply(detList, rowSums)
 
 # Pool all of the detection data into long vectors of distance category and site across all years
 dclass<-site<-NULL
 for (t in 1:nyrs){
- for (s in 1:npoints){
+  for (s in 1:npoints){
     if (y[s,t]==0) next
 
-    ssi<-rep(s, y[s,t])
+    ssi<-rep(cell[s], y[s,t])
     dc<-NULL
     for (k in 1:nD){
-       if(detList[[t]][s,k]==0) next
-       dd<-rep(k, detList[[t]][s,k])
-       dc<-c(dc, dd)
+      if(detList[[t]][s,k]==0) next
+      dd<-rep(k, detList[[t]][s,k])
+      dc<-c(dc, dd)
     }
-  dclass<-c(dclass, dc)
-  site<-c(site, ssi)
-}
+    dclass<-c(dclass, dc)
+    site<-c(site, ssi)
+  }
 }
 
 
-return(list(NcList=NcList, detList=detList, N=Nsim, cell=cell, parms=parms, y=y, dclass=dclass, site=site))
+return(list(NcList=NcList, detList=detList, N=Nsim, cell=cell,
+ y=y, dclass=dclass, site=site, nsites=nsites, lam=lam, phi=phi, gamma=gamma, sigma=sigma))
 
 }
