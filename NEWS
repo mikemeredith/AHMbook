@@ -1,27 +1,35 @@
 TODO (this does not appear in the tar.gz of the package)
 
-  * Fix help page for image_scale
-  
-  * Help pages without examples: image_scale, fitstats, fitstats2, piFuns,
+  * Help pages without examples: fitstats, fitstats2, piFuns,
       plot_Nmix_resi, ppc.plot
-  
-  * Return Values for piFuns, simHDS, simHDSopen
 
-CHANGES in 0.1.3.9002 (devel)
+  * Help pages pretty dumb examples: simHDS, simHDSopen
+
+  * Return Values for piFuns
+
+CHANGES in 0.1.3.9003 (2017-05-06) (devel)
+
+  * Fixed: argument discard0 in simHDS now works.
+
+  * Fixed: return Values in help pages for simHDS, simHDSopen
+
+  * Fixed: help page for image_scale has descriptions of arguments.
+
+CHANGES in 0.1.3.9002 (2017-05-05) (devel)
 
   * Minor tweaks to help pages and plots
-  
+
   * Fixed: bugs in issj.sim which produced errors with argument values other than those in the book; tidied up ambiguity in help page with nsites and npoints; added example.
 
-CHANGES in 0.1.3.9001 (devel)
+CHANGES in 0.1.3.9001 (2017-05-01) (devel)
 
   * More improvements to sim.spatialDS: old "hazard" detection function removed; option to use the Habitat covariate from a previous run.
 
-CHANGES in 0.1.3.9000 (devel)
+CHANGES in 0.1.3.9000 (2017-04-22) (devel)
 
   * New "logit" detection function added to sim.spatialDS function and pixel.id added to output. New examples in the help file.
 
-CHANGES in 0.1.3
+CHANGES in 0.1.3 (2017-04-20)
 
   * Function pcount.spHDS and predict methods for unmarkedFit objects have moved to the unmarked package v.0.12; AHMbook now Depends on unmarked (>=0.12).
 

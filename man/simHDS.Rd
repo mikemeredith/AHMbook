@@ -43,10 +43,14 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 
 \value{
-A list with the values of the arguments input, plus the following additional elements:
-  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list with the values of the arguments entered and the following additional elements:
+
+\item{data }{simulated distance sampling data: a matrix with a row for each individual detected and 5 columns: site ID, status (1 if captured), x and y coordinates (NA for line transects), distance from the line or point; if \code{discard0 = FALSE}, sites with no detections will appear in the matrix with NAs in columns 2 to 5.}
+\item{habitat }{simulated habitat covariate}
+\item{wind }{simulated detection covariate}
+\item{N }{simulated number of individuals at each site}
+\item{N.true }{for point counts, the simulated number of individuals within the circle sampled}
+
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 8.5.1
@@ -57,6 +61,12 @@ Kéry & Royle
 
 \examples{
 # Simulate a data set with the default arguments and look at the structure of the output:
+set.seed(123)
 tmp <- simHDS()
 str(tmp)
+head(tmp$data)
+
+tmp <- simHDS("point", discard0=FALSE)
+str(tmp)
+head(tmp$data, 10)
 }

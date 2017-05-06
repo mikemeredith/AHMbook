@@ -54,24 +54,30 @@ strip half width or radius of the circle
 whether to discard or keep the data from sites with nobody detected
 }
   \item{show.plot}{
-choose whether to show plots or not. Set to FALSE when using function in simulations.
+choose whether to show plots or not. Set to FALSE when running many simulations.
 }
 }
 
 \value{
 A list with the values of the arguments and the following additional elements:
-\item{data }{simulated distance sampling data}
+\item{data }{simulated distance sampling data: a matrix with a row for each group detected and 7 columns: site ID, status (1 if captured), x and y coordinates (NA for line transects), distance from the line or point, group size, the time interval of removal or capture history; if \code{discard0 = FALSE}, sites with no detections will appear in the matrix with NAs in columns 2 to 7.}
 \item{habitat }{simulated habitat covariate}
 \item{M }{simulated number of groups at each site}
 \item{M.true }{for point counts, the simulated number of groups within the circle sampled}
 \item{params }{a vector with the input arguments}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.3.2
+Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.3.2 (time removal) and 9.4.1 (double observer).
 
 }
 
 \examples{
 # Run with the default arguments and look at the structure of the output:
-str(simHDStr)
+set.seed(123)
+tmp <- simHDStr() # default: line, removal
+str(tmp)
+head(tmp$data)
+tmp <- simHDStr("point", method="double")
+str(tmp)
+head(tmp$data)
 }

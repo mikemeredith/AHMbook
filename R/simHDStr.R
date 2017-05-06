@@ -144,7 +144,7 @@ for(i in 1:nsites){
     data <- rbind(data, c(i,NA,NA,NA,NA,NA,NA)) # make a row of missing data
   }
 } # end of for loop
-
+colnames(data)[1] <- "site"
 # Subset to sites at which individuals were captured. You may or may not
 #  do this depending on how the model is formulated so be careful.
 if(discard0)

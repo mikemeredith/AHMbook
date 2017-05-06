@@ -52,12 +52,16 @@ loglinear trend of annual population size or density
 }
 
 \value{
-Wait...
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list with the values of the arguments entered and the following additional elements:
+
+\item{data }{simulated distance sampling data: a list with a component for each year, each itself a list with a component for each replicate; this is a matrix with a row for each individual detected and 5 columns: site ID, status (1 if captured), x and y coordinates (NA for line transects), distance from the line or point; if \code{discard0 = FALSE}, sites with no detections will appear in the matrix with NAs in columns 2 to 5.}
+\item{habitat }{simulated habitat covariate, a vector of length \code{nsites}}
+\item{wind }{simulated detection covariate, a \code{nsites x nreps x nyears} array}
+\item{M.true }{simulated number of individuals, a \code{nsites x nyears} matrix}
+\item{K }{\code{= nreps}}
+\item{Na }{the number of individuals available for detection, a \code{nsites x nreps x nyears} array}
+\item{Na.real }{for point counts, the number of individuals available for detection within the circle sampled, a \code{nsites x nreps x nyears} array}
+
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.5.4.1
@@ -70,6 +74,16 @@ For "point" the realized density is [(area of circle) /(area of  square)]*lambda
 }
 
 \examples{
+set.seed(123)
 tmp <- simHDSopen() # Generate data with default parameters
 str(tmp)
+head(tmp$data[[1]][[1]])
+
+tmp <- simHDSopen("point")
+str(tmp)
+head(tmp$data[[1]][[1]])
+
+tmp <- simHDSopen(discard0=FALSE)
+str(tmp)
+head(tmp$data[[1]][[1]])
 }

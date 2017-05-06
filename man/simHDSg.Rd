@@ -48,11 +48,11 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 \value{
 A list with the values of the arguments entered and the following additional elements:
 
-\item{data }{simulated distance sampling data}
+\item{data }{simulated distance sampling data: a matrix with a row for each group detected and 6 columns: site ID, status (1 if captured), x and y coordinates (NA for line transects), distance from the line or point, group size; if \code{discard0 = FALSE}, sites with no detections will appear in the matrix with NAs in columns 2 to 6.}
 \item{habitat }{simulated habitat covariate}
 \item{N }{simulated number of groups at each site}
 \item{N.true }{for point counts, the simulated number of groups within the circle sampled}
-\item{groupsize }{group size for each of the oups observed}
+\item{groupsize }{group size for each of the groups observed}
 
 }
 \references{
@@ -63,7 +63,10 @@ Buckland et al (2001) \emph{Introduction to distance sampling: estimating abunda
 
 \examples{
 # Run with the default arguments and look at the structure of the output:
-str(simHDSg())
+set.seed(123)
+tmp <- simHDSg()
+str(tmp)
+head(tmp$data)
 
 str(simHDSg(type = "line"))     # Defaults for line transect data
 str(simHDSg(type = "point"))    # Defaults for point transect data

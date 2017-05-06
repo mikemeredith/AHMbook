@@ -78,6 +78,7 @@ for(i in 1:nsites){
     data <- rbind(data,c(i,NA,NA,NA,NA,NA)) # make a row of missing data
   }
 }
+colnames(data)[1] <- "site"
 # Subset to sites at which individuals were captured. You may or may not
 # do this depending on how the model is formulated so be careful.
 if(discard0)
@@ -100,8 +101,7 @@ if(show.plot) {
     "Located groups in point transects", xlim = c(0, 2*B),
     ylim = c(0, 2*B), col = data[,1], asp = 1)
     points(B, B, pch = "+", cex = 3)
-    # library(plotrix)
-    draw.circle(B, B, B)
+    plotrix::draw.circle(B, B, B)
     hist(data[,"d"], col = "lightblue", breaks = 20, main =
     "Frequency of distances to groups", xlab = "Distance")
     ttt <- table(data[,1])

@@ -42,11 +42,11 @@ M <-lambda <- matrix(NA, nrow=nsites, ncol=nyears)
 Na <- wind <- array(NA,dim=c(nsites,nreps,nyears))
 Na.real <- array(0, dim =c(nsites,nreps,nyears))
 for(i in 1:nyears){
-lambda[,i] <- exp(log(mean.lam) + beta.lam*habitat + beta.trend*(i-nyears/2) )
-# density per "square"
-M[,i] <- rpois(nsites, lambda[,i])           # site-specific abundances
-Na[,,i] <- matrix(rbinom(nsites*nreps, M[,i],phi), nrow=nsites, byrow=FALSE)
-wind[,,i] <- runif(nsites*nreps, -2, 2)   # Wind covariate
+  lambda[,i] <- exp(log(mean.lam) + beta.lam*habitat + beta.trend*(i-nyears/2) )
+  # density per "square"
+  M[,i] <- rpois(nsites, lambda[,i])           # site-specific abundances
+  Na[,,i] <- matrix(rbinom(nsites*nreps, M[,i],phi), nrow=nsites, byrow=FALSE)
+  wind[,,i] <- runif(nsites*nreps, -2, 2)   # Wind covariate
 }
 
 # Detection probability model (site specific)
@@ -110,14 +110,15 @@ for(yr in 1:nyears){
         data <- rbind(data, c(i,NA,NA,NA,NA)) # make a row of missing data
       }
     } # end for(sites)
+    colnames(data) <- c("site", "y", "u1", "u2", "d") # name 1st col "site"
+    if(discard0)
+      data <- data[!is.na(data[,2]),]
     list.yr[[rep]]<- data
   } # end for(rep)
   outlist[[yr]]<- list.yr
 } # end for(year)
 # Subset to sites at which individuals were captured. You may or may not
 #  want to do this depending on how the model is formulated so be careful.
-if(discard0)
-  data <- data[!is.na(data[,2]),]
 list(data=outlist, B=B, nsites=nsites, habitat=habitat, wind=wind, M.true= M, K=nreps,nyears=nyears,Na=Na, Na.real=Na.real,
   mean.lam=mean.lam, beta.lam=beta.lam, mean.sig=mean.sig, beta.sig=beta.sig, phi=phi, beta.trend=beta.trend, parms=parmvec )
 }
