@@ -7,6 +7,12 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9001 (2018-11-22)
+
+  * Added help pages for 'crestedTit' and 'marbledWhite' data sets.
+  
+  * Added 'willowWarbler' data set and documentation.
+  
 CHANGES in 0.1.4.9000 (2018-11-04)
 
   * Added 'crestedTit' and 'marbledWhite' data sets, but not yet documented.
