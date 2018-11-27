@@ -41,12 +41,47 @@ A new method for recording breeding territories was introduced in 2004, but the 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarachical Modeling in Ecology} chapter 12.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 12.
 }
 \examples{
 data(crestedTit)
 str(crestedTit)
 
+# Prepare objects needed for section 12.3 and following
+C <- as.matrix(crestedTit[, 8:25]) # matrix of counts
+year <- 1999:2016
+datetmp <- as.matrix(crestedTit[, 26:79])  # matrix of Julian dates
+datefull <- array(datetmp, c(nrow(datetmp), 3, ncol(datetmp)/3))
+    # site x rep x year array
+durtmp <- as.matrix(crestedTit[, 80:133])  # matrix of survey durations
+durfull <- array(durtmp, c(nrow(durtmp), 3, ncol(durtmp)/3))
+    # site x rep x year array
+
+# Get mean date and duration of survey for each site and year
+mdate <- apply(datefull, c(1,3), mean, na.rm=TRUE)
+mdate[is.nan(mdate)] <- NA  # Replace NaN with NA
+mdur <- apply(durfull, c(1,3), mean, na.rm=TRUE)
+mdur[is.nan(mdur)] <- NA
+
+# For Sec 12.5, we need standardised covariates with missing values imputed
+elev.sc <- as.numeric(scale(crestedTit$elev))     # site elevation
+forest.sc <- as.numeric(scale(crestedTit$forest)) # site forest cover
+forest.sc[is.na(forest.sc)] <- 0                  # mean imputation
+
+mean.date <- mean(mdate, na.rm=TRUE)         # mean survey date per site
+sd.date <- sd(mdate, na.rm=TRUE)
+mdate.sc <- (mdate - mean.date) / sd.date
+mdate.sc[is.na(mdate.sc)] <- 0               # mean imputation
+
+mean.dur <- mean(mdur, na.rm=TRUE)           # mean survey duration per site
+sd.dur <- sd(mdur, na.rm=TRUE)
+mdur.sc <- (mdur - mean.dur) / sd.dur
+mdur.sc[is.na(mdur.sc)] <- 0                 # mean imputation
+
+# For sections 12.6 and 12.7, we remove sites with no crested tits recorded,
+#   or recorded in only one year:
+nzero <- apply(C == 0, 1, sum, na.rm=TRUE) # number of zero years per site
+sel <- nzero <= 1  # TRUE if site has 2 or more years of non-zero data
 
 }
 \keyword{datasets}

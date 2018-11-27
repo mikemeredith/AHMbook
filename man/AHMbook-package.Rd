@@ -72,6 +72,20 @@ The functions are listed by chapter below.
   \item{\code{\link{simComm}}}{ Simulate community occupancy or abundance data }
   } }
 
+\section{Chapter 12}{
+  \describe{
+  \item{\code{\link{simNpC}}}{ Simulate N, p and C }
+  \item{\code{\link{simPH}}}{ Simulate phenology data }
+  \item{\code{\link{simSSM}}}{ Simulate demographic state-space model }
+  \item{\code{\link{graphSSM}}}{ Plot state-space model parameters }
+  } }
+
+\section{Chapter 14}{
+  \describe{
+  \item{\code{\link{simCJS}}}{ Simulate data for CJS survival models }
+  \item{\code{\link{ch2marray}}}{ Convert capture history data to marray }
+  } }
+
 \section{Chapter 16}{
   \describe{
   \item{\code{\link{simDynocc}}}{ Simulate data under a dynamic occupancy model under a wide range of conditions}
@@ -89,19 +103,23 @@ The functions are listed by chapter below.
 
 \section{DATA SETS}{
   \describe{
+  \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999-2015}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway}
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} }
+  \item{\code{\link{marbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies}
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland}
   \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from 2004 to 2013}
   \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands}
+  \item{\code{\link{willowWarbler}}}{ Data for willow warblers in Britain}
 
   } }
 
 \section{UTILITY FUNCTIONS}{
   \describe{
+  \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }

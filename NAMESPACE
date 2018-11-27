@@ -1,21 +1,22 @@
 # NAMESPACE for AHMbook package
 
-importFrom("grDevices", "colorRampPalette", "devAskNewPage",
+importFrom("grDevices", "colorRampPalette", "devAskNewPage",  "dev.interactive",
              "topo.colors", "adjustcolor")
 importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
            "lines", "matplot", "par", "plot", "points", "polygon",
-           "rect", "segments", "text", "title", "axis")
+           "rect", "segments", "text", "title", "axis", "legend")
 importFrom("methods", "as", "is", "new")
 importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "dnbinom", "dnorm", "dpois", "fitted", "integrate", "lm",
            "model.frame", "model.matrix", "model.offset", "optim",
            "plogis", "qlogis", "quantile", "rbinom", "residuals",
-           "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif",
-           "var", "vcov")
+           "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
+           "var", "vcov", "sd")
 importFrom("utils", "head", "stack")
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
   "coef", "fitted", "residuals", "vcov", "confint")
-importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ", "getValues", "image")
+importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ",
+  "getValues", "image")
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
 importFrom("sp", "bubble", "coordinates<-")
@@ -51,6 +52,12 @@ export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
 # Chapter 11
 export("simComm")
 
+# Chapter 12
+export("simNpC", "simPH", "simSSM", "graphSSM")
+
+# Chapter 14
+export("simCJS", "ch2marray")
+
 # Chapter 15
 export("simDynocc")
 
@@ -60,6 +67,8 @@ export("simDCM")
 # Chapter 20
 export("spatial.exp")
 
+# Utilities
 export("bigCrossCorr")
+export("standardize")
 
 
