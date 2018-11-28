@@ -7,6 +7,12 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9003 (2018-11-28)
+
+  * 'standardize' no longer adds attributes to output (causes problems with jagsUI).
+
+  * Added function 'standardize2match'.
+
 CHANGES in 0.1.4.9002 (2018-11-26)
 
   * Added new functions simPH, simNpC, simSSM (ne simpop), graphSSM (ne graph.ssm2), simCJS and ch2marray (ne marray).

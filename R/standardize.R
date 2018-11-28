@@ -1,4 +1,6 @@
 
+# Functions 'standardize' and 'standardize2match'
+
 # Centre and scale a vector or array and return an object of the same class.
 # For an array, the mean and SD of the whole array is used.
 
@@ -32,10 +34,15 @@ standardize <- function (x, center = TRUE, scale = TRUE) {
        stop("'scale' must be numeric or logical.", call. = FALSE)
     x <- x / scale
   }
-  if (is.numeric(center))
-    attr(x, "scaled:center") <- center
-  if (is.numeric(scale))
-    attr(x, "scaled:scale") <- scale
-  x
+  return(x)
+}
+#........................................................................
+
+# Standardize a new numeric object to the same mean and sd as 
+#   existing output from 'standardize'
+standardize2match <- function (x, y) {
+  if (!is.numeric(x) || !is.numeric(x))
+    stop("'x' and 'y' must be a numeric vectors or arrays.", call. = FALSE)
+  return((x - mean(y, na.rm=TRUE)) / sd(y, na.rm=TRUE))
 }
 

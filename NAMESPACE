@@ -69,6 +69,6 @@ export("spatial.exp")
 
 # Utilities
 export("bigCrossCorr")
-export("standardize")
+export("standardize", "standardize2match")
 
 
