@@ -11,7 +11,8 @@ graphSSM<- function(ssm, C){
   fitted <- lower <- upper <- numeric()
   nsite <- nrow(ssm$mean$n)
   T <- ncol(ssm$mean$n)
-  devAskNewPage(ask = TRUE)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+      on.exit(devAskNewPage(oldAsk)) # Restore previous setting
   for(j in 1:nsite){
     for (i in 1:T){
       fitted[i] <- mean(ssm$sims.list$n[,j,i])
@@ -20,7 +21,8 @@ graphSSM<- function(ssm, C){
     }
     m1 <- min(c(C[j,], fitted, lower), na.rm = TRUE)
     m2 <- 1.2*max(c(C[j,], fitted, upper), na.rm = TRUE)
-    par(mar = c(4.5, 4, 1, 1), cex = 1.2)
+    oldpar <- par(mar = c(4.5, 4, 1, 1), cex = 1.2)
+       on.exit(par(oldpar), add=TRUE)
     plot(0, 0, ylim = c(m1, m2), xlim = c(0.5, T), main = paste('Site', j),
       ylab = "Population size", xlab = "Year", las = 1, col = "black",
       type = "l", lwd = 2, frame = FALSE, axes = FALSE)

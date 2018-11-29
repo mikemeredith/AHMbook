@@ -7,6 +7,12 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9004 (2018-11-29)
+
+  * Fixed: graphSSM now restores graphics settings on exit.
+
+  * Fixed: in willowWarbler data, 1d arrays changed to vectors.
+
 CHANGES in 0.1.4.9003 (2018-11-28)
 
   * 'standardize' no longer adds attributes to output (causes problems with jagsUI).
