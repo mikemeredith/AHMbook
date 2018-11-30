@@ -7,6 +7,18 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9006 (2018-12-01)
+
+  * Fixed: NAs removed from 'forest' covariate in crestedTit
+
+CHANGES in 0.1.4.9005 (2018-11-30)
+
+  * marbledWhite help page gets proper acknowledgement.
+
+  * simSSM renamed simPOP.
+
+  * Fixed: NAs removed from 'forest' covariate in crestedTit (not!!)
+
 CHANGES in 0.1.4.9004 (2018-11-29)
 
   * Fixed: graphSSM now restores graphics settings on exit.
