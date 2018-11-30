@@ -53,7 +53,7 @@ export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
 export("simComm")
 
 # Chapter 12
-export("simNpC", "simPH", "simSSM", "graphSSM")
+export("simNpC", "simPH", "simPOP", "graphSSM")
 
 # Chapter 14
 export("simCJS", "ch2marray")

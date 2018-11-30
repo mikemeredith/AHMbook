@@ -1,5 +1,5 @@
-\name{simSSM}
-\alias{simSSM}
+\name{simPOP}
+\alias{simPOP}
 \encoding{UTF-8}
 
 \title{
@@ -9,10 +9,10 @@ Simulate data for a demographic state-space model
 Simulate multiple time-series of counts under a pure Markov model (with exponential population model) or under an extended Markov model with exponential-plus-random-immigration population model; see Sollmann et al.(2015). Default is Markov model, setting \code{sd.rho} to a value greater than 0 changes to extended Markov and sets the amount of random immigration.
 }
 \usage{
-simSSM(M = 100, T = 10, mean.lam = 3, beta.lam = 0, sd.log.lam = 0,
-  mean.gamma = 1.0, beta.gamma = 0, sd.log.gamma.site = 0, 
-  sd.log.gamma.time = 0, sd.log.gamma.survey = 0, sd.rho = 0, 
-  mean.p = 0.6, beta.p = 0, sd.logit.p.site = 0, sd.logit.p.time = 0, 
+simPOP(M = 100, T = 10, mean.lam = 3, beta.lam = 0, sd.log.lam = 0,
+  mean.gamma = 1.0, beta.gamma = 0, sd.log.gamma.site = 0,
+  sd.log.gamma.time = 0, sd.log.gamma.survey = 0, sd.rho = 0,
+  mean.p = 0.6, beta.p = 0, sd.logit.p.site = 0, sd.logit.p.time = 0,
   sd.logit.p.survey = 0, show.plot = TRUE)
 }
 \arguments{
@@ -106,7 +106,7 @@ Marc Kéry
 \examples{
 # Run with the default arguments and look at the structure of the output:
 set.seed(123)
-tmp <- simSSM()
+tmp <- simPOP()
 str(tmp)
 head(tmp$C)
 

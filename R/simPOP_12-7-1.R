@@ -6,7 +6,7 @@
 
 # Define function to simulate the data
 # ----------------- Start function definition -------------------
-simSSM <- function(
+simPOP <- function(
   M = 100,                      # number of sites
   T = 10,                       # number of years
   mean.lam = 3,                 # mean abundance for year 1

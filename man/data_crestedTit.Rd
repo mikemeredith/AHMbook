@@ -14,16 +14,14 @@ The data frame \code{crestedTit} has the data for crested tits \emph{Parus crist
 \usage{data("crestedTit")}
 
 \format{
-\code{crestedTit} is a data frame with 267 rows and 133 columns:
+\code{crestedTit} is a data frame with 267 rows and 131 columns:
 
 \describe{
-  \item{specid }{a numeric species ID based on phylogeny.}
-  \item{latid }{a 6-letter abbreviation of the Latin name.}
   \item{coordx, coordy }{the x and y coordinates of the centre of the quadrat; the coordinate reference system intentionally not specified.}
   \item{elev }{the mean elevation of the quadrat, m.}
   \item{forest }{percentage forest cover}
   \item{nsurveys }{the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.}
-   \item{X1999 to X2016 }{total number of territories observed for the year.}
+   \item{1999 to 2016 }{total number of territories observed for the year.}
    \item{date991 to date163 }{Julian date of the survey, 1 = 1st January; the first 2 digits indicate the year and the 3rd digit the survey.}
    \item{dur991 to dur163 }{duration of the survey, minutes; the first 2 digits indicate the year and the 3rd digit the survey.}
   }
@@ -48,12 +46,12 @@ data(crestedTit)
 str(crestedTit)
 
 # Prepare objects needed for section 12.3 and following
-C <- as.matrix(crestedTit[, 8:25]) # matrix of counts
+C <- as.matrix(crestedTit[, 6:23]) # matrix of counts
 year <- 1999:2016
-datetmp <- as.matrix(crestedTit[, 26:79])  # matrix of Julian dates
+datetmp <- as.matrix(crestedTit[, 24:77])  # matrix of Julian dates
 datefull <- array(datetmp, c(nrow(datetmp), 3, ncol(datetmp)/3))
     # site x rep x year array
-durtmp <- as.matrix(crestedTit[, 80:133])  # matrix of survey durations
+durtmp <- as.matrix(crestedTit[, 78:131])  # matrix of survey durations
 durfull <- array(durtmp, c(nrow(durtmp), 3, ncol(durtmp)/3))
     # site x rep x year array
 
@@ -66,7 +64,6 @@ mdur[is.nan(mdur)] <- NA
 # For Sec 12.5, we need standardised covariates with missing values imputed
 elev.sc <- as.numeric(scale(crestedTit$elev))     # site elevation
 forest.sc <- as.numeric(scale(crestedTit$forest)) # site forest cover
-forest.sc[is.na(forest.sc)] <- 0                  # mean imputation
 
 mean.date <- mean(mdate, na.rm=TRUE)         # mean survey date per site
 sd.date <- sd(mdate, na.rm=TRUE)

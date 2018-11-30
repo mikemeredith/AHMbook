@@ -76,7 +76,7 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{simNpC}}}{ Simulate N, p and C }
   \item{\code{\link{simPH}}}{ Simulate phenology data }
-  \item{\code{\link{simSSM}}}{ Simulate demographic state-space model }
+  \item{\code{\link{simPOP}}}{ Simulate demographic state-space model }
   \item{\code{\link{graphSSM}}}{ Plot state-space model parameters }
   } }
 
