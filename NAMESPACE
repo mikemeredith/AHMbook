@@ -68,6 +68,7 @@ export("simDCM")
 export("spatial.exp")
 
 # Utilities
+export("zinit")
 export("bigCrossCorr")
 export("standardize", "standardize2match")
 

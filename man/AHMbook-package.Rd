@@ -119,6 +119,7 @@ The functions are listed by chapter below.
 
 \section{UTILITY FUNCTIONS}{
   \describe{
+  \item{\code{\link{zinit}}}{ Starting values for fitting survival models.}
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
