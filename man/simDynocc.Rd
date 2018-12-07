@@ -11,71 +11,70 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 
 * one covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p
 
-* Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year Hence, range.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
+* Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, range.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
-* Additional detection heterogeneity that varies over the season (= occasion) according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
+* Additional detection heterogeneity that varies over the survey (= occasion) according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
 
 * Simulation of data under a BACI (before-after-control-impact) design, where some event happens in a given year and \emph{reduces} phi or gamma by a stated percentage (only reductions, no increases allowed !)
 
 }
 \usage{
-simDynocc(nsite = 250, nrep = 3, nyear = 10, year.impact = 5,
+simDynocc(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   mean.psi1 = 0.4, beta.Xpsi1 = 0,
   range.phi = c(0.5, 1), impact.phi = 0, beta.Xphi = 0,
   range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
   range.p = c(0.1, 0.9), beta.Xp = 0,
-  range.beta1.season = c(0, 0), range.beta2.season = c(0, 0),
+  range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
   range.sd.site = c(0, 0), range.sd.survey = c(0, 0),
-  range.sd.site.survey = c(0, 0),
-  show.plot = TRUE)
+  range.sd.site.survey = c(0, 0), show.plot = TRUE)
 }
 \arguments{
   \item{nsite}{
-Number of sites
-}
-  \item{nrep}{
-Number of replicate surveys within a year (= season)
+Number of sites.
 }
   \item{nyear}{
-Number of years (or 'seasons')
+Number of years (or 'seasons').
 }
-  \item{year.impact}{
-Year when some impact happens (for BACI design)
+  \item{nsurvey}{
+Number of replicate surveys (= occasions) within a year.
+}
+  \item{year.of.impact}{
+Year in which an impact happens that can affect phi and gamma (for BACI design), NA if no impact occurs; for the BACI design, \code{nyear} must be greater than 2, and year of impact cannot be the first or last year.
 }
   \item{mean.psi1}{
-average occupancy probability in first year
+average occupancy probability in first year.
 }
   \item{beta.Xpsi1}{
 coefficients of environmental covariate in probability of initial occupancy.
 }
   \item{range.phi}{
-bounds of uniform distribution from which annual persistence is drawn
+bounds of uniform distribution from which annual persistence is drawn.
 }
   \item{impact.phi}{
-effect in percent on annual phi (must be zero or negative, e.g., impact.phi = -20 for a 20\% reduction in phi)
+negative effect in percent on annual phi (e.g., impact.phi = 20 means a 20\% reduction in phi); ignored if code{year.of.impact = NA}.
 }
   \item{beta.Xphi}{
 coefficients of environmental covariate in probability of persistence.
 }
   \item{range.gamma}{
-bounds of uniform distribution from which annual colonisation is drawn
+bounds of uniform distribution from which annual colonisation is drawn.
 }
   \item{impact.gamma}{
-effect in percent on annual gamma (must be zero or negative, e.g., impact.gamma = -20 for a 20\% reduction in gamma)
+negative effect in percent on annual gamma (e.g., impact.gamma = 20 means a 20\% reduction in gamma); ignored if code{year.of.impact = NA}.
 }  \item{beta.Xgamma}{
 coefficients of environmental covariate in probability of colonization.
 }
   \item{range.p}{
-bounds of uniform distribution from which annual p is drawn
+bounds of uniform distribution from which annual p is drawn.
 }
   \item{beta.Xp}{
 coefficients of environmental covariate in probability of detection.
 }
- \item{range.beta1.season}{
-the range of the annual variation in the linear effect of season (i.e., of month 1-12) on the product of availability and detection linear and quadratic effect of season
+ \item{range.beta1.survey}{ %%%%
+the range of the annual variation in the linear effect of the survey occasion (i.e., of survey 1-12 with nsurvey = 12) on detection (= product of availability and perceptibility).
 }
-  \item{range.beta2.season}{
-the same for the quadratic effect of season
+  \item{range.beta2.survey}{ %%%%
+the same for the quadratic effect of survey occasion.
 }
   \item{range.sd.site}{
 sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation; if the two values in the range are the same, a constant value is assumed over time, while if they are different, a linear trend is assumed over time.
@@ -93,9 +92,9 @@ If TRUE, plots of results are displayed; set to FALSE if running many simulation
 
 \value{
 A list with the values of the arguments input and the following additional elements:
-  \item{impact }{a 0/1 vector of length nyear - 1 indicating if an impact applies to the interval}
-  \item{phi.effect }{additive effect of impact on persistence, a vector of length nyear - 1}
-  \item{gamma.effect }{additive effect of impact on colonisation, a vector of length nyear - 1}
+  \item{impact }{a 0/1 vector of length (nyear-1) indicating if an impact applies to the interval}
+  \item{BACI.effect.phi }{reduction in persistence due to impact, a vector of length nyear - 1}
+  \item{BACI.effect.gamma }{reduction in colonisation due to impact, a vector of length nyear - 1}
   \item{beta1 }{linear effect of occasion on the product of availability and detection, a vector of length nyear}
   \item{beta2 }{quadratic effect of occasion on the product of availability and detection, a vector of length nyear}
   \item{mean.phi }{mean persistence for each interval before application of any BACI effect, a vector of length nyear - 1}
@@ -109,20 +108,22 @@ A list with the values of the arguments input and the following additional eleme
   \item{z }{true occurrence state, a nsite x nyear matrix of 0/1}
   \item{phi }{persistence, a nsite x nyear-1 matrix}
   \item{gamma }{colonisation, a nsite x nyear-1 matrix}
-  \item{p }{detection probability, a nsite x nrep x nyear array}
-  \item{y }{the observed detection history, a nsite x nrep x nyear array}
+  \item{p }{detection probability, a nsite x nsurvey x nyear array}
+  \item{y }{the observed detection history, a nsite x nsurvey x nyear array}
   \item{Xpsi1 }{covariate affecting initial occupancy, a vector of length nsite}
   \item{Xphi }{covariate affecting persistence, a nsite x nyear matrix}
   \item{Xgamma }{covariate affecting colonisation, a nsite x nyear matrix}
-  \item{Xp }{covariate affecting probability of detection, a nsite x nrep x nyear array}
-  \item{eps3 }{the array of site/rep/year random effects, a nsite x nrep x nyear array}
+  \item{Xp }{covariate affecting probability of detection, a nsite x nsurvey x nyear array}
+  \item{eps1 }{site random effects, a vector of length nsite}
+  \item{eps2 }{the survey random effects, a vector of length nsurvey}
+  \item{eps3 }{the site/survey/year random effects, a nsite x nsurvey x nyear array}
 }
 \references{
-Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Chapter 16
+Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Chapter 15
 
 }
 \author{
-Marc Kéry, 4 Dec 2014, modified 18-20 October 2016
+Marc Kéry, 4 Dec 2014, modified 4 Dec 2018
 }
 
 \examples{
@@ -131,7 +132,7 @@ tmp <- simDynocc()
 str(tmp)
 
 # no annual variation in the parameters
-str(data <- simDynocc(nsite = 250, nrep = 3, nyear = 10, mean.psi1 = 0.6,
+str(data <- simDynocc(nsite = 250, nsurvey = 3, nyear = 10, mean.psi1 = 0.6,
     range.phi = c(0.7, 0.7), range.gamma = c(0.3, 0.3), range.p = c(0.5, 0.5)))
 # a fully time-dependent model (with p constant within each primary period)
 str(data <- simDynocc(mean.psi1 = 0.6, range.phi = c(0.5, 0.8),
@@ -141,15 +142,15 @@ str(data <- simDynocc(mean.psi1 = 0.6, beta.Xpsi1 = 1,
   range.phi = c(0.6, 0.6), beta.Xphi = 2, range.gamma = c(0.3, 0.3),
   beta.Xgamma = 2, range.p = c(0.2, 0.2), beta.Xp = -2) )
 # seasonal variation in detection probability
-str(data <- simDynocc(nrep = 12, mean.psi1 = 0.6,
+str(data <- simDynocc(nsurvey = 12, mean.psi1 = 0.6,
   range.phi = c(0.6, 0.6), range.gamma = c(0.3, 0.3),
-  range.p = c(0.5, 0.5), range.beta1.season = c(-0.3, 0.4),
-  range.beta2.season = c(0, -0.7)) )
-# now both yearly variation and effects of all covariates (including season)
+  range.p = c(0.5, 0.5), range.beta1.survey = c(-0.3, 0.4),
+  range.beta2.survey = c(0, -0.7)) )
+# now both yearly variation and effects of all covariates (including survey)
 str( data <- simDynocc(mean.psi1 = 0.6, beta.Xpsi1 = 1,
    range.phi = c(0.6, 1), beta.Xphi = 2, range.gamma = c(0, 0.2),
    beta.Xgamma = 2, range.p = c(0.1, 0.9), beta.Xp = -2,
-   range.beta1.season = c(-0.4, 0.5), range.beta2.season = c(0, -0.8)) )
+   range.beta1.survey = c(-0.4, 0.5), range.beta2.survey = c(0, -0.8)) )
 
 # To add detection heterogeneity at the site level, you can do this:
 str(data <- simDynocc(range.sd.site = c(3, 3)) ) # No time trend
@@ -164,8 +165,8 @@ str(data <- simDynocc(range.sd.site.survey = c(3, 3)) ) # No trend
 str(data <- simDynocc(range.sd.site.survey = c(1, 3)) ) # With trend
 
 # To simulate data under a BACI design, where an impact happens in year 10
-str(data <- simDynocc(nsite = 250, nrep = 3, nyear = 20, year.impact = 10,
-   impact.phi = -80, impact.gamma = -50) )
+str(data <- simDynocc(nsite = 250, nsurvey = 3, nyear = 20, year.of.impact = 10,
+   impact.phi = 80, impact.gamma = 50) )
 
 # And data where there is no detection error (i.e., with p = 1):
 str( data <- simDynocc(range.p = c(1, 1)) )

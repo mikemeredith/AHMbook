@@ -86,7 +86,7 @@ The functions are listed by chapter below.
   \item{\code{\link{ch2marray}}}{ Convert capture history data to marray }
   } }
 
-\section{Chapter 16}{
+\section{Chapter 15}{
   \describe{
   \item{\code{\link{simDynocc}}}{ Simulate data under a dynamic occupancy model under a wide range of conditions}
   } }
@@ -119,7 +119,7 @@ The functions are listed by chapter below.
 
 \section{UTILITY FUNCTIONS}{
   \describe{
-  \item{\code{\link{zinit}}}{ Starting values for fitting survival models.}
+  \item{\code{\link{zinit}}}{ Starting values for fitting survival models (introduced in chapter 15).}
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
