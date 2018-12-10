@@ -17,6 +17,14 @@ simNpC <- function(
   # detection probability (dp) leading from dp[1] to dp[2].
   # Default is for a strongly declining population with constant p = 0.5.
 
+  # Checks and fixes for input data
+  T <- round(T[1])
+  stopifnotLength(expN, 2)
+  stopifNegative(expN)
+  stopifnotLength(dp, 2)
+  stopifnotProbability(dp)
+  
+  
   # Pick values of expected abundance (lam) and
   #   detection probability (dp) for each year
   lambda <- seq(expN[1], expN[2], length.out = T)

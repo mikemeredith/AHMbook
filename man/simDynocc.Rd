@@ -9,9 +9,9 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 
 * annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
 
-* one covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p
+* one covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p. Covariates are generated internally from uniform(-2, 2) distributions.
 
-* Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, range.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
+* Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
 * Additional detection heterogeneity that varies over the survey (= occasion) according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
 
@@ -25,8 +25,8 @@ simDynocc(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
   range.p = c(0.1, 0.9), beta.Xp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
-  range.sd.site = c(0, 0), range.sd.survey = c(0, 0),
-  range.sd.site.survey = c(0, 0), show.plot = TRUE)
+  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
+  trend.sd.site.survey = c(0, 0), show.plot = TRUE)
 }
 \arguments{
   \item{nsite}{
@@ -45,45 +45,46 @@ Year in which an impact happens that can affect phi and gamma (for BACI design),
 average occupancy probability in first year.
 }
   \item{beta.Xpsi1}{
-coefficients of environmental covariate in probability of initial occupancy.
+coefficient of environmental covariate in probability of initial occupancy.
 }
   \item{range.phi}{
-bounds of uniform distribution from which annual persistence is drawn.
+bounds of uniform distribution from which annual probability of persistence is randomly drawn.
 }
   \item{impact.phi}{
-negative effect in percent on annual phi (e.g., impact.phi = 20 means a 20\% reduction in phi); ignored if code{year.of.impact = NA}.
+negative effect in percent on annual phi (e.g., impact.phi = 20 means a 20\% reduction in phi); ignored if \code{year.of.impact = NA}.
 }
   \item{beta.Xphi}{
 coefficients of environmental covariate in probability of persistence.
 }
   \item{range.gamma}{
-bounds of uniform distribution from which annual colonisation is drawn.
+bounds of uniform distribution from which annual probability of colonisation is randomly drawn.
 }
   \item{impact.gamma}{
-negative effect in percent on annual gamma (e.g., impact.gamma = 20 means a 20\% reduction in gamma); ignored if code{year.of.impact = NA}.
-}  \item{beta.Xgamma}{
-coefficients of environmental covariate in probability of colonization.
+negative effect in percent on annual gamma (e.g., impact.gamma = 20 means a 20\% reduction in gamma); ignored if \code{year.of.impact = NA}.
+}
+  \item{beta.Xgamma}{
+coefficient of environmental covariate in probability of colonization.
 }
   \item{range.p}{
-bounds of uniform distribution from which annual p is drawn.
+bounds of uniform distribution from which annual probability of detection is randomly drawn.
 }
   \item{beta.Xp}{
 coefficients of environmental covariate in probability of detection.
 }
  \item{range.beta1.survey}{ %%%%
-the range of the annual variation in the linear effect of the survey occasion (i.e., of survey 1-12 with nsurvey = 12) on detection (= product of availability and perceptibility).
+bounds of the uniform distribution from which the annual variation in the linear effect of the survey occasion (i.e., of survey 1-12 with \code{nsurvey = 12}) on detection (= product of availability and perceptibility) is randomly drawn.
 }
   \item{range.beta2.survey}{ %%%%
 the same for the quadratic effect of survey occasion.
 }
-  \item{range.sd.site}{
-sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation; if the two values in the range are the same, a constant value is assumed over time, while if they are different, a linear trend is assumed over time.
+  \item{trend.sd.site}{
+initial and final values of sd of normal distribution to model logit-normal noise in p at the site level; a linear trend is assumed over time; if the two values are the same, a constant value is assumed.
 }
-  \item{range.sd.survey}{
-sd of normal distribution to model logit-normal noise in p \emph{only} at the rep = 'survey' level, in the first and the last year; if they are different, a linear trend is assumed over time.
+  \item{trend.sd.survey}{
+initial and final values of sd of normal distribution to model logit-normal noise in p \emph{only} at the 'survey' level; if they are different, a linear trend is assumed over time.
 }
-  \item{range.sd.site.survey}{
-sd of normal distribution to model logit-normal noise in p at the site/year/rep = ‘survey’ level, in the first and the last year; if they are different, a linear trend is assumed over time.
+  \item{trend.sd.site.survey}{
+initial and final values of sd of normal distribution to model logit-normal noise in p at the site/year/survey = ‘survey’ level; if they are different, a linear trend is assumed over time.
 }
   \item{show.plot}{
 If TRUE, plots of results are displayed; set to FALSE if running many simulations.
@@ -119,7 +120,7 @@ A list with the values of the arguments input and the following additional eleme
   \item{eps3 }{the site/survey/year random effects, a nsite x nsurvey x nyear array}
 }
 \references{
-Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Chapter 15
+Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Chapter 15
 
 }
 \author{
@@ -127,7 +128,9 @@ Marc Kéry, 4 Dec 2014, modified 4 Dec 2018
 }
 
 \examples{
+\donttest{
 # Generate data with the default arguments and look at the structure:
+
 tmp <- simDynocc()
 str(tmp)
 
@@ -153,16 +156,16 @@ str( data <- simDynocc(mean.psi1 = 0.6, beta.Xpsi1 = 1,
    range.beta1.survey = c(-0.4, 0.5), range.beta2.survey = c(0, -0.8)) )
 
 # To add detection heterogeneity at the site level, you can do this:
-str(data <- simDynocc(range.sd.site = c(3, 3)) ) # No time trend
-str(data <- simDynocc(range.sd.site = c(1, 3)) ) # With time trend
+str(data <- simDynocc(trend.sd.site = c(3, 3)) ) # No time trend
+str(data <- simDynocc(trend.sd.site = c(1, 3)) ) # With time trend
 
 # To add detection heterogeneity at the level of the survey, you can do this:
-str(data <- simDynocc(range.sd.survey = c(3, 3)) ) # No time trend
-str(data <- simDynocc(range.sd.survey = c(1, 3)) ) # With time trend
+str(data <- simDynocc(trend.sd.survey = c(3, 3)) ) # No time trend
+str(data <- simDynocc(trend.sd.survey = c(1, 3)) ) # With time trend
 
 # To add detection heterogeneity at the level of the individual visit, you can do this:
-str(data <- simDynocc(range.sd.site.survey = c(3, 3)) ) # No trend
-str(data <- simDynocc(range.sd.site.survey = c(1, 3)) ) # With trend
+str(data <- simDynocc(trend.sd.site.survey = c(3, 3)) ) # No trend
+str(data <- simDynocc(trend.sd.site.survey = c(1, 3)) ) # With trend
 
 # To simulate data under a BACI design, where an impact happens in year 10
 str(data <- simDynocc(nsite = 250, nsurvey = 3, nyear = 20, year.of.impact = 10,
@@ -170,5 +173,5 @@ str(data <- simDynocc(nsite = 250, nsurvey = 3, nyear = 20, year.of.impact = 10,
 
 # And data where there is no detection error (i.e., with p = 1):
 str( data <- simDynocc(range.p = c(1, 1)) )
-
+}
 }

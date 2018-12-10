@@ -23,50 +23,25 @@ simCJS <- function(
   #  Modified code for generating z and ch (gives different values with set.seed)
   #  Restore ask and par on exit.
 
+  # Catch errors in input
+  n.occ <- round(n.occ[1])
+  stopifnotLength(n.marked, n.occ-1, allow1=TRUE)
+  stopifnotLength(phi, n.occ-1, allow1=TRUE)
+  stopifnotLength(p, n.occ-1, allow1=TRUE)
+  
   # Deal with input
   if(length(n.marked) == 1)
     n.marked <- rep(n.marked, n.occ-1)   # Annual number of newly marked individuals
-  if(length(n.marked) != n.occ-1)
-    stop("'n.marked' must have length 1 or (n.occ-1)")
-  marked <- n.marked ######### change later, use n.marked throughout
+  # marked <- n.marked ######### change later, use n.marked throughout
   n.ind <- sum(n.marked)
   if(length(phi) == 1)
     phi <- rep(phi, n.occ-1)
-  if(length(phi) != n.occ-1)
-    stop("'phi' must have length 1 or (n.occ-1)")
   if(length(p) == 1)
     p <- rep(p, n.occ-1)
-  if(length(p) != n.occ-1)
-    stop("'p' must have length 1 or (n.occ-1)")
 
   # Vector (f) with marking occasion (ie, first capture occasion)
   # mark.occ <- rep(1:length(marked), marked[1:length(marked)])
-  f <- rep(1:length(marked), marked)
-
-  # Fill the true state matrix (z) and capture-history matrix (ch)
-  # z <- matrix(0, nrow = n.ind, ncol = n.occ) # true states z
-  # ch <- matrix(0, nrow = n.ind, ncol = n.occ) # observed data y = ch
-  # for (i in 1:n.ind){
-    # z[i, mark.occ[i]] <- 1     # Individual is alive at release occasion.
-    # ch[i, mark.occ[i]] <- 1  # Write an 1 at the release occasion
-    # if (mark.occ[i]==n.occ) next
-    # for (t in (mark.occ[i]+1):n.occ){
-      # Bernoulli trial for survival process
-      # z[i,t] <- rbinom(1, 1, phi[t-1])
-      # if (z[i,t]==0) break  # If dead, move to next individual
-          # Bernoulli trial for observation process
-      # ch[i,t] <- rbinom(1, 1, p[t-1])
-    # }
-  # }
-
-  # Get vector of first-marking occasion
-  # f <- apply(ch, 1, function(x) min(which(x!=0)))
-# all.equal(f, mark.occ)
-  # Set to NA all entries in true-state matrix z until first marking
-  # not.first <- which(1-(f == 1) == 1)
-  # for(i in not.first){
-     # z[i, 1:(f[i]-1)] <- NA
-  # }
+  f <- rep(1:length(n.marked), n.marked)
 
   # Fill the true state matrix (z) and capture-history matrix (ch)
   z <- matrix(NA, nrow = n.ind, ncol = n.occ) # true states z
@@ -90,12 +65,13 @@ simCJS <- function(
 
   # Visualizations
   if(show.plot){
+    # Restore graphical settings on exit
+    oldpar <- par(no.readonly = TRUE)
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
-        on.exit(devAskNewPage(oldAsk)) # Restore previous setting
+    on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
     # PLOT 1
-    oldpar <- par(mfrow = c(1, 1), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
-        on.exit(par(oldpar), add=TRUE)  # Restore previous settings
+    par(mfrow = c(1, 1), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
     # Plot trajectory of phi and p
     plot(1:(n.occ-1), phi, typ= 'b', cex = 2, pch = 16, col = 'red', ylim = c(0, 1),
       frame = FALSE, main = 'Trajectories of phi and p')

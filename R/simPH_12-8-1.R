@@ -39,6 +39,14 @@ simPH <- function(
   #
   # Counts are plotted for up to 16 populations only.
 
+  # Checks and fixes for input data
+  npop <- round(npop[1])
+  nyear <- round(nyear[1])
+  nrep <- round(nrep[1])
+  stopifnotInteger(date.range)
+  stopifnotInteger(initial.lambda)
+  stopifnotLength(gamma.parms, 2)
+
   # Simulate among-year population dynamics: exponential model for N
   N <- array(NA, dim = c(npop, nyear))  # Array for site-year abundance
   N[,1] <- rpois(npop, initial.lambda)
@@ -57,10 +65,10 @@ simPH <- function(
   # expected population size (lambda) and realized counts (C)
 
   # Draw annual value of flight period length (sigma)
-  sigma <- runif(nyear, sigma.range[1], sigma.range[2])
+  sigma <- runif(nyear, min(sigma.range), max(sigma.range))
 
   # Draw values of detection probability (p)
-  p <- array(runif(prod(c(npop, nyear, nrep)), p.range[1], p.range[2]),
+  p <- array(runif(prod(c(npop, nyear, nrep)), min(p.range), max(p.range)),
     dim = c(npop, nyear, nrep))
 
   # Compute and assemble stuff at the scale of the individual visit
@@ -68,9 +76,9 @@ simPH <- function(
     for(t in 1:nyear){
       # Survey dates for this yr and pop:
       survey.dates <- sort(round(
-        runif(nrep, date.range[1], date.range[length(date.range)])))
+        runif(nrep, min(date.range), max(date.range))))
       date[i,t,] <- survey.dates     # Save these survey dates
-      mu[i,t] <- runif(1, mu.range[1], mu.range[2]) # Flight peak
+      mu[i,t] <- runif(1, min(mu.range), max(mu.range)) # Flight peak
       for(k in 1:nrep){
         # a[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date[i,t,k] - mu[i,t])^2) / (2 * sigma[t]^2) )             # Rel. population size
         a[i,t,k] <- dnorm(date[i,t,k], mu[i,t], sigma[t])
@@ -82,12 +90,15 @@ simPH <- function(
   }
 
   if(show.plot) {
-    oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE)) # Browse the four plots
-        on.exit(devAskNewPage(oldAsk)) # Restore previous setting
+    # Restore graphical settings on exit
+    oldpar <- par(no.readonly = TRUE)
+    oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+    on.exit({par(oldpar); devAskNewPage(oldAsk)})
+
     # Simulate nice smooth normal curve for the plots
     nday <- length(date.range)
     aa <- ll <- array(NA, dim = c(npop, nyear, nday))  # Arrays
-    pp <- array(runif(prod(c(npop, nyear, nday)), p.range[1], p.range[2]),
+    pp <- array(runif(prod(c(npop, nyear, nday)), min(p.range), max(p.range)),
       dim = c(npop, nyear, nday))
     for(i in 1:npop){
       for(t in 1:nyear){
@@ -102,8 +113,7 @@ simPH <- function(
 
     # Graphical output
     # Plot population dynamics and plot of all population sizes
-    oldpar <- par(mfrow = c(2,1), mar = c(5,4,3,1))
-        on.exit(par(oldpar), add=TRUE)  # Restore previous settings
+    par(mfrow = c(2,1), mar = c(5,4,3,1))
     matplot(1:nyear, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE)
     plot(table(N), xlab = 'Population size', ylab = 'Frequency', main = 'Frequency distribution of population size for all sites and years', frame = FALSE)
 

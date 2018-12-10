@@ -9,8 +9,8 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
   range.p = c(0.1, 0.9), beta.Xp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
-  range.sd.site = c(0, 0), range.sd.survey = c(0, 0),
-  range.sd.site.survey = c(0, 0), show.plot = TRUE) {
+  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
+  trend.sd.site.survey = c(0, 0), show.plot = TRUE) {
   #
   # Written by Marc Kery, 4 Dec 2014 - 4 December 2018
   #
@@ -26,9 +26,9 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   #     these types of heterogeneity over the years.
   #        For instance, an annual trend in detection heterogeneity at the site
   #     or the survey level is specified by different first and second values,
-  #     which correspond to the heterogeneity inthe first and the last year,
+  #     which correspond to the heterogeneity in the first and the last year,
   #     with a linear trend interpolated for the intervening years.
-  #        As an example, range.sd.site = c(0, 1) will result in
+  #        As an example, trend.sd.site = c(0, 1) will result in
   #     a linear trend in the magnitude of site-level heterogeneity in detection
   #     from 0 in the first year to 1 in the last year.
   #   * Additional detection heterogeneity that varies over the season
@@ -57,13 +57,13 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # -------------------
   #
   # *** Args.for detection heterogeneity among sites, occasions and site/survey
-  # range.sd.site: sd of normal distribution to model logit-normal noise in p
+  # trend.sd.site: sd of normal distribution to model logit-normal noise in p
   #      at the site level in the first and the last year of the simulation,
   #      with value of intervening years interpolated.
-  # range.sd.survey: sd of normal distribution to model logit-normal noise in p
+  # trend.sd.survey: sd of normal distribution to model logit-normal noise in p
   #      ONLY at the rep = occasion = 'survey' level, in the first and
   #      the last year, with interpolation for intervening years
-  # range.sd.site.survey: sd of normal distribution to model logit-normal noise
+  # trend.sd.site.survey: sd of normal distribution to model logit-normal noise
   #      in p at the site/year/rep level, in the first and the
   #      last year, with interpolation in between
   # For these arguments, if the two values in the range are the
@@ -71,7 +71,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   #      a linear trend is assumed over time.
   # range.beta1.occasion is the range of the annual variation in the linear effect
   #     of the survey occasion (e.g., of month 1-12 when nrep = 12)
-  #     ondetection (= product of availability and perceptibility)
+  #     on detection (= product of availability and perceptibility)
   # range.beta2.occasion is the same for the quadratic effect of survey occasion
   # -------------------
   #
@@ -84,21 +84,37 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # Note that for the BACI design, nyear must be greater than 2 and
   #      year.of.impact must not be equal to the first or the last year
 
-  # Checks for input data
+  # Checks and fixes for input data
+  stopifPernickerty()
+  nsite <- round(nsite[1])
+  nyear <- round(nyear[1])
+  nsurvey <- round(nsurvey[1])
+  year.of.impact <- round(year.of.impact[1])
+  if(!is.na(year.of.impact))
+    stopifnotGreaterthan(nyear, 2)
   stopifnotBetween(year.of.impact, 2, nyear-1, allowNA=TRUE)
+  stopifnotProbability(range.phi) # bounds
   stopifnotBetween(impact.phi, 0, 100)
+  stopifnotProbability(range.gamma) # bounds
   stopifnotBetween(impact.gamma, 0, 100)
+  stopifnotProbability(range.p) # bounds
+  stopifnotLength(trend.sd.site, 2) # trend
+  stopifNegative(trend.sd.site)
+  stopifnotLength(trend.sd.survey, 2) # trend
+  stopifNegative(trend.sd.survey)
+  stopifnotLength(trend.sd.site.survey, 2) # trend
+  stopifNegative(trend.sd.site.survey)
 
   # Set up arrays needed
   site <- 1:nsite                        # Sites
   year <- 1:nyear                        # Years
-  month <- 1:nsurvey                     # Surveys (= months, visits, occasions)
+  visit <- 1:nsurvey                     # Surveys (= months, visits, occasions)
   psi <- muZ <- z <- array(dim = c(nsite, nyear),
     dimnames = list(paste('Site', site, sep = ''), paste('Year', year, sep = ''))) # Occupancy, occurrence
   phi <- gamma <- array(NA, dim = c(nsite, (nyear-1)),
     dimnames = list(paste('Site', site, sep = ''), paste('Year', year[-nyear], sep = ''))) # Survival, colonisation
   y <- p <- array(NA, dim = c(nsite, nsurvey, nyear),
-    dimnames = list(paste('Site', site, sep = ''), paste('Visit', month, sep = ''),
+    dimnames = list(paste('Site', site, sep = ''), paste('Visit', visit, sep = ''),
       paste('Year', year, sep = '')))# Det. hist and p
 
   # Create covariates
@@ -120,8 +136,8 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # (1) Simulate all parameter values
   # (a) State process parameters
   psi[,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1)
-  mean.phi <- runif(n = nyear-1, min = range.phi[1], max = range.phi[2])
-  mean.gamma <- runif(n = nyear-1, min = range.gamma[1], max = range.gamma[2])
+  mean.phi <- runif(n = nyear-1, min = min(range.phi), max = max(range.phi))
+  mean.gamma <- runif(n = nyear-1, min = min(range.gamma), max = max(range.gamma))
 
   # BACI effect on phi and gamma: negative effect on persistence/colonisation
   BACI.effect.phi <- (mean.phi * (impact.phi/100) * impact)
@@ -137,14 +153,14 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   }
 
   # (b) Observation process parameters
-  mean.p <- runif(n = nyear, min = range.p[1], max = range.p[2])
-  beta1 <- runif(n = nyear, min = range.beta1.survey[1], max = range.beta1.survey[2])
+  mean.p <- runif(n = nyear, min = min(range.p), max = max(range.p))
+  beta1 <- runif(n = nyear, min = min(range.beta1.survey), max = max(range.beta1.survey))
   beta2 <- runif(n = nyear, min = min(range.beta2.survey), max = max(range.beta2.survey))
 
   # Next two allow incorporation of trend over time
-  sd.site <- seq(from = range.sd.site[1], to = range.sd.site[2], length.out = nyear)
-  sd.survey <- seq(from = range.sd.survey[1], to = range.sd.survey[2], length.out = nyear)
-  sd.site.survey <- seq(from = range.sd.site.survey[1], to = range.sd.site.survey[2],
+  sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyear)
+  sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyear)
+  sd.site.survey <- seq(from = trend.sd.site.survey[1], to = trend.sd.site.survey[2],
     length.out = nyear)
 
   # Define and fill the array of site/survey random effects
@@ -193,12 +209,12 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
       psi[i,t] <- psi[i,t-1]*phi[i,t-1] + (1-psi[i,t-1])*gamma[i,t-1]
     }
   }
-  n.occ <- apply(z, 2, sum)             # True number of occupied sites
-  n.occ.ever <- sum(apply(z, 1, max))   # True number of occupied sites ever
-  zobs <- apply(y, c(1,3), max)         # Observed presence-absence matrix
-  n.occ.obs <- apply(zobs, 2, sum)      # Observed number of occupied sites
-  n.occ.ever.obs <- sum(apply(zobs, 1, max)) # Obs. number of occupied sites ever
-  psi.fs <- apply(z, 2, mean)           # Finite-sample occupancy proportion
+  n.occ <- apply(z, 2, sum)                         # True number of occupied sites
+  n.occ.ever <- sum(apply(z, 1, max))               # True number of occupied sites ever
+  zobs <- apply(y, c(1,3), max)                     # Observed presence-absence matrix
+  n.occ.obs <- apply(zobs, 2, sum)                  # Observed number of occupied sites
+  n.occ.ever.obs <- sum(apply(zobs, 1, max))        # Obs. number of occupied sites ever
+  psi.fs <- apply(z, 2, mean)                       # Finite-sample occupancy proportion
   mean.psi <- apply(psi, 2, mean)                   # Average psi over sites
   psi.app <- apply(apply(y, c(1,3), max), 2, mean)  # Apparent occupancy (finite sample)
 
@@ -206,8 +222,8 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # (ignoring the other terms in the model for detection)
   p.occasion <- array(NA, dim = c(nsurvey, nyear))
   for(t in 1:nyear){   # Years
-    p.occasion[,t] <- plogis(qlogis(mean.p[t]) + beta1[t] * (month - (nsurvey/2)) +
-        beta2[t] * (month - (nsurvey/2))^2)
+    p.occasion[,t] <- plogis(qlogis(mean.p[t]) + beta1[t] * (visit - (nsurvey/2)) +
+        beta2[t] * (visit - (nsurvey/2))^2)
   }
 
   # Compute annual average of phi, gamma and p
@@ -243,7 +259,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
 
     # Within-season pattern of detection (= product of availability and detection)
     # (ignoring the other terms in the model for detection)
-    matplot(month, p.occasion, type = 'l', lty = 1, lwd = 2,
+    matplot(visit, p.occasion, type = 'l', lty = 1, lwd = 2,
       main = 'Within-season pattern in p over the years \n(only occasion terms)',
       xlab = 'Survey', ylab = 'Detection probability',
       ylim = c(0,1), frame = FALSE, xaxt='n')
@@ -300,6 +316,6 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
 
   # Return data
   return(list(nsite=nsite, nyear=nyear, nsurvey=nsurvey,year.of.impact = year.of.impact, impact = impact, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
-  range.phi=range.phi, impact.phi = impact.phi, beta.Xphi=beta.Xphi, BACI.effect.phi = BACI.effect.phi, range.gamma=range.gamma, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, BACI.effect.gamma = BACI.effect.gamma, range.p=range.p, beta.Xp=beta.Xp, range.sd.site=range.sd.site, range.sd.survey=range.sd.survey, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, beta1 = beta1, beta2 = beta2, p.occasion = p.occasion,sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, avg.phi=avg.phi, avg.gamma=avg.gamma, avg.p=avg.p, psi=psi, mean.psi=mean.psi, n.occ = n.occ, n.occ.ever = n.occ.ever, n.occ.obs = n.occ.obs, n.occ.ever.obs = n.occ.ever.obs,
+  range.phi=range.phi, impact.phi = impact.phi, beta.Xphi=beta.Xphi, BACI.effect.phi = BACI.effect.phi, range.gamma=range.gamma, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, BACI.effect.gamma = BACI.effect.gamma, range.p=range.p, beta.Xp=beta.Xp, trend.sd.site=trend.sd.site, trend.sd.survey=trend.sd.survey, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, beta1 = beta1, beta2 = beta2, p.occasion = p.occasion,sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, avg.phi=avg.phi, avg.gamma=avg.gamma, avg.p=avg.p, psi=psi, mean.psi=mean.psi, n.occ = n.occ, n.occ.ever = n.occ.ever, n.occ.obs = n.occ.obs, n.occ.ever.obs = n.occ.ever.obs,
   psi.fs = psi.fs, psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, eps1 = eps1, eps2 = eps2, eps3 = eps3))
 } # ------------------ End function definition ---------------------

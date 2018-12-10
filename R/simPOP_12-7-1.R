@@ -30,6 +30,20 @@ simPOP <- function(
   # see Sollmann et al., Ecology, 2015)
   # Default is Markov model, setting sd.rho to a value greater than 0 changes to extended Markov and sets the amount of random immigration.
 
+  # Checks and fixes for input data
+  M <- round(M[1])
+  T <- round(T[1])
+  stopifNegative(mean.lam)
+  stopifNegative(sd.log.lam)
+  stopifNegative(sd.log.gamma.site)
+  stopifNegative(sd.log.gamma.time)
+  stopifNegative(sd.log.gamma.survey)
+  stopifNegative(sd.rho)
+  stopifnotProbability(mean.p)
+  stopifNegative(sd.logit.p.site)
+  stopifNegative(sd.logit.p.time)
+  stopifNegative(sd.logit.p.survey)
+
   # Create arrays needed (for observed counts, latent states, gamma, p
   # C <- N <- gamma <- p <- array(NA, dim = c(M, T))
   # (Could also have this: gamma <- array(NA, dim = c(M, T-1))) Mike prefers this!
@@ -99,11 +113,12 @@ simPOP <- function(
 
   # Graphical output
   if(show.plot) {
-    oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE)) # Browse the 3 plots
-    on.exit(devAskNewPage(oldAsk))
-    oldpar <- par(mfrow = c(1,3))
-    on.exit(par(oldpar), add=TRUE)
+    # Restore graphical settings on exit
+    oldpar <- par(no.readonly = TRUE)
+    oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+    on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
+    par(mfrow = c(1,3))
     hist(lambda, breaks = 100, main = 'lambda', col = 'grey')
     hist(gamma, breaks = 100, main = 'gamma', col = 'grey')
     hist(p, breaks = 100, main = 'p', col = 'grey')
