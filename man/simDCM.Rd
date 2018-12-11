@@ -14,21 +14,21 @@ Function to simulate detection/nondetection data under a general dynamic communi
 
 * one covariate is allowed to a parameter (site covariate for psi1, site-year covariate for phi and gamma and site-year-rep covariate for p). Each covariate is allowed to differ among species again according to a logit-normal model of heterogeneity.
 
-* additional detection heterogeneity at the site- or the occasion level, with the possibility of a temporal trend in this heterogeneity over years. E.g., an annual trend in detection heterogeneity at the site or the occasion level is specified by the value in the first and the last year. Hence, range.sd.site = c(0, 1) will result in a linear trend in the magnitude of site-level heterogeneity in detection from 0 in the first year to 1 in the last year, with interpolation for the years in between.
+* additional detection heterogeneity at the site- or the occasion level, with the possibility of a temporal trend in this heterogeneity over years. E.g., an annual trend in detection heterogeneity at the site or the occasion level is specified by the value in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site-level heterogeneity in detection from 0 in the first year to 1 in the last year, with interpolation for the years in between.
 
 * additional detection heterogeneity that among occasions according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
 
 These last two types of detection heterogeneity are not (yet) allowed to be species-specific.
 }
 \usage{
-simDCM(nspec = 50, nsite = 100, nrep = 3, nyear = 10, 
+simDCM(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
   mean.psi1 = 0.4, sig.lpsi1 = 1, mu.beta.lpsi1 = 0, sig.beta.lpsi1 = 0,
   range.mean.phi = c(0.8, 0.8), sig.lphi = 1, mu.beta.lphi = 0,
   sig.beta.lphi = 0, range.mean.gamma = c(0.2, 0.2), sig.lgamma = 1,
   mu.beta.lgamma = 0, sig.beta.lgamma = 0, range.mean.p = c(0.5, 0.5),
   sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, range.beta1.season = c(0, 0),
-  range.beta2.season = c(0, 0), range.sd.site = c(0, 0),
-  range.sd.survey = c(0, 0), show.plot = TRUE)
+  range.beta2.season = c(0, 0), trend.sd.site = c(0, 0),
+  trend.sd.survey = c(0, 0), show.plot = TRUE)
 }
 
 \arguments{
@@ -93,15 +93,15 @@ community mean of the coefficients of the covariate in probabilities of detectio
 sd of the normal distribution from which species-specific detection slopes are drawn (centered on mu.beta.lp)
 }
   \item{range.beta1.season}{
-the range of the annual variation in the linear effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection 
+the range of the annual variation in the linear effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection
 }
   \item{range.beta2.season}{
-the range of the annual variation in the quadratic effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection 
+the range of the annual variation in the quadratic effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection
 }
-  \item{range.sd.site}{
+  \item{trend.sd.site}{
 sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation, with values for internediate years interpolated linearly
 }
-  \item{range.sd.survey}{
+  \item{trend.sd.survey}{
 sd of normal distribution to model logit-normal noise in p at the occasion level, in the first and the last year, with values for internediate years interpolated linearly
 }
   \item{show.plot}{
@@ -190,21 +190,21 @@ str(data <- simDCM(range.mean.phi = c(0.8, 0.8), range.mean.gamma = c(0.3, 0.3),
   range.mean.p = c(0.6, 0.6)))
 
 # Function arguments that lead to much structure (no zero arguments)
-str(data <- simDCM(nspec = 200, nsite = 267, nrep = 3, nyear = 25, 
-  mean.psi1 = 0.4, sig.lpsi1 = 3, mu.beta.lpsi1 = 1, sig.beta.lpsi1 = 3, 
-  range.mean.phi = c(0.5, 1), sig.lphi = 3, mu.beta.lphi = 1, 
-  sig.beta.lphi = 3, range.mean.gamma = c(0, 0.5), 
+str(data <- simDCM(nspec = 200, nsite = 267, nrep = 3, nyear = 25,
+  mean.psi1 = 0.4, sig.lpsi1 = 3, mu.beta.lpsi1 = 1, sig.beta.lpsi1 = 3,
+  range.mean.phi = c(0.5, 1), sig.lphi = 3, mu.beta.lphi = 1,
+  sig.beta.lphi = 3, range.mean.gamma = c(0, 0.5),
   sig.lgamma = 3, mu.beta.lgamma = -1, sig.beta.lgamma = 3,
   range.mean.p = c(0.1, 0.9), sig.lp = 3, mu.beta.lp = 1, sig.beta.lp = 3,
-  range.beta1.season = c(-2, -0.5), range.beta2.season = c(0, 2), 
-  range.sd.site = c(0, 0), range.sd.survey = c(0, 0), show.plot = TRUE))
+  range.beta1.season = c(-2, -0.5), range.beta2.season = c(0, 2),
+  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), show.plot = TRUE))
 
 # Not every occurring species will be detected
 set.seed(1)
-str(data <- simDCM(nspec = 200, nsite = 20, nrep = 2, nyear = 10, 
-  mean.psi1 = 0.1, sig.lpsi1 = 5, 
-  range.mean.phi = c(0.3, 0.3), sig.lphi = 5, 
-  range.mean.gamma = c(0.1, 0.1), sig.lgamma = 5, 
+str(data <- simDCM(nspec = 200, nsite = 20, nrep = 2, nyear = 10,
+  mean.psi1 = 0.1, sig.lpsi1 = 5,
+  range.mean.phi = c(0.3, 0.3), sig.lphi = 5,
+  range.mean.gamma = c(0.1, 0.1), sig.lgamma = 5,
   range.mean.p = c(0.1, 0.1), sig.lp = 5) )
 
 # Pull out data from species 5

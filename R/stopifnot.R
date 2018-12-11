@@ -11,14 +11,16 @@
 #  "p >= 0 & p <= 1 is not TRUE".
 
 stopifPernickerty <- function() {
-  if(!exists(".notPernickerty", where=1) || .notPernickerty == FALSE) {
+  if(!exists(".notPernickerty", where=1) ||
+                class(.notPernickerty) != "Date" ||
+                .notPernickerty < Sys.Date()) {
     tst <- utils::askYesNo("Are you pernickerty?")
     if(is.na(tst)) {
       stop("Simulation terminated by user.", call.=FALSE)
     } else if(tst) {
-      stop("Pernickerty people are not allowed to use this function.", call.=FALSE)
+      stop("This function is not suitable for pernickerty people.", call.=FALSE)
     } else {
-      assign(".notPernickerty", TRUE, envir = .GlobalEnv)
+      assign(".notPernickerty", Sys.Date(), envir = .GlobalEnv)
     }
   }
 }

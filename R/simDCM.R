@@ -12,11 +12,11 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
   range.mean.p = c(0.5, 0.5), sig.lp = 1,
   mu.beta.lp = 0, sig.beta.lp = 0,
   range.beta1.season = c(0, 0), range.beta2.season = c(0, 0),
-  range.sd.site = c(0, 0), range.sd.survey = c(0, 0), show.plot = TRUE) {
+  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), show.plot = TRUE) {
 #
 # Written by Marc Kery, 28 Nov 2016
 #
-# Function is based on the dynocc function 'simDynocc.fn' (AHM2, Chap 16) and
+# Function is based on the dynocc function 'simDynocc' (AHM2, Chap 15) and
 # on the community occupancy function 'simComm' (AHM1, Chap 11).
 #
 # Function to simulate detection/nondetection data under a general
@@ -84,9 +84,9 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
 # -------------------
 # *** Args. for detection heterogeneity among sites and surveys
 #      (this part of the model is NOT species-specific) ***
-# range.sd.site: sd of normal distribution to model logit-normal noise in p
+# trend.sd.site: sd of normal distribution to model logit-normal noise in p
 #      at the site level in the first and the last year of the simulation.
-# range.sd.survey: sd of normal distribution to model logit-normal noise in p
+# trend.sd.survey: sd of normal distribution to model logit-normal noise in p
 #      at the site/year/rep = 'survey' level, in the first and the last year
 # For the sd and error.rate arguments, if the two values in the range are the
 #      same, a constant value is assumed over time, while if they are different,
@@ -139,8 +139,8 @@ for(s in 1:nspec){
 }
 # persistence and colonization for all species
 beta0.lphi <- beta0.lgamma <- array(dim = c(nspec, nyear-1))
-mean.phi <- runif(n = nyear-1, min = range.mean.phi[1], max = range.mean.phi[2])
-mean.gamma <- runif(n = nyear-1, min = range.mean.gamma[1], max = range.mean.gamma[2])
+mean.phi <- runif(n = nyear-1, min = min(range.mean.phi), max = max(range.mean.phi))
+mean.gamma <- runif(n = nyear-1, min = min(range.mean.gamma), max = max(range.mean.gamma))
 mu.lphi <- ifelse(mean.phi == '1', 500, qlogis(mean.phi))
 mu.lgamma <- ifelse(mean.gamma == '1', 500, qlogis(mean.gamma))
 eps.lphi <- rnorm(nspec, 0, sig.lphi) # species effect in logit(phi) intercept
@@ -161,17 +161,17 @@ for(s in 1:nspec){
 
 # (b) Observation process parameters
 beta0.lp <- array(dim = c(nspec, nyear))
-mean.p <- runif(n = nyear, min = range.mean.p[1], max = range.mean.p[2])
+mean.p <- runif(n = nyear, min = min(range.mean.p), max = max(range.mean.p))
 mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
 eps.lp <- rnorm(nspec, 0, sig.lp) # species effect in logit(p) intercept
 for(t in 1:nyear){
   beta0.lp[,t] <- mu.lp[t] + eps.lp       # logit(p) intercept
 }
 beta1.lp <- rnorm(nspec, mu.beta.lp, sig.beta.lp) # slope of logit(p) on Xp
-beta1 <- runif(n = nyear, min = range.beta1.season[1], max = range.beta1.season[2])
+beta1 <- runif(n = nyear, min = min(range.beta1.season), max = max(range.beta1.season))
 beta2 <- runif(n = nyear, min = min(range.beta2.season), max = max(range.beta2.season))
-sd.site <- seq(from = range.sd.site[1], to = range.sd.site[2], length.out = nyear)
-sd.survey <- seq(from = range.sd.survey[1], to = range.sd.survey[2], length.out = nyear)
+sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyear)
+sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyear)
 
 # Create site and survey random effects
 for(i in 1:nsite){
@@ -345,6 +345,6 @@ if(show.plot){
 }
 
 # Return data
-return(list(nspec = nspec, nsite = nsite, nrep = nrep, nyear = nyear, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.season = range.beta1.season, range.beta2.season = range.beta2.season, range.sd.site = range.sd.site, range.sd.survey = range.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyear.pres = nyear.pres, nspec.pres = nspec.pres, nyear.det = nyear.det, nspec.det = nspec.det, z = z, p = p, y = y))
+return(list(nspec = nspec, nsite = nsite, nrep = nrep, nyear = nyear, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.season = range.beta1.season, range.beta2.season = range.beta2.season, trend.sd.site = trend.sd.site, trend.sd.survey = trend.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyear.pres = nyear.pres, nspec.pres = nspec.pres, nyear.det = nyear.det, nspec.det = nspec.det, z = z, p = p, y = y))
 } # ------------------ End function definition ---------------------
 

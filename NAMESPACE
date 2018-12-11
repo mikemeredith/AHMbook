@@ -13,6 +13,7 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
            "var", "vcov", "sd")
 importFrom("utils", "head", "stack")
+
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
   "coef", "fitted", "residuals", "vcov", "confint")
 importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ",
@@ -43,8 +44,6 @@ export("sim.ldata", "sim.pdata", "simHDS")
 # Chapter 9
 export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")
 #  "pcount.spHDS" # now in unmarked
-export("e2dist")
-export("image_scale")
 
 # Chapter 10
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
@@ -71,5 +70,7 @@ export("spatial.exp")
 export("zinit")
 export("bigCrossCorr")
 export("standardize", "standardize2match")
+export("e2dist")
+export("image_scale")
 
 
