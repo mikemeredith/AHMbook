@@ -39,13 +39,14 @@ simPH <- function(
   #
   # Counts are plotted for up to 16 populations only.
 
-  # Checks and fixes for input data
+  # Checks and fixes for input data -----------------------------
   npop <- round(npop[1])
   nyear <- round(nyear[1])
   nrep <- round(nrep[1])
   stopifnotInteger(date.range)
   stopifnotInteger(initial.lambda)
   stopifnotLength(gamma.parms, 2)
+  # ---------------------------------------------------------------
 
   # Simulate among-year population dynamics: exponential model for N
   N <- array(NA, dim = c(npop, nyear))  # Array for site-year abundance
@@ -90,10 +91,11 @@ simPH <- function(
   }
 
   if(show.plot) {
-    # Restore graphical settings on exit
+    # Restore graphical settings on exit -------------------------
     oldpar <- par(no.readonly = TRUE)
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
+    # ------------------------------------------------------------
 
     # Simulate nice smooth normal curve for the plots
     nday <- length(date.range)

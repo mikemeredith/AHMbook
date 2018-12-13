@@ -105,8 +105,11 @@ if(FALSE) x <- NULL # A kludge to cope with 'curve's odd way of using 'x'
 type <- match.arg(type)
 
 if(show.plot){
-  op <- par(no.readonly = TRUE) ; on.exit(par(op))
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  # Restore graphical settings on exit -------------------------
+  oldpar <- par(no.readonly = TRUE)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  # ------------------------------------------------------------
 }
 
 if(type=="det/nondet"){

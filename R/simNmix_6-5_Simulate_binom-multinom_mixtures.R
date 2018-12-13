@@ -166,9 +166,14 @@ if(open.N){
 
 # Visualization of suitability and abundance
 if(show.plot){
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk))
+  # Restore graphical settings on exit ---------------------------
+  oldpar <- par(no.readonly = TRUE)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  # --------------------------------------------------------------
+
   # Page 1: Plots features of the suitability part of the system
-  op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op), add=TRUE)
+  par(mfrow = c(2, 2), cex.main = 1)
   barplot(table(s), main = "Number unsuitable and suitable sites", col = "grey")
   plot(site.cov[,1], s, ylim = c(0,1), main = "'Suitability' & site covariate 1")
   curve(logit(alpha.theta + beta1.theta * x), -2, 2, col = "red", add = TRUE, lwd = 3)
@@ -211,7 +216,7 @@ if(show.plot){
     # hist(N.P, breaks = 60, col = "blue", add = TRUE)
     histCount(N.P, N.PLN, main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N")
   }
-}
+}  # End of first block of plotting code, more from line 310
 
 # Simulate observation process conditional on true state N
 # Create structures to be filled
@@ -303,7 +308,6 @@ p <- pp  ;  DH <- NA
 
 # Plots and summaries of observation process
 if(show.plot){
-  # devAskNewPage(ask = TRUE) ## cruft
   # Page 5: Effects on p
   par(mfrow = c(3,2), cex.main = 1)
   curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)

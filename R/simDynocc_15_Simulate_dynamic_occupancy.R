@@ -84,7 +84,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # Note that for the BACI design, nyear must be greater than 2 and
   #      year.of.impact must not be equal to the first or the last year
 
-  # Checks and fixes for input data
+  # Checks and fixes for input data -----------------------------
   stopifPernickerty()
   nsite <- round(nsite[1])
   nyear <- round(nyear[1])
@@ -104,6 +104,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   stopifNegative(trend.sd.survey)
   stopifnotLength(trend.sd.site.survey, 2) # trend
   stopifNegative(trend.sd.site.survey)
+  # ----------------------------------------------------------------
 
   # Set up arrays needed
   site <- 1:nsite                        # Sites

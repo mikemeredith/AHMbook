@@ -51,8 +51,12 @@ z <- rbinom(n = M, size = 1, prob = psi)   # Realised occurrence (true state)
 
 # Plots for system state
 if(show.plot){
-  op <- par(no.readonly = TRUE) ; on.exit(par(op))
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  # Restore graphical settings on exit -------------------------
+  oldpar <- par(no.readonly = TRUE)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  # ------------------------------------------------------------
+
   par(mfrow = c(2, 2), cex.main = 1)
   curve(plogis(beta0 + beta1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "psi", lwd = 2)
   plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "")
@@ -121,7 +125,7 @@ if(show.plot){
      p1plot[,j] <- p1plot[,j] / y[,(j-1)]       # NA out some
   }
   matplot(elev, p0plot, xlab = "Elevation", ylab = "Detection (p)",
-    main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)", 
+    main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)",
     pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
   matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
 
