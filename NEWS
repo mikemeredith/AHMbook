@@ -7,6 +7,16 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9012 (2018-12-14)
+
+  * 'middleSpottedWoodpecker' data set renamed to 'spottedWoodpecker'.
+
+CHANGES in 0.1.4.9011 (2018-12-12)
+
+  * Changes to file names so data files begin 'data' and simulation functions begin 'sim...'.
+
+  * Restore settings and input checks changed in some code files.
+
 CHANGES in 0.1.4.9010 (2018-12-11)
 
   * Added middleSpottedWoodpecker data set.
