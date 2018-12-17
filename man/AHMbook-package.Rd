@@ -106,6 +106,7 @@ The functions are listed by chapter below.
   \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999-2015 (section 12.3)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
+  \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (chapter 15)}
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} (7.9)}
   \item{\code{\link{marbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (12.8.2)}
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014 (11.3)}
