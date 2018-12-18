@@ -1,9 +1,9 @@
-\name{marbledWhite}
-\alias{marbledWhite}
+\name{UKmarbledWhite}
+\alias{UKmarbledWhite}
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for Marbled White butterflies
+Data for UK Marbled White butterflies
 }
 \description{
 Data from the UK Butterfly Monitoring Scheme (UKBMS) for the Marbled White butterfly (\emph{Melanargia galathea}), a fairly widespread species that flies in a single generation per year in the UK.
@@ -13,7 +13,7 @@ Most survey sites are chosen opportunistically and represent fixed transects of 
 We restrict the data to sites where the marbled white was ever recorded, the years 1991–2015 and those 80 sites where counts took place in at least 20 of these 25 years.
 }
 
-\usage{data("marbledWhite")}
+\usage{data("UKmarbledWhite")}
 
 \format{
 A data frame with 9651 rows and the following columns:
@@ -33,13 +33,13 @@ UK Butterfly Monitoring Scheme (UKBMS) data © copyright and database right Butt
  \url{https://www.ceh.ac.uk/our-science/projects/uk-butterfly-monitoring-scheme}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarachical Modeling in Ecology} Section 12.8.2.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 12.8.2.
+}
+\seealso{
+\code{\link{SwissMarbledWhite}}.
 }
 \examples{
-data(marbledWhite)
-str(marbledWhite)
-
-
-
+data(UKmarbledWhite)
+str(UKmarbledWhite)
 }
 \keyword{datasets}

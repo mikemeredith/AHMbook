@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9014 (2018-12-18)
+
+  * 'SwissMarbledWhite' data set added.
+
 CHANGES in 0.1.4.9013 (2018-12-17)
 
   * 'FrenchPeregrines' data set added.

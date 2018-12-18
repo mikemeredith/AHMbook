@@ -100,6 +100,7 @@ str(simOcc(mean.occ=1))
 str(simOcc(mean.det=1))
 
 # Other potentially interesting settings include these:
+\donttest{
 str(simOcc(J = 2))                 # Only 2 surveys
 str(simOcc(M = 1, J = 100))        # No spatial replicates, but 100 measurements
 str(simOcc(beta3 = 1))             # Including interaction elev-wind on p
@@ -114,4 +115,5 @@ str(simOcc(sd.lp = 10))            # Huge (random) site effects on p
 str(simOcc(J = 10, b = 0))         # No behavioural response in p
 str(simOcc(J = 10, b = 2))         # Trap happiness
 str(simOcc(J = 10, b = -2))        # Trap shyness
+}
 }

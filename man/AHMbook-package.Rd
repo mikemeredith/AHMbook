@@ -108,12 +108,13 @@ The functions are listed by chapter below.
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
   \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (chapter 15)}
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} (7.9)}
-  \item{\code{\link{marbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (12.8.2)}
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014 (11.3)}
   \item{\code{\link{spottedWoodpecker}}}{ Data for middle spotted woodpeckers in Switzerland (15.11.2)}
+  \item{\code{\link{SwissMarbledWhite}}}{ Data from the Aargau Biodiversity Monitoring Program (LANAG) for marbled white butterflies (12.8.2)}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland (10.9)}
   \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from 2004 to 2013 (6.13.1)}
   \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (10.12.2)}
+ \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (15..)}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands (9.5.3)}
   \item{\code{\link{willowWarbler}}}{ Data for willow warblers in Britain (14.4.1)}
 

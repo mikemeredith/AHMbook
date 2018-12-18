@@ -23,7 +23,7 @@ The data are peregrine detection/nondetection data from the French Jura between 
 }
 
 \source{
-... Ask Marc ....
+Groupe Pèlerin Jura (Réne-Jean Monneret)
 }
 \references{
 Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 15.....
