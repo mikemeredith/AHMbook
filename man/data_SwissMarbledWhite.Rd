@@ -6,7 +6,7 @@
 Data for Swiss Marbled White butterflies
 }
 \description{
-Detection/nondetection data for the Marbled White butterfly (\emph{Melanargia galathea}) collected from 1998 to 2010 at a total of 519 study plots in the canton of Aargau,Switzerland, as part of the Aargau Biodiversity Monitoring Program (LANAG). 519 study plots were each sampled once every five years from 1998 to 2010 with 11 visits each year, resulting in 1337 observed detection histories.
+Detection/nondetection data for the Marbled White butterfly (\emph{Melanargia galathea}) collected in the canton of Aargau,Switzerland, as part of the Aargau Biodiversity Monitoring Program (LANAG). 519 study plots were each sampled once every five years from 1998 to 2010 with 11 visits each year, resulting in 1337 observed detection histories.
 }
 
 \usage{data("SwissMarbledWhite")}
