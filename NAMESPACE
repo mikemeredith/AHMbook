@@ -58,7 +58,7 @@ export("simNpC", "simPH", "simPOP", "graphSSM")
 export("simCJS", "ch2marray")
 
 # Chapter 15
-export("simDynocc")
+export("simDynocc", "simDemoDynocc")
 
 # Chapter 17
 export("simDCM")

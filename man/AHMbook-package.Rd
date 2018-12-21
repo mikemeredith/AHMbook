@@ -89,6 +89,7 @@ The functions are listed by chapter below.
 \section{Chapter 15}{
   \describe{
   \item{\code{\link{simDynocc}}}{ Simulate data under a dynamic occupancy model under a wide range of conditions}
+  \item{\code{\link{simDemoDynocc}}}{ Simulate data under a demographic dynamic occupancy model}
   } }
 
 \section{Chapter 17}{
@@ -103,7 +104,8 @@ The functions are listed by chapter below.
 
 \section{DATA SETS}{
   \describe{
-  \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999-2015 (section 12.3)}
+  \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999 to 2015 (section 12.3)}
+  \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (section 15...)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
   \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (chapter 15)}

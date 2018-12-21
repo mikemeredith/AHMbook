@@ -23,7 +23,7 @@ A similar data set for 1999 to 2007 is included in package \pkg{unmarked}.
   \item{elev }{the mean elevation of the quadrat, m.}
   \item{forest }{percentage forest cover}
   \item{nsurveys }{the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.}
-   \item{det011 to det123 }{1 if the species was detected in the quadrat, 0 otherwise; NA if the corresponding survey was not carried out.}
+   \item{det011 to det123 }{1 if the species was detected in the quadrat, 0 otherwise; NA if the corresponding survey was not carried out; the first 2 digits indicate the year and the 3rd digit the survey.}
    \item{date011 to date123 }{Julian date of the survey, 1 = 1st January; the first 2 digits indicate the year and the 3rd digit the survey; NA if the corresponding survey was not carried out.}
   }
 }
