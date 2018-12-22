@@ -5,7 +5,7 @@
 Simulate data under a demographic dynamic occupancy model
 }
 \description{
-Function to simulate detection/nondetection data under a variant of the demographic occupancy (or 'local survival') model of Roth & Amrhein (2010). Data are simulated in an 'unconditional' manner, i.e., stochastic  modeling starts after a territory is first detected. All parameters can be made year-dependent by specification of a range within which annual values will be drawn from uniform distributions.
+Function to simulate detection/nondetection data under a variant of the demographic occupancy (or 'local survival') model of Roth & Amrhein (2010). Data are simulated in an 'unconditional' manner, i.e., for each site from first to last year. All parameters can be made year-dependent by specification of a range within which annual values will be drawn from uniform distributions.
 }
 \usage{
 simDemoDynocc(nsite = 100, nyear = 10, nvisit = 5, psi1 = 0.6,

@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9018 (2018-12-22)
+
+  * Changes to plots to make them color-blind-friendly.
+
 CHANGES in 0.1.4.9017 (2018-12-21)
 
   * Corrections to 'FrenchPeregrines' data set.

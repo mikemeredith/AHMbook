@@ -39,19 +39,19 @@ simNpC <- function(
       cex.lab = 1.2, cex = 1.2)
         on.exit(par(oldpar))
     plot(1:T, lambda, xlab = 'Year', ylab = 'Expected abundance',
-      ylim = c(0, max(expN)), type = 'l', lwd = 3, col = 'red', frame = FALSE)
+      ylim = c(0, max(expN)), type = 'l', lwd = 3, col = 2, frame = FALSE)
     plot(1:T, p, xlab = 'Year', ylab = 'Detection prob.',
-      ylim = c(0, 1), type = 'l', lwd = 3, col = 'blue', frame = FALSE)
+      ylim = c(0, 1), type = 'l', lwd = 3, col = 4, frame = FALSE)
     plot(1:T, N, xlab = 'Year', ylab = 'Counts, Abundance',
       ylim = c(0, max(N)), pch = 16, frame = FALSE)
     points(1:T, C, pch = 1)
-    lines(1:T, lambda, col = 'red', lwd = 2)
-    lines(1:T, lambda*p, col = 'black', lwd = 2)
+    lines(1:T, lambda, col = 2, lwd = 2, lty=3)
+    lines(1:T, lambda*p, col = 1, lwd = 2)
     legend(1, 0.24*max(N), c('True N', 'Observed C'), pch = c(16,1),
       cex = 0.7, bty = 'n')
     legend(1, 0.12*max(N), c('Expected N (lambda)',
-      'Relative abundance (lambda * p)'), lty = 1, lwd = 3,
-      col = c('red', 'black'), cex = 0.7, bty = 'n')
+      'Relative abundance (lambda * p)'), lty = c(3,1), lwd = 3,
+      col = c(2,1), cex = 0.7, bty = 'n')
   }
 
   # Output

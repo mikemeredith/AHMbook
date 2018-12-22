@@ -248,15 +248,16 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     gamma.pred <- plogis(mean(qlogis(mean.gamma)) + beta.Xgamma * pred.cov)
     p.pred <- plogis(mean(qlogis(mean.p)) + beta.Xp * pred.cov)
 
-    plot(pred.cov, psi.pred, type = 'l', col = 'green', xlim = c(-2, 3.5), ylim = c(0,1),
-      lwd = 2, main = 'Covariate relationships', xlab = 'Covariate value',
-      ylab = 'Predicted probability', frame = FALSE)
-    lines(pred.cov, phi.pred, type = 'l', col = 'blue', lwd = 2)
-    lines(pred.cov, gamma.pred, type = 'l', col = 'black', lwd = 2)
-    lines(pred.cov, p.pred, type = 'l', col = 'red', lwd = 2, lty=3)
-    legend('topright', legend = c('psi1', 'phi', 'gamma', 'p'),
-      col = c('green', 'blue', 'black', 'red'), lty = c(1,1,1,3),
-      lwd = 2, bty = 'n')
+    plot(pred.cov, psi.pred, type = 'n', xlim = c(-2, 2), ylim = c(0,1),
+      main = 'Covariate relationships', xlab = 'Covariate value',
+      ylab = 'Predicted probability', frame = FALSE, las=1)
+    lines(pred.cov, psi.pred, type = 'l', col = 3, lwd = 3, lty=1)
+    lines(pred.cov, phi.pred, type = 'l', col = 4, lwd = 3, lty=2)
+    lines(pred.cov, gamma.pred, type = 'l', col = 1, lwd = 3, lty=3)
+    lines(pred.cov, p.pred, type = 'l', col = 2, lwd = 1, lty=1)
+    legend('top', legend = c('psi1', 'phi', 'gamma', 'p'),
+      col = c(3,4,1,2), lty = c(1,2,3,1), lwd = c(3,3,3,1),
+      inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
 
     # Within-season pattern of detection (= product of availability and detection)
     # (ignoring the other terms in the model for detection)
@@ -270,14 +271,16 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     hist(p, col = 'lightgrey', xlim = c(0,1), main = 'Detection probability p')
 
     # Plot realised and apparent proportion of occupied sites
-    plot(year, apply(z, 2, mean), type = "l", xlab = "Year", ylab = "Probability",
-      col = "red", xlim = c(0,nyear+ 1.5), ylim = c(0,1.1), lwd = 2, lty = 1,
-      frame.plot = FALSE, las = 1,
+    plot(year, avg.p, type = "n", xlab = "Year", ylab = "Probability",
+      xlim = c(1,nyear), ylim = c(0,1), frame.plot = FALSE, las = 1, xaxt='n',
       main = 'True occupancy (finite-sample), \nobserved occupancy (prop. sites occupied) and average p')
-    lines(year, avg.p , type = "l", col = "red", lwd = 2, lty = 2)
-    lines(year, psi.app, type = "l", col = "black", lwd = 2, lty=2)
-    legend('topright', legend = c('True psi', 'Observed psi', 'Detection'),
-      col = c('red', 'black', 'red'), lty = c(1,2,2), lwd = 2, bty = 'n')
+    axis(1, 1:nyear)
+    lines(year, apply(z, 2, mean), type = "l", col = 2, lwd = 2, lty = 1)
+    lines(year, psi.app, type = "l", col = 1, lwd = 2, lty=2)
+    lines(year, avg.p , type = "l", col = 2, lwd = 2, lty = 3)
+    legend('top', legend = c('True psi', 'Observed psi', 'Detection'),
+      col = c(2,1,2), lty = c(1,2,3), lwd = 2,
+      inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
 
     # ------ Plot B ---------
     # Plot of population sizes (ever occupied, occupied per year, true and observed)
@@ -285,16 +288,17 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     par(mfrow = c(1, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
 
     # Annual average of colonisation, persistence and detection
-    plot(1:(nyear-1), avg.gamma, type = "o", pch=16, xlab = "Year or Yearly interval",
-      ylab = "Probability", col = "black", xlim = c(0.5, nyear+0.5), ylim = c(0,1),
-      lwd = 2, lty = 1, las = 1, xaxt='n', frame.plot = FALSE,
+    plot(1:(nyear-1), avg.gamma, type = "n", xlab = "Year or Yearly interval",
+      ylab = "Probability", xlim = c(0.5, nyear), ylim = c(0,1),
+      las = 1, xaxt='n', frame.plot = FALSE,
       main = 'Average annual persistence,\ncolonization, and detection')
     axis(1, at=1:nyear)
-    lines(1:(nyear-1), avg.phi, type = "o", pch=16, col = "blue", lwd = 2)
-    lines(1:nyear, avg.p, type = "o", pch=16, col = "red", lwd = 2)
-    text((nyear-1), avg.phi[nyear-1], 'phi', col='blue', cex = 1.4, pos=4, xpd=TRUE)
-    text((nyear-1), avg.gamma[nyear-1], 'gamma', cex = 1.4, pos=4, xpd=TRUE)
-    text(nyear, avg.p[nyear], 'p', col='red', cex = 1.4, pos=4, xpd=TRUE)
+    lines(1:(nyear-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
+    lines(1:(nyear-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
+    lines(1:nyear, avg.p, type = "o", pch=16, col = 2, lwd = 2)
+    legend('top', c("phi", "gamma", "p"),
+      lty=c(3,2,1), lwd=2, col=c(4,1,2),
+      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
     # True and observed number of occupied sites per year and overall (ever)
     plot(1, 1, type = "n", xlab = "Year",
@@ -304,14 +308,14 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     axis(1, at=1:nyear)
     end <- nyear/2 + 0.5
     mid <- mean(c(0.5, end))
-    segments(0.5, n.occ.ever, end, n.occ.ever, lwd=2, col='red')
+    segments(0.5, n.occ.ever, end, n.occ.ever, lwd=2, col=2)
     text(mid, n.occ.ever, "True ever", pos=3, xpd=TRUE)
     segments(0.5, n.occ.ever.obs, end, n.occ.ever.obs, lwd=2, lty=2)
     text(mid, n.occ.ever.obs, "Observed ever", pos=1, xpd=TRUE)
-    points(1:nyear, n.occ, type = "b", col = "red", pch = 16, cex = 1.5, lwd=3)
-    points(1:nyear, n.occ.obs, type = "b", col = "black", pch=20, lty=2, cex = 1.5, lwd=3)
+    points(1:nyear, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
+    points(1:nyear, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
     legend('topright', legend = c('True annual', 'Obs. annual'),
-      col = c('red', 'black'), pch = c(16, 16), lty = c(1,1), pt.cex=1.5,
+      col = c(2,1), pch = c(16, 16), lty = c(1,1), pt.cex=1.5,
       lwd = 3, bty = 'n')
   }
 

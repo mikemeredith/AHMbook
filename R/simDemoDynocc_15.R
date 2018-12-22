@@ -7,8 +7,7 @@ simDemoDynocc<- function(nsite = 100, nyear = 10, nvisit = 5, psi1 = 0.6,
   #
   # Function simulates data under a variant of the demographic occupancy
   #  (or 'local survival') model of Roth & Amrhein (J. Appl. Ecol., 2010).
-  #  Data are simulated in an 'unconditional' manner, i.e., stochastic
-  #  modeling starts after a territory is first detected.
+  #  Data are simulated in an 'unconditional' manner, i.e., for each site from first to last year.
   #  All parameter can be made year-dependent by specification of a range,
   #  within which annual values will be drawn from uniform distributions.
   #
@@ -84,17 +83,26 @@ simDemoDynocc<- function(nsite = 100, nyear = 10, nvisit = 5, psi1 = 0.6,
     # Visualization by two graphs
     oldpar <- par(mfrow = c(1, 2), mar = c(5, 5, 4, 2), cex.lab = 1.5)
       on.exit(par(oldpar))
-    plot(1:(nyear-1), phi, type = 'l', lwd = 2, ylim = c(0,1), frame = FALSE,
-      xlab = "Year", ylab = "Probability", xlim = c(1, nyear), col = 'blue',  las = 1,
-      main = 'Local survival (blue), recruitment (red)\nand detection (black)')
-    lines(1:(nyear-1), r, type = 'l', lwd = 2, col = 'red')
-    lines(1:nyear, p, type = 'l', lwd = 2, col = 'black')
+    plot(1, 0, type = 'n', ylim = c(0,1), frame = FALSE,
+      xlab = "Year", ylab = "Probability", xlim = c(1, nyear), las = 1,
+      main = 'Local survival, recruitment and detection', xaxt='n')
+    axis(1, 1:nyear)
+    lines(1:(nyear-1), phi, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
+    lines(1:(nyear-1), r, type = 'o', pch=16, lwd = 2, col = 2, lty=3)
+    lines(1:nyear, p, type = 'o', pch=16, lwd = 2, col = 1)
+    legend('top', c("survival", "recruitment", "detection"),
+      lty=c(2,3,1), lwd=2, col=c(4,2,1), #pch=16,
+      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
-    plot(1:nyear, nocc.true, type = 'l', lwd = 2, frame = FALSE, xlab = "Year",
-      ylab = "Population size", xlim = c(1, nyear), ylim = c(0, nsite),
-      col = 'red', las = 1,
-      main = 'True (red) and observed (blue)\n population size')
-    lines(1:nyear, nocc.obs, type = 'l', lwd = 2, col = 'blue', lty=2)
+    plot(1:nyear, nocc.true, type = 'n', frame = FALSE, xlab = "Year",
+      ylab = "Population size", xlim = c(1, nyear), ylim = c(0, nsite), las = 1,
+      main = 'True and observed population size', xaxt='n')
+    axis(1, 1:nyear)
+    lines(1:nyear, nocc.true, type = 'o', pch=16, lwd = 2, col = 2, lty=1)
+    lines(1:nyear, nocc.obs, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
+    legend('top', c("true", "observed"),
+      lty=c(1,2), lwd=2, col=c(2,4),
+      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
   }
 
   # Return stuff

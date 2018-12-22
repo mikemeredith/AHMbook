@@ -28,7 +28,7 @@ simCJS <- function(
   stopifnotLength(n.marked, n.occ-1, allow1=TRUE)
   stopifnotLength(phi, n.occ-1, allow1=TRUE)
   stopifnotLength(p, n.occ-1, allow1=TRUE)
-  
+
   # Deal with input
   if(length(n.marked) == 1)
     n.marked <- rep(n.marked, n.occ-1)   # Annual number of newly marked individuals
@@ -73,18 +73,19 @@ simCJS <- function(
     # PLOT 1
     par(mfrow = c(1, 1), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
     # Plot trajectory of phi and p
-    plot(1:(n.occ-1), phi, typ= 'b', cex = 2, pch = 16, col = 'red', ylim = c(0, 1),
+    plot(1:(n.occ-1), phi, typ= 'n', ylim = c(0, 1),
       frame = FALSE, main = 'Trajectories of phi and p')
-    points(1:(n.occ-1), p, typ= 'b', cex = 2, pch = 16, col = 'blue')
-    legend (1, 0.2, pch = 16, col = c('red', 'blue'),
-      legend = c('Apparent survival (phi)', 'Recapture (p)'),
-      bty = 'n', cex = 1.2)
+    points(1:(n.occ-1), phi, type= 'b', cex = 2, pch = 16, col = 2)
+    points(1:(n.occ-1), p, type= 'b', cex = 2, pch = 16, col = 4, lty=3)
+    legend('top', legend = c('Apparent survival (phi)', 'Recapture (p)'),
+      lty=c(1,3), lwd=2, col=c(2,4), pch=16, cex=2,
+      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
     # PLOT 2
     par(mfrow = c(2, 2), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
     # Plot the true alive/dead pattern (z)
     mapPalette <- colorRampPalette(c("white", "black"))
-    image(x = 1:n.occ, y = 1:n.ind, z = t(z), col = mapPalette(10), axes = T,
+    image(x = 1:n.occ, y = 1:n.ind, z = t(z), col = mapPalette(10), axes = TRUE,
       xlab = "Year", ylab = "Individual",
       main = 'z matrix of latent states in the CJS model: \nAlive (black) or dead (white) per individual and occasion')
 
@@ -92,13 +93,14 @@ simCJS <- function(
     image(x = 1:n.occ, y = 1:n.ind, z = t(ch), col = mapPalette(10), axes = TRUE,
       xlab = "Year", ylab = "Individual",
       main = 'Observed data = capture-history matrix ch in the CJS model: \nDetected (black) or not detected (white) per individual and occasion')
+    box()
 
     # Superimpose the two images
     tmp <- z    # copy z into tmp
     tmp[z==1 & ch == 0] <- -1.1  # Mark detection errors as -1
-    mapPalette <- colorRampPalette(c("red", "white", "black"))
+    mapPalette <- colorRampPalette(c("blue", "white", "black"))
     image(x = 1:n.occ, y = 1:n.ind, z = t(tmp), col = mapPalette(10), axes = TRUE,
-    xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive &detected (black), \nalive & undetected (red) and dead (grey) per individual and occasion')
+    xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive &detected (black), \nalive & undetected (blue) and dead (grey) per individual and occasion')
 
     # Population size trajectory of marked and alive in study area
     plot(1:n.occ, n.alive, xlab = 'Year', ylab = 'Number alive',

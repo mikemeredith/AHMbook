@@ -116,7 +116,10 @@ simPH <- function(
     # Graphical output
     # Plot population dynamics and plot of all population sizes
     par(mfrow = c(2,1), mar = c(5,4,3,1))
-    matplot(1:nyear, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE)
+    matplot(1:nyear, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE, xaxt='n')
+    tmp <- pretty(1:nyear)
+    tmp[1] <- 1
+    axis(1, at=tmp)
     plot(table(N), xlab = 'Population size', ylab = 'Frequency', main = 'Frequency distribution of population size for all sites and years', frame = FALSE)
 
     # Plot time-series of relative expected abundance for up to 16 populations
