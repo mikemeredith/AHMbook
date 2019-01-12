@@ -1,9 +1,7 @@
 
-# 17.2 A general function to simulate data under the DCM model
+# 16.2 A general function to simulate data under the DCM model
 
-
-
-simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
+simDCM <- function(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
   mean.psi1 = 0.4, sig.lpsi1 = 1, mu.beta.lpsi1 = 0, sig.beta.lpsi1 = 0,
   range.mean.phi = c(0.8, 0.8), sig.lphi = 1,
   mu.beta.lphi = 0, sig.beta.lphi = 0,
@@ -11,7 +9,7 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
   mu.beta.lgamma = 0, sig.beta.lgamma = 0,
   range.mean.p = c(0.5, 0.5), sig.lp = 1,
   mu.beta.lp = 0, sig.beta.lp = 0,
-  range.beta1.season = c(0, 0), range.beta2.season = c(0, 0),
+  range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
   trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), show.plot = TRUE) {
 #
 # Written by Marc Kery, 28 Nov 2016
@@ -36,7 +34,7 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
 #     Hence, range.sd.site = c(0, 1) will result in a linear trend in the
 #     magnitude of site heterogeneity in detection from 0 in the first year to
 #     1 in the last year.
-#   * Additional detection heterogeneity that varies over the season (= occasion)
+#   * Additional detection heterogeneity that varies over the survey (= occasion)
 #     according to a quadratic effect of occasion number (to model phenology of
 #     an insect species for instance).
 #   * These last two types of detection heterogeneity are not (yet) allowed
@@ -47,7 +45,7 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
 # *** Sample size arguments ***
 # nspec - Number of species (typically called N in AHM book)
 # nsite - Number of sites (M)
-# nrep - Number of replicate surveys within a year (= season) (J)
+# nsurvey - Number of replicate surveys within a year (= season) (J)
 # nyear - Number of years (or 'seasons') (T)
 #
 # *** Arguments for mean parameters for the intercepts ***
@@ -94,28 +92,44 @@ simDCM <- function(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
 # -------------------
 # *** Args. for detection heterogeneity among occasions within a season
 #      (this part of model again NOT species-specific)
-# range.beta1.season is the range of the annual variation in the linear effect
-#     of season (i.e., of month 1-12) on the product of
-#     availability and detection linear and quadratic effect of season
-# range.beta2.season is the same for the quadratic effect of season
+# range.beta1.survey is the range of the annual variation in the linear effect
+#     of survey (i.e., of month 1-12) on the product of
+#     availability and detection linear and quadratic effect of survey
+# range.beta2.survey is the same for the quadratic effect of survey
 #
 # show.plot: if TRUE, plots are produced. Usually set to FALSE when running sims.
 #
+
+  # Checks and fixes for input data -----------------------------
+  nspec <- round(nspec[1])
+  nsite <- round(nsite[1])
+  nsurvey <- round(nsurvey[1])
+  nyear <- round(nyear[1])
+  stopifnotProbability(mean.psi1)
+  stopifNegative(sig.lpsi1, allowZero=TRUE)
+  # mu.beta.lpsi1
+  stopifNegative(sig.beta.lpsi1, allowZero=TRUE)
+  stopifnotProbability(range.mean.phi) # bounds
+  stopifNegative(sig.lphi, allowZero=TRUE)
+  stopifNegative(sig.beta.lphi, allowZero=TRUE)
+  stopifnotProbability(range.mean.gamma) # bounds
+  ## Need to do more of these
 
 # Set up arrays needed
 spec <- 1:nspec                           # Species
 site <- 1:nsite                           # Sites
 year <- 1:nyear                           # Years
-visit <- 1:nrep                           # Visit
-month <- 1:nrep                           # Months (= seasons)
+# visit <- 1:nsurvey                           # Visit
+# month <- 1:nsurvey                           # Months (= surveys)
+survey <- 1:nsurvey                           # Months (= surveys)
 psi <- muZ <- z <- array(dim = c(nsite, nyear, nspec), dimnames =
    list(paste('Site', site, sep = ''), paste('Year', year, sep = ''),
    paste('Spec', spec, sep = ''))) # Occupancy, occurrence
 phi <- gamma <- array(NA, dim = c(nsite, (nyear-1), nspec), dimnames =
    list(paste('Site', site, sep = ''), paste('Year', year[-nyear], sep = ''),
    paste('Spec', spec, sep = ''))) # Survival, colonisation
-y <- p <- array(NA, dim = c(nsite, nrep, nyear, nspec), dimnames =
-   list(paste('Site', site, sep = ''), paste('Visit', visit, sep = ''),
+y <- p <- array(NA, dim = c(nsite, nsurvey, nyear, nspec), dimnames =
+   list(paste('Site', site, sep = ''), paste('Survey', survey, sep = ''),
     paste('Year', year, sep = ''), paste('Spec', spec, sep = '')))# Det. hist and p
 
 # Create covariates (same for all species)
@@ -124,8 +138,8 @@ Xphi <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear), dimnames =
  list(paste('Site',site,sep=''), paste('Year',year,sep =''))) # Yearly-site cov
 Xgamma <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear), dimnames =
  list(paste('Site',site,sep=''), paste('Year',year,sep =''))) # Yearly-site cov
-Xp <- array(runif(nsite*nrep*nyear,-2,2),dim=c(nsite,nrep,nyear), dimnames =
-   list(paste('Site', site, sep = ''), paste('Visit', visit, sep = ''),
+Xp <- array(runif(nsite*nsurvey*nyear,-2,2),dim=c(nsite,nsurvey,nyear), dimnames =
+   list(paste('Site', site, sep = ''), paste('Survey', survey, sep = ''),
     paste('Year', year, sep = '')))  # Observation cov.
 
 # (1) Simulate all parameter values
@@ -158,7 +172,6 @@ for(s in 1:nspec){
   }
 }
 
-
 # (b) Observation process parameters
 beta0.lp <- array(dim = c(nspec, nyear))
 mean.p <- runif(n = nyear, min = min(range.mean.p), max = max(range.mean.p))
@@ -168,8 +181,8 @@ for(t in 1:nyear){
   beta0.lp[,t] <- mu.lp[t] + eps.lp       # logit(p) intercept
 }
 beta1.lp <- rnorm(nspec, mu.beta.lp, sig.beta.lp) # slope of logit(p) on Xp
-beta1 <- runif(n = nyear, min = min(range.beta1.season), max = max(range.beta1.season))
-beta2 <- runif(n = nyear, min = min(range.beta2.season), max = max(range.beta2.season))
+beta1 <- runif(n = nyear, min = min(range.beta1.survey), max = max(range.beta1.survey))
+beta2 <- runif(n = nyear, min = min(range.beta2.survey), max = max(range.beta2.survey))
 sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyear)
 sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyear)
 
@@ -177,29 +190,15 @@ sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out 
 for(i in 1:nsite){
   for(t in 1:nyear){
     eps1 <- rnorm(n = nsite, mean = 0, sd = sd.site[t])  # Site random eff.
-    eps2 <- rnorm(n = nrep, mean = 0, sd = sd.survey[t]) # Survey random eff.
+    eps2 <- rnorm(n = nsurvey, mean = 0, sd = sd.survey[t]) # Survey random eff.
   }
 }
-# Had this before
-#for(s in 1:nspec){
-#  for(i in 1:nsite){     # Sites
-#    for(t in 1:nyear){   # Years
-#      for(j in 1:nrep){ # Occasions interpreted as months
-#        p[i,j,t,s] <- plogis(beta0.lp[s, t] + beta1.lp[s] * Xp[i,j,t] +
-#        eps1[i] + eps2[j] + beta1[t] * (j - (nrep/2)) +
-#        beta2[t] * (j - (nrep/2))^2)
-#      }
-#    }
-#  }
-#}
-
-# This should work, too, and be faster
 for(s in 1:nspec){
   for(t in 1:nyear){   # Years
-    for(j in 1:nrep){ # Occasions interpreted as months
+    for(j in 1:nsurvey){ # Occasions interpreted as surveys
       p[,j,t,s] <- plogis(beta0.lp[s, t] + beta1.lp[s] * Xp[,j,t] +
-      eps1 + eps2[j] + beta1[t] * (j - (nrep/2)) +
-      beta2[t] * (j - (nrep/2))^2)
+      eps1 + eps2[j] + beta1[t] * (j - (nsurvey/2)) +
+      beta2[t] * (j - (nsurvey/2))^2)
     }
   }
 }
@@ -210,18 +209,6 @@ for(s in 1:nspec){
   z[,1, s] <- rbinom(nsite, 1, psi[,1,s])   # Initial occurrence state
 }
 
-# Years 2:nyear
-# Had this before
-#for(s in 1:nspec){                    # Loop over species
-#  for(i in 1:nsite){                  # Loop over sites
-#    for(t in 2:nyear){                # Loop over years
-#      muZ[i,t,s] <- z[i,t-1,s] * phi[i,t-1,s] + (1-z[i,t-1,s]) * gamma[i,t-1,s]
-#      z[i,t,s] <- rbinom(1, 1, muZ[i,t,s])
-#    }
-#  }
-#}
-
-# This should work, too, and be faster
 for(s in 1:nspec){                    # Loop over species
   for(t in 2:nyear){                # Loop over years
     muZ[,t,s] <- z[,t-1,s] * phi[,t-1,s] + (1-z[,t-1,s]) * gamma[,t-1,s]
@@ -229,24 +216,10 @@ for(s in 1:nspec){                    # Loop over species
   }
 }
 
-
 # (3) Simulate observation process to get the observed data
-# Had this before
-#for(s in 1:nspec){                    # Loop over species
-#  for(i in 1:nsite){                  # Loop over sites
-#    for(t in 1:nyear){                # Loop over years
-#      for(j in 1:nrep){               # Loop over replicates
-#        prob <- z[i,t,s] * p[i,j,t,s] # zero out p for unoccupied sites
-#        y[i,j,t,s] <- rbinom(1, 1, prob)
-#      }
-#    }
-#  }
-#}
-
-# This should work, too, and be faster
 for(s in 1:nspec){                    # Loop over species
   for(t in 1:nyear){                # Loop over years
-    for(j in 1:nrep){               # Loop over replicates
+    for(j in 1:nsurvey){               # Loop over replicates
       prob <- z[,t,s] * p[,j,t,s] # zero out p for unoccupied sites
       y[,j,t,s] <- rbinom(nsite, 1, prob)
     }
@@ -254,16 +227,6 @@ for(s in 1:nspec){                    # Loop over species
 }
 
 # (4) Compute annual population occupancy
-# Had this before
-#for(s in 1:nspec){                    # Loop over species
-#  for(i in 1:nsite){
-#    for (t in 2:nyear){
-#      psi[i,t,s] <- psi[i,t-1,s] * phi[i,t-1,s] + (1-psi[i,t-1,s]) * gamma[i,t-1,s]
-#    }
-#  }
-#}
-
-# This should work, too, and be faster
 for(s in 1:nspec){                    # Loop over species
   for (t in 2:nyear){
     psi[,t,s] <- psi[,t-1,s] * phi[,t-1,s] + (1-psi[,t-1,s]) * gamma[,t-1,s]
@@ -295,13 +258,11 @@ cat(paste("\n *** Number of species ever occurring:", nspec.pres,
 "\n *** Avg. number of years of occurrence:", round(mean(nyear.pres), 3),
 "\n *** Avg. number of years with detection:", round(mean(nyear.det), 3), "\n\n"))
 
-
-
-# Compute the average seasonal product of availability and detection
+# Compute the average survey product of availability and detection
 # (ignoring the other terms in the model for detection)
-p.season <- array(NA, dim = c(nrep, nyear))
+p.survey <- array(NA, dim = c(nsurvey, nyear))
 for(t in 1:nyear){   # Years
-  p.season[,t] <- plogis(mean(beta0.lp[, t]) + beta1[t] * (month - (nrep/2)) + beta2[t] * (month - (nrep/2))^2)
+  p.survey[,t] <- plogis(mean(beta0.lp[, t]) + beta1[t] * (survey - (nsurvey/2)) + beta2[t] * (survey - (nsurvey/2))^2)
 }
 
 # (5) Plots of stuff
@@ -323,9 +284,9 @@ if(show.plot){
   matplot(pred.cov, gamma.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Colonization (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Colonization prob.', las = 1, frame = FALSE)
   matplot(pred.cov, p.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Detection (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Detection prob.', las = 1, frame = FALSE)
 
-  # Plot the average seasonal product of availability and detection
+  # Plot the average surveyal product of availability and detection
   # (ignoring the other terms in the model for detection)
-  matplot(month, p.season, type = 'l', lty = 1, lwd = 2, main = 'Seasonal pattern in p over the years \n(only seasonal terms, same for all species)', xlab = 'Month', ylab = 'Detection probability', ylim = c(0,1))
+  matplot(survey, p.survey, type = 'l', lty = 1, lwd = 2, main = 'Seasonal pattern in p over the years \n(only survey terms, same for all species)', xlab = 'Survey', ylab = 'Detection probability', ylim = c(0,1))
 
   # Histo of detection
   hist(p, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Detection probability p\n (all species, sites etc.)')
@@ -345,6 +306,6 @@ if(show.plot){
 }
 
 # Return data
-return(list(nspec = nspec, nsite = nsite, nrep = nrep, nyear = nyear, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.season = range.beta1.season, range.beta2.season = range.beta2.season, trend.sd.site = trend.sd.site, trend.sd.survey = trend.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyear.pres = nyear.pres, nspec.pres = nspec.pres, nyear.det = nyear.det, nspec.det = nspec.det, z = z, p = p, y = y))
+return(list(nspec = nspec, nsite = nsite, nsurvey = nsurvey, nyear = nyear, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, trend.sd.site = trend.sd.site, trend.sd.survey = trend.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyear.pres = nyear.pres, nspec.pres = nspec.pres, nyear.det = nyear.det, nspec.det = nspec.det, z = z, p = p, y = y))
 } # ------------------ End function definition ---------------------
 

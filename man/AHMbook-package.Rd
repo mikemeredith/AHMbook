@@ -92,7 +92,7 @@ The functions are listed by chapter below.
   \item{\code{\link{simDemoDynocc}}}{ Simulate data under a demographic dynamic occupancy model}
   } }
 
-\section{Chapter 17}{
+\section{Chapter 16}{
   \describe{
   \item{\code{\link{simDCM}}}{ Simulate detection/nondetection data under a general dynamic community (site-occupancy) model}
   } }
@@ -112,6 +112,7 @@ The functions are listed by chapter below.
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} (7.9)}
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014 (11.3)}
   \item{\code{\link{spottedWoodpecker}}}{ Data for middle spotted woodpeckers in Switzerland (15.11.2)}
+  \item{\code{\link{SwissEagleOwls}}}{ Data for Eagle Owls in Switzerland (17..)}
   \item{\code{\link{SwissMarbledWhite}}}{ Data from the Aargau Biodiversity Monitoring Program (LANAG) for marbled white butterflies (12.8.2)}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland (10.9)}
   \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from 2004 to 2013 (6.13.1)}

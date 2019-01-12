@@ -21,13 +21,13 @@ Function to simulate detection/nondetection data under a general dynamic communi
 These last two types of detection heterogeneity are not (yet) allowed to be species-specific.
 }
 \usage{
-simDCM(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
+simDCM(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
   mean.psi1 = 0.4, sig.lpsi1 = 1, mu.beta.lpsi1 = 0, sig.beta.lpsi1 = 0,
   range.mean.phi = c(0.8, 0.8), sig.lphi = 1, mu.beta.lphi = 0,
   sig.beta.lphi = 0, range.mean.gamma = c(0.2, 0.2), sig.lgamma = 1,
   mu.beta.lgamma = 0, sig.beta.lgamma = 0, range.mean.p = c(0.5, 0.5),
-  sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, range.beta1.season = c(0, 0),
-  range.beta2.season = c(0, 0), trend.sd.site = c(0, 0),
+  sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, range.beta1.survey = c(0, 0),
+  range.beta2.survey = c(0, 0), trend.sd.site = c(0, 0),
   trend.sd.survey = c(0, 0), show.plot = TRUE)
 }
 
@@ -36,73 +36,73 @@ simDCM(nspec = 50, nsite = 100, nrep = 3, nyear = 10,
 number of species (typically called N in AHM book)
 }
   \item{nsite}{
-number of sites (M)
+number of sites (M).
 }
-  \item{nrep}{
-number of replicate occasions within a year (J)
+  \item{nsurvey}{
+number of replicate surveys within a year (J).
 }
   \item{nyear}{
-number of years (T)
+number of years (T).
 }
   \item{mean.psi1}{
-average (across all species in the community) of the intercept of occupancy probability in first year
+average (across all species in the community) of the intercept of occupancy probability in first year.
 }
   \item{sig.lpsi1}{
-sd of the normal distribution from which species-specific occupancy intercepts are drawn (centered on logit(mean.psi1)), on logit scale
+sd of the normal distribution from which species-specific occupancy intercepts are drawn (centered on logit(mean.psi1)), on logit scale.
 }
   \item{mu.beta.lpsi1}{
 community mean of the coefficients of the covariate in probabilities of initial occupancy: the probability-scale mean of the normal distribution from which the species-specific coefficients are drawn.
 }
   \item{sig.beta.lpsi1}{
-sd of the normal distribution from which species-specific slopes are drawn (centered on mu.beta.lpsi1)
+sd of the normal distribution from which species-specific slopes are drawn (centered on mu.beta.lpsi1).
 }
   \item{range.mean.phi}{
-bounds of uniform distribution from which the average (across species) annual intercept of persistence is drawn
+bounds of uniform distribution from which the average (across species) annual intercept of persistence is drawn.
 }
   \item{sig.lphi}{
-sd of the normal distribution from which species-specific persistence intercepts are drawn (centered on logit(mean.phi), which are year-specific), on logit scale
+sd of the normal distribution from which species-specific persistence intercepts are drawn (centered on logit(mean.phi), which are year-specific), on logit scale.
 }
   \item{mu.beta.lphi}{
 community mean of the coefficients of the covariate in probabilities of persistence: the probability-scale mean of the normal distribution from which the species-specific coefficients are drawn.
 }
   \item{sig.beta.lphi}{
-sd of the normal distribution from which species-specific persistence slopes are drawn (centered on mu.beta.lphi)
+sd of the normal distribution from which species-specific persistence slopes are drawn (centered on mu.beta.lphi).
 }
   \item{range.mean.gamma}{
-bounds of uniform distribution from which the average (across species) annual intercept of colonisation is drawn
+bounds of uniform distribution from which the average (across species) annual intercept of colonisation is drawn.
 }
   \item{sig.lgamma}{
-sd of the normal distribution from which species-specific colonization intercepts are drawn (centered on logit(mean.gamma), which are year-specific), on logit scale
+sd of the normal distribution from which species-specific colonization intercepts are drawn (centered on logit(mean.gamma), which are year-specific), on logit scale.
 }
   \item{mu.beta.lgamma}{
 community mean of the coefficients of the covariate in probabilities of colonization: the probability-scale mean of the normal distibution from which the species-specific coefficients are drawn.
 }
   \item{sig.beta.lgamma}{
-sd of the normal distribution from which species-specific colonization slopes are drawn (centered on mu.beta.lgamma)
+sd of the normal distribution from which species-specific colonization slopes are drawn (centered on mu.beta.lgamma).
 }
   \item{range.mean.p}{
-bounds of uniform distribution from which the average (across species) annual intercept of p is drawn
+bounds of uniform distribution from which the average (across species) annual intercept of p is drawn.
 }
   \item{sig.lp}{
-sd of the normal distribution from which species-specific detection intercepts are drawn (centered on logit(mean.p), which are year-specific), on logit scale
+sd of the normal distribution from which species-specific detection intercepts are drawn (centered on logit(mean.p), which are year-specific), on logit scale.
 }
   \item{mu.beta.lp}{
-community mean of the coefficients of the covariate in probabilities of detection: the probability-scale mean of the normal distibution from which the species-specific coefficients are drawn.
+community mean of the coefficients of the covariate in probabilities of detection: the probability-scale mean of the normal distribution from which the species-specific coefficients are drawn.
 }
   \item{sig.beta.lp}{
-sd of the normal distribution from which species-specific detection slopes are drawn (centered on mu.beta.lp)
+sd of the normal distribution from which species-specific detection slopes are drawn (centered on mu.beta.lp).
 }
-  \item{range.beta1.season}{
-the range of the annual variation in the linear effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection
+  \item{range.beta1.survey}{
+the range of the annual variation in the linear effect of survey (i.e., of surveys 1-12 if nsurvey = 12) on the product of availability and detection.
 }
-  \item{range.beta2.season}{
-the range of the annual variation in the quadratic effect of season (i.e., of month 1-12 if nrep = 12) on the product of availability and detection
+  \item{range.beta2.survey}{
+the range of the annual variation in the quadratic effect of survey (i.e., of surveys 1-12 if nsurvey = 12) on the product of availability and detection.
 }
   \item{trend.sd.site}{
-sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation, with values for internediate years interpolated linearly
+sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation, with values for internediate years interpolated linearly.
 }
   \item{trend.sd.survey}{
-sd of normal distribution to model logit-normal noise in p at the occasion level, in the first and the last year, with values for internediate years interpolated linearly
+sd of normal distribution to model logit-normal noise in p at the occasion level, in the first and the last year, with values for intermediate years interpolated linearly.
 }
   \item{show.plot}{
 if TRUE, plots are produced. Set this to FALSE when running many simulations.
@@ -114,7 +114,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{Xpsi1 }{Site covariate for psi1, a nsite x 1 matrix}
  \item{Xphi }{Yearly-site covariate for phi, a nsite x nyear matrix}
  \item{Xgamma }{Yearly-site covariate for gamma, a nsite x nyear matrix}
- \item{Xp }{Observation covariate for p, a nsite x nrep x nyear array}
+ \item{Xp }{Observation covariate for p, a nsite x nsurvey x nyear array}
  \item{beta0.lpsi }{initial (logit-scale) occupancy intercept for each species in the community, a vector of length nspec}
  \item{beta1.lpsi }{initial (log-scale) occupancy slope on Xpsi1 for each species in the community, a vector of length nspec}
  \item{psi }{occupancy probability per site, year and species, a nsite x nyear x nspec array}
@@ -137,7 +137,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{sd.site }{standard deviation of the zero-mean normal distribution from which additional, site-level detection heterogeneity is simulated, a vector of length nyear}
  \item{sd.survey }{standard deviation of the zero-mean normal distribution from which additional, occasion-level detection heterogeneity is simulated,, a vector of length nyear}
  \item{eps1 }{additive site random effects tht generate unstructured site-level detection heterogeneity, a vector of length nsite}
- \item{eps2 }{additive occasion random effects tht generate unstructured site-level detection heterogeneity, a vector of length nrep}
+ \item{eps2 }{additive occasion random effects tht generate unstructured site-level detection heterogeneity, a vector of length nsurvey}
  \item{n.occ }{Number of occupied sites, a nyear x nspec matrix}
  \item{psi.fs }{Finite-sample occupancy proportion, a nyear x nspec matrix}
  \item{mean.psi }{Average psi over sites, a nyear x nspec matrix}
@@ -149,8 +149,8 @@ A list with the values of the input arguments and the following additional eleme
  \item{nyear.det }{Number of years when species detected, a vector of length nspec}
  \item{nspec.det }{Number of species ever detected, scalar}
  \item{z }{True value of z matrix (ie, presence/absence), a nsite x nyear x nspec array}
- \item{p }{Probability of detection, a nsite x nrep x nyear x nspec array}
- \item{y }{Observed detection history, a nsite x nrep x nyear x nspec array of 0/1}
+ \item{p }{Probability of detection, a nsite x nsurvey x nyear x nspec array}
+ \item{y }{Observed detection history, a nsite x nsurvey x nyear x nspec array of 0/1}
 }
 \references{
 Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Section 17.2
@@ -172,7 +172,7 @@ str(data <- simDCM(nspec = 200)) # More species (looks great)
 str(data <- simDCM(nspec = 1))   # A single species (ha, works !)
 str(data <- simDCM(nsite = 267)) # More sites
 str(data <- simDCM(nsite = 1))   # A single site
-str(data <- simDCM(nrep = 10))   # More visits
+str(data <- simDCM(nsurvey = 10))   # More visits
 str(data <- simDCM(nyear = 25))  # More years
 str(data <- simDCM(nyear = 2))   # Just two years
 # str(data <- simDCM(nyear = 1)) # A single year ... crashes
@@ -190,18 +190,18 @@ str(data <- simDCM(range.mean.phi = c(0.8, 0.8), range.mean.gamma = c(0.3, 0.3),
   range.mean.p = c(0.6, 0.6)))
 
 # Function arguments that lead to much structure (no zero arguments)
-str(data <- simDCM(nspec = 200, nsite = 267, nrep = 3, nyear = 25,
+str(data <- simDCM(nspec = 200, nsite = 267, nsurvey = 3, nyear = 25,
   mean.psi1 = 0.4, sig.lpsi1 = 3, mu.beta.lpsi1 = 1, sig.beta.lpsi1 = 3,
   range.mean.phi = c(0.5, 1), sig.lphi = 3, mu.beta.lphi = 1,
   sig.beta.lphi = 3, range.mean.gamma = c(0, 0.5),
   sig.lgamma = 3, mu.beta.lgamma = -1, sig.beta.lgamma = 3,
   range.mean.p = c(0.1, 0.9), sig.lp = 3, mu.beta.lp = 1, sig.beta.lp = 3,
-  range.beta1.season = c(-2, -0.5), range.beta2.season = c(0, 2),
+  range.beta1.survey = c(-2, -0.5), range.beta2.survey = c(0, 2),
   trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), show.plot = TRUE))
 
 # Not every occurring species will be detected
 set.seed(1)
-str(data <- simDCM(nspec = 200, nsite = 20, nrep = 2, nyear = 10,
+str(data <- simDCM(nspec = 200, nsite = 20, nsurvey = 2, nyear = 10,
   mean.psi1 = 0.1, sig.lpsi1 = 5,
   range.mean.phi = c(0.3, 0.3), sig.lphi = 5,
   range.mean.gamma = c(0.1, 0.1), sig.lgamma = 5,
