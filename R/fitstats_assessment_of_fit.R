@@ -3,15 +3,19 @@
 
 # Function returning three fit-statistics (used in parboot GOF tests throughout book)
 # (used, among others, in Chapter 7, e.g., Section 7.5.4)
+
+# Updated 2019-01-14 to cope with NAs in the data, see 13.3.3
+
 fitstats <- function(fm) {
-   observed <- unmarked::getY(fm@data)
-   expected <- fitted(fm)
-   resids <- residuals(fm)
-   sse <- sum(resids^2, na.rm = T)                   # Sums of squares
-   chisq <- sum((observed - expected)^2 / expected, na.rm = T) # Chisq
-   freeTuke <- sum((sqrt(observed) - sqrt(expected))^2, na.rm = T) # F-T
-   out <- c(SSE=sse, Chisq=chisq, freemanTukey=freeTuke)
-   return(out)
+  observed <- unmarked::getY(fm@data)
+  notna <- !is.na(observed) # to accommodate missing values
+  expected <- fitted(fm)
+  resids <- residuals(fm)
+  sse <- sum(resids[notna]^2)
+  chisq <- sum((observed[notna] - expected[notna])^2 / expected[notna])
+  freeTuke <- sum((sqrt(observed) - sqrt(expected))[notna]^2)
+  out <- c(SSE=sse, Chisq=chisq, freemanTukey=freeTuke)
+  return(out)
 }
 
 

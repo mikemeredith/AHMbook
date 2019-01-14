@@ -37,7 +37,6 @@ The functions are listed by chapter below.
 
 \section{Chapter 7}{
   \describe{
-  \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout book (Sections 7.5.4, 7.9.3)}
   \item{\code{\link{instRemPiFun}}, \code{\link{crPiFun}}, \code{\link{crPiFun.Mb}}, \code{\link{MhPiFun}}}{ Define the relationship between the multinomial cell probabilities and the underlying detection probability parameters (i.e., a pi function) in various designs (7.8)}
   } }
 
@@ -105,6 +104,7 @@ The functions are listed by chapter below.
 \section{DATA SETS}{
   \describe{
   \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999 to 2015 (12.3)}
+  \item{\code{\link{cswa}}}{ Chestnut-sided warbler data for point counts and spot-mapping from White Mountain National Forest (13.4.3)}
   \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (15...)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
@@ -128,6 +128,7 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{zinit}}}{ Starting values for fitting survival models (introduced in chapter 15).}
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
+  \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout book (Sections 7.5.4, 7.9.3, 13.3.3)}
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }

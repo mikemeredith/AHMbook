@@ -7,6 +7,12 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9021 (2019-01-14)
+
+  * Added cswa (Chestnut-sided Warbler) data set.
+
+  * Improved 'fitstats' to cope with NAs in the data.
+
 CHANGES in 0.1.4.9020 (2019-01-13)
 
   * Added greenWoodpecker data set.
