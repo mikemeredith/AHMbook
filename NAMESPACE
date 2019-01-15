@@ -54,6 +54,9 @@ export("simComm")
 # Chapter 12
 export("simNpC", "simPH", "simPOP", "graphSSM")
 
+# Chapter 13
+export("simDM0", "simDM")
+
 # Chapter 14
 export("simCJS", "ch2marray")
 

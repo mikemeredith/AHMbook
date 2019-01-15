@@ -6,7 +6,7 @@
 Data for Eagle Owls in Switzerland
 }
 \description{
-Data stem from more or less opportunistic surveys of a total of 283 territories of the Eagle Owl (\emph{Bubo bubo}), the largest owl in the world, between 2001 and 2016 (12 years). Sites are all over Switzerland and the complete list of sites where a territorial Eagle Owl was ever detected during this period.
+Data stem from more or less opportunistic surveys of a total of 274 territories of the Eagle Owl (\emph{Bubo bubo}), the largest owl in the world, between 2007 and 2016 (10 years). Sites are all over Switzerland and the complete list of sites where a territorial Eagle Owl was ever detected during this period. For site/year combinations with more than 20 observations, 20 were randomly selected for inclusion.
 }
 
 \usage{data("SwissEagleOwls")}

@@ -79,6 +79,12 @@ The functions are listed by chapter below.
   \item{\code{\link{graphSSM}}}{ Plot state-space model parameters (12.6)}
   } }
 
+\section{Chapter 13}{
+  \describe{
+  \item{\code{\link{simDM0}}}{ Simulate data Dail-Madsen model, no covariates (13.5.1)}
+  \item{\code{\link{simDM}}}{  Simulate data Dail-Madsen model, with covariates (13.5.5)}
+  } }
+
 \section{Chapter 14}{
   \describe{
   \item{\code{\link{simCJS}}}{ Simulate data for CJS survival models (14.2.2)}
