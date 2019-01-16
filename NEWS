@@ -7,6 +7,16 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9023 (2019-01-16)
+
+  * Corrected NAs in cswa data set.
+
+CHANGES in 0.1.4.9022 (2019-01-15)
+
+  * Added 'simDM0' and 'simDM' functions.
+
+  * Modified SwissEagleOwls data set.
+
 CHANGES in 0.1.4.9021 (2019-01-14)
 
   * Added cswa (Chestnut-sided Warbler) data set.

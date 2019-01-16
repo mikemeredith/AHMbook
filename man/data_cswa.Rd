@@ -6,7 +6,7 @@
 Point count data for Chestnut-sided Warbler
 }
 \description{
-Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National Forest were surveyed using point counts and spot-mapping during June and July 2004. Counts are for birds detected by song at each point. Two of the larger openings had more than one point, giving 43 points in all. Surveys lasted 10 mins and were divided into intervals of (0–2], (2–5], and (5–10] min. Each point was surveyed 3 times. The spot-mapping data come from intensive surveys of each patch recording individual sightings and nest locations, and using counter-singing to separate adjacent territories.
+Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National Forest were surveyed using point counts and spot-mapping during June and July 2004. Counts are for birds detected by song at each point. Two of the larger openings had more than one point, giving 43 points in all. Surveys lasted 10 mins and were divided into intervals of (0–2], (2–5], and (5–10] min. Each point was surveyed 3 times, except for one point surveyed twice. The spot-mapping data come from intensive surveys of each patch recording individual sightings and nest locations, and using counter-singing to separate adjacent territories.
 }
 
 \usage{data("cswa")}
@@ -15,16 +15,16 @@ Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National
 \code{cwsa} is a list with 3 components:
 
 \describe{
-  \item{\bold{counts }}{a points x intervals x occasions array of counts.}
+  \item{\bold{counts }}{a points x intervals x occasions array of counts; NAs correspond to the missing survey.}
 }
 
 \describe{
   \item{\bold{covs }}{a data frame with rows for 43 points and the following columns:
     \enumerate{
-      \item time1 : time of ??start?? of first survey, hr.
+      \item time1 : time of ??start?? of first survey, hr; NA for the missing survey.
       \item time2 : same for second survey.
-      \item time3 : same for second survey.
-      \item date1 : date of first survey, 1 = ??1899-12-31??.
+      \item time3 : same for third survey.
+      \item date1 : date of first survey, 1 = ??1899-12-31??; NA for the missing survey.
       \item date2 : date of second survey.
       \item date3 : date of third survey.
       \item obs1 : observer ID for first survey.
@@ -58,6 +58,12 @@ Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 13.
 \examples{
 data(cswa)
 str(cswa)
+
+# Replace the NAs in the covariates with the mean from other surveys:
+covs <- cswa$covs
+covs$time1[is.na(covs$time1)] <- mean(covs$time1, na.rm=TRUE)
+covs$date1[is.na(covs$date1)] <- mean(covs$date1, na.rm=TRUE)
+# Now use covs instead of cswa$covs
 
 }
 \keyword{datasets}
