@@ -278,6 +278,10 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     lines(year, apply(z, 2, mean), type = "l", col = 2, lwd = 2, lty = 1)
     lines(year, psi.app, type = "l", col = 1, lwd = 2, lty=2)
     lines(year, avg.p , type = "l", col = 2, lwd = 2, lty = 3)
+    if(!is.na(year.of.impact)) {
+      abline(v=year.of.impact+0.5, col='grey', lwd=2)
+      text(year.of.impact+0.5, 0, "impact", adj=c(0.5, 0.5))#pos=1, offset=0)
+    }
     legend('top', legend = c('True psi', 'Observed psi', 'Detection'),
       col = c(2,1,2), lty = c(1,2,3), lwd = 2,
       inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
@@ -296,6 +300,10 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     lines(1:(nyear-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
     lines(1:(nyear-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
     lines(1:nyear, avg.p, type = "o", pch=16, col = 2, lwd = 2)
+    if(!is.na(year.of.impact)) {
+      abline(v=year.of.impact-0.5, col='grey', lwd=2)
+      text(year.of.impact-0.5, 0, "impact", pos=1, offset=0)
+    }
     legend('top', c("phi", "gamma", "p"),
       lty=c(3,2,1), lwd=2, col=c(4,1,2),
       inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
@@ -314,6 +322,10 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     text(mid, n.occ.ever.obs, "Observed ever", pos=1, xpd=TRUE)
     points(1:nyear, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
     points(1:nyear, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
+    if(!is.na(year.of.impact)) {
+      abline(v=year.of.impact+0.5, col='grey', lwd=2)
+      text(year.of.impact+0.5, 0, "impact", pos=1, offset=0)
+    }
     legend('topright', legend = c('True annual', 'Obs. annual'),
       col = c(2,1), pch = c(16, 16), lty = c(1,1), pt.cex=1.5,
       lwd = 3, bty = 'n')
