@@ -15,7 +15,7 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 \code{SwissEagleOwls} is a list with 2 elements:
 
 \describe{
-  \item{\bold{obs }}{a data frame with a row for each of the 7376 observations and the following columns:
+  \item{\bold{obs }}{a data frame with a row for each of the 5974 observations and the following columns:
 
     \enumerate{
       \item site_name : a numeric site ID.
@@ -24,12 +24,12 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
       \item y : the observed state: 0 = species not detected; 1 = detection of a single bird; 2 = detection of a pair without evidence of breeding; 3 = detection of a pair with evidence of breeding.
     }}}
 \describe{
-  \item{\bold{sites }}{a data frame with rows for 283 1x1km quadrats containing the sites, and the following columns:
+  \item{\bold{sites }}{a data frame with rows for 274 1x1km quadrats containing the sites, and the following columns:
 
     \enumerate{
       \item site_name : the numeric site ID, corresponding to site_name in the obs data frame.
-      \item x : the x coordinate of the centre of the quadrat in an undisclosed projection (to protect the locations of this sensitive and endangered species).
-      \item y : the y coordinate of the quadrat.
+      \item coordx : the x coordinate of the centre of the quadrat in an undisclosed projection (to protect the locations of this sensitive and endangered species).
+      \item coordy : the y coordinate of the quadrat.
       \item region : codes for six regions of Switzerland.
       \item elev : the elevation of the centre of the quadrat, m.
       \item forest : proportion of the quadrat covered by forest.
