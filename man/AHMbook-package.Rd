@@ -113,6 +113,7 @@ The functions are listed by chapter below.
   \item{\code{\link{cswa}}}{ Chestnut-sided warbler data for point counts and spot-mapping from White Mountain National Forest (13.4.3)}
   \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (15...)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
+  \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (13.9.2).}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
   \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (chapter 15)}
   \item{\code{\link{greenWoodpecker}}}{ Count data for green woodpeckers in Switzerland (13.2)}
