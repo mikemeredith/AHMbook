@@ -10,24 +10,6 @@
 # base::stopifnot() is better, but error messages are still abstruse, eg,
 #  "p >= 0 & p <= 1 is not TRUE".
 
-stopifPernickerty <- function() {
-  if(FALSE) .notPernickerty <- NULL
-  if(interactive()) {
-    if(!exists(".notPernickerty", where=1) ||
-                  class(.notPernickerty) != "Date" ||
-                  .notPernickerty < Sys.Date()) {
-      tst <- utils::askYesNo("Are you pernickerty?")
-      if(is.na(tst)) {
-        stop("Simulation terminated by user.", call.=FALSE)
-      } else if(tst) {
-        stop("This function is not suitable for pernickerty people.", call.=FALSE)
-      } else {
-        assign(".notPernickerty", Sys.Date(), envir = .GlobalEnv)
-      }
-    }
-  }
-}
-
 stopifnotNumeric <- function(arg, allowNA=FALSE) {
   name <- deparse(substitute(arg))
   if(allowNA && all(is.na(arg))) {

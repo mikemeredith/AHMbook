@@ -85,7 +85,6 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   #      year.of.impact must not be equal to the first or the last year
 
   # Checks and fixes for input data -----------------------------
-  stopifPernickerty()
   nsite <- round(nsite[1])
   nyear <- round(nyear[1])
   nsurvey <- round(nsurvey[1])
