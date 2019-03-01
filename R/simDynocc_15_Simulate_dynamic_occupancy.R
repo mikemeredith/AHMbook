@@ -1,16 +1,16 @@
 # AHM2 chapter 15
 
-# Revised 4 Dec 2018
+# Revised 4 Dec 2018, 1 March 2019
 
 # ------------------ Start function definition ---------------------
 simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
-  mean.psi1 = 0.4, beta.Xpsi1 = 0,
-  range.phi = c(0.5, 1), impact.phi = 0, beta.Xphi = 0,
-  range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
-  range.p = c(0.1, 0.9), beta.Xp = 0,
-  range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
-  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
-  trend.sd.site.survey = c(0, 0), show.plot = TRUE) {
+    mean.psi1 = 0.4, beta.Xpsi1 = 0, 
+    range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0, 
+    range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0, 
+    sd.lphi.lgamma.site = 0, 
+    range.p = c(0.1, 0.9), beta.Xp = 0,
+    range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0), trend.sd.site = c(0, 0),
+    trend.sd.survey = c(0, 0), trend.sd.site.survey = c(0, 0), show.plot = TRUE) {
   #
   # Written by Marc Kery, 4 Dec 2014 - 4 December 2018
   #
@@ -138,6 +138,10 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   psi[,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1)
   mean.phi <- runif(n = nyear-1, min = min(range.phi), max = max(range.phi))
   mean.gamma <- runif(n = nyear-1, min = min(range.gamma), max = max(range.gamma))
+  # new 2019-03-01: heterogeneity in phi and gamma across sites
+  eps.lphi.site <- rnorm(n = nsite, mean = 0, sd = sd.lphi.site)
+  eps.lgamma.site <- rnorm(n = nsite, mean = 0, sd = sd.lgamma.site)
+  eps.lphi.lgamma.site <- rnorm(n = nsite, mean = 0, sd = sd.lphi.lgamma.site)
 
   # BACI effect on phi and gamma: negative effect on persistence/colonisation
   BACI.effect.phi <- (mean.phi * (impact.phi/100) * impact)
@@ -147,9 +151,9 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # Assemble effects of year, impact and covariates on phi and gamma
   for(t in 1:(nyear-1)){
     phi[,t] <- plogis(qlogis(mean.phi[t] - BACI.effect.phi[t]) +
-      beta.Xphi * Xphi[,t])
+      eps.lphi.site + eps.lphi.lgamma.site + beta.Xphi * Xphi[,t])
     gamma[,t] <- plogis(qlogis(mean.gamma[t] - BACI.effect.gamma[t]) +
-      beta.Xgamma * Xgamma[,t])
+      eps.lgamma.site + eps.lphi.lgamma.site + beta.Xgamma * Xgamma[,t])
   }
 
   # (b) Observation process parameters
@@ -332,6 +336,11 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
 
   # Return data
   return(list(nsite=nsite, nyear=nyear, nsurvey=nsurvey,year.of.impact = year.of.impact, impact = impact, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
-  range.phi=range.phi, impact.phi = impact.phi, beta.Xphi=beta.Xphi, BACI.effect.phi = BACI.effect.phi, range.gamma=range.gamma, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, BACI.effect.gamma = BACI.effect.gamma, range.p=range.p, beta.Xp=beta.Xp, trend.sd.site=trend.sd.site, trend.sd.survey=trend.sd.survey, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, beta1 = beta1, beta2 = beta2, p.occasion = p.occasion,sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, avg.phi=avg.phi, avg.gamma=avg.gamma, avg.p=avg.p, psi=psi, mean.psi=mean.psi, n.occ = n.occ, n.occ.ever = n.occ.ever, n.occ.obs = n.occ.obs, n.occ.ever.obs = n.occ.ever.obs,
-  psi.fs = psi.fs, psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, eps1 = eps1, eps2 = eps2, eps3 = eps3))
+  range.phi=range.phi,
+  sd.lphi.site = sd.lphi.site, impact.phi = impact.phi, beta.Xphi=beta.Xphi, BACI.effect.phi = BACI.effect.phi,
+  range.gamma=range.gamma, sd.lgamma.site = sd.lgamma.site, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, sd.lphi.lgamma.site = sd.lphi.lgamma.site,
+  BACI.effect.gamma = BACI.effect.gamma, range.p=range.p, beta.Xp=beta.Xp, trend.sd.site=trend.sd.site, trend.sd.survey=trend.sd.survey, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, beta1 = beta1, beta2 = beta2, p.occasion = p.occasion,sd.site=sd.site, sd.survey=sd.survey, mean.phi=mean.phi, mean.gamma=mean.gamma, mean.p=mean.p, avg.phi=avg.phi, avg.gamma=avg.gamma, avg.p=avg.p, psi=psi, mean.psi=mean.psi, n.occ = n.occ, n.occ.ever = n.occ.ever, n.occ.obs = n.occ.obs, n.occ.ever.obs = n.occ.ever.obs,
+  psi.fs = psi.fs, psi.app=psi.app, z=z, phi=phi, gamma=gamma, p=p, y = y, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp,
+  eps.lphi.site = eps.lphi.site, eps.lgamma.site = eps.lgamma.site, eps.lphi.lgamma.site = eps.lphi.lgamma.site,
+  eps1 = eps1, eps2 = eps2, eps3 = eps3))
 } # ------------------ End function definition ---------------------

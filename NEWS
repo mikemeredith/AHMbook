@@ -7,9 +7,13 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.90287 (2019-03-01)
+
+  * Additional arguments to 'smDynocc'.
+
 CHANGES in 0.1.4.9027 (2019-02-05)
 
-  * Pernickerty test removed from simDynocc (sadly!)
+  * Pernickerty test removed from 'simDynocc' (sadly!)
 
 CHANGES in 0.1.4.9026 (2019-01-23)
 

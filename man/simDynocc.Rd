@@ -7,9 +7,11 @@ Simulate data under a non-spatial dynamic occupancy model
 \description{
 Function to simulate detection/nondetection data under a general dynamic site-occupancy model, including:
 
-* annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
+* Annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
 
-* one covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p. Covariates are generated internally from uniform(-2, 2) distributions.
+* One covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p. Covariates are generated internally from uniform(-2, 2) distributions.
+
+* Additional heterogeneity among sites in persistence and colonization or both.
 
 * Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
@@ -21,8 +23,9 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 \usage{
 simDynocc(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   mean.psi1 = 0.4, beta.Xpsi1 = 0,
-  range.phi = c(0.5, 1), impact.phi = 0, beta.Xphi = 0,
-  range.gamma = c(0, 0.5), impact.gamma = 0, beta.Xgamma = 0,
+  range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0,
+  range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0,
+  sd.lphi.lgamma.site = 0, 
   range.p = c(0.1, 0.9), beta.Xp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
   trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
@@ -50,6 +53,9 @@ coefficient of environmental covariate in probability of initial occupancy.
   \item{range.phi}{
 bounds of uniform distribution from which annual probability of persistence is randomly drawn.
 }
+  \item{sd.lphi.site}{  % new 2019-03-01
+SD of random site effect on persistence on the logit scale drawn from a normal distribution with mean zero.
+}
   \item{impact.phi}{
 negative effect in percent on annual phi (e.g., impact.phi = 20 means a 20\% reduction in phi); ignored if \code{year.of.impact = NA}.
 }
@@ -59,11 +65,17 @@ coefficients of environmental covariate in probability of persistence.
   \item{range.gamma}{
 bounds of uniform distribution from which annual probability of colonisation is randomly drawn.
 }
+  \item{sd.lgamma.site}{  % new 2019-03-01
+SD of random site effect on colonization on the logit scale drawn from a normal distribution with mean zero.
+}
   \item{impact.gamma}{
 negative effect in percent on annual gamma (e.g., impact.gamma = 20 means a 20\% reduction in gamma); ignored if \code{year.of.impact = NA}.
 }
   \item{beta.Xgamma}{
 coefficient of environmental covariate in probability of colonization.
+}
+  \item{sd.lphi.lgamma.site}{  % new 2019-03-01
+SD of random site effect on persistence AND colonization on the logit scale drawn from a normal distribution with mean zero.
 }
   \item{range.p}{
 bounds of uniform distribution from which annual probability of detection is randomly drawn.
@@ -115,20 +127,22 @@ A list with the values of the arguments input and the following additional eleme
   \item{Xphi }{covariate affecting persistence, a nsite x nyear matrix}
   \item{Xgamma }{covariate affecting colonisation, a nsite x nyear matrix}
   \item{Xp }{covariate affecting probability of detection, a nsite x nsurvey x nyear array}
-  \item{eps1 }{site random effects, a vector of length nsite}
-  \item{eps2 }{the survey random effects, a vector of length nsurvey}
-  \item{eps3 }{the site/survey/year random effects, a nsite x nsurvey x nyear array}
+  \item{eps.lphi.site }{site random effects on persistence, a vector of length nsite}
+  \item{eps.lgamma.site }{site random effects on colonization, a vector of length nsite}
+  \item{eps.lphi.lgamma.site }{site random effects on persistence and colonization, a vector of length nsite}
+  \item{eps1 }{site random effects on detection, a vector of length nsite}
+  \item{eps2 }{the survey random effects on detection, a vector of length nsurvey}
+  \item{eps3 }{the site/survey/year random effects on detection, a nsite x nsurvey x nyear array}
 }
 \references{
 Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Chapter 15
 
 }
 \author{
-Marc Kéry, 4 Dec 2014, modified 4 Dec 2018
+Marc Kéry, 4 Dec 2014, modified 4 Dec 2018 and 1 March 2019
 }
 
 \examples{
-\donttest{
 # Generate data with the default arguments and look at the structure:
 
 tmp <- simDynocc()
@@ -173,5 +187,5 @@ str(data <- simDynocc(nsite = 250, nsurvey = 3, nyear = 20, year.of.impact = 10,
 
 # And data where there is no detection error (i.e., with p = 1):
 str( data <- simDynocc(range.p = c(1, 1)) )
-}
+
 }
