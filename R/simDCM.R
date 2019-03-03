@@ -1,7 +1,7 @@
 
 # 16.2 A general function to simulate data under the DCM model
 
-simDCM <- function(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
+simDCM <- function(nspec = 50, nsites = 100, nsurveys = 3, nyears = 10,
   mean.psi1 = 0.4, sig.lpsi1 = 1, mu.beta.lpsi1 = 0, sig.beta.lpsi1 = 0,
   range.mean.phi = c(0.8, 0.8), sig.lphi = 1,
   mu.beta.lphi = 0, sig.beta.lphi = 0,
@@ -44,9 +44,9 @@ simDCM <- function(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
 # -------------------
 # *** Sample size arguments ***
 # nspec - Number of species (typically called N in AHM book)
-# nsite - Number of sites (M)
-# nsurvey - Number of replicate surveys within a year (= season) (J)
-# nyear - Number of years (or 'seasons') (T)
+# nsites - Number of sites (M)
+# nsurveys - Number of replicate surveys within a year (= season) (J)
+# nyears - Number of years (or 'seasons') (T)
 #
 # *** Arguments for mean parameters for the intercepts ***
 # mean.psi1 - average occupancy probability in first year
@@ -102,9 +102,9 @@ simDCM <- function(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
 
   # Checks and fixes for input data -----------------------------
   nspec <- round(nspec[1])
-  nsite <- round(nsite[1])
-  nsurvey <- round(nsurvey[1])
-  nyear <- round(nyear[1])
+  nsites <- round(nsites[1])
+  nsurveys <- round(nsurveys[1])
+  nyears <- round(nyears[1])
   stopifnotProbability(mean.psi1)
   stopifNegative(sig.lpsi1, allowZero=TRUE)
   # mu.beta.lpsi1
@@ -117,28 +117,28 @@ simDCM <- function(nspec = 50, nsite = 100, nsurvey = 3, nyear = 10,
 
 # Set up arrays needed
 spec <- 1:nspec                           # Species
-site <- 1:nsite                           # Sites
-year <- 1:nyear                           # Years
-# visit <- 1:nsurvey                           # Visit
-# month <- 1:nsurvey                           # Months (= surveys)
-survey <- 1:nsurvey                           # Months (= surveys)
-psi <- muZ <- z <- array(dim = c(nsite, nyear, nspec), dimnames =
+site <- 1:nsites                           # Sites
+year <- 1:nyears                           # Years
+# visit <- 1:nsurveys                           # Visit
+# month <- 1:nsurveys                           # Months (= surveys)
+survey <- 1:nsurveys                           # Months (= surveys)
+psi <- muZ <- z <- array(dim = c(nsites, nyears, nspec), dimnames =
    list(paste('Site', site, sep = ''), paste('Year', year, sep = ''),
    paste('Spec', spec, sep = ''))) # Occupancy, occurrence
-phi <- gamma <- array(NA, dim = c(nsite, (nyear-1), nspec), dimnames =
-   list(paste('Site', site, sep = ''), paste('Year', year[-nyear], sep = ''),
+phi <- gamma <- array(NA, dim = c(nsites, (nyears-1), nspec), dimnames =
+   list(paste('Site', site, sep = ''), paste('Year', year[-nyears], sep = ''),
    paste('Spec', spec, sep = ''))) # Survival, colonisation
-y <- p <- array(NA, dim = c(nsite, nsurvey, nyear, nspec), dimnames =
+y <- p <- array(NA, dim = c(nsites, nsurveys, nyears, nspec), dimnames =
    list(paste('Site', site, sep = ''), paste('Survey', survey, sep = ''),
     paste('Year', year, sep = ''), paste('Spec', spec, sep = '')))# Det. hist and p
 
 # Create covariates (same for all species)
-Xpsi1 <- matrix(runif(nsite, -2, 2), ncol = 1, dimnames = list(paste('Site',site,sep=''), NULL))  # Site covariate for psi1
-Xphi <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear), dimnames =
+Xpsi1 <- matrix(runif(nsites, -2, 2), ncol = 1, dimnames = list(paste('Site',site,sep=''), NULL))  # Site covariate for psi1
+Xphi <- array(runif(nsites*nyears, -2, 2), dim = c(nsites,nyears), dimnames =
  list(paste('Site',site,sep=''), paste('Year',year,sep =''))) # Yearly-site cov
-Xgamma <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear), dimnames =
+Xgamma <- array(runif(nsites*nyears, -2, 2), dim = c(nsites,nyears), dimnames =
  list(paste('Site',site,sep=''), paste('Year',year,sep =''))) # Yearly-site cov
-Xp <- array(runif(nsite*nsurvey*nyear,-2,2),dim=c(nsite,nsurvey,nyear), dimnames =
+Xp <- array(runif(nsites*nsurveys*nyears,-2,2),dim=c(nsites,nsurveys,nyears), dimnames =
    list(paste('Site', site, sep = ''), paste('Survey', survey, sep = ''),
     paste('Year', year, sep = '')))  # Observation cov.
 
@@ -152,53 +152,53 @@ for(s in 1:nspec){
   psi[,1,s] <- plogis(beta0.lpsi[s] + beta1.lpsi[s] * Xpsi1)    # psi1
 }
 # persistence and colonization for all species
-beta0.lphi <- beta0.lgamma <- array(dim = c(nspec, nyear-1))
-mean.phi <- runif(n = nyear-1, min = min(range.mean.phi), max = max(range.mean.phi))
-mean.gamma <- runif(n = nyear-1, min = min(range.mean.gamma), max = max(range.mean.gamma))
+beta0.lphi <- beta0.lgamma <- array(dim = c(nspec, nyears-1))
+mean.phi <- runif(n = nyears-1, min = min(range.mean.phi), max = max(range.mean.phi))
+mean.gamma <- runif(n = nyears-1, min = min(range.mean.gamma), max = max(range.mean.gamma))
 mu.lphi <- ifelse(mean.phi == '1', 500, qlogis(mean.phi))
 mu.lgamma <- ifelse(mean.gamma == '1', 500, qlogis(mean.gamma))
 eps.lphi <- rnorm(nspec, 0, sig.lphi) # species effect in logit(phi) intercept
 eps.lgamma <- rnorm(nspec, 0, sig.lgamma) # spec effect in logit(gam) intercept
-for(t in 1:(nyear-1)){
+for(t in 1:(nyears-1)){
   beta0.lphi[,t] <- mu.lphi[t] + eps.lphi       # logit(phi) intercept
   beta0.lgamma[,t] <- mu.lgamma[t] + eps.lgamma # logit(gamma) intercept
 }
 beta1.lphi <- rnorm(nspec, mu.beta.lphi, sig.beta.lphi) # slope of logit(phi) on Xphi
 beta1.lgamma <- rnorm(nspec, mu.beta.lgamma, sig.beta.lgamma) # slope of logit(gamma) on Xphi
 for(s in 1:nspec){
-  for(t in 1:(nyear-1)){
+  for(t in 1:(nyears-1)){
     phi[,t, s] <- plogis(beta0.lphi[s, t] + beta1.lphi[s] * Xphi[,t])
     gamma[,t,s] <- plogis(beta0.lgamma[s, t] + beta1.lgamma[s] * Xgamma[,t])
   }
 }
 
 # (b) Observation process parameters
-beta0.lp <- array(dim = c(nspec, nyear))
-mean.p <- runif(n = nyear, min = min(range.mean.p), max = max(range.mean.p))
+beta0.lp <- array(dim = c(nspec, nyears))
+mean.p <- runif(n = nyears, min = min(range.mean.p), max = max(range.mean.p))
 mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
 eps.lp <- rnorm(nspec, 0, sig.lp) # species effect in logit(p) intercept
-for(t in 1:nyear){
+for(t in 1:nyears){
   beta0.lp[,t] <- mu.lp[t] + eps.lp       # logit(p) intercept
 }
 beta1.lp <- rnorm(nspec, mu.beta.lp, sig.beta.lp) # slope of logit(p) on Xp
-beta1 <- runif(n = nyear, min = min(range.beta1.survey), max = max(range.beta1.survey))
-beta2 <- runif(n = nyear, min = min(range.beta2.survey), max = max(range.beta2.survey))
-sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyear)
-sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyear)
+beta1 <- runif(n = nyears, min = min(range.beta1.survey), max = max(range.beta1.survey))
+beta2 <- runif(n = nyears, min = min(range.beta2.survey), max = max(range.beta2.survey))
+sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyears)
+sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyears)
 
 # Create site and survey random effects
-for(i in 1:nsite){
-  for(t in 1:nyear){
-    eps1 <- rnorm(n = nsite, mean = 0, sd = sd.site[t])  # Site random eff.
-    eps2 <- rnorm(n = nsurvey, mean = 0, sd = sd.survey[t]) # Survey random eff.
+for(i in 1:nsites){
+  for(t in 1:nyears){
+    eps1 <- rnorm(n = nsites, mean = 0, sd = sd.site[t])  # Site random eff.
+    eps2 <- rnorm(n = nsurveys, mean = 0, sd = sd.survey[t]) # Survey random eff.
   }
 }
 for(s in 1:nspec){
-  for(t in 1:nyear){   # Years
-    for(j in 1:nsurvey){ # Occasions interpreted as surveys
+  for(t in 1:nyears){   # Years
+    for(j in 1:nsurveys){ # Occasions interpreted as surveys
       p[,j,t,s] <- plogis(beta0.lp[s, t] + beta1.lp[s] * Xp[,j,t] +
-      eps1 + eps2[j] + beta1[t] * (j - (nsurvey/2)) +
-      beta2[t] * (j - (nsurvey/2))^2)
+      eps1 + eps2[j] + beta1[t] * (j - (nsurveys/2)) +
+      beta2[t] * (j - (nsurveys/2))^2)
     }
   }
 }
@@ -206,29 +206,29 @@ for(s in 1:nspec){
 # (2) Simulate the true system dynamics (state process)
 # First year
 for(s in 1:nspec){
-  z[,1, s] <- rbinom(nsite, 1, psi[,1,s])   # Initial occurrence state
+  z[,1, s] <- rbinom(nsites, 1, psi[,1,s])   # Initial occurrence state
 }
 
 for(s in 1:nspec){                    # Loop over species
-  for(t in 2:nyear){                # Loop over years
+  for(t in 2:nyears){                # Loop over years
     muZ[,t,s] <- z[,t-1,s] * phi[,t-1,s] + (1-z[,t-1,s]) * gamma[,t-1,s]
-    z[,t,s] <- rbinom(nsite, 1, muZ[,t,s])
+    z[,t,s] <- rbinom(nsites, 1, muZ[,t,s])
   }
 }
 
 # (3) Simulate observation process to get the observed data
 for(s in 1:nspec){                    # Loop over species
-  for(t in 1:nyear){                # Loop over years
-    for(j in 1:nsurvey){               # Loop over replicates
+  for(t in 1:nyears){                # Loop over years
+    for(j in 1:nsurveys){               # Loop over replicates
       prob <- z[,t,s] * p[,j,t,s] # zero out p for unoccupied sites
-      y[,j,t,s] <- rbinom(nsite, 1, prob)
+      y[,j,t,s] <- rbinom(nsites, 1, prob)
     }
   }
 }
 
 # (4) Compute annual population occupancy
 for(s in 1:nspec){                    # Loop over species
-  for (t in 2:nyear){
+  for (t in 2:nyears){
     psi[,t,s] <- psi[,t-1,s] * phi[,t-1,s] + (1-psi[,t-1,s]) * gamma[,t-1,s]
   }
 }
@@ -243,26 +243,26 @@ psi.obs <- apply(z.obs, 2:3, mean)      # Observed occupancy (finite sample)
 
 # Total number of species that occur in the sampled sites
 tmp1 <- apply(z, 2:3, max)              # True presence per year and species
-nyear.pres <- apply(tmp1, 2, sum)       # Number of years when species present
-nspec.pres <- sum(nyear.pres > 0)       # Number of species ever present
+nyears.pres <- apply(tmp1, 2, sum)       # Number of years when species present
+nspec.pres <- sum(nyears.pres > 0)       # Number of species ever present
 
 # Total number of species that were detected anywhere in the sampled sites
 tmp2 <- apply(z.obs, 2:3, max)          # Observed presence per year and species
-nyear.det <- apply(tmp2, 2, sum)        # Number of years when species detected
-nspec.det <- sum(nyear.det > 0)         # Number of species ever detected
+nyears.det <- apply(tmp2, 2, sum)        # Number of years when species detected
+nspec.det <- sum(nyears.det > 0)         # Number of species ever detected
 
 
 # Print out number of occurring and detected species
 cat(paste("\n *** Number of species ever occurring:", nspec.pres,
 "\n *** Number of species ever detected:", nspec.det,
-"\n *** Avg. number of years of occurrence:", round(mean(nyear.pres), 3),
-"\n *** Avg. number of years with detection:", round(mean(nyear.det), 3), "\n\n"))
+"\n *** Avg. number of years of occurrence:", round(mean(nyears.pres), 3),
+"\n *** Avg. number of years with detection:", round(mean(nyears.det), 3), "\n\n"))
 
 # Compute the average survey product of availability and detection
 # (ignoring the other terms in the model for detection)
-p.survey <- array(NA, dim = c(nsurvey, nyear))
-for(t in 1:nyear){   # Years
-  p.survey[,t] <- plogis(mean(beta0.lp[, t]) + beta1[t] * (survey - (nsurvey/2)) + beta2[t] * (survey - (nsurvey/2))^2)
+p.survey <- array(NA, dim = c(nsurveys, nyears))
+for(t in 1:nyears){   # Years
+  p.survey[,t] <- plogis(mean(beta0.lp[, t]) + beta1[t] * (survey - (nsurveys/2)) + beta2[t] * (survey - (nsurveys/2))^2)
 }
 
 # (5) Plots of stuff
@@ -279,10 +279,10 @@ if(show.plot){
     gamma.pred[,s] <- plogis(mean(beta0.lgamma[s,]) + beta1.lgamma[s] * pred.cov)
     p.pred[,s] <- plogis(mean(beta0.lp[s,]) + beta1.lp[s] * pred.cov)
   }
-  matplot(pred.cov, psi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Initial occupancy prob.', las = 1, frame = FALSE)
-  matplot(pred.cov, phi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Persistence (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Persistence prob.', las = 1, frame = FALSE)
-  matplot(pred.cov, gamma.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Colonization (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Colonization prob.', las = 1, frame = FALSE)
-  matplot(pred.cov, p.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Detection (averaged over years,\n', nspec, ' species, ', nsite, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Detection prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, psi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Occupancy (', nspec, ' species, ', nsites, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Initial occupancy prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, phi.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Persistence (averaged over years,\n', nspec, ' species, ', nsites, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Persistence prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, gamma.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Colonization (averaged over years,\n', nspec, ' species, ', nsites, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Colonization prob.', las = 1, frame = FALSE)
+  matplot(pred.cov, p.pred, type = 'l', lty = 1, ylim = c(0,1), lwd = 2, main = paste('Detection (averaged over years,\n', nspec, ' species, ', nsites, ' sites)', sep = ''), xlab = 'Covariate', ylab = 'Detection prob.', las = 1, frame = FALSE)
 
   # Plot the average surveyal product of availability and detection
   # (ignoring the other terms in the model for detection)
@@ -301,11 +301,11 @@ if(show.plot){
   hist(mean.psi, col = 'grey', breaks = 50, xlim = c(0,1), main = 'Mean occupancy probability psi1\n (all species and years)')
 
   # Plot realised and apparent proportion of occupied sites
-  matplot(year, mean.psi, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('True occupancy (', nspec, ' species, ', nsite, ' sites)', sep = '') )
-  matplot(year, psi.obs, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyear+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('Observed occupancy (', nspec, ' species, ', nsite, ' sites)', sep = ''))
+  matplot(year, mean.psi, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyears+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('True occupancy (', nspec, ' species, ', nsites, ' sites)', sep = '') )
+  matplot(year, psi.obs, type = "l", lty = 1, xlab = "Year", ylab = "Occupancy prob.", xlim = c(0,nyears+1), ylim = c(0,1), lwd = 2, frame.plot = FALSE, las = 1, main = paste('Observed occupancy (', nspec, ' species, ', nsites, ' sites)', sep = ''))
 }
 
 # Return data
-return(list(nspec = nspec, nsite = nsite, nsurvey = nsurvey, nyear = nyear, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, trend.sd.site = trend.sd.site, trend.sd.survey = trend.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyear.pres = nyear.pres, nspec.pres = nspec.pres, nyear.det = nyear.det, nspec.det = nspec.det, z = z, p = p, y = y))
+return(list(nspec = nspec, nsites = nsites, nsurveys = nsurveys, nyears = nyears, mean.psi1 = mean.psi1, sig.lpsi1 = sig.lpsi1, mu.beta.lpsi1 = mu.beta.lpsi1, sig.beta.lpsi1 = sig.beta.lpsi1, range.mean.phi = range.mean.phi, sig.lphi = sig.lphi, mu.beta.lphi = mu.beta.lphi, sig.beta.lphi = sig.beta.lphi, range.mean.gamma = range.mean.gamma, sig.lgamma = sig.lgamma, mu.beta.lgamma = mu.beta.lgamma, sig.beta.lgamma = sig.beta.lgamma, range.mean.p = range.mean.p, sig.lp = sig.lp, mu.beta.lp = mu.beta.lp, sig.beta.lp = sig.beta.lp, range.beta1.survey = range.beta1.survey, range.beta2.survey = range.beta2.survey, trend.sd.site = trend.sd.site, trend.sd.survey = trend.sd.survey, Xpsi1 = Xpsi1, Xphi = Xphi, Xgamma = Xgamma, Xp = Xp, beta0.lpsi = beta0.lpsi, beta1.lpsi = beta1.lpsi, psi = psi, mean.phi = mean.phi, mean.gamma = mean.gamma, eps.lphi = eps.lphi, eps.lgamma = eps.lgamma, beta0.lphi = beta0.lphi, beta0.lgamma = beta0.lgamma, beta1.lphi = beta1.lphi, beta1.lgamma = beta1.lgamma, phi = phi, gamma = gamma, mean.p = mean.p, eps.lp = eps.lp, beta0.lp = beta0.lp, beta1.lp = beta1.lp, beta1 = beta1, beta2 = beta2, sd.site = sd.site, sd.survey = sd.survey, eps1 = eps1, eps2 = eps2, n.occ = n.occ, psi.fs = psi.fs, mean.psi = mean.psi, z.obs = z.obs, n.occ.obs = n.occ.obs, psi.obs = psi.obs, nyears.pres = nyears.pres, nspec.pres = nspec.pres, nyears.det = nyears.det, nspec.det = nspec.det, z = z, p = p, y = y))
 } # ------------------ End function definition ---------------------
 

@@ -3,7 +3,7 @@
 # Revised 4 Dec 2018, 1 March 2019
 
 # ------------------ Start function definition ---------------------
-simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
+simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = NA,
     mean.psi1 = 0.4, beta.Xpsi1 = 0, 
     range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0, 
     range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0, 
@@ -41,9 +41,9 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # Function arguments:
   # -------------------
   # ** Sample size arguments **
-  # nsite:  Number of sites
-  # nyear:  Number of years (or 'seasons')
-  # nsurvey:  Number of replicate surveys (= occasions) within a year
+  # nsites:  Number of sites
+  # nyears:  Number of years (or 'seasons')
+  # nsurveys:  Number of replicate surveys (= occasions) within a year
   #
   # ** Arguments to set intercepts of regressions **
   # mean.psi1 - average occupancy probability in first year
@@ -81,17 +81,17 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # impact.phi: negative effect in percent on annual phi, ignored if no impact;
   #      (e.g., impact.phi = 20 means a 20% reduction in phi)
   # impact.gamma: negative effect in percent on annual gamma, ignored if no impact.
-  # Note that for the BACI design, nyear must be greater than 2 and
+  # Note that for the BACI design, nyears must be greater than 2 and
   #      year.of.impact must not be equal to the first or the last year
 
   # Checks and fixes for input data -----------------------------
-  nsite <- round(nsite[1])
-  nyear <- round(nyear[1])
-  nsurvey <- round(nsurvey[1])
+  nsites <- round(nsites[1])
+  nyears <- round(nyears[1])
+  nsurveys <- round(nsurveys[1])
   year.of.impact <- round(year.of.impact[1])
   if(!is.na(year.of.impact))
-    stopifnotGreaterthan(nyear, 2)
-  stopifnotBetween(year.of.impact, 2, nyear-1, allowNA=TRUE)
+    stopifnotGreaterthan(nyears, 2)
+  stopifnotBetween(year.of.impact, 2, nyears-1, allowNA=TRUE)
   stopifnotProbability(range.phi) # bounds
   stopifnotBetween(impact.phi, 0, 100)
   stopifnotProbability(range.gamma) # bounds
@@ -106,42 +106,42 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   # ----------------------------------------------------------------
 
   # Set up arrays needed
-  site <- 1:nsite                        # Sites
-  year <- 1:nyear                        # Years
-  visit <- 1:nsurvey                     # Surveys (= months, visits, occasions)
-  psi <- muZ <- z <- array(dim = c(nsite, nyear),
+  site <- 1:nsites                        # Sites
+  year <- 1:nyears                        # Years
+  visit <- 1:nsurveys                     # Surveys (= months, visits, occasions)
+  psi <- muZ <- z <- array(dim = c(nsites, nyears),
     dimnames = list(paste('Site', site, sep = ''), paste('Year', year, sep = ''))) # Occupancy, occurrence
-  phi <- gamma <- array(NA, dim = c(nsite, (nyear-1)),
-    dimnames = list(paste('Site', site, sep = ''), paste('Year', year[-nyear], sep = ''))) # Survival, colonisation
-  y <- p <- array(NA, dim = c(nsite, nsurvey, nyear),
+  phi <- gamma <- array(NA, dim = c(nsites, (nyears-1)),
+    dimnames = list(paste('Site', site, sep = ''), paste('Year', year[-nyears], sep = ''))) # Survival, colonisation
+  y <- p <- array(NA, dim = c(nsites, nsurveys, nyears),
     dimnames = list(paste('Site', site, sep = ''), paste('Visit', visit, sep = ''),
       paste('Year', year, sep = '')))# Det. hist and p
 
   # Create covariates
   # Site covariate for psi1
-  Xpsi1 <- runif(nsite, -2, 2)
+  Xpsi1 <- runif(nsites, -2, 2)
 
   # Yearly-site covariates for phi and gamma
-  Xphi <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear))
-  Xgamma <- array(runif(nsite*nyear, -2, 2), dim = c(nsite,nyear))
+  Xphi <- array(runif(nsites*nyears, -2, 2), dim = c(nsites,nyears))
+  Xgamma <- array(runif(nsites*nyears, -2, 2), dim = c(nsites,nyears))
 
   # Observational covariate for p
-  Xp <- array(runif(nsite*nsurvey*nyear,-2,2),dim=c(nsite,nsurvey,nyear))
+  Xp <- array(runif(nsites*nsurveys*nyears,-2,2),dim=c(nsites,nsurveys,nyears))
 
   # Create impact covariate for the BACI effect on phi and gamma
-  impact  <- rep(0, (nyear-1))
+  impact  <- rep(0, (nyears-1))
   if(!is.na(year.of.impact))
-    impact[year.of.impact:(nyear-1)] <- 1
+    impact[year.of.impact:(nyears-1)] <- 1
 
   # (1) Simulate all parameter values
   # (a) State process parameters
   psi[,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1)
-  mean.phi <- runif(n = nyear-1, min = min(range.phi), max = max(range.phi))
-  mean.gamma <- runif(n = nyear-1, min = min(range.gamma), max = max(range.gamma))
+  mean.phi <- runif(n = nyears-1, min = min(range.phi), max = max(range.phi))
+  mean.gamma <- runif(n = nyears-1, min = min(range.gamma), max = max(range.gamma))
   # new 2019-03-01: heterogeneity in phi and gamma across sites
-  eps.lphi.site <- rnorm(n = nsite, mean = 0, sd = sd.lphi.site)
-  eps.lgamma.site <- rnorm(n = nsite, mean = 0, sd = sd.lgamma.site)
-  eps.lphi.lgamma.site <- rnorm(n = nsite, mean = 0, sd = sd.lphi.lgamma.site)
+  eps.lphi.site <- rnorm(n = nsites, mean = 0, sd = sd.lphi.site)
+  eps.lgamma.site <- rnorm(n = nsites, mean = 0, sd = sd.lgamma.site)
+  eps.lphi.lgamma.site <- rnorm(n = nsites, mean = 0, sd = sd.lphi.lgamma.site)
 
   # BACI effect on phi and gamma: negative effect on persistence/colonisation
   BACI.effect.phi <- (mean.phi * (impact.phi/100) * impact)
@@ -149,7 +149,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     # These will be zero if no BACI impact
 
   # Assemble effects of year, impact and covariates on phi and gamma
-  for(t in 1:(nyear-1)){
+  for(t in 1:(nyears-1)){
     phi[,t] <- plogis(qlogis(mean.phi[t] - BACI.effect.phi[t]) +
       eps.lphi.site + eps.lphi.lgamma.site + beta.Xphi * Xphi[,t])
     gamma[,t] <- plogis(qlogis(mean.gamma[t] - BACI.effect.gamma[t]) +
@@ -157,50 +157,50 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   }
 
   # (b) Observation process parameters
-  mean.p <- runif(n = nyear, min = min(range.p), max = max(range.p))
-  beta1 <- runif(n = nyear, min = min(range.beta1.survey), max = max(range.beta1.survey))
-  beta2 <- runif(n = nyear, min = min(range.beta2.survey), max = max(range.beta2.survey))
+  mean.p <- runif(n = nyears, min = min(range.p), max = max(range.p))
+  beta1 <- runif(n = nyears, min = min(range.beta1.survey), max = max(range.beta1.survey))
+  beta2 <- runif(n = nyears, min = min(range.beta2.survey), max = max(range.beta2.survey))
 
   # Next two allow incorporation of trend over time
-  sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyear)
-  sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyear)
+  sd.site <- seq(from = trend.sd.site[1], to = trend.sd.site[2], length.out = nyears)
+  sd.survey <- seq(from = trend.sd.survey[1], to = trend.sd.survey[2], length.out = nyears)
   sd.site.survey <- seq(from = trend.sd.site.survey[1], to = trend.sd.site.survey[2],
-    length.out = nyear)
+    length.out = nyears)
 
   # Define and fill the array of site/survey random effects
-  eps3 <- array(dim = c(nsite, nsurvey, nyear))
-  for(t in 1:nyear){
-    eps3[,,t] <- matrix(rnorm(n = nsite*nsurvey, sd = sd.site.survey[t]), ncol = nsurvey)
+  eps3 <- array(dim = c(nsites, nsurveys, nyears))
+  for(t in 1:nyears){
+    eps3[,,t] <- matrix(rnorm(n = nsites*nsurveys, sd = sd.site.survey[t]), ncol = nsurveys)
   }
 
-  for(i in 1:nsite){     # Sites
-    for(t in 1:nyear){   # Years
-      eps1 <- rnorm(n = nsite, sd = sd.site[t])   # Zero-mean site random eff.
-      eps2 <- rnorm(n = nsurvey, sd = sd.survey[t]) # Zero-mean survey random eff.
+  for(i in 1:nsites){     # Sites
+    for(t in 1:nyears){   # Years
+      eps1 <- rnorm(n = nsites, sd = sd.site[t])   # Zero-mean site random eff.
+      eps2 <- rnorm(n = nsurveys, sd = sd.survey[t]) # Zero-mean survey random eff.
       # ZM site.survey ranef.
-      for(j in 1:nsurvey){ # Months
+      for(j in 1:nsurveys){ # Months
         p[i,j,t] <- plogis(qlogis(mean.p[t]) + beta.Xp*Xp[i,j,t] +
               eps1[i] + eps2[j] + eps3[i,j,t] +
-        beta1[t] * (j - (nsurvey/2)) + beta2[t] * (j - (nsurvey/2))^2)
+        beta1[t] * (j - (nsurveys/2)) + beta2[t] * (j - (nsurveys/2))^2)
       }
     }
   }
 
   # (2) Simulate the true system dynamics (state process)
   # First year
-  z[,1] <- rbinom(nsite, 1, psi[,1])   # Initial occurrence state
-  # Years 2:nyear
-  for(i in 1:nsite){                   # Loop over sites
-    for(t in 2:nyear){                 # Loop over years
+  z[,1] <- rbinom(nsites, 1, psi[,1])   # Initial occurrence state
+  # Years 2:nyears
+  for(i in 1:nsites){                   # Loop over sites
+    for(t in 2:nyears){                 # Loop over years
       muZ[i,t] <- z[i, t-1]*phi[i,t-1] + (1-z[i, t-1])*gamma[i,t-1]
       z[i,t] <- rbinom(1, 1, muZ[i,t])
     }
   }
 
   # (3) Simulate observation process to get the observed data
-  for(i in 1:nsite){                     # Loop over sites
-    for(t in 1:nyear){                   # Loop over years
-      for(j in 1:nsurvey){               # Loop over replicates
+  for(i in 1:nsites){                     # Loop over sites
+    for(t in 1:nyears){                   # Loop over years
+      for(j in 1:nsurveys){               # Loop over replicates
         prob <- z[i,t] * p[i,j,t]        # zero out p for unoccupied sites
         y[i,j,t] <- rbinom(1, 1, prob)
       }
@@ -208,8 +208,8 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   }
 
   # (4) Compute annual population occupancy
-  for(i in 1:nsite){
-    for (t in 2:nyear){
+  for(i in 1:nsites){
+    for (t in 2:nyears){
       psi[i,t] <- psi[i,t-1]*phi[i,t-1] + (1-psi[i,t-1])*gamma[i,t-1]
     }
   }
@@ -224,10 +224,10 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
 
   # Compute average product of availability and detection in each occasion
   # (ignoring the other terms in the model for detection)
-  p.occasion <- array(NA, dim = c(nsurvey, nyear))
-  for(t in 1:nyear){   # Years
-    p.occasion[,t] <- plogis(qlogis(mean.p[t]) + beta1[t] * (visit - (nsurvey/2)) +
-        beta2[t] * (visit - (nsurvey/2))^2)
+  p.occasion <- array(NA, dim = c(nsurveys, nyears))
+  for(t in 1:nyears){   # Years
+    p.occasion[,t] <- plogis(qlogis(mean.p[t]) + beta1[t] * (visit - (nsurveys/2)) +
+        beta2[t] * (visit - (nsurveys/2))^2)
   }
 
   # Compute annual average of phi, gamma and p
@@ -268,16 +268,16 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
       main = 'Within-season pattern in p over the years \n(only occasion terms)',
       xlab = 'Survey', ylab = 'Detection probability',
       ylim = c(0,1), frame = FALSE, xaxt='n')
-    axis(1, at=1:nsurvey)
+    axis(1, at=1:nsurveys)
 
     # Histogram of detection
     hist(p, col = 'lightgrey', xlim = c(0,1), main = 'Detection probability p')
 
     # Plot realised and apparent proportion of occupied sites
     plot(year, avg.p, type = "n", xlab = "Year", ylab = "Probability",
-      xlim = c(1,nyear), ylim = c(0,1), frame.plot = FALSE, las = 1, xaxt='n',
+      xlim = c(1,nyears), ylim = c(0,1), frame.plot = FALSE, las = 1, xaxt='n',
       main = 'True occupancy (finite-sample), \nobserved occupancy (prop. sites occupied) and average p')
-    axis(1, 1:nyear)
+    axis(1, 1:nyears)
     lines(year, apply(z, 2, mean), type = "l", col = 2, lwd = 2, lty = 1)
     lines(year, psi.app, type = "l", col = 1, lwd = 2, lty=2)
     lines(year, avg.p , type = "l", col = 2, lwd = 2, lty = 3)
@@ -295,14 +295,14 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
     par(mfrow = c(1, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
 
     # Annual average of colonisation, persistence and detection
-    plot(1:(nyear-1), avg.gamma, type = "n", xlab = "Year or Yearly interval",
-      ylab = "Probability", xlim = c(0.5, nyear), ylim = c(0,1),
+    plot(1:(nyears-1), avg.gamma, type = "n", xlab = "Year or Yearly interval",
+      ylab = "Probability", xlim = c(0.5, nyears), ylim = c(0,1),
       las = 1, xaxt='n', frame.plot = FALSE,
       main = 'Average annual persistence,\ncolonization, and detection')
-    axis(1, at=1:nyear)
-    lines(1:(nyear-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
-    lines(1:(nyear-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
-    lines(1:nyear, avg.p, type = "o", pch=16, col = 2, lwd = 2)
+    axis(1, at=1:nyears)
+    lines(1:(nyears-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
+    lines(1:(nyears-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
+    lines(1:nyears, avg.p, type = "o", pch=16, col = 2, lwd = 2)
     if(!is.na(year.of.impact)) {
       abline(v=year.of.impact-0.5, col='grey', lwd=2)
       text(year.of.impact-0.5, 0, "impact", pos=1, offset=0)
@@ -313,18 +313,18 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
 
     # True and observed number of occupied sites per year and overall (ever)
     plot(1, 1, type = "n", xlab = "Year",
-      ylab = "Number of sites", xlim = c(0.5, nyear+1.5), xaxt='n',
+      ylab = "Number of sites", xlim = c(0.5, nyears+1.5), xaxt='n',
       ylim = range(c(0, n.occ.ever, n.occ.obs)), frame.plot = FALSE,
       las = 1, main = 'True and obs. number of occupied sites \n per year and for all years combined (ever)')
-    axis(1, at=1:nyear)
-    end <- nyear/2 + 0.5
+    axis(1, at=1:nyears)
+    end <- nyears/2 + 0.5
     mid <- mean(c(0.5, end))
     segments(0.5, n.occ.ever, end, n.occ.ever, lwd=2, col=2)
     text(mid, n.occ.ever, "True ever", pos=3, xpd=TRUE)
     segments(0.5, n.occ.ever.obs, end, n.occ.ever.obs, lwd=2, lty=2)
     text(mid, n.occ.ever.obs, "Observed ever", pos=1, xpd=TRUE)
-    points(1:nyear, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
-    points(1:nyear, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
+    points(1:nyears, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
+    points(1:nyears, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
     if(!is.na(year.of.impact)) {
       abline(v=year.of.impact+0.5, col='grey', lwd=2)
       text(year.of.impact+0.5, 0, "impact", pos=1, offset=0)
@@ -335,7 +335,7 @@ simDynocc<- function(nsite = 250, nyear = 10, nsurvey = 3, year.of.impact = NA,
   }
 
   # Return data
-  return(list(nsite=nsite, nyear=nyear, nsurvey=nsurvey,year.of.impact = year.of.impact, impact = impact, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
+  return(list(nsites=nsites, nyears=nyears, nsurveys=nsurveys,year.of.impact = year.of.impact, impact = impact, mean.psi1=mean.psi1, beta.Xpsi1=beta.Xpsi1,
   range.phi=range.phi,
   sd.lphi.site = sd.lphi.site, impact.phi = impact.phi, beta.Xphi=beta.Xphi, BACI.effect.phi = BACI.effect.phi,
   range.gamma=range.gamma, sd.lgamma.site = sd.lgamma.site, impact.gamma = impact.gamma, beta.Xgamma=beta.Xgamma, sd.lphi.lgamma.site = sd.lphi.lgamma.site,
