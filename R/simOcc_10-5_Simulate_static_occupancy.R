@@ -52,7 +52,7 @@ z <- rbinom(n = M, size = 1, prob = psi)   # Realised occurrence (true state)
 # Plots for system state
 if(show.plot){
   # Restore graphical settings on exit -------------------------
-  oldpar <- par(no.readonly = TRUE)
+  oldpar <- par("mfrow", "cex.main", "cex.lab", "mar")
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
   on.exit({par(oldpar); devAskNewPage(oldAsk)})
   # ------------------------------------------------------------

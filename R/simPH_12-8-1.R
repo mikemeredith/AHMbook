@@ -92,7 +92,7 @@ simPH <- function(
 
   if(show.plot) {
     # Restore graphical settings on exit -------------------------
-    oldpar <- par(no.readonly = TRUE)
+    oldpar <- par("mfrow", "mar")
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
     # ------------------------------------------------------------

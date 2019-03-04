@@ -66,12 +66,11 @@ simCJS <- function(
   # Visualizations
   if(show.plot){
     # Restore graphical settings on exit
-    oldpar <- par(no.readonly = TRUE)
+    oldpar <- par(mfrow = c(1, 1), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
     # PLOT 1
-    par(mfrow = c(1, 1), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
     # Plot trajectory of phi and p
     plot(1:(n.occ-1), phi, typ= 'n', ylim = c(0, 1),
       frame = FALSE, main = 'Trajectories of phi and p')
@@ -82,7 +81,7 @@ simCJS <- function(
       inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
     # PLOT 2
-    par(mfrow = c(2, 2), mar = c(5,5,5,3), cex.lab = 1.3, cex.axis = 1.3)
+    par(mfrow = c(2, 2))
     # Plot the true alive/dead pattern (z)
     mapPalette <- colorRampPalette(c("white", "black"))
     image(x = 1:n.occ, y = 1:n.ind, z = t(z), col = mapPalette(10), axes = TRUE,

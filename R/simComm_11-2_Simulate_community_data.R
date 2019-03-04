@@ -106,7 +106,7 @@ type <- match.arg(type)
 
 if(show.plot){
   # Restore graphical settings on exit -------------------------
-  oldpar <- par(no.readonly = TRUE)
+  oldpar <- par("mfrow", "mar", "cex.axis", "cex.lab")
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
   on.exit({par(oldpar); devAskNewPage(oldAsk)})
   # ------------------------------------------------------------

@@ -238,7 +238,7 @@ simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = N
   # (5) Plots of stuff
   if(show.plot){
     # Restore graphical settings on exit
-    oldpar <- par(no.readonly = TRUE)
+    oldpar <- par("mfrow", "mar", "cex.lab", "cex.axis")
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
