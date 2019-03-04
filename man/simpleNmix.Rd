@@ -5,18 +5,18 @@
 Simulate N-mixture data under a time-for-space substitution design
 }
 \description{
-A simple function to simulate data under binomial N-mixture model where you have a single site that is surveyed over 'nyear' primary sampling periods ('seasons', 'years'), within each of which there are 'nrep' secondary samples.
+A simple function to simulate data under binomial N-mixture model where you have a single site that is surveyed over 'nyears' primary sampling periods ('seasons', 'years'), within each of which there are 'nreps' secondary samples.
 }
 \usage{
-simpleNmix(nyear = 12, nrep = 4, beta0 = 2, beta1 = 0.1,
+simpleNmix(nyears = 12, nreps = 4, beta0 = 2, beta1 = 0.1,
   alpha0 = 0.5, alpha1 = -0.1, alpha2 = 1, show.plot = TRUE)
 }
 
 \arguments{
-  \item{nyear}{
+  \item{nyears}{
 Number of primary sampling periods.
 }
-  \item{nrep}{
+  \item{nreps}{
 Number of secondary samples within each primary period.
 }
   \item{beta0}{
@@ -41,11 +41,11 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 
 \value{
 A list with the values of the arguments input and the following additional elements:
-\item{N }{The realised number of individuals at each primary season, a vector of length \code{nyear}}
-\item{C }{The number of individuals counted at each survey, a \code{nyear x nrep} matrix.}
-\item{Time }{The Time covariate, a vector of length \code{nyear}.}
-\item{temp }{The temperature covariate, a \code{nyear x nrep} matrix.}
-\item{p }{The probability of detection, a \code{nyear x nrep} matrix.}
+\item{N }{The realised number of individuals at each primary season, a vector of length \code{nyears}}
+\item{C }{The number of individuals counted at each survey, a \code{nyears x nreps} matrix.}
+\item{Time }{The Time covariate, a vector of length \code{nyears}.}
+\item{temp }{The temperature covariate, a \code{nyears x nreps} matrix.}
+\item{p }{The probability of detection, a \code{nyears x nreps} matrix.}
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.12

@@ -9,11 +9,11 @@
 graphSSM<- function(ssm, C){
   par(cex.main = 0.8)
   fitted <- lower <- upper <- numeric()
-  nsite <- nrow(ssm$mean$n)
+  nsites <- nrow(ssm$mean$n)
   T <- ncol(ssm$mean$n)
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
       on.exit(devAskNewPage(oldAsk)) # Restore previous setting
-  for(j in 1:nsite){
+  for(j in 1:nsites){
     for (i in 1:T){
       fitted[i] <- mean(ssm$sims.list$n[,j,i])
       lower[i] <- quantile(ssm$sims.list$n[,j,i], 0.025)

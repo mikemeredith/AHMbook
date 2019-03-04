@@ -15,7 +15,7 @@ playRN <- function(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, sho
 # devAskNewPage(ask = FALSE) ## leave it as it is!
 #
 # Simulate Nmix data under a range of abundance levels
-data <- simNmix(nsite = M, nvisit = J, mean.lam = mean.abundance, mean.p = mean.detection,
+data <- simNmix(nsites = M, nvisits = J, mean.lam = mean.abundance, mean.p = mean.detection,
   beta2.lam = 1, beta3.p = -1, beta.p.survey = -1, show.plot = FALSE)
 # Turn counts into detection/nondetection data
 y <- data$C          # Copy counts C into y
@@ -35,6 +35,6 @@ if(show.plot) {
   abline(lm(Nest ~ data$N), col = "blue", lwd = 3)  # Regression
 }
 slope <- coef(lm(Nest ~ data$N))[2]               # Is 1 if model perfect
-return(list(nsite = M, nvisit = J, coef = coef(fm), slope = slope))
+return(list(nsites = M, nvisits = J, coef = coef(fm), slope = slope))
 }
 

@@ -4,7 +4,7 @@
 # simNmix - section 6.5 p241
 
 # Function to simulate data for binomial and multinomial mixture models under wide range of conditions (introduced in Section 6.5)
-simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0, beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0, beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10, sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0, Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE) {
+simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0, beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0, beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10, sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0, Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE) {
 #
 # This very general function generates single-season count data
 # under variants of the binomial N-mixture model of Royle (2004) and of the
@@ -51,8 +51,8 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 # Written by Marc Kery, 2014-2015
 #
 # Function arguments
-# nsite: number of sites
-# nvisit: number of visits per site
+# nsites: number of sites
+# nvisits: number of visits per site
 # mean.theta: proportion of sites that can have non-zero abundance in principle:
 #   suitability model for zero-inflation
 # mean.lam: Expected abundance at the average value of all
@@ -60,7 +60,7 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 # mean.p: Expected detection at the average value of all
 #   detection covariates (and ignoring all random effects): detection model
 # area: determines area of sites (A), defaults to A=1 (i.e., all identical),
-#   but you can supply a vector of site areas of length nsite instead.
+#   but you can supply a vector of site areas of length nsites instead.
 # beta1.theta: coefficient of site covariate 1 in suitability model
 # beta2.theta: coefficient of site covariate 2 in suitability model
 # beta3.theta: coefficient of site covariate 3 in suitability model
@@ -90,7 +90,7 @@ simNmix <- function(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.
 #   population, where N in the first occasion is drawn from the specified
 #   mixture distribution and for all further occasions j, we have
 #   N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have
-#   sigma.p.ind = 0, show.plot = FALSE and nvisit >1.
+#   sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
 # show.plot: if TRUE, plots of the data will be displayed; set to FALSE
 #      if you are running simulations.
 
@@ -98,24 +98,24 @@ if(FALSE) x <- NULL # Fix issues with 'curve'
 logit <- plogis # allows 'logit' to appear in axis label instead of 'plogis'
 
 # Create indices
-nrep <- rep(nvisit, nsite)                   # No. visits (reps) per site
-site <- 1:nsite                              # Site index at site level
-site.per.unit <- rep(1:nsite, each = nvisit) # Site index at rep level
+nreps <- rep(nvisits, nsites)                   # No. visits (reps) per site
+site <- 1:nsites                              # Site index at site level
+site.per.unit <- rep(1:nsites, each = nvisits) # Site index at rep level
 
 cat("***** New simulation *****\n\n")
-cat("No. sites visited:      ", nsite, "\n")
-cat("No. rep. visits:          ", nvisit, "\n")
-cat("Total no. visits:       ", sum(nrep), "\n\n")
+cat("No. sites visited:      ", nsites, "\n")
+cat("No. rep. visits:          ", nvisits, "\n")
+cat("Total no. visits:       ", sum(nreps), "\n\n")
 
 # Generate covariates with standardised values between -2 and 2
 # Site covariates 1-6
-site.cov <- matrix(runif(n = nsite*6, -2, 2), ncol = 6)
+site.cov <- matrix(runif(n = nsites*6, -2, 2), ncol = 6)
 colnames(site.cov) <- c("cov1", "cov2", "cov3", "cov4", "cov5", "cov6")
 # Survey covariate
-survey.cov <- matrix(runif(n = nsite*nvisit, -2, 2), ncol = nvisit)
+survey.cov <- matrix(runif(n = nsites*nvisits, -2, 2), ncol = nvisits)
 
 # get site-specific values for offset
-if(area[1] == FALSE) A <- rep(1, nsite) # means no offset
+if(area[1] == FALSE) A <- rep(1, nsites) # means no offset
 if(area[1] != FALSE) A <- area          # use supplied vector as area for offset
 
 # Simulate ecological process:
@@ -124,7 +124,7 @@ if(area[1] != FALSE) A <- area          # use supplied vector as area for offset
 # Linear predictor of suitability model
 alpha.theta <- ifelse(mean.theta == 1, 25, qlogis(mean.theta))   # Avoid Inf.
 theta <- plogis(alpha.theta + beta1.theta * site.cov[,1] + beta2.theta * site.cov[,2] + beta3.theta * site.cov[,3])
-s <- rbinom(n = nsite, 1, theta)  # Suitability indicator
+s <- rbinom(n = nsites, 1, theta)  # Suitability indicator
 
 # (2) Abundance process (for sites suitable in principle)
 # Linear predictor of abundance model excluding random effects
@@ -133,18 +133,18 @@ log.lam.partial <- log(A) + log(mean.lam) + beta2.lam * site.cov[,2] + beta3.lam
 
 # Draw abundance under the (zero-inflated) Poisson distribution
 # (For baseline comparison of the abundance distributions in histo below)
-N.P <- rpois(n = nsite, lambda = s * exp(log.lam.partial))
+N.P <- rpois(n = nsites, lambda = s * exp(log.lam.partial))
 
 # Draw abundance under the (zero-inflated) negative binomial distribution
-N.NB <- rnbinom(n = nsite, mu = s * exp(log.lam.partial), size = dispersion)
+N.NB <- rnbinom(n = nsites, mu = s * exp(log.lam.partial), size = dispersion)
 
 # Draw abundance under the (zero-inflated) Poisson log-normal distribution
 # Random site effects in lambda, zero out if Neg.Bin == TRUE
-eta.lam <- rnorm(n = nsite, sd = sigma.lam * (1 - Neg.Bin))
+eta.lam <- rnorm(n = nsites, sd = sigma.lam * (1 - Neg.Bin))
 # Linear predictor of PLN abundance model including random effects
 log.lam <- log.lam.partial + eta.lam
 # Draw realised values of abundance at each site
-N.PLN <- rpois(n = nsite, lambda = s * exp(log.lam))
+N.PLN <- rpois(n = nsites, lambda = s * exp(log.lam))
 
 if(Neg.Bin == TRUE){   # Negative-binomial N's fed into variable N ....
   N <- N.NB
@@ -154,14 +154,14 @@ if(Neg.Bin == TRUE){   # Negative-binomial N's fed into variable N ....
 Ntotal <- sum(N)     # Add up N over all M sites
 
 # Ecological process when population open (open.N == TRUE)
-N.open <- matrix(NA, nrow = nsite, ncol = nvisit)
+N.open <- matrix(NA, nrow = nsites, ncol = nvisits)
 if(open.N){
   N.open[,1] <- N
-  for(j in 2:nvisit){
-     N.open[,j] <- rpois(nsite, N.open[,j-1])
+  for(j in 2:nvisits){
+     N.open[,j] <- rpois(nsites, N.open[,j-1])
   }
   #cor(N.open)
-  #matplot(1:nvisit, t(N.open), type = 'l')
+  #matplot(1:nvisits, t(N.open), type = 'l')
 }
 
 # Visualization of suitability and abundance
@@ -221,8 +221,8 @@ if(show.plot){
 # Simulate observation process conditional on true state N
 # Create structures to be filled
 nslice <- max(N)+1              # Max. number of slices in DH 3D array
-inds <- DH <- p <- logit.p.partial <- logit.p <- array(NA, dim = c(nsite, nvisit, nslice))
-C <- eta.p.survey <- array(NA, dim = c(nsite, nvisit))
+inds <- DH <- p <- logit.p.partial <- logit.p <- array(NA, dim = c(nsites, nvisits, nslice))
+C <- eta.p.survey <- array(NA, dim = c(nsites, nvisits))
 
 # Determine occupied sites and table of 'existing' individuals (inds)
 occ.sites <- which(N>0)
@@ -231,15 +231,15 @@ for(i in occ.sites){
 }
 
 # Draw random site effects in p
-eta.p.site <- rnorm(n=nsite, mean = 0, sd = sigma.p.site)
+eta.p.site <- rnorm(n=nsites, mean = 0, sd = sigma.p.site)
 # Draw random visit effects in p
-eta.p.visit <- rnorm(n=nvisit, mean = 0, sd = sigma.p.visit)
+eta.p.visit <- rnorm(n=nvisits, mean = 0, sd = sigma.p.visit)
 # Draw random survey (= site-by-survey) effects in p
-eta.p.survey <- matrix(rnorm(n = nsite*nvisit, sd = sigma.p.survey), nrow = nsite, ncol = nvisit)
+eta.p.survey <- matrix(rnorm(n = nsites*nvisits, sd = sigma.p.survey), nrow = nsites, ncol = nvisits)
 # Draw random individual (= site-by-ind) effects in p (NOT site-ind-visit !)
-eta.p.ind <- array(rnorm(n = nsite* max(N), mean = 0, sd = sigma.p.ind), dim = c(nsite, nslice))
+eta.p.ind <- array(rnorm(n = nsites* max(N), mean = 0, sd = sigma.p.ind), dim = c(nsites, nslice))
 #eta.p.ind[N == 0,] <- NA            # NA out effects for non-existing inds.
-for(i in 1:nsite){
+for(i in 1:nsites){
    eta.p.ind[i,(N[i]+1):nslice] <- NA
 }
 
@@ -247,7 +247,7 @@ for(i in 1:nsite){
 if(open.N == FALSE){
 # Sample individuals to get individual detection histories (DH) for each site (note that DH[i,,] == 'NA' when N[i] = 0)
 for(i in occ.sites){      # Loop over occupied sites (with N>0)
-   for(j in 1:nvisit){    # Loop over visits
+   for(j in 1:nvisits){    # Loop over visits
       for(n in 1:nslice){ # Loop over individuals
       # Linear predictor of detection model excl. random effects
       logit.p.partial[i,j,n] <- qlogis(mean.p) + beta3.p * site.cov[i,3] +
@@ -291,15 +291,15 @@ pp <- N.open <- NA     # Not available for open.N == FALSE
 
 # For open population (open.N == TRUE)
 if(open.N == TRUE){
-pp <- matrix(NA, nrow = nsite, ncol = nvisit) # Define detection prob
-for(j in 1:nvisit){    # Loop over visits
+pp <- matrix(NA, nrow = nsites, ncol = nvisits) # Define detection prob
+for(j in 1:nvisits){    # Loop over visits
    # Full linear predictor of detection model
    pp[,j] <- plogis(qlogis(mean.p) + beta3.p * site.cov[i,3] +
          beta5.p * site.cov[i,5] + beta6.p * site.cov[i,6] +
          beta.p.survey * survey.cov[i,j] +
          beta.p.N * (log(N[i]+1)-mean(log(N[i]+1))) +
          eta.p.site + eta.p.visit[j] + eta.p.survey[,j])
-   C[,j] <- rbinom(nsite, N.open[,j], pp[,j])
+   C[,j] <- rbinom(nsites, N.open[,j], pp[,j])
 }
 summax <- sum(apply(C, 1, max))
 # Fill some things used in the function output
@@ -351,7 +351,7 @@ if(show.plot){
   matplot(site.cov[,5], C, xlab = "Site covariate 5", ylab = "Counts", main = "Obs. counts vs. site covariate 5")
   matplot(site.cov[,6], C, xlab = "Site covariate 6", ylab = "Counts", main = "Obs. counts vs. site covariate 6")
   matplot(survey.cov, C, xlab = "Survey covariate", ylab = "Counts", main = "Obs. counts vs. survey covariate")
-  plot(rep(N, nvisit), C, xlab = "True state (abundance N)", ylab = "Obs.state (counts C)", main = "Obs. counts vs. true abundance", xlim = c(min(N,C), max(N,C)), ylim = c(min(N,C), max(N,C)))
+  plot(rep(N, nvisits), C, xlab = "True state (abundance N)", ylab = "Obs.state (counts C)", main = "Obs. counts vs. true abundance", xlim = c(min(N,C), max(N,C)), ylim = c(min(N,C), max(N,C)))
   abline(0,1)
 }
 
@@ -366,9 +366,9 @@ cat("Naive overdispersion measure (var/mean) for observed counts (C):", odcC,"\n
 
 # Output
 # *** Key output elements are ***
-# DH: detection history for each of N individuals detected at the nsite sites
+# DH: detection history for each of N individuals detected at the nsites sites
 # C: summary of DH: number of individuals detected for each site and visit
 #
-return(list(nsite = nsite, nvisit = nvisit, nobs = sum(nrep), Neg.Bin = Neg.Bin, open.N = open.N, area = area, mean.theta = mean.theta, mean.lam = mean.lam, mean.p = mean.p, beta1.theta = beta1.theta, beta2.theta = beta2.theta, beta3.theta = beta3.theta, beta2.lam = beta2.lam, beta3.lam = beta3.lam, beta4.lam = beta4.lam, beta3.p = beta3.p, beta5.p = beta5.p, beta6.p = beta6.p, beta.p.survey = beta.p.survey, beta.p.N = beta.p.N, sigma.lam = sigma.lam, dispersion = dispersion, sigma.p.site = sigma.p.site, sigma.p.visit = sigma.p.visit, sigma.p.survey = sigma.p.survey, sigma.p.ind = sigma.p.ind, site.cov = site.cov, survey.cov = survey.cov, log.lam = log.lam, s = s, N = N, p = p, DH = DH, N.open = N.open, C = C, eta.lam = eta.lam, eta.p.site = eta.p.site, eta.p.visit = eta.p.visit, eta.p.survey = eta.p.survey, eta.p.ind = eta.p.ind, odcN = odcN, odcC = odcC, Ntotal = Ntotal, summax = summax))
+return(list(nsites = nsites, nvisits = nvisits, nobs = sum(nreps), Neg.Bin = Neg.Bin, open.N = open.N, area = area, mean.theta = mean.theta, mean.lam = mean.lam, mean.p = mean.p, beta1.theta = beta1.theta, beta2.theta = beta2.theta, beta3.theta = beta3.theta, beta2.lam = beta2.lam, beta3.lam = beta3.lam, beta4.lam = beta4.lam, beta3.p = beta3.p, beta5.p = beta5.p, beta6.p = beta6.p, beta.p.survey = beta.p.survey, beta.p.N = beta.p.N, sigma.lam = sigma.lam, dispersion = dispersion, sigma.p.site = sigma.p.site, sigma.p.visit = sigma.p.visit, sigma.p.survey = sigma.p.survey, sigma.p.ind = sigma.p.ind, site.cov = site.cov, survey.cov = survey.cov, log.lam = log.lam, s = s, N = N, p = p, DH = DH, N.open = N.open, C = C, eta.lam = eta.lam, eta.p.site = eta.p.site, eta.p.visit = eta.p.visit, eta.p.survey = eta.p.survey, eta.p.ind = eta.p.ind, odcN = odcN, odcC = odcC, Ntotal = Ntotal, summax = summax))
 }
 

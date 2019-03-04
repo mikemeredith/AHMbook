@@ -8,20 +8,20 @@ Simulate data for static 3-level occupancy models
 Function generates 3-level occupancy data with possibility of site-specific random variation at every level, "time effects" at the middle and the lower levels and effects of one distinct covariate at each level.
 }
 \usage{
-sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, 
-  mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0, 
-  mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0, 
+sim3Occ(nunits = 100, nsubunits = 5, nreps = 3,
+  mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0,
+  mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0,
   mean.p = 0.4, p.time.range = c(-2, 2), beta.Xp = -1, sd.logit.p = 0,
   show.plot=TRUE)
 }
 \arguments{
-  \item{nunit}{
+  \item{nunits}{
 Number of main units (large quadrats)
 }
-  \item{nsubunit}{
+  \item{nsubunits}{
 Number of subunits (nested subsamples within each main unit)
 }
-  \item{nrep}{
+  \item{nreps}{
 Number of replicate surveys in every subunit
 }
   \item{mean.psi}{
@@ -63,18 +63,18 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 \value{
 A list with the values of the input arguments and the following additional elements:
- \item{theta.time.effect }{Simulated time effect on theta, a vector of length \code{nsubunit}}
- \item{p.time.effect }{Simulated time effect on p, a vector of length \code{nrep}}
- \item{p }{Detection probabiliy, a \code{nunit x nsubunit x nrep} array}
- \item{z }{Occupancy indicator for main units, a \code{nunit x 1} array of 0/1}
- \item{a }{Occupancy indicator for subunits, a \code{nunit x nsubunit} array of 0/1}
- \item{y }{Detection array, a \code{nunit x nsubunit x nrep} array of 0/1}
+ \item{theta.time.effect }{Simulated time effect on theta, a vector of length \code{nsubunits}}
+ \item{p.time.effect }{Simulated time effect on p, a vector of length \code{nreps}}
+ \item{p }{Detection probabiliy, a \code{nunits x nsubunits x nreps} array}
+ \item{z }{Occupancy indicator for main units, a \code{nunits x 1} array of 0/1}
+ \item{a }{Occupancy indicator for subunits, a \code{nunits x nsubunits} array of 0/1}
+ \item{y }{Detection array, a \code{nunits x nsubunits x nreps} array of 0/1}
  \item{sum.z }{True number of occupied main units}
  \item{obs.sum.z }{Observed number of occupied main units}
  \item{sum.z.a }{Number of units with >=1 occupied, surveyed subunit}
- \item{covA }{Simulated covariate A, a vector of length \code{nunit}}
- \item{covB }{Simulated covariate B, a \code{nunit x nsubunit} matrix}
- \item{covC }{Simulated covariate C, a \code{nunit x nsubunit x nrep} array}
+ \item{covA }{Simulated covariate A, a vector of length \code{nunits}}
+ \item{covB }{Simulated covariate B, a \code{nunits x nsubunits} matrix}
+ \item{covC }{Simulated covariate C, a \code{nunits x nsubunits x nreps} array}
 }
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.10
@@ -90,26 +90,26 @@ tmp <- sim3Occ()
 str(tmp)
 
 # 'Null' model (model 1)
-str(data <- sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8,
+str(data <- sim3Occ(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8,
   beta.Xpsi = 0, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(0, 0),
   beta.Xtheta = 0, sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(0,0),
   beta.Xp = 0, sd.logit.p = 0))
 
 # No covariate effects, no random variability (model 2)
-str(data <- sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8,
+str(data <- sim3Occ(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8,
   beta.Xpsi = 0, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1),
   beta.Xtheta = 0, sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2),
   beta.Xp = 0, sd.logit.p = 0))
 
 # All covariate effects, but no random variability (model 3)
-str(data <- sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8,
-  beta.Xpsi = 1, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), 
+str(data <- sim3Occ(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8,
+  beta.Xpsi = 1, sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1),
   beta.Xtheta = 1, sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2),
   beta.Xp = -1, sd.logit.p = 0))
 
 # Most complex model with all effects allowed for by sim function (model 4)
-str(data <- sim3Occ(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8,
-  beta.Xpsi = 1, sd.logit.psi = 1, mean.theta = 0.6, theta.time.range = c(-1, 1), 
+str(data <- sim3Occ(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8,
+  beta.Xpsi = 1, sd.logit.psi = 1, mean.theta = 0.6, theta.time.range = c(-1, 1),
   beta.Xtheta = 1, sd.logit.theta = 1, mean.p = 0.4, p.time.range = c(-2,2),
   beta.Xp = -1, sd.logit.p = 1))
 }

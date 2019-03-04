@@ -21,7 +21,7 @@ Function to simulate detection/nondetection data under a general dynamic communi
 These last two types of detection heterogeneity are not (yet) allowed to be species-specific.
 }
 \usage{
-simDCM(nspec = 50, nsites = 100, nsurveys = 3, nyears = 10,
+simDCM(nspecies = 50, nsites = 100, nsurveys = 3, nyears = 10,
   mean.psi1 = 0.4, sig.lpsi1 = 1, mu.beta.lpsi1 = 0, sig.beta.lpsi1 = 0,
   range.mean.phi = c(0.8, 0.8), sig.lphi = 1, mu.beta.lphi = 0,
   sig.beta.lphi = 0, range.mean.gamma = c(0.2, 0.2), sig.lgamma = 1,
@@ -32,7 +32,7 @@ simDCM(nspec = 50, nsites = 100, nsurveys = 3, nyears = 10,
 }
 
 \arguments{
-  \item{nspec}{
+  \item{nspecies}{
 number of species (typically called N in AHM book)
 }
   \item{nsites}{
@@ -115,42 +115,42 @@ A list with the values of the input arguments and the following additional eleme
  \item{Xphi }{Yearly-site covariate for phi, a nsites x nyears matrix}
  \item{Xgamma }{Yearly-site covariate for gamma, a nsites x nyears matrix}
  \item{Xp }{Observation covariate for p, a nsites x nsurveys x nyears array}
- \item{beta0.lpsi }{initial (logit-scale) occupancy intercept for each species in the community, a vector of length nspec}
- \item{beta1.lpsi }{initial (log-scale) occupancy slope on Xpsi1 for each species in the community, a vector of length nspec}
- \item{psi }{occupancy probability per site, year and species, a nsites x nyears x nspec array}
+ \item{beta0.lpsi }{initial (logit-scale) occupancy intercept for each species in the community, a vector of length nspecies}
+ \item{beta1.lpsi }{initial (log-scale) occupancy slope on Xpsi1 for each species in the community, a vector of length nspecies}
+ \item{psi }{occupancy probability per site, year and species, a nsites x nyears x nspecies array}
  \item{mean.phi }{mean persistence (across species) intercept for each interval, a vector of length (nyears - 1)}
  \item{mean.gamma }{mean colonisation (across species) intercept for each interval, a vector of length (nyears - 1)}
- \item{eps.lphi }{additive species effects in logit(phi) intercept, a vector of length nspec}
- \item{eps.lgamma }{additive species effects in logit(gamma) intercept, a vector of length nspec}
- \item{beta0.lphi }{logit-scale persistence intercepts for each species in community, a nspec x (nyears - 1) matrix}
- \item{beta0.lgamma }{logit scale colonisation intercepts for each species in the community, a nspec x (nyears - 1) matrix}
- \item{beta1.lphi }{slope of logit(phi) on Xphi for each species in the community, a vector of length nspec}
- \item{beta1.lgamma }{slope of logit(gamma) on Xgamma for each species in the community, a vector of length nspec}
- \item{phi }{probability of persistence for each site, yearly interval and species, a nsites x (nyears-1) x nspec array}
- \item{gamma }{probability of colonisation for each site, yearly interval and species, a nsites x (nyears-1) x nspec array}
+ \item{eps.lphi }{additive species effects in logit(phi) intercept, a vector of length nspecies}
+ \item{eps.lgamma }{additive species effects in logit(gamma) intercept, a vector of length nspecies}
+ \item{beta0.lphi }{logit-scale persistence intercepts for each species in community, a nspecies x (nyears - 1) matrix}
+ \item{beta0.lgamma }{logit scale colonisation intercepts for each species in the community, a nspecies x (nyears - 1) matrix}
+ \item{beta1.lphi }{slope of logit(phi) on Xphi for each species in the community, a vector of length nspecies}
+ \item{beta1.lgamma }{slope of logit(gamma) on Xgamma for each species in the community, a vector of length nspecies}
+ \item{phi }{probability of persistence for each site, yearly interval and species, a nsites x (nyears-1) x nspecies array}
+ \item{gamma }{probability of colonisation for each site, yearly interval and species, a nsites x (nyears-1) x nspecies array}
  \item{mean.p }{mean detection (across species) intercept for each year, a vector of length nyears}
- \item{eps.lp }{additive species effects in logit(p) intercept, a vector of length nspec}
- \item{beta0.lp }{species- and site-specific intercepts in the linear predictor for p, a nspec x nyears matrix}
- \item{beta1.lp }{species specific slopes of logit(p) on Xp, a vector of length nspec}
+ \item{eps.lp }{additive species effects in logit(p) intercept, a vector of length nspecies}
+ \item{beta0.lp }{species- and site-specific intercepts in the linear predictor for p, a nspecies x nyears matrix}
+ \item{beta1.lp }{species specific slopes of logit(p) on Xp, a vector of length nspecies}
  \item{beta1 }{linear effect of the occasion number on detection probability, a vector of length nyears}
  \item{beta2 }{quadratic effect of the occasion number on detection probability, a vector of length nyears}
  \item{sd.site }{standard deviation of the zero-mean normal distribution from which additional, site-level detection heterogeneity is simulated, a vector of length nyears}
  \item{sd.survey }{standard deviation of the zero-mean normal distribution from which additional, occasion-level detection heterogeneity is simulated,, a vector of length nyears}
  \item{eps1 }{additive site random effects tht generate unstructured site-level detection heterogeneity, a vector of length nsites}
  \item{eps2 }{additive occasion random effects tht generate unstructured site-level detection heterogeneity, a vector of length nsurveys}
- \item{n.occ }{Number of occupied sites, a nyears x nspec matrix}
- \item{psi.fs }{Finite-sample occupancy proportion, a nyears x nspec matrix}
- \item{mean.psi }{Average psi over sites, a nyears x nspec matrix}
- \item{z.obs }{Observed value of z matrix, a nsites x nyears x nspec array}
- \item{n.occ.obs }{Observed number of occupied sites, a nyears x nspec matrix}
- \item{psi.obs }{Observed occupancy (finite sample), a nyears x nspec matrix}
- \item{nyears.pres }{Number of years when species present, a vector of length nspec}
- \item{nspec.pres }{Number of species ever present, scalar}
- \item{nyears.det }{Number of years when species detected, a vector of length nspec}
- \item{nspec.det }{Number of species ever detected, scalar}
- \item{z }{True value of z matrix (ie, presence/absence), a nsites x nyears x nspec array}
- \item{p }{Probability of detection, a nsites x nsurveys x nyears x nspec array}
- \item{y }{Observed detection history, a nsites x nsurveys x nyears x nspec array of 0/1}
+ \item{n.occ }{Number of occupied sites, a nyears x nspecies matrix}
+ \item{psi.fs }{Finite-sample occupancy proportion, a nyears x nspecies matrix}
+ \item{mean.psi }{Average psi over sites, a nyears x nspecies matrix}
+ \item{z.obs }{Observed value of z matrix, a nsites x nyears x nspecies array}
+ \item{n.occ.obs }{Observed number of occupied sites, a nyears x nspecies matrix}
+ \item{psi.obs }{Observed occupancy (finite sample), a nyears x nspecies matrix}
+ \item{nyears.pres }{Number of years when species present, a vector of length nspecies}
+ \item{nspecies.pres }{Number of species ever present, scalar}
+ \item{nyears.det }{Number of years when species detected, a vector of length nspecies}
+ \item{nspecies.det }{Number of species ever detected, scalar}
+ \item{z }{True value of z matrix (ie, presence/absence), a nsites x nyears x nspecies array}
+ \item{p }{Probability of detection, a nsites x nsurveys x nyears x nspecies array}
+ \item{y }{Observed detection history, a nsites x nsurveys x nyears x nspecies array of 0/1}
 }
 \references{
 Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Section 17.2
@@ -168,8 +168,8 @@ str(tmp)
 # Default arguments, without plots
 str(data <- simDCM(show.plot = FALSE))
 # More examples:
-str(data <- simDCM(nspec = 200)) # More species (looks great)
-str(data <- simDCM(nspec = 1))   # A single species (ha, works !)
+str(data <- simDCM(nspecies = 200)) # More species (looks great)
+str(data <- simDCM(nspecies = 1))   # A single species (ha, works !)
 str(data <- simDCM(nsites = 267)) # More sites
 str(data <- simDCM(nsites = 1))   # A single site
 str(data <- simDCM(nsurveys = 10))   # More visits
@@ -190,7 +190,7 @@ str(data <- simDCM(range.mean.phi = c(0.8, 0.8), range.mean.gamma = c(0.3, 0.3),
   range.mean.p = c(0.6, 0.6)))
 
 # Function arguments that lead to much structure (no zero arguments)
-str(data <- simDCM(nspec = 200, nsites = 267, nsurveys = 3, nyears = 25,
+str(data <- simDCM(nspecies = 200, nsites = 267, nsurveys = 3, nyears = 25,
   mean.psi1 = 0.4, sig.lpsi1 = 3, mu.beta.lpsi1 = 1, sig.beta.lpsi1 = 3,
   range.mean.phi = c(0.5, 1), sig.lphi = 3, mu.beta.lphi = 1,
   sig.beta.lphi = 3, range.mean.gamma = c(0, 0.5),
@@ -201,7 +201,7 @@ str(data <- simDCM(nspec = 200, nsites = 267, nsurveys = 3, nyears = 25,
 
 # Not every occurring species will be detected
 set.seed(1)
-str(data <- simDCM(nspec = 200, nsites = 20, nsurveys = 2, nyears = 10,
+str(data <- simDCM(nspecies = 200, nsites = 20, nsurveys = 2, nyears = 10,
   mean.psi1 = 0.1, sig.lpsi1 = 5,
   range.mean.phi = c(0.3, 0.3), sig.lphi = 5,
   range.mean.gamma = c(0.1, 0.1), sig.lgamma = 5,

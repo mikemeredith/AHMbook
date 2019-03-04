@@ -8,7 +8,7 @@ Simulate data for binomial and multinomial mixture models
 This very general function generates single-season count data under variants of the binomial N-mixture model of Royle (2004) and of the multinomial N-mixture model of Royle et al (2007).
 }
 \usage{
-simNmix(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, 
+simNmix(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6,
   area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0,
   beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0,
   beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10,
@@ -16,10 +16,10 @@ simNmix(nsite = 267, nvisit = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6,
   Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE)
 }
 \arguments{
-  \item{nsite}{
+  \item{nsites}{
 number of sites
 }
-  \item{nvisit}{
+  \item{nvisits}{
 number of visits per site
 }
   \item{mean.theta}{
@@ -32,7 +32,7 @@ Expected abundance at the average value of all abundance covariates (and ignorin
 Expected detection at the average value of all detection covariates (and ignoring all random effects): detection model
 }
   \item{area}{
-determines area of sites (A), defaults to A=1 (i.e., all identical), but you can supply a vector of site areas of length nsite instead.
+determines area of sites (A), defaults to A=1 (i.e., all identical), but you can supply a vector of site areas of length nsites instead.
 }
   \item{beta1.theta}{
 coefficient of site covariate 1 in suitability model
@@ -89,7 +89,7 @@ coefficient of centered local population size (log(N+1)) in detection model (i.e
 if FALSE, any overdispersion in abundance is modelled by a Poisson log-normal; if TRUE, abundance overdispersion is modelled by adoption of a Negative binomial distribution for latent N
 }
   \item{open.N}{
-if TRUE, data are simulated under one specific form of an open population, where N in the first occasion is drawn from the specified mixture distribution and for all further occasions j, we have  N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have sigma.p.ind = 0, show.plot = FALSE and nvisit >1.
+if TRUE, data are simulated under one specific form of an open population, where N in the first occasion is drawn from the specified mixture distribution and for all further occasions j, we have  N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
 }
   \item{show.plot}{
  if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
@@ -122,8 +122,8 @@ Data may be generated under one specific open-population model when argument 'op
 \value{
 A list with the arguments input and the following additional elements:
  \item{nobs }{The total number of visits}
- \item{site.cov }{An nsite x 6 matrix of values for 6 site covariates}
- \item{survey.cov }{An nsite x nvisit matrix of values for a survey covariate}
+ \item{site.cov }{An nsites x 6 matrix of values for 6 site covariates}
+ \item{survey.cov }{An nsites x nvisits matrix of values for a survey covariate}
  \item{log.lam }{Linear predictor of PLN abundance model including random effects, a vector of length nsites}
  \item{s }{Site suitability indicator, a vector of length nsites}
  \item{N }{Number of individuals at each site, a vector of length nsites}

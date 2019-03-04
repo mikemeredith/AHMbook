@@ -9,7 +9,7 @@ Generate counts under a variant of a 'phenomenological model'
 Function generates (insect) counts under a variant of a 'phenomenological model' of Dennis et al. (2016). Interannual population model is exponential population growth, with Poisson initial abundance governed by initial.lambda and annually varying growth rate (or productivity parameter) gamma. Within-year dynamics is described by a Gaussian curve with date of mean flight period mu (site- and year-specific) and length of flight period sigma (only year-specific). Counts are made subject to a detection probability (p), which varies randomly according to a uniform distribution for every single count. Counts are plotted for up to 16 populations only.
 }
 \usage{
-simPH(npop = 18, nyear = 17, nrep = 10, date.range = 1:150, initial.lambda = 300, 
+simPH(npop = 18, nyears = 17, nreps = 10, date.range = 1:150, initial.lambda = 300, 
   gamma.parms = c(0, 0.3), mu.range = c(50, 80),  sigma.range = c(10, 20),
   p.range = c(0.4, 0.6), show.plot = TRUE)
 }
@@ -17,10 +17,10 @@ simPH(npop = 18, nyear = 17, nrep = 10, date.range = 1:150, initial.lambda = 300
   \item{npop}{
 The number of populations.
 }
-  \item{nyear}{
+  \item{nyears}{
 The number of years (seasons).
 }
-  \item{nrep}{
+  \item{nreps}{
 The number of surveys per year.
 }
   \item{date.range}{
@@ -48,10 +48,10 @@ Choose whether to show plots or not. Set to FALSE when using function in simulat
 \value{
 A list with the values of the arguments entered and the following additional elements:
 
-\item{gamma }{(nyear-1) vector, change in abundance for each interval between years.}
+\item{gamma }{(nyears-1) vector, change in abundance for each interval between years.}
 \item{N }{site x year matrix, true abundance.}
 \item{mu }{site x year matrix, mean date of the flight period.}
-\item{sigma }{nyear vector, half-length of flight period.}
+\item{sigma }{nyears vector, half-length of flight period.}
 \item{date }{site x year x reps array, dates of the surveys.}
 \item{a }{site x year x reps array, phenology term.}
 \item{lambda }{site x year x reps array, expected counts.}

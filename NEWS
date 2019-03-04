@@ -9,7 +9,13 @@ TODO (this does not appear in the tar.gz of the package)
 
 CHANGES in 0.1.4.9029 (2019-03-04)
 
-  * Argument names such as 'nsite' changed to plural: 'nsites'.
+  * Argument names 'nsite', 'nyear', 'nsurvey', 'nvisit' changed to plural ('nsites', etc)
+     for vol 1 functions.
+
+  * Argument name 'nrep' changed to plural, 'nreps', and 'nspec' changed to 'nspecies'.
+
+CHANGES in 0.1.4.9029 (2019-03-04)
+
 
 CHANGES in 0.1.4.9028 (2019-03-01)
 

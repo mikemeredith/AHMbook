@@ -30,8 +30,8 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 
 \value{
 A list with the following elements:
-\item{nsite }{The number of sites, equal to \code{M} in the input}
-\item{nvisit }{The number of visits, equal to \code{J} in the input}
+\item{nsites }{The number of sites, equal to \code{M} in the input}
+\item{nvisits }{The number of visits, equal to \code{J} in the input}
 \item{coef }{A named vector of coefficients for the linear models for expected number and detection probability}
 \item{slope }{Slope of the regression of the estimated number on the true number; 1 if the model is perfect}
 }

@@ -8,7 +8,7 @@
 #   effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p)
 #   (introduced in Section 11.2)
 
-simComm <- function(type=c("det/nondet", "counts"), nsite=30, nrep=3, nspec=100,
+simComm <- function(type=c("det/nondet", "counts"), nsites=30, nreps=3, nspecies=100,
   mean.psi=0.25, sig.lpsi=1, mu.beta.lpsi=0, sig.beta.lpsi=0,
   mean.lambda=2, sig.loglam=1, mu.beta.loglam=1, sig.beta.loglam=1,
   mean.p=0.25, sig.lp=1, mu.beta.lp=0, sig.beta.lp=0, show.plot = TRUE) {
@@ -66,9 +66,9 @@ simComm <- function(type=c("det/nondet", "counts"), nsite=30, nrep=3, nspec=100,
 # *******************
 # type: "det/nondet" or "counts"; hoose whether you want to
 #    simulate detection/nondetection data or count data
-# nsite: number of sites
-# nrep: number of replicate samples (occasions or repeated measurements)
-# nspec: total number of species in the area that is sampled by these sites
+# nsites: number of sites
+# nreps: number of replicate samples (occasions or repeated measurements)
+# nspecies: total number of species in the area that is sampled by these sites
 #    (regional species pool)
 #
 # mean.psi: community mean of occupancy probability over all species
@@ -114,46 +114,46 @@ if(show.plot){
 
 if(type=="det/nondet"){
 # Prepare structures to hold data
-  y.all <- y.obs <- p <- array(NA, c(nsite, nrep, nspec))
+  y.all <- y.obs <- p <- array(NA, c(nsites, nreps, nspecies))
   dimnames(y.all) <- dimnames(y.obs) <- dimnames(p) <-
-    list(paste("site", 1:nsite, sep=""),
-    paste("rep", 1:nrep, sep=""),
-    paste("sp", 1:nspec, sep=""))
-  z <- psi <- matrix(NA, nsite, nspec)
-  dimnames(z) <- dimnames(psi) <- list(paste("site", 1:nsite, sep=""),
-    paste("sp", 1:nspec, sep=""))
-  detected.at.all <- rep(NA, nspec)
+    list(paste("site", 1:nsites, sep=""),
+    paste("rep", 1:nreps, sep=""),
+    paste("sp", 1:nspecies, sep=""))
+  z <- psi <- matrix(NA, nsites, nspecies)
+  dimnames(z) <- dimnames(psi) <- list(paste("site", 1:nsites, sep=""),
+    paste("sp", 1:nspecies, sep=""))
+  detected.at.all <- rep(NA, nspecies)
 
   # Create covariates 'habitat' and 'wind'
-  habitat <- sort(rnorm(nsite))     # Note 'habitat gradient' due to sorting
-  wind <- matrix(rnorm(nsite * nrep), ncol=nrep)
+  habitat <- sort(rnorm(nsites))     # Note 'habitat gradient' due to sorting
+  wind <- matrix(rnorm(nsites * nreps), ncol=nreps)
 
   # Draw species-specific intercepts and slopes from their normal distributions
   # Build up linear predictors for occupancy and detection
   mu.lpsi <- ifelse(mean.psi == '1', 500, qlogis(mean.psi))
   mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
 
-  beta0 <- rnorm(nspec, mu.lpsi, sig.lpsi)           # occupancy intercept
-  beta1 <- rnorm(nspec, mu.beta.lpsi, sig.beta.lpsi) # occupancy slope on habitat
-  alpha0 <- rnorm(nspec, mu.lp, sig.lp)              # detection intercept
-  alpha1 <- rnorm(nspec, mu.beta.lp, sig.beta.lp)    # detection slope on wind
-  for(k in 1:nspec){
+  beta0 <- rnorm(nspecies, mu.lpsi, sig.lpsi)           # occupancy intercept
+  beta1 <- rnorm(nspecies, mu.beta.lpsi, sig.beta.lpsi) # occupancy slope on habitat
+  alpha0 <- rnorm(nspecies, mu.lp, sig.lp)              # detection intercept
+  alpha1 <- rnorm(nspecies, mu.beta.lp, sig.beta.lp)    # detection slope on wind
+  for(k in 1:nspecies){
     psi[,k] <- plogis(beta0[k] + beta1[k] * habitat)
-    for(j in 1:nrep){
+    for(j in 1:nreps){
       p[,j,k] <- plogis(alpha0[k] + alpha1[k] * wind[,j])
     }
   }
 
   # Distribute species over sites (simulate true state)
-  for(k in 1:nspec){
-    z[,k] <- rbinom(nsite, 1, psi[,k])
+  for(k in 1:nspecies){
+    z[,k] <- rbinom(nsites, 1, psi[,k])
   }
   occurring.in.sample <- apply(z, 2, max) # Presence/absence at study sites
 
   # Measurement of presence/absence (simulate observation)
-  for(k in 1:nspec) {
-    for(i in 1:nsite){
-      for(j in 1:nrep) {
+  for(k in 1:nspecies) {
+    for(i in 1:nsites){
+      for(j in 1:nreps) {
         y.all[i,j,k] <- rbinom(1, z[i,k], p[i,j,k])
       }
     }
@@ -180,7 +180,7 @@ if(type=="det/nondet"){
     # (1) Species-specific and community responses of occupancy to 'habitat'
     curve(plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
     xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
-    for(k in 2:nspec){
+    for(k in 2:nspecies){
       curve(plogis(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
     }
     curve(plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
@@ -188,7 +188,7 @@ if(type=="det/nondet"){
     # (2) Species-specific and community responses of detection to 'wind'
     curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
     xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
-    for(k in 2:nspec){
+    for(k in 2:nspecies){
       curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
     }
     curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
@@ -203,35 +203,35 @@ if(type=="det/nondet"){
     mapPalette2 <- colorRampPalette(c("white", "yellow", "orange", "red"))
     # (3) True presence/absence matrix (z) for all species
     # mapPalette was 2 before
-    image(x = 1:nspec, y = 1:nsite, z = t(z), col = mapPalette1(4), main =
+    image(x = 1:nspecies, y = 1:nsites, z = t(z), col = mapPalette1(4), main =
     paste("True presence/absence (z) matrix\n (finite-sample N species =",
-    Ntotal.fs,")"), frame = TRUE, xlim = c(0, nspec+1),
-    ylim = c(0, nsite+1), xlab = "Species", ylab = "Sites")
+    Ntotal.fs,")"), frame = TRUE, xlim = c(0, nspecies+1),
+    ylim = c(0, nsites+1), xlab = "Species", ylab = "Sites")
 
     # (4) Observed detection frequency for all species
-    image(x = 1:nspec, y = 1:nsite, z = t(y.sum.all), col = mapPalette2(100),
+    image(x = 1:nspecies, y = 1:nsites, z = t(y.sum.all), col = mapPalette2(100),
       main = paste("Observed detection frequencies"),
-      xlim = c(0, nspec+1), ylim = c(0, nsite+1),
+      xlim = c(0, nspecies+1), ylim = c(0, nsites+1),
       frame = TRUE, xlab = "Species", ylab = "Sites")
 
     # (5) Sites where a species was missed
-    image(x = 1:nspec, y = 1:nsite, z = t(missed.sites), col = mapPalette1(2),
+    image(x = 1:nspecies, y = 1:nsites, z = t(missed.sites), col = mapPalette1(2),
       main = paste("Matrix of missed presences\n (obs. N species =", Ntotal.obs,")"),
-      frame = TRUE, xlim = c(0, nspec+1), ylim = c(0, nsite+1), xlab = "Species",
+      frame = TRUE, xlim = c(0, nspecies+1), ylim = c(0, nsites+1), xlab = "Species",
       ylab = "Sites")
 
     # (6) True and observed distribution of site-specific species richness
     # plot(table(S.true), col = "red", xlab = "Number of species per site",
       # xlim = c(0, max(S.true)), ylab = "Frequency",
       # main = "True (red) vs. observed (blue) \n number of species per site")
-    # points(table(S.obs+(nspec/100)), col = "blue")
+    # points(table(S.obs+(nspecies/100)), col = "blue")
     histCount(S.obs, S.true,  xlab = "Number of species per site",
       main = "True (red) vs. observed (blue) \n number of species per site")
     # See file "histCount_helper.R" for details of this function.
   }
 
   # Output
-  return(list(type=type, nsite=nsite, nrep=nrep, nspec=nspec, mean.psi=mean.psi,
+  return(list(type=type, nsites=nsites, nreps=nreps, nspecies=nspecies, mean.psi=mean.psi,
     mu.lpsi=mu.lpsi, sig.lpsi=sig.lpsi, mu.beta.lpsi=mu.beta.lpsi,
     sig.beta.lpsi=sig.beta.lpsi, mean.p=mean.p, mu.lp=mu.lp, sig.lp=sig.lp,
     mu.beta.lp=mu.beta.lp, sig.beta.lp=sig.beta.lp, psi=psi, p=p, z=z,
@@ -243,47 +243,47 @@ if(type=="det/nondet"){
 #   (according to a community abundance model)
 if(type=="counts"){
   # Prepare structures to hold data
-  y.all <- y.obs <- p <- array(NA, c(nsite, nrep, nspec))
+  y.all <- y.obs <- p <- array(NA, c(nsites, nreps, nspecies))
   dimnames(y.all) <- dimnames(y.obs) <- dimnames(p) <-
-    list(paste("site", 1:nsite, sep=""),
-    paste("rep", 1:nrep, sep=""),
-    paste("sp", 1:nspec, sep=""))
-  N <- lambda <- matrix(NA, nsite, nspec)
-  dimnames(N) <- dimnames(lambda) <- list(paste("site", 1:nsite, sep=""),
-    paste("sp", 1:nspec, sep=""))
-  detected.at.all <- rep(NA, nspec)
+    list(paste("site", 1:nsites, sep=""),
+    paste("rep", 1:nreps, sep=""),
+    paste("sp", 1:nspecies, sep=""))
+  N <- lambda <- matrix(NA, nsites, nspecies)
+  dimnames(N) <- dimnames(lambda) <- list(paste("site", 1:nsites, sep=""),
+    paste("sp", 1:nspecies, sep=""))
+  detected.at.all <- rep(NA, nspecies)
 
   # Create covariates 'habitat' and 'wind'
-  habitat <- sort(rnorm(nsite))     # Note 'habitat gradient' due to sorting
-  wind <- matrix(rnorm(nsite * nrep), ncol=nrep)
+  habitat <- sort(rnorm(nsites))     # Note 'habitat gradient' due to sorting
+  wind <- matrix(rnorm(nsites * nreps), ncol=nreps)
 
   # Draw species-specific intercepts and slopes from their normal distributions
   # Build up linear predictors for occupancy and detection
   mu.loglam <- log(mean.lambda)
   mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
 
-  beta0 <- rnorm(nspec, mu.loglam, sig.loglam)           # lambda intercept
-  beta1 <- rnorm(nspec, mu.beta.loglam, sig.beta.loglam) # lambda slope on habitat
-  alpha0 <- rnorm(nspec, mu.lp, sig.lp)              # detection intercept
-  alpha1 <- rnorm(nspec, mu.beta.lp, sig.beta.lp)    # detection slope on wind
-  for(k in 1:nspec){
+  beta0 <- rnorm(nspecies, mu.loglam, sig.loglam)           # lambda intercept
+  beta1 <- rnorm(nspecies, mu.beta.loglam, sig.beta.loglam) # lambda slope on habitat
+  alpha0 <- rnorm(nspecies, mu.lp, sig.lp)              # detection intercept
+  alpha1 <- rnorm(nspecies, mu.beta.lp, sig.beta.lp)    # detection slope on wind
+  for(k in 1:nspecies){
     lambda[,k] <- exp(beta0[k] + beta1[k] * habitat)
-    for(j in 1:nrep){
+    for(j in 1:nreps){
       p[,j,k] <- plogis(alpha0[k] + alpha1[k] * wind[,j])
     }
   }
 
   # Distribute species over sites (simulate true abundance state)
-  for(k in 1:nspec){
-    N[,k] <- rpois(nsite, lambda[,k])
+  for(k in 1:nspecies){
+    N[,k] <- rpois(nsites, lambda[,k])
   }
   tmp <- apply(N, 2, sum)
   occurring.in.sample <- as.numeric(tmp > 0) # Presence/absence in study area
 
   # Measurement of abundance (simulate counts)
-  for(k in 1:nspec) {
-    for(i in 1:nsite){
-      for(j in 1:nrep) {
+  for(k in 1:nspecies) {
+    for(i in 1:nsites){
+      for(j in 1:nreps) {
         y.all[i,j,k] <- rbinom(1, N[i,k], p[i,j,k])
       }
     }
@@ -304,7 +304,7 @@ if(type=="counts"){
     # (1) Species-specific and community responses of occupancy to 'habitat'
     curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
     ylab = "Expected abundance (lambda)")
-    for(k in 1:nspec){
+    for(k in 1:nspecies){
       curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
     }
     curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = TRUE)
@@ -312,7 +312,7 @@ if(type=="counts"){
     # (2) Species-specific and community responses of detection to 'wind'
     curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
     xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
-    for(k in 2:nspec){
+    for(k in 2:nspecies){
       curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
     }
     curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
@@ -327,18 +327,18 @@ if(type=="counts"){
     mapPalette <- colorRampPalette(c("yellow", "orange", "red"))
     # (3) True abundance matrix (log(N+1)) for all species
     # mapPalette was 2 before
-    image(x = 1:nspec, y = 1:nsite, z = log10(t(N)+1), col = mapPalette(100),
-     main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = TRUE, xlim = c(0, nspec+1),
+    image(x = 1:nspecies, y = 1:nsites, z = log10(t(N)+1), col = mapPalette(100),
+     main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = TRUE, xlim = c(0, nspecies+1),
     zlim = c(0, log10(max(N))), xlab = "Species", ylab = "Sites")
     # (4) Observed maximum counts for all species
-    image(x = 1:nspec, y = 1:nsite, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
-      xlim = c(0, nspec+1), frame = TRUE, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
+    image(x = 1:nspecies, y = 1:nsites, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
+      xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
     # (5) Ratio of max count to true N
     ratio <- ymax.obs/N
     ratio[ratio == "NaN"] <- 1
-    image(x = 1:nspec, y = 1:nsite, z = t(ratio), col = mapPalette(100),
+    image(x = 1:nspecies, y = 1:nsites, z = t(ratio), col = mapPalette(100),
       main = paste("Ratio of max count to true abundance (N)"),
-      xlim = c(0, nspec+1), frame = TRUE, xlab = "Species", ylab = "Sites",
+      xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites",
       zlim = c(0, 1))
 
     # (6) True N and observed max count versus 'habitat'
@@ -350,7 +350,7 @@ if(type=="counts"){
   }
 
   # Output
-  return(list(type=type, nsite=nsite, nrep=nrep, nspec=nspec,
+  return(list(type=type, nsites=nsites, nreps=nreps, nspecies=nspecies,
     mean.lambda=mean.lambda, mu.loglam=mu.loglam, sig.loglam=sig.loglam,
     mu.beta.loglam=mu.beta.loglam, sig.beta.loglam=sig.beta.loglam,
     mean.p=mean.p, mu.lp=mu.lp, sig.lp=sig.lp, mu.beta.lp=mu.beta.lp,

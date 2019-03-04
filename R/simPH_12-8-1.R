@@ -4,8 +4,8 @@
 simPH <- function(
   # --- Sample sizes and design stuff ---
   npop = 18,               # Number of populations
-  nyear = 17,              # Number of years (seasons)
-  nrep = 10,               # Number of surveys per year (season)
+  nyears = 17,              # Number of years (seasons)
+  nreps = 10,               # Number of surveys per year (season)
   date.range = 1:150,      # Dates over which surveys may be conducted
   # --- Parameters of among-year dynamics ---
   initial.lambda = 300,    # Poisson mean of initial population size
@@ -41,46 +41,46 @@ simPH <- function(
 
   # Checks and fixes for input data -----------------------------
   npop <- round(npop[1])
-  nyear <- round(nyear[1])
-  nrep <- round(nrep[1])
+  nyears <- round(nyears[1])
+  nreps <- round(nreps[1])
   stopifnotInteger(date.range)
   stopifnotInteger(initial.lambda)
   stopifnotLength(gamma.parms, 2)
   # ---------------------------------------------------------------
 
   # Simulate among-year population dynamics: exponential model for N
-  N <- array(NA, dim = c(npop, nyear))  # Array for site-year abundance
+  N <- array(NA, dim = c(npop, nyears))  # Array for site-year abundance
   N[,1] <- rpois(npop, initial.lambda)
-  gamma <- rlnorm(nyear-1, meanlog=gamma.parms[1], sdlog=gamma.parms[2])
-  for(t in 2:nyear){
+  gamma <- rlnorm(nyears-1, meanlog=gamma.parms[1], sdlog=gamma.parms[2])
+  for(t in 2:nyears){
     N[,t] <- rpois(npop, N[,t-1] * gamma[t-1])
   }
 
   # Simulate within-year population dynamics: Normal curve for counts
-  C <- date <- lambda <- a <- array(NA, dim = c(npop, nyear, nrep))  # Arrays for
+  C <- date <- lambda <- a <- array(NA, dim = c(npop, nyears, nreps))  # Arrays for
   # site-year-visit counts, survey dates, relative pop. size and detection probability
-  mu <- array(NA, dim = c(npop, nyear))  # Array for value of peak flight period date
+  mu <- array(NA, dim = c(npop, nyears))  # Array for value of peak flight period date
 
   # Select survey dates, peak flight period (mu_it),
   # length of flight period sigma(t) and compute relative pop. size (a),
   # expected population size (lambda) and realized counts (C)
 
   # Draw annual value of flight period length (sigma)
-  sigma <- runif(nyear, min(sigma.range), max(sigma.range))
+  sigma <- runif(nyears, min(sigma.range), max(sigma.range))
 
   # Draw values of detection probability (p)
-  p <- array(runif(prod(c(npop, nyear, nrep)), min(p.range), max(p.range)),
-    dim = c(npop, nyear, nrep))
+  p <- array(runif(prod(c(npop, nyears, nreps)), min(p.range), max(p.range)),
+    dim = c(npop, nyears, nreps))
 
   # Compute and assemble stuff at the scale of the individual visit
   for(i in 1:npop){
-    for(t in 1:nyear){
+    for(t in 1:nyears){
       # Survey dates for this yr and pop:
       survey.dates <- sort(round(
-        runif(nrep, min(date.range), max(date.range))))
+        runif(nreps, min(date.range), max(date.range))))
       date[i,t,] <- survey.dates     # Save these survey dates
       mu[i,t] <- runif(1, min(mu.range), max(mu.range)) # Flight peak
-      for(k in 1:nrep){
+      for(k in 1:nreps){
         # a[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date[i,t,k] - mu[i,t])^2) / (2 * sigma[t]^2) )             # Rel. population size
         a[i,t,k] <- dnorm(date[i,t,k], mu[i,t], sigma[t])
                # Rel. population size
@@ -99,11 +99,11 @@ simPH <- function(
 
     # Simulate nice smooth normal curve for the plots
     nday <- length(date.range)
-    aa <- ll <- array(NA, dim = c(npop, nyear, nday))  # Arrays
-    pp <- array(runif(prod(c(npop, nyear, nday)), min(p.range), max(p.range)),
-      dim = c(npop, nyear, nday))
+    aa <- ll <- array(NA, dim = c(npop, nyears, nday))  # Arrays
+    pp <- array(runif(prod(c(npop, nyears, nday)), min(p.range), max(p.range)),
+      dim = c(npop, nyears, nday))
     for(i in 1:npop){
-      for(t in 1:nyear){
+      for(t in 1:nyears){
         for(k in 1:nday){
           # aa[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date.range[k] - mu[i,t])^2) / (2 * sigma[t]^2) )       # Relative population size
           aa[i,t,k] <- dnorm(date.range[k], mu[i,t], sigma[t])
@@ -116,8 +116,8 @@ simPH <- function(
     # Graphical output
     # Plot population dynamics and plot of all population sizes
     par(mfrow = c(2,1), mar = c(5,4,3,1))
-    matplot(1:nyear, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE, xaxt='n')
-    tmp <- pretty(1:nyear)
+    matplot(1:nyears, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE, xaxt='n')
+    tmp <- pretty(1:nyears)
     tmp[1] <- 1
     axis(1, at=tmp)
     plot(table(N), xlab = 'Population size', ylab = 'Frequency', main = 'Frequency distribution of population size for all sites and years', frame = FALSE)
@@ -146,16 +146,16 @@ simPH <- function(
   # Numerical output
   return(list(
     # ---------- arguments input --------------------------
-    npop = npop, nyear = nyear, nrep = nrep, date.range = date.range,
+    npop = npop, nyears = nyears, nreps = nreps, date.range = date.range,
     initial.lambda = initial.lambda, gamma.parms = gamma.parms,
     mu.range = mu.range, sigma.range = sigma.range, p.range = p.range,
     # ------------ generated values -----------------------
     # abundance
-    gamma = gamma,   # nyear-1 vector, change in abundance
+    gamma = gamma,   # nyears-1 vector, change in abundance
     N = N,           # site x year matrix, true abundance
     # phenology
     mu = mu,         # site x year matrix, mean of the flight period
-    sigma = sigma,   # nyear vector, half-length of flight period
+    sigma = sigma,   # nyears vector, half-length of flight period
     # detection
     date = date,     # site x year x nreps, dates of the surveys
     a = a,           # site x year x nreps, phenology term

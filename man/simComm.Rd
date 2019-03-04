@@ -8,7 +8,7 @@ Simulate community occupancy or community abundance data
 Function to simulate community occupancy or community abundance data with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in Section 11.2)
 }
 \usage{
-simComm(type = c("det/nondet", "counts"), nsite = 30, nrep = 3, nspec = 100,
+simComm(type = c("det/nondet", "counts"), nsites = 30, nreps = 3, nspecies = 100,
   mean.psi = 0.25, sig.lpsi = 1, mu.beta.lpsi = 0, sig.beta.lpsi = 0,
   mean.lambda = 2, sig.loglam = 1, mu.beta.loglam = 1, sig.beta.loglam = 1,
   mean.p = 0.25, sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, show.plot = TRUE)
@@ -17,13 +17,13 @@ simComm(type = c("det/nondet", "counts"), nsite = 30, nrep = 3, nspec = 100,
   \item{type}{
 choose whether you want to simulate detection/nondetection ("det/nondet") data or count data ("counts").
 }
-  \item{nsite}{
+  \item{nsites}{
 number of sites
 }
-  \item{nrep}{
+  \item{nreps}{
 number of replicate samples (occasions or repeated measurements)
 }
-  \item{nspec}{
+  \item{nspecies}{
 total number of species in the area that is sampled by these sites (regional species pool)
 }
   \item{mean.psi}{
@@ -154,13 +154,13 @@ Community occupancy model code partly based on code by Richard Chandler.
 str(simComm())
 
 # Some possibly interesting settings of the function
-data <- simComm(nsite = 267, nspec = 190, mean.psi = 0.25, sig.lpsi = 2,
+data <- simComm(nsites = 267, nspecies = 190, mean.psi = 0.25, sig.lpsi = 2,
   mean.p = 0.12, sig.lp = 2) # similar to Swiss MHB
 data <- simComm(mean.psi = 1)         # all species occur at every site
 data <- simComm(mean.p = 1)           # no measurement error (perfect detection)
 
-# Effect of spatial sample size (nsite) on species richness in sample (Ntotal.fs)
-data <- simComm(nsite=50, nspec = 200) # 1-3 are usually missed in sample
-data <- simComm(nsite=30, nspec = 200) # 4-6 usually missed
-data <- simComm(nsite=10, nspec = 200) # around 30 typically missed
+# Effect of spatial sample size (nsites) on species richness in sample (Ntotal.fs)
+data <- simComm(nsites=50, nspecies = 200) # 1-3 are usually missed in sample
+data <- simComm(nsites=30, nspecies = 200) # 4-6 usually missed
+data <- simComm(nsites=10, nspecies = 200) # around 30 typically missed
 }

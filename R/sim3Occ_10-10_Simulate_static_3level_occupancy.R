@@ -5,8 +5,8 @@
 
 # Function to simulate data for static 3-level occupancy models
 #   (introduced in Section 10.10)
-sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xpsi = 1,
-  sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, 
+sim3Occ <- function(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8, beta.Xpsi = 1,
+  sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1,
   sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2), beta.Xp = -1, sd.logit.p = 0,
   show.plot = TRUE){
 #
@@ -18,10 +18,10 @@ sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xp
 # Written by Marc Kery, 2014
 #
 # Function arguments:
-# nunit: Number of main units (large quadrats)
-# nsubunit: Number of subunits (nested subsamples within
+# nunits: Number of main units (large quadrats)
+# nsubunits: Number of subunits (nested subsamples within
 #    each main unit
-# nrep: Number of rep surveys in every subunit
+# nreps: Number of rep surveys in every subunit
 # mean.psi: Mean large-scale, unit-level occupancy probability (psi)
 # beta.Xpsi: effect on psi of covariate A (at main unit level)
 # sd.logit.psi: SD of logit(psi), unstructured site variation in psi
@@ -36,26 +36,26 @@ sim3Occ <- function(nunit = 100, nsubunit = 5, nrep = 3, mean.psi = 0.8, beta.Xp
 if(FALSE) x <- NULL # Fudge to stop R CMD check complaining.
 
 # Create data structures
-z <- psi <- array(NA, dim = nunit)  # Unit occurrence
-a <- theta <- array(NA, dim = c(nunit, nsubunit)) # Subunit
-y <- p <- array(NA, dim=c(nunit, nsubunit, nrep) ) # Rep
+z <- psi <- array(NA, dim = nunits)  # Unit occurrence
+a <- theta <- array(NA, dim = c(nunits, nsubunits)) # Subunit
+y <- p <- array(NA, dim=c(nunits, nsubunits, nreps) ) # Rep
 
 # Create standardised covariate values
-covA <- as.numeric(array(runif(nunit, -2, 2), dim = nunit))
-covB <- array(runif(nunit*nsubunit, -2, 2),
-   dim = c(nunit, nsubunit))
-covC <- array(runif(nunit*nsubunit*nrep, -2, 2),
-   dim=c(nunit, nsubunit, nrep) )
+covA <- as.numeric(array(runif(nunits, -2, 2), dim = nunits))
+covB <- array(runif(nunits*nsubunits, -2, 2),
+   dim = c(nunits, nsubunits))
+covC <- array(runif(nunits*nsubunits*nreps, -2, 2),
+   dim=c(nunits, nsubunits, nreps) )
 
 # Simulate psi, theta and p and plot all
-psi <- plogis(qlogis(mean.psi) + beta.Xpsi * covA + rnorm(nunit, 0, sd.logit.psi))
-theta.time.effect <- runif(nsubunit, theta.time.range[1], theta.time.range[2])
-p.time.effect <- runif(nrep, p.time.range[1], p.time.range[2])
+psi <- plogis(qlogis(mean.psi) + beta.Xpsi * covA + rnorm(nunits, 0, sd.logit.psi))
+theta.time.effect <- runif(nsubunits, theta.time.range[1], theta.time.range[2])
+p.time.effect <- runif(nreps, p.time.range[1], p.time.range[2])
 
-for(j in 1:nsubunit){
-   theta[,j] <- plogis(qlogis(mean.theta) + theta.time.effect[j]+ (beta.Xtheta*covB)[,j] + array(rnorm(nunit*nsubunit, 0, sd.logit.theta), dim = c(nunit, nsubunit))[,j])
-   for(k in 1:nrep){
-      p[,j,k] <- plogis(qlogis(mean.p) + p.time.effect[k] + (beta.Xp*covC)[,j,k]+ array(rnorm(nunit*nsubunit*nrep, 0,sd.logit.p),dim =c(nunit, nsubunit, nrep))[,j,k])
+for(j in 1:nsubunits){
+   theta[,j] <- plogis(qlogis(mean.theta) + theta.time.effect[j]+ (beta.Xtheta*covB)[,j] + array(rnorm(nunits*nsubunits, 0, sd.logit.theta), dim = c(nunits, nsubunits))[,j])
+   for(k in 1:nreps){
+      p[,j,k] <- plogis(qlogis(mean.p) + p.time.effect[k] + (beta.Xp*covC)[,j,k]+ array(rnorm(nunits*nsubunits*nreps, 0,sd.logit.p),dim =c(nunits, nsubunits, nreps))[,j,k])
    }
 }
 
@@ -65,23 +65,23 @@ if(show.plot) {
   plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = F)
   curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
   plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = F)
-  for(j in 1:nsubunit){
+  for(j in 1:nsubunits){
      curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
      beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
   }
   plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = F)
-  for(k in 1:nrep){
+  for(k in 1:nreps){
      curve(plogis(qlogis(mean.p) + p.time.effect[k] +
      beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
   }
 }
 # Sample three nested Bernoulli distributions
 # with probabilities psi, z*theta and a * p
-for (i in 1:nunit) {
+for (i in 1:nunits) {
   z[i] <- rbinom(n = 1, size = 1, prob = psi[i])
-  for (j in 1:nsubunit) {
+  for (j in 1:nsubunits) {
     a[i, j] <- rbinom(n = 1, size = 1, prob = z[i] * theta[i,j])
-    for (k in 1:nrep) {
+    for (k in 1:nreps) {
       y[i,j,k] <- rbinom(n=1, size = 1, prob = a[i,j]*p[i,j,k])
     } # survey
   } # subunit
@@ -96,6 +96,6 @@ cat(" Occupied units:                           ", sum.z, "\n",
     "\n")
 
 # Output
-return(list(nunit = nunit, nsubunit = nsubunit, nrep = nrep, mean.psi = mean.psi, beta.Xpsi = beta.Xpsi, sd.logit.psi = sd.logit.psi, psi = psi, mean.theta = mean.theta, theta.time.range = theta.time.range, theta.time.effect = theta.time.effect, beta.Xtheta = beta.Xtheta, sd.logit.theta = sd.logit.theta, theta = theta, mean.p = mean.p, p.time.range = p.time.range, p.time.effect = p.time.effect, beta.Xp = beta.Xp, sd.logit.p = sd.logit.p, p = p, z = z, a = a, y = y, sum.z = sum.z, obs.sum.z = obs.sum.z, sum.z.a = sum.z.a, covA = covA, covB = covB, covC = covC))
+return(list(nunits = nunits, nsubunits = nsubunits, nreps = nreps, mean.psi = mean.psi, beta.Xpsi = beta.Xpsi, sd.logit.psi = sd.logit.psi, psi = psi, mean.theta = mean.theta, theta.time.range = theta.time.range, theta.time.effect = theta.time.effect, beta.Xtheta = beta.Xtheta, sd.logit.theta = sd.logit.theta, theta = theta, mean.p = mean.p, p.time.range = p.time.range, p.time.effect = p.time.effect, beta.Xp = beta.Xp, sd.logit.p = sd.logit.p, p = p, z = z, a = a, y = y, sum.z = sum.z, obs.sum.z = obs.sum.z, sum.z.a = sum.z.a, covA = covA, covB = covB, covC = covC))
 }
 

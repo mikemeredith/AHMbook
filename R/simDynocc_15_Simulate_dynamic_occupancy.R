@@ -70,7 +70,7 @@ simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = N
   #      same, a constant value is assumed over time, while if they are different,
   #      a linear trend is assumed over time.
   # range.beta1.occasion is the range of the annual variation in the linear effect
-  #     of the survey occasion (e.g., of month 1-12 when nrep = 12)
+  #     of the survey occasion (e.g., of month 1-12 when nsurveys = 12)
   #     on detection (= product of availability and perceptibility)
   # range.beta2.occasion is the same for the quadratic effect of survey occasion
   # -------------------
