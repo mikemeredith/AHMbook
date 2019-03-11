@@ -17,6 +17,11 @@ simpleNmix <- function(nyears = 12, nreps = 4, beta0 = 2, beta1 = 0.1, alpha0 = 
 #   (lambda) on Time.
 if(FALSE) x <- NULL  # Fix issues with 'curve'
 
+# Checks and fixes for input data -----------------------------
+nyears <- round(nyears[1])
+nreps <- round(nreps[1])
+# --------------------------------------------
+
 Time <- 1:nyears
 temp <- matrix(runif(nyears*nreps, -2, 2), ncol = nreps)
 N <- rpois(n = nyears, lambda = exp(beta0 + beta1 * Time))

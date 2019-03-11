@@ -3,7 +3,7 @@
 # A function to simulate data for a Dail-Madsen model without covariates.
 
 # ---------- simulator function ------------------------
-simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5, 
+simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
   lambda = 4, gamma = 1.5, phi = 0.8, p = 0.7){
   ## Simulation for multiple-visit data (from pcountOpen help file)
   ## No covariates, constant time intervals between primary periods
@@ -13,6 +13,15 @@ simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
   # lambda: Initial expected abundance
   # gamma, phi: recruitment and apparent survival rates, respectively
   # p: detection probability
+
+  # Checks and fixes for input data -----------------------------
+  nsites <- round(nsites[1])
+  nsurveys <- round(nsurveys[1])
+  nyears <- round(nyears[1])
+  stopifNegative(lambda, allowZero=FALSE)
+  stopifnotProbability(phi)
+  stopifnotProbability(p)
+  # --------------------------------------------
 
   y <- array(NA, dim = c(nsites, nyears, nsurveys))
   N <- matrix(NA, nsites, nyears)
@@ -34,7 +43,7 @@ simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
   return(list(
     # -------------- arguments input -------------------
     nsites = nsites, nsurveys = nsurveys, nyears = nyears, lambda = lambda,
-    gamma = gamma, phi = phi, p = p, 
+    gamma = gamma, phi = phi, p = p,
     # ----------- values generated -------------------------
     N = N,          # true number of individuals, nsites x nyears
     S = S, R = R,   # number of survivors, recruits, nsites x (nyears-1)

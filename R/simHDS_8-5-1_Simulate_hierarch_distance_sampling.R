@@ -21,6 +21,13 @@ simHDS  <- function(type=c("line", "point"), nsites = 100, mean.lambda = 2,
 #        half-normal detection function on wind speed
 #     B: strip half width
 
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+stopifNegative(mean.lambda, allowZero=FALSE)
+stopifNegative(mean.sigma, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
+
 type <- match.arg(type)
 
 # Get covariates

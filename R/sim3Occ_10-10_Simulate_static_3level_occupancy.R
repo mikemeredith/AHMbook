@@ -35,6 +35,18 @@ sim3Occ <- function(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8, beta
 # sd.logit.p: SD of logit(p)
 if(FALSE) x <- NULL # Fudge to stop R CMD check complaining.
 
+  # Checks and fixes for input data -----------------------------
+  nunits <- round(nunits[1])
+  nsubunits <- round(nsubunits[1])
+  nreps <- round(nreps[1])
+  stopifnotProbability(mean.psi)
+  stopifNegative(sd.logit.psi)
+  stopifnotProbability(mean.theta)
+  stopifNegative(sd.logit.theta)
+  stopifnotProbability(mean.p)
+  stopifNegative(sd.logit.p)
+  # ----------------------------------------------------------------
+
 # Create data structures
 z <- psi <- array(NA, dim = nunits)  # Unit occurrence
 a <- theta <- array(NA, dim = c(nunits, nsubunits)) # Subunit

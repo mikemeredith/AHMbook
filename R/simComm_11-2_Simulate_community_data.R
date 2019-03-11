@@ -102,6 +102,22 @@ simComm <- function(type=c("det/nondet", "counts"), nsites=30, nreps=3, nspecies
 
 if(FALSE) x <- NULL # A kludge to cope with 'curve's odd way of using 'x'
 
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+nreps <- round(nreps[1])
+nspecies <- round(nspecies[1])
+stopifnotProbability(mean.psi)
+stopifNegative(sig.lpsi)
+stopifNegative(sig.beta.lpsi)
+stopifNegative(mean.lambda)
+stopifNegative(sig.loglam)
+stopifNegative(sig.beta.loglam)
+stopifnotProbability(mean.p)
+stopifNegative(sig.lp)
+stopifNegative(sig.beta.lp)
+# ----------------------------------------------------------------
+
+
 type <- match.arg(type)
 
 if(show.plot){

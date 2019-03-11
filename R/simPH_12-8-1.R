@@ -44,8 +44,9 @@ simPH <- function(
   nyears <- round(nyears[1])
   nreps <- round(nreps[1])
   stopifnotInteger(date.range)
-  stopifnotInteger(initial.lambda)
+  stopifNegative(initial.lambda, allowZero=FALSE)
   stopifnotLength(gamma.parms, 2)
+  stopifnotProbability(p.range)
   # ---------------------------------------------------------------
 
   # Simulate among-year population dynamics: exponential model for N

@@ -7,7 +7,7 @@
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
 #   (introduced in Section 10.12.1)
 
-simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3, 
+simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
   beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE){
 #
 # Function simulates time-to-detection occupancy design data under model
@@ -23,6 +23,13 @@ simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
 # alpha1: slope of continuous covariate A on log(lambda)
 # Tmax: maximum search time (in arbitrary units, which are same as response)
 #   response will be censored at Tmax
+
+# Checks and fixes for input data -----------------------------
+M <- round(M[1])
+stopifnotProbability(mean.psi)
+stopifNegative(mean.lambda, allowZero=FALSE)
+stopifNegative(Tmax, allowZero=FALSE)
+# --------------------------------------------
 
 # Generate covariate values
 covA <- rnorm(M)

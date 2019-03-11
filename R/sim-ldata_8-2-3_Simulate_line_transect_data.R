@@ -16,6 +16,11 @@ sim.ldata <- function(N = 200, sigma = 30, show.plot = TRUE){
 # of x=distance only for individuals that are captured
 if(FALSE) x <- NULL # fix issues with curve
 
+# Checks and fixes for input data -----------------------------
+N <- round(N[1])
+stopifNegative(sigma, allowZero=FALSE)
+# --------------------------------------------
+
 xall <- runif(N, -100,100) # Distances of all N individuals
 g <- function(x, sig) exp(-x^2/(2*sig^2))
 p <- g(xall, sig=sigma) # detection probability

@@ -23,11 +23,15 @@ simCJS <- function(
   #  Modified code for generating z and ch (gives different values with set.seed)
   #  Restore ask and par on exit.
 
-  # Catch errors in input
+  # Check and fixes for input data -------------------------
   n.occ <- round(n.occ[1])
+  n.marked <- round(n.marked)
   stopifnotLength(n.marked, n.occ-1, allow1=TRUE)
   stopifnotLength(phi, n.occ-1, allow1=TRUE)
+  stopifnotProbability(phi)
   stopifnotLength(p, n.occ-1, allow1=TRUE)
+  stopifnotProbability(p)
+  # --------------------------------------------------------
 
   # Deal with input
   if(length(n.marked) == 1)

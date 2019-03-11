@@ -100,20 +100,25 @@ simDCM <- function(nspecies = 50, nsites = 100, nsurveys = 3, nyears = 10,
 # show.plot: if TRUE, plots are produced. Usually set to FALSE when running sims.
 #
 
-  # Checks and fixes for input data -----------------------------
-  nspecies <- round(nspecies[1])
-  nsites <- round(nsites[1])
-  nsurveys <- round(nsurveys[1])
-  nyears <- round(nyears[1])
-  stopifnotProbability(mean.psi1)
-  stopifNegative(sig.lpsi1, allowZero=TRUE)
-  # mu.beta.lpsi1
-  stopifNegative(sig.beta.lpsi1, allowZero=TRUE)
-  stopifnotProbability(range.mean.phi) # bounds
-  stopifNegative(sig.lphi, allowZero=TRUE)
-  stopifNegative(sig.beta.lphi, allowZero=TRUE)
-  stopifnotProbability(range.mean.gamma) # bounds
-  ## Need to do more of these
+# Checks and fixes for input data -----------------------------
+nspecies <- round(nspecies[1])
+nsites <- round(nsites[1])
+nsurveys <- round(nsurveys[1])
+nyears <- round(nyears[1])
+stopifnotProbability(mean.psi1)
+stopifNegative(sig.lpsi1, allowZero=TRUE)
+# mu.beta.lpsi1
+stopifNegative(sig.beta.lpsi1, allowZero=TRUE)
+stopifnotProbability(range.mean.phi) # bounds
+stopifNegative(sig.lphi, allowZero=TRUE)
+stopifNegative(sig.beta.lphi, allowZero=TRUE)
+stopifnotProbability(range.mean.gamma) # bounds
+stopifNegative(sig.lgamma, allowZero=TRUE)
+stopifNegative(sig.beta.lgamma, allowZero=TRUE)
+stopifnotProbability(range.mean.p) # bounds
+stopifNegative(sig.lp, allowZero=TRUE)
+stopifNegative(sig.beta.lp, allowZero=TRUE)
+# --------------------------------------------
 
 # Set up arrays needed
 spec <- 1:nspecies                         # Species

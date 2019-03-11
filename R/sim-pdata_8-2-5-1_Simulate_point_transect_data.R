@@ -17,6 +17,12 @@ sim.pdata <- function(N=1000, sigma=1, B=3, keep.all=FALSE, show.plot=TRUE) {
 #    keep.all: return the data for y = 0 individuals or not
 if(FALSE) x <- NULL # Kludge to keep R CMD check happy with curve
 
+# Checks and fixes for input data -----------------------------
+N <- round(N[1])
+stopifNegative(sigma, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
+
 # Simulate and plot simulated data
 u1 <-runif(N, 0, 2*B)           # (u1,u2) coordinates of N individuals
 u2 <- runif(N, 0, 2*B)

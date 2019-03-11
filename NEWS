@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9032 (2019-03-11)
+
+  * Added sanity checks to all sim* functions, incl. vol 1.
+
 CHANGES in 0.1.4.9031 (2019-03-05)
 
   * Eliminated use of par(no.readonly = TRUE).
@@ -20,6 +24,8 @@ CHANGES in 0.1.4.9030 (2019-03-04)
 
 CHANGES in 0.1.4.9029 (2019-03-04)
 
+  * Argument names 'nsite', 'nyear', 'nsurvey', 'nvisit' changed to plural ('nsites', etc)
+     for vol 2 functions.
 
 CHANGES in 0.1.4.9028 (2019-03-01)
 

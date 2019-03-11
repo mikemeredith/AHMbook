@@ -16,6 +16,17 @@ simDM <- function(nsites = 50, nsurveys = 3, nyears = 5,
   #   respectively, at values of cov.gamma and cov.phi equal to 0
   # mean.p: detection probability at cov. p = 0
   # beta.X is the slope of parameter X (link transformed) on the respective covariate
+
+  # Checks and fixes for input data -----------------------------
+  nsites <- round(nsites[1])
+  nsurveys <- round(nsurveys[1])
+  nyears <- round(nyears[1])
+  stopifNegative(mean.lambda, allowZero=FALSE)
+  stopifnotProbability(mean.gamma.rel)
+  stopifnotProbability(mean.phi)
+  stopifnotProbability(mean.p)
+  # --------------------------------------------
+
   y <- p <- array(NA, dim = c(nsites, nyears, nsurveys))
   N <- matrix(NA, nsites, nyears)
   S <- R <- matrix(NA, nsites, nyears-1)

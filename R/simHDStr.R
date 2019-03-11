@@ -29,6 +29,15 @@ function(type = c("line", "point"), method=c("removal", "double"),
 #     B: strip half width
 #     discard0: whether to discard or keep the data from sites with nobody detected
 
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+stopifNegative(lambda.group, allowZero=FALSE)
+stopifnotProbability(p.avail)
+K <- round(K)[1]
+stopifnotProbability(p.double)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
+
 type <- match.arg(type)
 method <- match.arg(method)
 

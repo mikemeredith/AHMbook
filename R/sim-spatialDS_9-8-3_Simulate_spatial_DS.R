@@ -20,6 +20,12 @@ sim.spatialDS <- function(N=1000, beta = 1, sigma=1, keep.all=FALSE,
 #   sigma: scale of half-normal detection function
 #   keep.all: return the data for all individuals, whether detected or not
 
+# Checks and fixes for input data -----------------------------
+N <- round(N[1])
+stopifNegative(sigma, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
+
 model <- match.arg(model)
 
 # Create coordinates for 30 x 30 grid
@@ -34,7 +40,7 @@ if(missing(useHabitat)) {
 } else {
   x <- useHabitat$Habitat
   # Check input
-  if(is.null(x) || 
+  if(is.null(x) ||
       is.null(dim(x)) ||
       dim(x)[2] != 1 ||
       dim(x)[1] != 900)
@@ -83,7 +89,7 @@ if(!keep.all){
    pixel.id <- pixel.id[y==1]
 }
 # Output
-return(list(model=model, N=N, beta=beta, B=B, u1=u1, u2=u2, d=d, pixel.id=pixel.id, 
+return(list(model=model, N=N, beta=beta, B=B, u1=u1, u2=u2, d=d, pixel.id=pixel.id,
   y=y, N.real=N.real, Habitat=x, grid=gr))
 }
 

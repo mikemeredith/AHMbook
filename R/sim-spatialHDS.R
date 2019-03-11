@@ -13,8 +13,16 @@ function(lam0 = 4 , sigma= 1.5,  B=3, nsites=100, beta1 = 1, npix = 20, show.plo
 # sigma: scale of half-normal detection function
 # B: circle radius
 
+# Checks and fixes for input data -----------------------------
+stopifNegative(lam0, allowZero=FALSE)
+stopifNegative(sigma, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+nsites <- round(nsites[1])
+npix <- round(npix[1])
+# --------------------------------------------
+
 if(show.plot > 0) {
-  op <- par(mar=c(3,3,3,6)) ; on.exit(par(op))
+  op <- par(mar=c(3,3,3,6), "mfrow") ; on.exit(par(op))
   oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
 }
 
@@ -39,7 +47,7 @@ for(s in 1:nsites){
   # Note Poisson assumption which means in each pixel is also Poisson
   N[s]<- rpois(1, sum(exp( beta0 + beta1*Z[,s])))
   # cat(N[s],fill=TRUE)
-   
+
   probs<- exp(beta1*Z[,s])/sum(exp(beta1*Z[,s]))
   pixel.id<- sample(1:(npix^2), N[s], replace=TRUE, prob=probs)
   # could simulate ranomdly within the pixel but it won't matter
@@ -47,12 +55,12 @@ for(s in 1:nsites){
   u2<- gr[pixel.id,2]
 
   d <- sqrt((u1 - B)^2 + (u2-B)^2) # distance to center point of square
-   
+
   p<- exp(-d*d/(2*sigma*sigma))
 
   # Now we decide whether each individual is detected or not
   y <- rbinom(N[s], 1, p)
-  
+
   if(s <= show.plot) {
     img<- rasterFromXYZ(cbind(gr,z))
     image(img, col=topo.colors(10))
@@ -65,7 +73,7 @@ for(s in 1:nsites){
     points(B, B,   ,pch = "+", cex = 3)
     # draw.circle(3, 3,   B)
   }
-  
+
   if(sum(y)>0) {
     data<- rbind(data, cbind(rep(s,length(u1)),u1=u1,u2=u2,d=d,y=y))
   } else {
@@ -74,6 +82,6 @@ for(s in 1:nsites){
 }
 
 dimnames(data)<-list(NULL,c("site","u1","u2","d","y"))
- 
+
 return(list(data=data, B=B, Habitat=Z, grid=gr,N=N,nsites=nsites))
 }

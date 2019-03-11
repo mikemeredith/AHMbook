@@ -30,7 +30,7 @@ simPOP <- function(
   # see Sollmann et al., Ecology, 2015)
   # Default is Markov model, setting sd.rho to a value greater than 0 changes to extended Markov and sets the amount of random immigration.
 
-  # Checks and fixes for input data
+  # Checks and fixes for input data -----------------
   M <- round(M[1])
   T <- round(T[1])
   stopifNegative(mean.lam)
@@ -43,6 +43,7 @@ simPOP <- function(
   stopifNegative(sd.logit.p.site)
   stopifNegative(sd.logit.p.time)
   stopifNegative(sd.logit.p.survey)
+  # -----------------------------------------------------
 
   # Create arrays needed (for observed counts, latent states, gamma, p
   # C <- N <- gamma <- p <- array(NA, dim = c(M, T))

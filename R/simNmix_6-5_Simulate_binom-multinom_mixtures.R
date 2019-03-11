@@ -97,6 +97,20 @@ simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mea
 if(FALSE) x <- NULL # Fix issues with 'curve'
 logit <- plogis # allows 'logit' to appear in axis label instead of 'plogis'
 
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+nvisits <- round(nvisits[1])
+stopifnotProbability(mean.theta)
+stopifNegative(mean.lam, allowZero=FALSE)
+stopifnotProbability(mean.p)
+stopifNegative(sigma.lam)
+stopifNegative(dispersion, allowZero=FALSE)
+stopifNegative(sigma.p.site)
+stopifNegative(sigma.p.visit)
+stopifNegative(sigma.p.survey)
+stopifNegative(sigma.p.ind)
+# --------------------------------------------
+
 # Create indices
 nreps <- rep(nvisits, nsites)                   # No. visits (reps) per site
 site <- 1:nsites                              # Site index at site level

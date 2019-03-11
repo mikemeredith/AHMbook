@@ -21,6 +21,11 @@ simHDSg <- function(type = c("line", "point"), nsites = 100, lambda.group = 0.75
 # mean of the number of groups per unit area to habitat
 # B: strip half width
 #
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+stopifNegative(lambda.group, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
 
 type <- match.arg(type)
 

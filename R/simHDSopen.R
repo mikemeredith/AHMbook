@@ -25,9 +25,14 @@ beta.lam = 0, mean.sig = 1, beta.sig = 0, B = 3, discard0=TRUE, nreps=2, phi=0.7
 #
 #   more things here
 #
-#
 #  Note: for "point" the realized density is
 #[(area of circle) /(area of  square)]*lambda
+
+# Checks and fixes for input data -----------------------------
+nsites <- round(nsites[1])
+stopifNegative(mean.lam, allowZero=FALSE)
+stopifNegative(B, allowZero=FALSE)
+# --------------------------------------------
 
 type <- match.arg(type)
 

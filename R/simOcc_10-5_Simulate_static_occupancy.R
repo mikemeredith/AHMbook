@@ -36,6 +36,14 @@ simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, 
 #        IMPORTANT: has to be set to FALSE if you are running simulations.
 if(FALSE) x <- NULL # Fudge to stop R CMD check complaining about curve
 
+# Checks and fixes for input data -----------------------------
+M <- round(M[1])
+J <- round(J[1])
+stopifnotProbability(mean.occupancy)
+stopifnotProbability(mean.detection)
+stopifNegative(sd.lp)
+# --------------------------------------------
+
 # Create some data structures: observed data and 3 versions of p matrix
 y <- p <- p0 <- p1 <- array(NA, dim = c(M,J))  # Create data structures
 
