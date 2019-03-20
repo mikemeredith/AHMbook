@@ -127,6 +127,7 @@ The functions are listed by chapter below.
   \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (10.12.2)}
  \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (15..)}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands (9.5.3)}
+  \item{\code{\link{waterVoles}}}{ Data for water voles from Scotland (18.2.2)}
   \item{\code{\link{willowWarbler}}}{ Data for willow warblers in Britain (14.4.1)}
 
   } }
@@ -139,6 +140,7 @@ The functions are listed by chapter below.
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
+  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive models (Section 18.2.2) }
   } }
 
 

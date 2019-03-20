@@ -75,5 +75,6 @@ export("bigCrossCorr")
 export("standardize", "standardize2match")
 export("e2dist")
 export("image_scale")
+export("modSelFP")
 
 
