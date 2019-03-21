@@ -102,6 +102,11 @@ The functions are listed by chapter below.
   \item{\code{\link{simDCM}}}{ Simulate detection/nondetection data under a general dynamic community (site-occupancy) model}
   } }
 
+\section{Chapter 18}{
+  \describe{
+  \item{\code{\link{valid_data}}}{ Partial validation of simulated data with false positives}
+  } }
+
 \section{Chapter 20}{
   \describe{
   \item{\code{\link{spatial.exp}}}{ Generate Gaussian random field with negative exponential correlation}
@@ -114,6 +119,7 @@ The functions are listed by chapter below.
   \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (15...)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in section 3.1}
   \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (13.9.2).}
+  \item{\code{\link{EurasianLynx}}}{ Data for lynx in Italy and Switzerland (18.3.2)}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (chapter 17)}
   \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (chapter 15)}
   \item{\code{\link{greenWoodpecker}}}{ Count data for green woodpeckers in Switzerland (13.2)}

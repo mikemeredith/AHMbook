@@ -66,6 +66,9 @@ export("simDynocc", "simDemoDynocc")
 # Chapter 17
 export("simDCM")
 
+# Chapter 18
+export("valid_data")
+
 # Chapter 20
 export("spatial.exp")
 
@@ -76,5 +79,3 @@ export("standardize", "standardize2match")
 export("e2dist")
 export("image_scale")
 export("modSelFP")
-
-
