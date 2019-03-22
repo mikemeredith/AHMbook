@@ -143,7 +143,7 @@ A list with the arguments input and the following additional elements:
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.5
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.5
 
 Royle (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60, 108-115
 

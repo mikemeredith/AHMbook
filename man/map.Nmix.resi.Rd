@@ -26,7 +26,7 @@ y coordinates of each site
 None. Used for its plotting side effects.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.9.3
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
 }
 \author{
 Marc Kéry

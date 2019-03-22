@@ -38,7 +38,7 @@ A list with the values of the arguments entered and the following additional ele
 \item{n.alive }{n.occ vector, number of animals alive and in the study area each year.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarachical Modeling in Ecology} Section 14.2.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 14.2.2
 
 Kéry and Schaub (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 }

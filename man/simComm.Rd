@@ -141,7 +141,7 @@ Dorazio & Royle (2005) Estimating size and composition of biological communities
 
 Yamaura et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
 
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 11.2
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.2
 
 }
 \author{

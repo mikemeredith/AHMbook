@@ -39,7 +39,7 @@ matrix of detection probabilities at each site for each observation
 TODO
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Chapter 7
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Chapter 7
 }
 \author{
 Kéry & Royle

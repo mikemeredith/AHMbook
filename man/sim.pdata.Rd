@@ -40,7 +40,7 @@ A list with the following elements:
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 8.2.5.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2.5.1
 }
 \author{
 Kéry & Royle

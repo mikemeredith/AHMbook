@@ -78,7 +78,7 @@ A list with the values of the  input arguments and the following additional elem
  \item{psi.fs.obs }{Proportion of sites observed to be occupied (sumZ.obs/N)}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.8
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.8
 
 }
 \author{

@@ -32,7 +32,7 @@ A data frame with 70 rows and the following columns:
 Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.12
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.12
 }
 \examples{
 # Using the built-in data set instead of the TXT file for the example in Section 

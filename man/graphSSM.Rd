@@ -25,7 +25,7 @@ The original count data: an individuals x year matrix of counts, no missing valu
 No output, the function is called for plotting.
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarachical Modeling in Ecology} Section 12.6
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 12.6
 
 Kéry and Schaub (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 }

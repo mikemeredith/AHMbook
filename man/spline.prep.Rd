@@ -26,7 +26,7 @@ A list with the following elements:
   \item{Z }{The random-effects design matrix}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.14
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.14
 
 Crainiceanu, C.M., Ruppert, D., & Wand, M.P. (2005) Bayesian analysis for penalized spline regression using WinBUGS. \emph{Journal of Statistical Software}, 14.
 

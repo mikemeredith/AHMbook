@@ -52,7 +52,7 @@ A list with the following elements:
  \item{lam, phi, gamma, sigma }{the values of the corresponding arguments}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.7.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.7.1
 
 Sollmann, R., Gardner, B., Chandler, R.B., Royle, J.A., Sillett, T.S. (2015) An open population hierarchical distance sampling model. \emph{Ecology} 96, 325-331.
 }

@@ -19,7 +19,7 @@ The fitted model object
 None, used for its plotting side effect.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.8
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.8
 
 }
 \author{

@@ -39,7 +39,7 @@ A list with the values of the arguments and the following additional elements:
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 1.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 1.1
 }
 \author{
 Marc Kéry and Andy Royle

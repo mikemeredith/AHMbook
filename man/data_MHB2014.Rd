@@ -57,7 +57,7 @@ Section 11.3 of the book has code to read in data from a CSV file, "MHB_2014.csv
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 11.3
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.3
 }
 \examples{
 data(MHB2014)

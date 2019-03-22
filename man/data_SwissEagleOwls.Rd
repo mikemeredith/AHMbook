@@ -42,7 +42,7 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Chapter 17.
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Chapter 17.
 }
 \examples{
 data("SwissEagleOwls")

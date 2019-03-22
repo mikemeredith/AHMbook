@@ -56,7 +56,7 @@ A list with the values of the arguments entered and the following additional ele
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.2.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.2.1
 
 Buckland et al (2001) \emph{Introduction to distance sampling: estimating abundance of biological populations}. Oxford University Press, Oxford, UK.
 }

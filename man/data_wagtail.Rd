@@ -29,7 +29,7 @@ The Dutch Centre for Field Ornithology Sovon monitored grassland birds in Flevol
 Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 9.5.3
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.5.3
 }
 \examples{
 data(wagtail)

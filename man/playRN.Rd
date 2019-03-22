@@ -36,7 +36,7 @@ A list with the following elements:
 \item{slope }{Slope of the regression of the estimated number on the true number; 1 if the model is perfect}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 6.13.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.13.1
 }
 \author{
 Kéry & Royle

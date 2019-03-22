@@ -21,7 +21,7 @@ A list of fitted model objects of class 'unmarkedFitOccuFP' as returned by \pkg{
 A data frame with a row for each model in the input list and columns for number of parameters, AIC, deltaAIC, AIC weight and cumulative AIC weight.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 18.2.2
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 18.2.2
 }
 \author{
 Chris Sutherland.

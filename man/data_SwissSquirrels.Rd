@@ -30,7 +30,7 @@ The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows an
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.9
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.9
 }
 \examples{
 # To read in the text file:

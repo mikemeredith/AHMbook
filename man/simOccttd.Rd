@@ -49,7 +49,7 @@ A list with the values of the arguments input and the following additional eleme
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Section 10.12.1
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.12.1
 
 Garrard, G.E., Bekessy, S.A., McCarthy, M.A., & Wintle, B.A. (2008) When have we looked hard enough? A novel method for setting minimum survey effort protocols for flora surveys. \emph{Austral Ecology}, 33, 986-998.
 

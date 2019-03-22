@@ -88,7 +88,7 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
  \item{ccov.p }{cov.p formated as a matrix, nsites x (nyears*nsurveys)}
 }
 \references{
-Kéry & Royle (2017) \emph{Applied Hierarachical Modeling in Ecology} Section 13.5
+Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Section 13.5
 
 Dail & Madsen (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.
 }

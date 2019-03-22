@@ -62,7 +62,7 @@ Sections 6.9.1 and 6.13.1 of the book have code to read in data from a CSV file,
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Sections 6.9.1 and 6.13.1.
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 6.9.1 and 6.13.1.
 }
 \examples{
 data(SwissTits)

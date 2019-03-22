@@ -29,7 +29,7 @@ For \code{fitstats2}, a named vector of length 6 with the same information plus 
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology} Sections 7.5.4 and 7.9.3.
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 7.5.4 and 7.9.3.
 }
 \author{
 Kéry & Royle
