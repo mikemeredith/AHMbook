@@ -40,7 +40,8 @@ valid_data <- function(N, tp, n.valid, prop.valid=FALSE) {
   # (We do not need to randomise both.)
 
   # We will need to draw > 1 value per site, without drawing any twice,
-  #   so we decide now on the (random) order of the draws for each site:
+  #   so we decide now on the (random) order of the draws for each site.
+  # Each round of validation corresponds to one column of 'order'.
   order <- matrix(0, nrow=nsites, ncol=max(N))
   for(i in 1:nsites) {
     if(N[i] > 0)
@@ -48,6 +49,7 @@ valid_data <- function(N, tp, n.valid, prop.valid=FALSE) {
   }
   stopifnot(all(rowSums(order > 0) == N)) # check
 
+  # Do successive rounds of validation until we have enough:
   n <- k <- numeric(nsites)  # vectors of zeros
   wanted <- n.valid - sum(n) # how many do we need to check?
   for(i in 1:max(N)) {

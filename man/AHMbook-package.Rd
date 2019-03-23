@@ -37,7 +37,7 @@ The functions are listed by chapter below.
 
 \section{Chapter 7}{
   \describe{
-  \item{\code{\link{instRemPiFun}}, \code{\link{crPiFun}}, \code{\link{crPiFun.Mb}}, \code{\link{MhPiFun}}}{ Define the relationship between the multinomial cell probabilities and the underlying detection probability parameters (i.e., a pi function) in various designs (7.8)}
+  \item{\code{\link{instRemPiFun}}, \code{\link{crPiFun}}, \code{\link{crPiFun.Mb}}, \code{\link{MhPiFun}}}{ Define the relationship between the multinomial cell probabilities and the underlying detection probability parameters (i.e., a pi function) in various designs (7.8 and Chapter 13)}
   } }
 
 \section{Chapter 8}{
@@ -81,8 +81,9 @@ The functions are listed by chapter below.
 
 \section{Chapter 13}{
   \describe{
-  \item{\code{\link{simDM0}}}{ Simulate data Dail-Madsen model, no covariates (13.5.1)}
-  \item{\code{\link{simDM}}}{  Simulate data Dail-Madsen model, with covariates (13.5.5)}
+  \item{\code{\link{simDM0}}}{ Simulate data from a Dail-Madsen model, no covariates (13.5.1)}
+  \item{\code{\link{simDM}}}{  Simulate data from a Dail-Madsen model, with covariates (13.5.5)}
+  \item{\code{\link{simMultMix}}}{  Simulate "removal" data from a multinomial-mixture model (13.7.1)}
   } }
 
 \section{Chapter 14}{
