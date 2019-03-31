@@ -24,7 +24,7 @@ Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National
       \item time1 : time of ??start?? of first survey, hr; NA for the missing survey.
       \item time2 : same for second survey.
       \item time3 : same for third survey.
-      \item date1 : date of first survey, 1 = ??1899-12-31??; NA for the missing survey.
+      \item date1 : date of first survey, 1 = ??1970-01-01??; NA for the missing survey.
       \item date2 : date of second survey.
       \item date3 : date of third survey.
       \item obs1 : observer ID for first survey.

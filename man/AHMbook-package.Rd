@@ -106,11 +106,17 @@ The functions are listed by chapter below.
 \section{Chapter 18}{
   \describe{
   \item{\code{\link{valid_data}}}{ Partial validation of simulated data with false positives}
+  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive models }
   } }
 
 \section{Chapter 20}{
   \describe{
   \item{\code{\link{spatial.exp}}}{ Generate Gaussian random field with negative exponential correlation}
+  } }
+
+\section{Chapter 21}{
+  \describe{
+  \item{\code{\link{simPPe}}}{ Simulate a spatial point pattern in a heterogeneous landscape}
   } }
 
 \section{DATA SETS}{
@@ -147,7 +153,6 @@ The functions are listed by chapter below.
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
-  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive models (Section 18.2.2) }
   } }
 
 

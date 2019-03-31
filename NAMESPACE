@@ -72,6 +72,9 @@ export("valid_data")
 # Chapter 20
 export("spatial.exp")
 
+# Chapter 21
+export("simPPe")
+
 # Utilities
 export("zinit")
 export("bigCrossCorr")
