@@ -30,9 +30,6 @@ variance of Gaussian random field (covariate X).
   \item{theta.X}{
 scale parameter of correlation in field (must be >0).
 }
-  \item{theta}{
-availability, the proportion of the population available for detection.
-}
   \item{M}{
 expected number of activity centers in core area.
 }
@@ -74,38 +71,42 @@ Marc Kéry.
 }
 
 \examples{
-# Nice plot
-set.seed(27)
-str(simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1, theta.X = 70,
-  M = 200, beta = 1.5, quads.along.side = 6))
+# Nice plot (produces Fig. 21-2 in the book)
+set.seed(117)
+str(dat <- simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1,
+  theta.X = 70, M = 200, beta = 1, quads.along.side = 6))
 
-# Fewer individuals, smaller density
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 10,
-  M = 50, beta = 1, quads.along.side = 6))
+\donttest{
+# Smaller study area, fewer individuals (M)
+str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
+  theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
 
-# Stronger habitat heterogeneity: more aggregation
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 10, theta.X = 10,
-  M = 50, beta = 1, quads.along.side = 6))
+# Stronger habitat heterogeneity (variance.X): more aggregation
+str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 10,
+  theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
 
-# Longer habitat gradient
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 100,
-  M = 250, beta = 1, quads.along.side = 6))
+# Longer habitat gradient (theta.X)
+str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
+  theta.X = 100, M = 250, beta = 1, quads.along.side = 6))
 
-# No habitat preference: homogeneous point process
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 10,
-  M = 250, beta = 0, quads.along.side = 6))
+# No habitat variability (variance.X): homogeneous point process
+str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 0,
+  theta.X = 10, M = 100, beta = 1, quads.along.side = 6))
+# No habitat preference (beta): homogeneous point process
+str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
+  theta.X = 10, M = 100, beta = 0, quads.along.side = 6))
+# Habitat heterogeneity at very small scale (theta.X)
+str(dat <- simPPe(lscape.size = 1000, buffer.width = 20, variance.X = 1,
+  theta.X = 0.001, M = 250, beta = 1, quads.along.side = 6))
 
-# Very small scale habitat heterogeneity -> (almost) homogeneous point process
-str(simPPe(lscape.size = 200, buffer.width = 20, variance.X = 1, theta.X = 0.01,
-  M = 250, beta = 1, quads.along.side = 6))
-
-# Abundance (and occupancy) goes up when intensity goes up ...
+str(simPPe(M = 1))      # Often produces no point at all
 str(simPPe(M = 10))
 str(simPPe(M = 100))
 str(simPPe(M = 1000))
 
-# ... or when quadrat size increases too !
-str(simPPe(M = 100, quads.along.side = 10))
-str(simPPe(M = 100, quads.along.side = 5))
-str(simPPe(M = 100, quads.along.side = 1))
+str(simPPe(M = 20, quads.along.side = 100)) # Lots of small sites
+str(simPPe(M = 20, quads.along.side = 10))
+str(simPPe(M = 20, quads.along.side = 5))
+str(simPPe(M = 20, quads.along.side = 1))   # whole study area is 1 site
+}
 }

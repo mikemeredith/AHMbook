@@ -3,7 +3,7 @@
 importFrom("grDevices", "colorRampPalette", "devAskNewPage",  "dev.interactive",
              "topo.colors", "adjustcolor")
 importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
-           "lines", "matplot", "par", "plot", "points", "polygon",
+           "lines", "matplot", "par", "plot", "points", "polygon", "mtext",
            "rect", "segments", "text", "title", "axis", "legend", "box")
 importFrom("methods", "as", "is", "new")
 importFrom("stats", "as.formula", "coef", "confint", "dbinom",
