@@ -28,8 +28,6 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 
     \enumerate{
       \item site_name : the numeric site ID, corresponding to site_name in the obs data frame.
-      \item coordx : the x coordinate of the centre of the quadrat in an undisclosed projection (to protect the locations of this sensitive and endangered species).
-      \item coordy : the y coordinate of the quadrat.
       \item region : codes for six regions of Switzerland.
       \item elev : the elevation of the centre of the quadrat, m.
       \item forest : proportion of the quadrat covered by forest.

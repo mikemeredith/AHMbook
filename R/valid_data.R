@@ -22,11 +22,12 @@ valid_data <- function(N, tp, n.valid, prop.valid=FALSE) {
   if(prop.valid){
     n.valid <- round(n.valid*sum(N))
   }
-  # Check and fix input:
-  stopifnot(length(N) == length(tp)) # TODO improved error messages
+# -------------- Check and fix input -----------------------
+  stopifnotEqualLength(N, tp)
   stopifnot(all(N >= tp))
   n.valid <- round(n.valid[1])
-  stopifnot(n.valid >= 0)
+  stopifNegative(n.valid)
+  # ------------------------------------------------------------
   if(n.valid > sum(N))
     warning("n.valid is greater than the total number of detections\n",
       "ALL will be validated", call.=FALSE)

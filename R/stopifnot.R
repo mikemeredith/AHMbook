@@ -22,6 +22,13 @@ stopifnotNumeric <- function(arg, allowNA=FALSE) {
   }
 }
 
+stopifnotEqualLength <- function(arg1, arg2) {
+  name1 <- deparse(substitute(arg1))
+  name2 <- deparse(substitute(arg2))
+  if(length(arg1) != length(arg2))
+   stop("Lengths of arguments '", name1, "' and '", name2, "' must be equal.", call.=FALSE)
+}
+
 stopifnotGreaterthan <- function(arg, value, allowNA=FALSE) {
   name <- deparse(substitute(arg))
   if(allowNA && all(is.na(arg))) {

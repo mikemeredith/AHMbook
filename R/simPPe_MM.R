@@ -44,6 +44,21 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   #    (this is the parameter of the gridding process
   #    and determines the size of the quadrats)
 
+  # -------------- Check and fix input -----------------------
+  buffer.width <- round(buffer.width[1])
+  stopifNegative(buffer.width)
+  quads.along.side <- round(quads.along.side[1])
+  stopifNegative(quads.along.side, allowZero=FALSE)
+  lscape.size <- round(lscape.size[1])
+  stopifnotGreaterthan(lscape.size, 2 * buffer.width + quads.along.side)
+  variance.X <- variance.X[1]
+  stopifNegative(variance.X)
+  theta.X <- theta.X[1]
+  stopifNegative(theta.X)
+  M <- round(M[1])
+  stopifNegative(M)
+  # ------------------------------------------------------------
+
   # --------------- Define basic geometry of simulation --------------
   #
   # Size of core study area (the 'core') and its proportion of total landscape area
@@ -116,7 +131,7 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
     # main = paste("Point pattern with average intensity, lambda =", round(lambda_pp, 5), "\nwith ncore and buffer area"),
     main = "Point pattern with\ncore and buffer area",
     xlab = "", ylab = "", axes = FALSE, asp = 1)
-    mtext(paste("Average intensity, lambda =", round(lambda_pp, 5)), side=1)
+    mtext(paste("Average intensity (lambda) =", round(lambda_pp, 5)), side=1)
     polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
   points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
 
