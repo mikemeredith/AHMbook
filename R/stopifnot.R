@@ -175,7 +175,7 @@ stopifNegative <- function(arg, allowNA=FALSE, allowZero=TRUE) {
           stop("Argument '", name, "' must be greater than 0, or NA.", call.=FALSE)
         } else {
           stop("Argument '", name, "' must be greater than 0.", call.=FALSE)
-        }  
+        }
       }
     }
   }

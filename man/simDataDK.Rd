@@ -28,7 +28,7 @@ number of pixels along each side of square state space (the 'landscape'); the to
 coefficients for the relationship: logit(b) = alpha[1] + alpha[2] * W, where b is the sampling detection bias in the presence-only observations.
 }
   \item{beta}{
-coefficients for the relationship: log(lambda) = beta[1] + beta[2] * X, where lambda is the intensity of the Poisson point process. Values of beta must be chosen such to avoid a too high 'filling' of the discrete approximation of the landscape (more animals than pixels).
+coefficients for the relationship: log(lambda) = beta[1] + beta[2] * X, where lambda is the intensity of the Poisson point process. For computational reasons, each pixel is limited to one animal; if the values of beta require more animals than pixels in the highest intensity regions, an error will occur. %% Error message: "The 'beta' settings result in intensities that are too high in the most intense region (more animals than pixels)."
 }
   \item{drop.out.prop.pb}{
 proportion of presence-only points at the end that are discarded.
@@ -81,7 +81,7 @@ Koshkina, V., Wang, Y., Gordon, A., Dorazio, R.M., White, M., & Stone, L. (2017)
 Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 21
 }
 \author{
-Marc Kéry, based on the code written by Dorazio (2014)and adapted by Koshkina et al. (2017).
+Marc Kéry, based on the code written by Dorazio (2014) and adapted by Koshkina et al. (2017).
 }
 
 \examples{

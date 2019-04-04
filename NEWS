@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9042 (2019-04-04)
+
+  * Informative error messages for 'simDataDK' function.
+
 CHANGES in 0.1.4.9041 (2019-04-03)
 
   * Added 'simDataDK' function.

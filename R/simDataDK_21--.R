@@ -59,6 +59,22 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
 
   # Note that the parameters beta must be chosen such to avoid a too high 'filling' of the discrete approximation of the entire field B
   # ------------------------------------------------------
+  
+  # -------------- Check and fix input -----------------------
+  npix <- round(npix[1])
+  stopifnotLength(alpha, 2)
+  stopifnotLength(beta, 2)
+  stopifnotProbability(drop.out.prop.pb)
+  quadrat.size <- round(quadrat.size[1])
+  if(npix %% quadrat.size != 0)
+    stop("npix / quadrat.size must return an integer.", call.=FALSE)
+  stopifnotLength(gamma, 2)
+  nquadrats <- round(nquadrats[1])
+  if(nquadrats > (npix / quadrat.size)^2)
+    stop("Number of quadrats to sample exceeds number of quadrats in the landscape.", call. = FALSE)
+  nsurveys <- round(nsurveys[1])
+  # ------------------------------------------------------------
+
 
   # Define landscape as a rectangular region S, with x and y ranging
   #  from -1 to +1, hence:
@@ -90,7 +106,9 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   #  distribution is uniform, ie, HPP:
   # How 'high' should the proposal density be? It must exceed the IPP everywhere.
   ( maxlambda <- max(values(s)[,'lambda']) ) # ~ 900 per unit area
-  (N.hpp <- rpois(1, maxlambda*s.area))     # Number we need to draw
+  (N.hpp <- suppressWarnings(rpois(1, maxlambda*s.area)))     # Number we need to draw
+  if(is.na(N.hpp) || N.hpp >= ncell(s))
+    stop("The 'beta' settings result in intensities that are too high\nin the most intense region (more animals than pixels.)", call.=FALSE)
   # Draw from the proposal distribution
   ind.hpp <- sample(1:ncell(s), size = N.hpp, replace = FALSE)   #  sampling w/o replacement ensures only 1 individual per pixel
   # reject draws depending on lambda (and hence X) to get the IPP draws
