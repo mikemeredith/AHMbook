@@ -1,7 +1,7 @@
 # NAMESPACE for AHMbook package
 
 importFrom("grDevices", "colorRampPalette", "devAskNewPage",  "dev.interactive",
-             "topo.colors", "adjustcolor")
+           "topo.colors", "adjustcolor")
 importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
            "lines", "matplot", "par", "plot", "points", "polygon", "mtext",
            "rect", "segments", "text", "title", "axis", "legend", "box")
@@ -11,17 +11,19 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "model.frame", "model.matrix", "model.offset", "optim",
            "plogis", "qlogis", "quantile", "rbinom", "residuals",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
-           "var", "vcov", "sd")
+           "var", "vcov", "sd", "aggregate")
 importFrom("utils", "head", "stack")
 
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
-  "coef", "fitted", "residuals", "vcov", "confint")
+          "coef", "fitted", "residuals", "vcov", "confint")
 importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ",
-  "getValues", "image")
+          "getValues", "image", "addLayer",  "dropLayer", "ncell",
+          "values",  "values<-", "xyFromCell", "aggregate", "subset")
 importFrom("plotrix", "draw.circle")
 importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
 importFrom("sp", "bubble", "coordinates<-")
 importFrom("coda", "crosscorr")
+importFrom("mvtnorm", "dmvnorm")
 
 
 # Chapter 1
@@ -73,7 +75,7 @@ export("valid_data")
 export("spatial.exp")
 
 # Chapter 21
-export("simPPe")
+export("simPPe", "simDataDK")
 
 # Utilities
 export("zinit")

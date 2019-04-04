@@ -117,6 +117,7 @@ The functions are listed by chapter below.
 \section{Chapter 21}{
   \describe{
   \item{\code{\link{simPPe}}}{ Simulate a spatial point pattern in a heterogeneous landscape}
+  \item{\code{\link{simDataDK}}}{ Simulate data for an integrated Dorazio-Koshkina analysis}
   } }
 
 \section{DATA SETS}{
