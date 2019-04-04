@@ -61,12 +61,10 @@ A list with the values of the input arguments and the following additional eleme
  \item{pixel.id.ipp }{pixel ID for each individual in the population}
  \item{loc.ipp }{coordinates for each individual in the population}
  \item{pTrue.ipp }{probability of detection for each individual for presence-only data}
- \item{pixel.id.det1 }{pixel ID for each individual detected before drop-out}
- \item{N.det1 }{number of detections before drop-out}
- \item{det.ipp1 }{coordinates of each individual detected before drop-out}
- \item{pixel.id.det2 }{pixel ID for each individual detected after drop-out}
- \item{N.det2 }{number of detections after drop-out}
- \item{det.ipp2 }{coordinates of each individual detected after drop-out}
+ \item{pixel.id.det }{pixel ID for each individual detected}
+ \item{N.det }{number of detections}
+ \item{det.ipp }{coordinates of each individual detected}
+ \item{y.point }{A vector with values for each pixel, 1 if an individual is present and detected, 0 otherwise}
  \item{pcount }{probability of detection during count surveys, varies by quadrat}
  \item{fullCountData }{matrix with rows for each quadrat, columns for ID, x and w coords, true N, and 3 replicate counts}
  \item{countData }{as above, but rows for quadrats sampled only}

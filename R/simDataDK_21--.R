@@ -116,7 +116,7 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   ind.ipp <- rbinom(N.hpp, 1, lambda.hpp/maxlambda)   # use intensity lambda to determine whether to accept or reject.
   (N.ipp <- sum(ind.ipp))               # about 1800 individuals in IPP
   pixel.id.ipp <- ind.hpp[ind.ipp == 1] # Gives id of every pixel in landscape that has an individual, a vector of numbers, length N.ipp = total population
-
+  
   # PART B. The detection-only observation model
   # --------------------------------------------
   # Create covariate W which affects which animals are detected (ie, where people look)
@@ -142,8 +142,10 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   # length(pixel.id.det1) # ~ 550. This is too many, better drop a bunch
 
   drop.out <- runif(length(pixel.id.det1), 0, 1) < drop.out.prop.pb # T/F vector
-  pixel.id.det2 <- pixel.id.det1[!drop.out]
-  # length(pixel.id.det2) # ~ 180, ok
+  pixel.id.det <- pixel.id.det1[!drop.out]
+  # length(pixel.id.det) # ~ 180, ok
+  y.point <- numeric(npix^2)
+  y.point[pixel.id.det] <- 1
 
 
   #### Part C: simulate replicate count data
@@ -198,8 +200,8 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
       main = paste("Inhomogenous Poisson point process:\nIntensity  covariate 'x' and\nlocations of", N.ipp, "individuals"))
     points(loc.ipp, pch = 16, cex = 0.5)    # location of the individuals
 
-    loc.det <- s.loc[pixel.id.det2, ]
-    N.det <- length(pixel.id.det2)
+    loc.det <- s.loc[pixel.id.det, ]
+    N.det <- length(pixel.id.det)
     raster::plot(raster::subset(s, 'w'), axes = FALSE, box = FALSE,  asp=1,
       main = paste("Detection-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
     points(loc.det, pch = 16, cex = 0.5)    # location of the individuals
@@ -236,14 +238,12 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     loc.ipp = s.loc[pixel.id.ipp, ],
         # Coordinates for each individual in the population
     pTrue.ipp = pTrue.ipp,         # Probability of detection for each individual
-    pixel.id.det1 = pixel.id.det1, # Pixel ID for each individual detected before drop-out
-    N.det1 = length(pixel.id.det1),# Number of detections before drop-out
-    det.ipp1 = s.loc[pixel.id.det1, ],
-        # Coordinates for each individual detected before drop-out
-    pixel.id.det2 = pixel.id.det2, # Pixel ID for each individual detected after drop-out
-    N.det2 = length(pixel.id.det2),# Number of detections after drop-out
-    det.ipp2 = s.loc[pixel.id.det2, ],
-        # Coordinates for each individual detected after drop-out
+    pixel.id.det = pixel.id.det,   # Pixel ID for each individual detected
+    N.det = length(pixel.id.det),  # Number of detections
+    det.ipp = s.loc[pixel.id.det, ],
+        # Coordinates for each individual detected
+    y.point = y.point,             # A value for every pixel, 1 if a pixel had an animal
+                                   #   and it was detected, 0 otherwise
     pcount = pcount,               # Probability of detection in each quadrat
     fullCountData = fullCountData,
       # matrix with rows for each quadrat, columns for ID, x and w coords,
