@@ -69,13 +69,13 @@ export("simDynocc", "simDemoDynocc")
 export("simDCM")
 
 # Chapter 18
-export("valid_data")
+export("valid_data", "modSelFP")
 
 # Chapter 20
 export("spatial.exp")
 
 # Chapter 21
-export("simPPe", "simDataDK")
+export("simPPe", "simDataDK", "simDataDK2")
 
 # Utilities
 export("zinit")
@@ -83,4 +83,3 @@ export("bigCrossCorr")
 export("standardize", "standardize2match")
 export("e2dist")
 export("image_scale")
-export("modSelFP")
