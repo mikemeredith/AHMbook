@@ -23,7 +23,7 @@
 
 
 # ---------------- Start of function definition --------------------
-simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE){
   #
@@ -39,8 +39,8 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
 
 
   # Simulate data under a (thinned) Poisson point pattern (PPP).
-  # npix: number of pixels along each side of square state space (the 'landscape')
-  #    number of pixels is then npix^2
+  # sqrt.npix: number of pixels along each side of square state space (the 'landscape')
+  #    number of pixels is then sqrt.npix^2
   # intensity of IPP: log(lambda) = beta0 + beta1 * covariate X
   # sampling detection bias in presence-only observations of IPP is modelled as:
   #               logit(b) = alpha0 + alpha1 * covariate W
@@ -59,18 +59,18 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
 
   # Note that the parameters beta must be chosen such to avoid a too high 'filling' of the discrete approximation of the entire field B
   # ------------------------------------------------------
-  
+
   # -------------- Check and fix input -----------------------
-  npix <- round(npix[1])
+  sqrt.npix <- round(sqrt.npix[1])
   stopifnotLength(alpha, 2)
   stopifnotLength(beta, 2)
   stopifnotProbability(drop.out.prop.pb)
   quadrat.size <- round(quadrat.size[1])
-  if(npix %% quadrat.size != 0)
-    stop("npix / quadrat.size must return an integer.", call.=FALSE)
+  if(sqrt.npix %% quadrat.size != 0)
+    stop("sqrt.npix / quadrat.size must return an integer.", call.=FALSE)
   stopifnotLength(gamma, 2)
   nquadrats <- round(nquadrats[1])
-  if(nquadrats > (npix / quadrat.size)^2)
+  if(nquadrats > (sqrt.npix / quadrat.size)^2)
     stop("Number of quadrats to sample exceeds number of quadrats in the landscape.", call. = FALSE)
   nsurveys <- round(nsurveys[1])
   # ------------------------------------------------------------
@@ -81,7 +81,7 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   s.area <- 4
 
   # Approximate the landscape by many small pixels in a raster object
-  s <- temp <- raster(ncol=npix, nrow=npix, xmn=-1, xmx=1, ymn=-1, ymx=1, crs=NULL)
+  s <- temp <- raster(ncol=sqrt.npix, nrow=sqrt.npix, xmn=-1, xmx=1, ymn=-1, ymx=1, crs=NULL)
   # s will become a Raster Stack, temp is a template to create new layers
   s.loc <- xyFromCell(temp, 1:ncell(s))    # Coordinates of every pixel in S
 
@@ -108,21 +108,21 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   if(is.na(N.prop))
     stop("The 'beta' settings result in intensities that are too high\nin the most intense region.", call.=FALSE)
   # Draw from the proposal distribution
-  ind.prop <- sample.int(npix^2, size = N.prop, replace = TRUE)
+  ind.prop <- sample.int(sqrt.npix^2, size = N.prop, replace = TRUE)
   # reject draws depending on lambda (and hence X) to get the IPP draws
   loglam.prop <- loglam[ind.prop]  # intensities at those pixels
   retain <- rbinom(N.prop, 1, exp(loglam.prop-maxloglam))   # use intensity lambda to determine whether to accept or reject.
   (N.pop <- sum(retain))               # about 1800 individuals in IPP
   pixel.id.pop <- ind.prop[retain == 1] # Gives pixel id for every individual.
-  loc.pop <- s.loc[pixel.id.pop,] + matrix(runif(N.pop*2, -1/npix, 1/npix), ncol=2)
-  
+  loc.pop <- s.loc[pixel.id.pop,] + matrix(runif(N.pop*2, -1/sqrt.npix, 1/sqrt.npix), ncol=2)
+
   # How many in each pixel?
-  n <- tabulate(pixel.id.pop, nbins=npix^2)
+  n <- tabulate(pixel.id.pop, nbins=sqrt.npix^2)
   # Add to the raster stack
   values(temp) <- n
   names(temp) <- 'n'
   s <- addLayer(s, temp)
-  
+
   # PART B. The detection-only observation model
   # --------------------------------------------
   # Create covariate W which affects which animals are detected (ie, where people look)
@@ -147,7 +147,7 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out <- runif(length(pixel.id.det0), 0, 1) < drop.out.prop.pb # T/F vector
   pixel.id.det <- pixel.id.det0[!drop.out]
   ( N.det <- length(pixel.id.det) ) # ~ 180, ok
-  y.pixel <- tabulate(pixel.id.det, nbins=npix^2)
+  y.pixel <- tabulate(pixel.id.det, nbins=sqrt.npix^2)
   # range(y.pixel)
   loc.det <- loc.pop[y.det0==1, ][!drop.out, ]
 
@@ -217,7 +217,7 @@ simDataDK2 <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   # Output (numeric)
   return(list(
     # ---------------- input arguments ------------------
-    npix = npix, alpha = alpha, beta = beta, gamma = gamma,
+    sqrt.npix = sqrt.npix, alpha = alpha, beta = beta, gamma = gamma,
     drop.out.prop.pb = drop.out.prop.pb, quadrat.size = quadrat.size,
     nquadrats = nquadrats, nsurveys =nsurveys,
     # ----------------- values generated -------------------

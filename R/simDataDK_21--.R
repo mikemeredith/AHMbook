@@ -23,7 +23,7 @@ getCovSurface <- function(mWt=c(0.75, 0.4),sWt=c(0.25, 0.5), rho=0.5,
 
 
 # ---------------- Start of function definition --------------------
-simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+simDataDK <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE){
   #
@@ -39,8 +39,8 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
 
 
   # Simulate data under a (thinned) Poisson point pattern (PPP).
-  # npix: number of pixels along each side of square state space (the 'landscape')
-  #    number of pixels is then npix^2
+  # sqrt.npix: number of pixels along each side of square state space (the 'landscape')
+  #    number of pixels is then sqrt.npix^2
   # intensity of IPP: log(lambda) = beta0 + beta1 * covariate X
   # sampling detection bias in presence-only observations of IPP is modelled as:
   #               logit(b) = alpha0 + alpha1 * covariate W
@@ -59,18 +59,18 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
 
   # Note that the parameters beta must be chosen such to avoid a too high 'filling' of the discrete approximation of the entire field B
   # ------------------------------------------------------
-  
+
   # -------------- Check and fix input -----------------------
-  npix <- round(npix[1])
+  sqrt.npix <- round(sqrt.npix[1])
   stopifnotLength(alpha, 2)
   stopifnotLength(beta, 2)
   stopifnotProbability(drop.out.prop.pb)
   quadrat.size <- round(quadrat.size[1])
-  if(npix %% quadrat.size != 0)
-    stop("npix / quadrat.size must return an integer.", call.=FALSE)
+  if(sqrt.npix %% quadrat.size != 0)
+    stop("sqrt.npix / quadrat.size must return an integer.", call.=FALSE)
   stopifnotLength(gamma, 2)
   nquadrats <- round(nquadrats[1])
-  if(nquadrats > (npix / quadrat.size)^2)
+  if(nquadrats > (sqrt.npix / quadrat.size)^2)
     stop("Number of quadrats to sample exceeds number of quadrats in the landscape.", call. = FALSE)
   nsurveys <- round(nsurveys[1])
   # ------------------------------------------------------------
@@ -81,7 +81,7 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   s.area <- 4
 
   # Approximate the landscape by many small pixels in a raster object
-  s <- temp <- raster(ncol=npix, nrow=npix, xmn=-1, xmx=1, ymn=-1, ymx=1, crs=NULL)
+  s <- temp <- raster(ncol=sqrt.npix, nrow=sqrt.npix, xmn=-1, xmx=1, ymn=-1, ymx=1, crs=NULL)
   # s will become a Raster Stack, temp is a template to create new layers
   s.loc <- xyFromCell(temp, 1:ncell(s))    # Coordinates of every pixel in S
 
@@ -116,7 +116,7 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   ind.ipp <- rbinom(N.hpp, 1, lambda.hpp/maxlambda)   # use intensity lambda to determine whether to accept or reject.
   (N.ipp <- sum(ind.ipp))               # about 1800 individuals in IPP
   pixel.id.ipp <- ind.hpp[ind.ipp == 1] # Gives id of every pixel in landscape that has an individual, a vector of numbers, length N.ipp = total population
-  
+
   # PART B. The detection-only observation model
   # --------------------------------------------
   # Create covariate W which affects which animals are detected (ie, where people look)
@@ -144,7 +144,7 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out <- runif(length(pixel.id.det1), 0, 1) < drop.out.prop.pb # T/F vector
   pixel.id.det <- pixel.id.det1[!drop.out]
   # length(pixel.id.det) # ~ 180, ok
-  y.point <- numeric(npix^2)
+  y.point <- numeric(sqrt.npix^2)
   y.point[pixel.id.det] <- 1
 
 
@@ -225,7 +225,7 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   # Output (numeric)
   return(list(
     # ---------------- input arguments ------------------
-    npix = npix, alpha = alpha, beta = beta, gamma = gamma,
+    sqrt.npix = sqrt.npix, alpha = alpha, beta = beta, gamma = gamma,
     drop.out.prop.pb = drop.out.prop.pb, quadrat.size = quadrat.size,
     nquadrats = nquadrats, nsurveys =nsurveys,
     # ----------------- values generated -------------------
@@ -240,8 +240,8 @@ simDataDK <- function(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     pTrue.ipp = pTrue.ipp,         # Probability of detection for each individual
     pixel.id.det = pixel.id.det,   # Pixel ID for each individual detected
     N.det = length(pixel.id.det),  # Number of detections
-    det.ipp = s.loc[pixel.id.det, ],
-        # Coordinates for each individual detected
+    loc.det = s.loc[pixel.id.det, ], # Coordinates for each individual detected
+    det.ipp = s.loc[pixel.id.det, ], # idem, this is old name, take out later?
     y.point = y.point,             # A value for every pixel, 1 if a pixel had an animal
                                    #   and it was detected, 0 otherwise
     pcount = pcount,               # Probability of detection in each quadrat

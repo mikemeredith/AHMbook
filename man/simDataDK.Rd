@@ -7,7 +7,7 @@
 Simulate data for an integrated Dorazio-Koshkina analysis
 }
 \description{
-The function generates a population in a heterogeneous landscape and simulates data from two different sources: (1) presence-only data, and (2) replicate counts in randomly-selected quadrats. This is the scenario for the integrated model described by Dorazio (2014) and Koshkina et al. (2017).
+The function generates a population in a heterogeneous landscape and simulates data from two different sources: (1) opportunistic presence-only data, and (2) replicate counts in randomly-selected quadrats. This is the scenario for the integrated model described by Dorazio (2014) and Koshkina et al. (2017).
 
 A Poisson point pattern (PPP) with intensity a function of a covariate X and intercept and coefficient beta is simulated on a discrete (pixel-based) approximation of a continuous landscape.
 
@@ -18,18 +18,18 @@ A second data set is simulated by imagining replicated counts conducted in rando
 For \code{simDataDK} animals are limited to one individual per pixel; this is not the case for \code{simDataDK2}.
 }
 \usage{
-simDataDK(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+simDataDK(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE)
   
-simDataDK2(npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+simDataDK2(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE)
 }
 
 \arguments{
-  \item{npix}{
-number of pixels along each side of square state space (the 'landscape'); the total number of pixels is then npix^2. For \code{simDataDK2} this is the resolution of the rasters used and does not affect population size.
+  \item{sqrt.npix}{
+number of pixels along each side of square state space (the 'landscape'); the total number of pixels is then \code{npix = sqrt.npix^2}. For \code{simDataDK2} this is the resolution of the rasters used and does not affect population size.
 }
   \item{alpha}{
 coefficients for the relationship: logit(b) = alpha[1] + alpha[2] * W, where b is the sampling detection bias in the presence-only observations.
@@ -42,7 +42,7 @@ proportion of presence-only points at the end that are discarded.
 }
 
   \item{quadrat.size}{
-length of the side of quadrats for conducting replicate counts in \emph{pixel} units; note that npix / quadrat.size must yield an integer.
+length of the side of quadrats for conducting replicate counts in \emph{pixel} units; note that sqrt.npix / quadrat.size must yield an integer.
 }
   \item{gamma}{
 coefficients for the relationship: logit(p) = gamma[1] + gamma[2] * W, where p is the probability of detecting an individual during the count surveys in the quadrats.
@@ -70,7 +70,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{pTrue.ipp }{probability of detection for each individual for presence-only data}
  \item{pixel.id.det }{pixel ID for each individual detected opportunistically}
  \item{N.det }{number of detections}
- \item{det.ipp or loc.det }{coordinates of each individual detected opportunistically}
+ \item{loc.det }{coordinates of each individual detected opportunistically}
  \item{y.point }{A vector with values for each pixel, 1 if an individual is present and detected, 0 otherwise (for \code{simDataDK})}
  \item{y.pixel }{The count of individuals detected opportunistically in each pixel (for \code{simDataDK2})}
  \item{pcount }{probability of detection during count surveys, varies by quadrat}
@@ -96,7 +96,7 @@ str(tmp <- simDataDK(), 1)  # use str(., max.level=1) to limit the amount of out
 
 str(tmp <- simDataDK(show.plot=FALSE), 1)  # no plots
 
-str(tmp <- simDataDK(npix = 500), 1)       # much larger landscape
+str(tmp <- simDataDK(sqrt.npix = 500), 1)       # much larger landscape
 
 str(tmp <- simDataDK(alpha = c(-1,1)), 1)  # positive effect of W on bias rate parameter b
 
