@@ -229,6 +229,7 @@ simDataDK <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     drop.out.prop.pb = drop.out.prop.pb, quadrat.size = quadrat.size,
     nquadrats = nquadrats, nsurveys =nsurveys,
     # ----------------- values generated -------------------
+    npix = sqrt.npix^2,            # Number of pixels in the landscape
     s.area = s.area,               # Area of the landscape, 4
     s.loc = s.loc,                 # Coordinates of every pixel in the landscape
     xcov = xcov,                   # 'x' (intensity) covariate
@@ -241,9 +242,6 @@ simDataDK <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     pixel.id.det = pixel.id.det,   # Pixel ID for each individual detected
     N.det = length(pixel.id.det),  # Number of detections
     loc.det = s.loc[pixel.id.det, ], # Coordinates for each individual detected
-    det.ipp = s.loc[pixel.id.det, ], # idem, this is old name, take out later?
-    y.point = y.point,             # A value for every pixel, 1 if a pixel had an animal
-                                   #   and it was detected, 0 otherwise
     pcount = pcount,               # Probability of detection in each quadrat
     fullCountData = fullCountData,
       # matrix with rows for each quadrat, columns for ID, x and w coords,

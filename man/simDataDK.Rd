@@ -60,6 +60,7 @@ if TRUE, summary plots are displayed.
 
 \value{
 A list with the values of the input arguments and the following additional elements:
+ \item{npix }{the number of pixels in the landscape}
  \item{s.area }{the area of the whole landscape = 4}
  \item{s.loc }{2-column vector with the location of each pixel}
  \item{xcov }{values of the 'X' (intensity) covariate}
@@ -71,8 +72,6 @@ A list with the values of the input arguments and the following additional eleme
  \item{pixel.id.det }{pixel ID for each individual detected opportunistically}
  \item{N.det }{number of detections}
  \item{loc.det }{coordinates of each individual detected opportunistically}
- \item{y.point }{A vector with values for each pixel, 1 if an individual is present and detected, 0 otherwise (for \code{simDataDK})}
- \item{y.pixel }{The count of individuals detected opportunistically in each pixel (for \code{simDataDK2})}
  \item{pcount }{probability of detection during count surveys, varies by quadrat}
  \item{fullCountData }{matrix with rows for each quadrat, columns for ID, x and w coords, true N, and 3 replicate counts}
  \item{countData }{as above, but rows for quadrats sampled only}
