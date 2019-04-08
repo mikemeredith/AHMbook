@@ -105,6 +105,7 @@ nspecies <- round(nspecies[1])
 nsites <- round(nsites[1])
 nsurveys <- round(nsurveys[1])
 nyears <- round(nyears[1])
+stopifnotGreaterthan (nyears, 1)
 stopifnotProbability(mean.psi1)
 stopifNegative(sig.lpsi1, allowZero=TRUE)
 # mu.beta.lpsi1

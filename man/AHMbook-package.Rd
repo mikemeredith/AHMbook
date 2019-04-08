@@ -120,6 +120,11 @@ The functions are listed by chapter below.
   \item{\code{\link{simDataDK}}}{ Simulate data for an integrated Dorazio-Koshkina analysis}
   } }
 
+\section{Chapter 24}{
+  \describe{
+  \item{\code{\link{sim.spatialDSline}}}{ Simulate data for a standardized line transect}
+  } }
+
 \section{DATA SETS}{
   \describe{
   \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999 to 2015 (12.3)}

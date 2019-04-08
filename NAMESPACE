@@ -12,7 +12,7 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "plogis", "qlogis", "quantile", "rbinom", "residuals",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
            "var", "vcov", "sd", "aggregate")
-importFrom("utils", "head", "stack")
+importFrom("utils", "head", "stack", "packageVersion")
 
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
           "coef", "fitted", "residuals", "vcov", "confint")
@@ -76,6 +76,9 @@ export("spatial.exp")
 
 # Chapter 21
 export("simPPe", "simDataDK", "simDataDK2")
+
+# Chapter 24
+export("sim.spatialDSline")
 
 # Utilities
 export("zinit")
