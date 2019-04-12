@@ -49,12 +49,12 @@ simPH <- function(
   stopifnotProbability(p.range)
   # ---------------------------------------------------------------
 
-  # Simulate among-year population dynamics: exponential model for N
-  N <- array(NA, dim = c(npop, nyears))  # Array for site-year abundance
-  N[,1] <- rpois(npop, initial.lambda)
+  # Simulate among-year population dynamics: exponential model for n
+  n <- array(NA, dim = c(npop, nyears))  # Array for site-year abundance
+  n[,1] <- rpois(npop, initial.lambda)
   gamma <- rlnorm(nyears-1, meanlog=gamma.parms[1], sdlog=gamma.parms[2])
   for(t in 2:nyears){
-    N[,t] <- rpois(npop, N[,t-1] * gamma[t-1])
+    n[,t] <- rpois(npop, n[,t-1] * gamma[t-1])
   }
 
   # Simulate within-year population dynamics: Normal curve for counts
@@ -85,7 +85,7 @@ simPH <- function(
         # a[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date[i,t,k] - mu[i,t])^2) / (2 * sigma[t]^2) )             # Rel. population size
         a[i,t,k] <- dnorm(date[i,t,k], mu[i,t], sigma[t])
                # Rel. population size
-        lambda[i,t,k] <- N[i,t] * a[i,t,k] * p[i,t,k] # Expected counts
+        lambda[i,t,k] <- n[i,t] * a[i,t,k] * p[i,t,k] # Expected counts
         C[i,t,k] <- rpois(1, lambda[i,t,k])       # Realized counts
       }
     }
@@ -109,7 +109,7 @@ simPH <- function(
           # aa[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date.range[k] - mu[i,t])^2) / (2 * sigma[t]^2) )       # Relative population size
           aa[i,t,k] <- dnorm(date.range[k], mu[i,t], sigma[t])
             # Relative population size
-          ll[i,t,k] <- N[i,t] * aa[i,t,k] * pp[i,t,k] # Expected counts
+          ll[i,t,k] <- n[i,t] * aa[i,t,k] * pp[i,t,k] # Expected counts
         }
       }
     }
@@ -117,11 +117,11 @@ simPH <- function(
     # Graphical output
     # Plot population dynamics and plot of all population sizes
     par(mfrow = c(2,1), mar = c(5,4,3,1))
-    matplot(1:nyears, t(N), type = "l", lwd = 2, lty = 1, main = "Population size (N) for each population and year", ylab = "N", xlab = "Year", frame = FALSE, xaxt='n')
+    matplot(1:nyears, t(n), type = "l", lwd = 2, lty = 1, main = "Relative population size (n) for each population and year", ylab = "n", xlab = "Year", frame = FALSE, xaxt='n')
     tmp <- pretty(1:nyears)
     tmp[1] <- 1
     axis(1, at=tmp)
-    plot(table(N), xlab = 'Population size', ylab = 'Frequency', main = 'Frequency distribution of population size for all sites and years', frame = FALSE)
+    plot(table(n), xlab = 'Relative population size', ylab = 'Frequency', main = 'Frequency distribution of relative population size\nfor all sites and years', frame = FALSE)
 
     # Plot time-series of relative expected abundance for up to 16 populations
     par(mfrow = c(4,4), mar = c(5,4,3,1))
@@ -134,14 +134,14 @@ simPH <- function(
     par(mfrow = c(4,4), mar = c(5,4,3,1))
     limit <- ifelse(npop<17, npop, 16)
     for(i in 1:limit){     # Plot only for 4x4 populations
-      matplot(date.range, t(ll[i,,]), type = "l", lty = 1, lwd = 2, ylim = c(0, max(ll[i,,])), xlab = "Date", ylab = "Exp. abundance", main = paste("Rel. exp. N in pop ", i, sep = ''), frame = FALSE)
+      matplot(date.range, t(ll[i,,]), type = "l", lty = 1, lwd = 2, ylim = c(0, max(ll[i,,])), xlab = "Date", ylab = "Exp. abundance", main = paste("Rel. exp. n in pop ", i, sep = ''), frame = FALSE)
     }
 
     # Plot time-series of counts (= relative, realized abundance) for up to 16 populations
     par(mfrow = c(4,4), mar = c(5,4,3,1))
     limit <- ifelse(npop<17, npop, 16)
     for(i in 1:limit){     # Plot only for 4x4 populations
-      matplot(t(date[i,,]), t(C[i,,]), type = "b", lty = 1, lwd = 2, ylim = c(0, max(C[i,,])), xlab = "Date", ylab = "Counts", main = paste("Pop ", i, "(meanN =", round(mean(N[i,])), ")"), frame = FALSE)
+      matplot(t(date[i,,]), t(C[i,,]), type = "b", lty = 1, lwd = 2, ylim = c(0, max(C[i,,])), xlab = "Date", ylab = "Counts", main = paste("Pop ", i, "(mean n =", round(mean(n[i,])), ")"), frame = FALSE)
     }
   }
   # Numerical output
@@ -153,7 +153,7 @@ simPH <- function(
     # ------------ generated values -----------------------
     # abundance
     gamma = gamma,   # nyears-1 vector, change in abundance
-    N = N,           # site x year matrix, true abundance
+    n = n,           # site x year matrix, true abundance
     # phenology
     mu = mu,         # site x year matrix, mean of the flight period
     sigma = sigma,   # nyears vector, half-length of flight period

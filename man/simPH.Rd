@@ -3,13 +3,13 @@
 \encoding{UTF-8}
 
 \title{
-Generate counts under a variant of a 'phenomenological model' 
+Generate counts under a variant of a 'phenomenological model'
 }
 \description{
 Function generates (insect) counts under a variant of a 'phenomenological model' of Dennis et al. (2016). Interannual population model is exponential population growth, with Poisson initial abundance governed by initial.lambda and annually varying growth rate (or productivity parameter) gamma. Within-year dynamics is described by a Gaussian curve with date of mean flight period mu (site- and year-specific) and length of flight period sigma (only year-specific). Counts are made subject to a detection probability (p), which varies randomly according to a uniform distribution for every single count. Counts are plotted for up to 16 populations only.
 }
 \usage{
-simPH(npop = 18, nyears = 17, nreps = 10, date.range = 1:150, initial.lambda = 300, 
+simPH(npop = 18, nyears = 17, nreps = 10, date.range = 1:150, initial.lambda = 300,
   gamma.parms = c(0, 0.3), mu.range = c(50, 80),  sigma.range = c(10, 20),
   p.range = c(0.4, 0.6), show.plot = TRUE)
 }
@@ -27,7 +27,7 @@ The number of surveys per year.
 The dates over which surveys may be conducted.
 }
   \item{initial.lambda}{
-The Poisson mean of initial population size.
+The Poisson mean of initial relative population size.
 }
   \item{gamma.parms}{
 The mean and SD of lognormal interannual productivity.
@@ -49,7 +49,7 @@ Choose whether to show plots or not. Set to FALSE when using function in simulat
 A list with the values of the arguments entered and the following additional elements:
 
 \item{gamma }{(nyears-1) vector, change in abundance for each interval between years.}
-\item{N }{site x year matrix, true abundance.}
+\item{n }{site x year matrix, true relative abundance.}
 \item{mu }{site x year matrix, mean date of the flight period.}
 \item{sigma }{nyears vector, half-length of flight period.}
 \item{date }{site x year x reps array, dates of the surveys.}
