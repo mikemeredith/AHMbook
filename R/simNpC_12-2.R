@@ -17,7 +17,7 @@ simNpC <- function(
   # detection probability (dp) leading from dp[1] to dp[2].
   # Default is for a strongly declining population with constant p = 0.5.
 
-  # Checks and fixes for input data  -------------------
+  # ---- Checks and fixes for input data  -------------------
   T <- round(T[1])
   stopifnotLength(expN, 2)
   stopifNegative(expN)
@@ -38,20 +38,20 @@ simNpC <- function(
     oldpar <- par(mfrow = c(1, 3), mar = c(5,5,1,1), cex.axis = 1.2,
       cex.lab = 1.2, cex = 1.2)
         on.exit(par(oldpar))
-    plot(1:T, lambda, xlab = 'Year', ylab = 'Expected abundance',
+    plot(1:T, lambda, xlab = 'Year', ylab = 'Expected abundance (lambda)',
       ylim = c(0, max(expN)), type = 'l', lwd = 3, col = 2, frame = FALSE)
-    plot(1:T, p, xlab = 'Year', ylab = 'Detection prob.',
+    plot(1:T, p, xlab = 'Year', ylab = 'Detection prob. (p)',
       ylim = c(0, 1), type = 'l', lwd = 3, col = 4, frame = FALSE)
     plot(1:T, N, xlab = 'Year', ylab = 'Counts, Abundance',
       ylim = c(0, max(N)), pch = 16, frame = FALSE)
     points(1:T, C, pch = 1)
-    lines(1:T, lambda, col = 2, lwd = 2, lty=3)
-    lines(1:T, lambda*p, col = 1, lwd = 2)
+    lines(1:T, lambda, col = 2, lwd = 2)
+    lines(1:T, lambda*p, col = 1, lwd = 2, lty=2)
     legend(1, 0.24*max(N), c('True N', 'Observed C'), pch = c(16,1),
-      cex = 0.7, bty = 'n')
-    legend(1, 0.12*max(N), c('Expected N (lambda)',
-      'Relative abundance (lambda * p)'), lty = c(3,1), lwd = 3,
-      col = c(2,1), cex = 0.7, bty = 'n')
+      cex = 0.8, bty = 'n')
+    legend(1, 0.14*max(N), c('Expected N (lambda)',
+      'Exp. relative abundance\n (lambda * p)'), lty = c(1,2), lwd = 3,
+      col = c(2,1), cex = 0.8, bty = 'n')
   }
 
   # Output

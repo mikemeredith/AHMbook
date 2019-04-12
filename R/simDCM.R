@@ -273,8 +273,9 @@ for(t in 1:nyears){   # Years
 
 # (5) Plots of stuff
 if(show.plot){
-  op <- par(mfrow = c(3, 2), mar = c(5,5,4,3), cex.lab = 1.2) ; on.exit(par(op))
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  oldpar <- par(mfrow = c(3, 2), mar = c(5,5,4,3), cex.lab = 1.2)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
+  on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
 
   # Get predicted covariate relationships and plot them in single graph
   pred.cov <- seq(-2, 2, length.out = 100)

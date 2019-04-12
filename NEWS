@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9048 (2019-04-12)
+
+  * Small changes to plots in 'simDCM', 'simNpC' and 'graphSSM'; no change in numeric output.
+
 CHANGES in 0.1.4.9047 (2019-04-08)
 
   * Added 'sim.spatialDSline' function.

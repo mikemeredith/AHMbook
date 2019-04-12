@@ -32,6 +32,6 @@ graphSSM<- function(ssm, C){
     polygon(x = c(1:T, T:1), y = c(lower, upper[T:1]), col = "gray90", border = "gray90")
     points(C[j,], type = "l", col = "black", lwd = 2)
     points(fitted, type = "l", col = "blue", lwd = 2)
-    legend(x = 1, y = m2, legend = c("Observeddata (C)", "Estimatedlatent states (n) with 95% CRI"), lty = c(1, 1), lwd = c(2, 2), col = c("black", "blue"), bty = "n", cex = 0.6)
+    legend(x = 1, y = m2, legend = c("Observed data (C)", "Estimated latent states (n) with 95% CRI"), lty = c(1, 1), lwd = c(2, 2), col = c("black", "blue"), bty = "n", cex = 0.6)
   }
 }
