@@ -159,6 +159,7 @@ The functions are listed by chapter below.
   \item{\code{\link{e2dist}}}{ Compute Euclidean distances}
   \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter 9) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
+  \item{\code{\link{Color_Ramps}}}{ Color ramps for use with image or raster plots }
   } }
 
 

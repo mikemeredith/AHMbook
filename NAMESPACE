@@ -86,3 +86,6 @@ export("bigCrossCorr")
 export("standardize", "standardize2match")
 export("e2dist")
 export("image_scale")
+
+# Color ramps
+export("rampYOR", "rampGreens",  "rampGreys", "rampBYR", "rampGBr")

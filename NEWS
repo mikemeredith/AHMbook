@@ -7,6 +7,10 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9050 (2019-04-13)
+
+  * Added color ramps 'rampYOR', 'rampGreens', 'rampGreys', 'rampBYR', 'rampGBr'.
+
 CHANGES in 0.1.4.9049 (2019-04-12)
 
   * 'N' changed to 'n' in 'simPH'.
