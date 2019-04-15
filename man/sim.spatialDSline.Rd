@@ -7,7 +7,7 @@ Simulate data for a standardized line transect
 }
 \description{
 
-See book text Chapter 24 section 22.2.
+See book text Chapter 22 section 22.2.
 
 }
 \usage{
@@ -56,7 +56,7 @@ and if \code{perp = FALSE} we have
 }
 \references{
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 24
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 22
 }
 \author{
 Andy Royle.

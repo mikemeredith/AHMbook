@@ -34,14 +34,14 @@ field <- matrix(RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=
 # Plots
 # Correlation function
 if(show.plot){
-par(mfrow = c(1,2), mar = c(5,5,4,2))
-dis <- seq(0.01, 20, by = 0.01)
-corr <- exp(-dis/theta)
-plot(dis, corr, type = "l", xlab = "Distance", ylab = "Correlation", ylim = c(0,1), col = "blue", lwd = 2)
-text(0.8*max(dis), 0.8, labels = paste("theta:", theta))
+  oldpar <- par(mfrow = c(1,2), mar = c(5,5,4,2)) ; on.exit(par(oldpar))
+  dis <- seq(0.01, 20, by = 0.01)
+  corr <- exp(-dis/theta)
+  plot(dis, corr, type = "l", xlab = "Distance", ylab = "Correlation", ylim = c(0,1), col = "blue", lwd = 2)
+  text(0.8*max(dis), 0.8, labels = paste("theta:", theta))
 
-# Random field
-image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
+  # Random field
+  image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
 }
 
 # Output

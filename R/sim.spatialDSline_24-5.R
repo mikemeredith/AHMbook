@@ -1,5 +1,5 @@
 
-# Function for Chapter 24, section 22.5 [sic]
+# Function for Chapter 22, section 22.5
 
 if(FALSE) {  # use this when stepping thro code
   library(raster)      # Load required packages
@@ -37,7 +37,7 @@ function(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE){
   # Create spatially correlated covariate x and plot it
   V <- exp(-e2dist(gr,gr)/1)
   x <- t(chol(V))%*%rnorm(nrow(gr))
-  par(mar=c(3,3,3,6))
+  oldpar <- par(mar=c(3,3,3,6), "mfrow") ; on.exit(par(oldpar))
   image(r<- rasterFromXYZ(cbind(gr,x)), col=topo.colors(10))
   abline(0.5, 0, lwd=2)
 

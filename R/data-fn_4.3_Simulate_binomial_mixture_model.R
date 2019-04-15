@@ -45,8 +45,9 @@ psi.true <- mean(N>0)                   # True occupancy in sample
 
 # Plots
 if(show.plot){
-  op <- par(mfrow = c(2, 2), cex.main = 1) ; on.exit(par(op))
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  oldpar <- par(mfrow = c(2, 2), cex.main = 1)
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
+  on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
   # Page 1: lambda relationships
   curve(exp(beta0 + beta1*x), -1, 1, col = "red", main = "Relationship lambda-elevation \nat average forest cover", frame.plot = FALSE, xlab = "Scaled elevation")
   plot(elev, lambda, xlab = "Scaled elevation", main = "Relationship lambda-elevation \nat observed forest cover", frame.plot = FALSE)

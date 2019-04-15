@@ -22,8 +22,9 @@ npix <- round(npix[1])
 # --------------------------------------------
 
 if(show.plot > 0) {
-  op <- par(mar=c(3,3,3,6), "mfrow") ; on.exit(par(op))
-  oldAsk <- devAskNewPage(ask = TRUE) ; on.exit(devAskNewPage(oldAsk), add=TRUE)
+  oldpar <- par(mar=c(3,3,3,6), "mfrow")
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
+  on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
 }
 
 # npix<- 20

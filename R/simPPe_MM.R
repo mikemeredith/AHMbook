@@ -123,7 +123,7 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   # ------------------ Visualizations ---------------------------
   #
   # par(mfrow = c(1, 3), mar = c(2,2,5,2), cex.main = 1.8, cex.axis = 1.2)
-  par(mfrow = c(1, 3), mar = c(4,2,5,2), cex.main = 1.8, cex.axis = 1.2)
+  oldpar <- par(mfrow = c(1, 3), mar = c(4,2,5,2), cex.main = 1.8, cex.axis = 1.2) ; on.exit(par(oldpar))
 
   # *** Fig. 1: Original point pattern
   # Random field of X with activity-centers overlaid
