@@ -50,7 +50,7 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   quads.along.side <- round(quads.along.side[1])
   stopifNegative(quads.along.side, allowZero=FALSE)
   lscape.size <- round(lscape.size[1])
-  stopifnotGreaterthan(lscape.size, 2 * buffer.width + quads.along.side)
+  stopifnotGreaterthan(lscape.size, 2 * buffer.width + quads.along.side - 1)
   variance.X <- variance.X[1]
   stopifNegative(variance.X)
   theta.X <- theta.X[1]

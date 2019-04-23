@@ -123,6 +123,7 @@ The functions are listed by chapter below.
 \section{Chapter 22}{
   \describe{
   \item{\code{\link{sim.spatialDSline}}}{ Simulate data for a standardized line transect}
+  \item{\code{\link{sim.spatialDSte}}}{ Simulate data for replicate line transect surveys with temporary emigration}
   } }
 
 \section{DATA SETS}{

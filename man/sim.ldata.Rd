@@ -24,7 +24,7 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 
 \value{
-A listwith the following elements:
+A list with the following elements:
  \item{N }{the number of individuals along the transect}
  \item{sigma }{scale parameter of half-normal detection function}
  \item{xall }{distance from the transect line for all N individuals}

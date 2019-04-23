@@ -7,6 +7,12 @@ TODO (this does not appear in the tar.gz of the package)
 
   * Return Values for piFuns
 
+CHANGES in 0.1.4.9052 (2019-04-23)
+
+  * Added 'sim.spatialDSte'.
+
+  * Small bug fixes.
+
 CHANGES in 0.1.4.9051 (2019-04-14)
 
   * Fixed plots not cleaned up after 'data.fn', 'simPPe', 'sim.spatialDS', 'sim.spatialDSline' and 'spatial.exp'.
