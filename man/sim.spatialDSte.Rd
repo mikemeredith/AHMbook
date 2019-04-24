@@ -11,7 +11,8 @@ See book text Chapter 22 and Mizel et al (2018).
 
 }
 \usage{
-sim.spatialDSte(nsites=100, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3, phi=0.6)
+sim.spatialDSte(nsites=100, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
+  phi=0.6, show.plots=3)
 }
 
 \arguments{
@@ -35,6 +36,9 @@ scale of half-normal detection function
 }
   \item{phi}{
 probability an individual is available for detection, ie, not temporarily emigrated.
+}
+  \item{show.plots}{
+the number of sites for which plots should be displayed.
 }
 }
 

@@ -12,11 +12,22 @@
 sim.spatialDSte <- function(
     nsites=100,     # number of sites
     dim=10,         # number of pixels along each side of the square site
-    beta=1,        # the effect of habitat on the number of individuals in a pixel
+    beta=1,         # the effect of habitat on the number of individuals in a pixel
     lam0=2.5,       # expected population size in the square
     nsurveys=4,     # number of surveys
     sigma=3,        # scale of half-normal detection function in pixels
-    phi=0.6){       # availability
+    phi=0.6,        # availability
+    show.plots=3) {
+
+  # Checks and fixes for input data -----------------------------
+  nsites <- round(nsites[1])
+  dim <- round(dim[1])
+  stopifNegative(lam0, allowZero=FALSE)
+  nsurveys <- round(nsurveys[1])
+  stopifNegative(sigma, allowZero=FALSE)
+  stopifnotProbability(phi)
+  # --------------------------------------------
+
 
   n.pixels <- dim * dim
   B <- dim/2
@@ -107,7 +118,31 @@ sim.spatialDSte <- function(
       y[i,,k] <- tabulate(pixel.id[,i,k], nbins=n.pixels)
     }
   }
-  # dim(y)<-c(nsites, n.pixels,nsurveys)
+
+  # Do some plots
+  if(show.plots > 0) {
+    show.plots <- min(show.plots, nsites)
+    oldpar <- par(mar=c(1,1,3,1), oma=c(2,0,2,0), "mfrow")
+    oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
+    on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
+
+    for(i in 1:show.plots) {
+      if(nsurveys < 3)
+        par(mfrow = c(1,2))
+      if(nsurveys > 2)
+        par(mfrow = c(2,2))
+      img <- rasterFromXYZ(cbind(gr, x[,i]))
+      for(j in 1:min(nsurveys, 4)) {
+        raster::plot(img, col=rampBYR(255), axes=FALSE, box=FALSE)
+        title(main=paste("survey", j), line=0.2)
+        points(gr[pixel.id[, i, j], , drop=FALSE], pch=16)
+        segments(dim/2, 0, dim/2, 10, lwd=3, col='black')  # The transect line
+      }
+      title(main=paste("Site", i, ": True population =", M[i]), cex.main=1.5, line=0, outer=TRUE)
+      if(nsurveys > 4)
+        mtext(paste(nsurveys - 4, "more surveys not shown"), side=1, outer=TRUE)
+    }
+  }
 
   return(list(  # ---------- arguments supplied -----------
     nsites=nsites, dim=dim, beta=beta, lam0=lam0, nsurveys=nsurveys,
@@ -124,6 +159,10 @@ sim.spatialDSte <- function(
 
 if(FALSE) {
 str(tmp  <-  sim.spatialDSte())
+str(tmp  <-  sim.spatialDSte(show.plots=FALSE))
+str(tmp  <-  sim.spatialDSte(show.plots=6))
+str(tmp  <-  sim.spatialDSte(nsurveys=6))
+str(tmp  <-  sim.spatialDSte(nsurveys=3))
 str(tmp  <-  sim.spatialDSte(dim=8))
 str(tmp  <-  sim.spatialDSte(nsites=150,lam0=0.3,beta=2,phi=0.6,nsurveys=4))
 
