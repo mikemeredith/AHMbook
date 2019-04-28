@@ -1,6 +1,6 @@
 \name{simDataDK}
 \alias{simDataDK}
-\alias{simDataDK2}
+\alias{simDataDK1}
 \encoding{UTF-8}
 
 \title{
@@ -15,21 +15,21 @@ This PPP is then thinned with a pixel-wise thinning probability controlled by a 
 
 A second data set is simulated by imagining replicated counts conducted in randomly-selected quadrats within the landscape. Detection of individuals is imperfect, with probability of detection controlled by the covariate W and coefficients gamma.
 
-For \code{simDataDK} animals are limited to one individual per pixel; this is not the case for \code{simDataDK2}.
+For \code{simDataDK1} animals are limited to one individual per pixel; this is not the case for \code{simDataDK}.
 }
 \usage{
 simDataDK(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE)
-  
-simDataDK2(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+
+simDataDK1(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE)
 }
 
 \arguments{
   \item{sqrt.npix}{
-number of pixels along each side of square state space (the 'landscape'); the total number of pixels is then \code{npix = sqrt.npix^2}. For \code{simDataDK2} this is the resolution of the rasters used and does not affect population size.
+number of pixels along each side of square state space (the 'landscape'); the total number of pixels is then \code{npix = sqrt.npix^2}. For \code{simDataDK1} this limits the population size.
 }
   \item{alpha}{
 coefficients for the relationship: logit(b) = alpha[1] + alpha[2] * W, where b is the sampling detection bias in the presence-only observations.

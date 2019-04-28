@@ -75,7 +75,7 @@ export("valid_data", "modSelFP")
 export("spatial.exp")
 
 # Chapter 21
-export("simPPe", "simDataDK", "simDataDK2")
+export("simPPe", "simDataDK", "simDataDK1")
 
 # Chapter 22
 export("sim.spatialDSline")

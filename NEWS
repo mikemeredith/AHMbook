@@ -1,11 +1,8 @@
-TODO (this does not appear in the tar.gz of the package)
 
-  * Help pages without examples: fitstats, fitstats2, piFuns,
-      plot_Nmix_resi, ppc.plot
+CHANGES in 0.1.4.9057 (2019-04-29)
 
-  * Help pages with pretty dumb examples: simHDS, simHDSopen
-
-  * Return Values for piFuns
+  * 'simDataDK2' renamed 'simDataDK'; the old 'simDataDK' with 1-per-pixel limit
+    becomes 'simDataDK1'.
 
 CHANGES in 0.1.4.9056 (2019-04-28)
 

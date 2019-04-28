@@ -3,6 +3,8 @@
 # Code adapted from Dorazio (GEB, 2014) and Koshkina et al. (MEE, 2017)
 #  by Marc then decorticated by Mike.
 
+# Like the original D-K code, this version only allows one individual per pixel.
+
 # AHM chapter 21
 
 # Helper function to generate bivariate normal covariate surfaces; not exported:
@@ -23,7 +25,7 @@
 
 
 # ---------------- Start of function definition --------------------
-simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
+simDataDK1 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   drop.out.prop.pb = 0.7, quadrat.size = 4, gamma = c(0,-1.5),
   nquadrats = 250, nsurveys = 3, show.plot = TRUE){
   #
@@ -96,32 +98,26 @@ simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   values(s) <- xcov
   names(s) <- 'x'
 
-  # Calculate log(lambda) as a function of X
+  # Calculate lambda as a function of X and add to Raster Stack
   X <- cbind(1, xcov)
-  loglam <- X %*% beta   # calculate log lambda
+  values(temp) <- exp(X %*% beta)   # calculate lambda
+  names(temp) <- 'lambda'
+  s <- addLayer(s, temp)  # add to raster stack
 
   # We use rejection sampling to get random draws from the IPP. The proposal
-  #  distribution is uniform.
-  # The proposal density must exceed the IPP everywhere.
-  maxloglam <- max(loglam)
-  (N.prop <- suppressWarnings(rpois(1, exp(maxloglam)*s.area))) # Number we need to draw
-  if(is.na(N.prop))
-    stop("The 'beta' settings result in intensities that are too high\nin the most intense region.", call.=FALSE)
+  #  distribution is uniform, ie, HPP:
+  # How 'high' should the proposal density be? It must exceed the IPP everywhere.
+  ( maxlambda <- max(values(s)[,'lambda']) ) # ~ 900 per unit area
+  (N.hpp <- suppressWarnings(rpois(1, maxlambda*s.area)))     # Number we need to draw
+  if(is.na(N.hpp) || N.hpp >= ncell(s))
+    stop("The 'beta' settings result in intensities that are too high\nin the most intense region (more animals than pixels.)", call.=FALSE)
   # Draw from the proposal distribution
-  ind.prop <- sample.int(sqrt.npix^2, size = N.prop, replace = TRUE)
+  ind.hpp <- sample(1:ncell(s), size = N.hpp, replace = FALSE)   #  sampling w/o replacement ensures only 1 individual per pixel
   # reject draws depending on lambda (and hence X) to get the IPP draws
-  loglam.prop <- loglam[ind.prop]  # intensities at those pixels
-  retain <- rbinom(N.prop, 1, exp(loglam.prop-maxloglam))   # use intensity lambda to determine whether to accept or reject.
-  (N.pop <- sum(retain))               # about 1800 individuals in IPP
-  pixel.id.pop <- ind.prop[retain == 1] # Gives pixel id for every individual.
-  loc.pop <- s.loc[pixel.id.pop,] + matrix(runif(N.pop*2, -1/sqrt.npix, 1/sqrt.npix), ncol=2)
-
-  # How many in each pixel?
-  n <- tabulate(pixel.id.pop, nbins=sqrt.npix^2)
-  # Add to the raster stack
-  values(temp) <- n
-  names(temp) <- 'n'
-  s <- addLayer(s, temp)
+  lambda.hpp <- values(s)[,'lambda'][ind.hpp]  # intensities at those pixels
+  ind.ipp <- rbinom(N.hpp, 1, lambda.hpp/maxlambda)   # use intensity lambda to determine whether to accept or reject.
+  (N.ipp <- sum(ind.ipp))               # about 1800 individuals in IPP
+  pixel.id.ipp <- ind.hpp[ind.ipp == 1] # Gives id of every pixel in landscape that has an individual, a vector of numbers, length N.ipp = total population
 
   # PART B. The detection-only observation model
   # --------------------------------------------
@@ -136,31 +132,42 @@ simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   # Compute value of thinning parameter b (= probability of detection)
   #  for each cell as a function of alpha and covariate W
   W <- cbind(1, wcov)   # Design matrix W for thinning
-  pTrue <- plogis(W %*% alpha) # thinning coefs
+  values(temp) <- plogis(W %*% alpha) # thinning coefs
+  names(temp) <- 'pTrue'
+  s <- addLayer(s, temp)
 
   # ... simulate presence-only data (= detections of individuals as a thinned point process)
-  pTrue.pop <- pTrue[pixel.id.pop]
-  y.det0 <- rbinom(N.pop, size=1, prob=pTrue.pop) # 1 = detected, 0 = not detected
-  pixel.id.det0 <- pixel.id.pop[y.det0 == 1]
-  # length(pixel.id.det0) # ~ 550. This is too many, better drop a bunch
+  pTrue.ipp <- values(s)[,'pTrue'][pixel.id.ipp]
+  y.ipp1 <- rbinom(N.ipp, size=1, prob=pTrue.ipp) # 1 = detected, 0 = not detected
+  # A 1/0 vector, length N.ipp
+  pixel.id.det1 <- pixel.id.ipp[y.ipp1 == 1]
+  # length(pixel.id.det1) # ~ 550. This is too many, better drop a bunch
 
-  drop.out <- runif(length(pixel.id.det0), 0, 1) < drop.out.prop.pb # T/F vector
-  pixel.id.det <- pixel.id.det0[!drop.out]
-  ( N.det <- length(pixel.id.det) ) # ~ 180, ok
-  y.pixel <- tabulate(pixel.id.det, nbins=sqrt.npix^2)
-  # range(y.pixel)
-  loc.det <- loc.pop[y.det0==1, ][!drop.out, ]
+  drop.out <- runif(length(pixel.id.det1), 0, 1) < drop.out.prop.pb # T/F vector
+  pixel.id.det <- pixel.id.det1[!drop.out]
+  # length(pixel.id.det) # ~ 180, ok
+  y.point <- numeric(sqrt.npix^2)
+  y.point[pixel.id.det] <- 1
+
 
   #### Part C: simulate replicate count data
   ## ---------------------------------------
+  # Get the info on animal location into our Raster Stack as a layer:
+  spop <- dropLayer(s, c('lambda','pTrue')) # clean up, just keep covars
+  z <- rep(0, ncell(spop))
+  z[pixel.id.ipp] <- 1
+  values(temp) <- z
+  names(temp) <- 'presence'  # 1 if animal in pixel, 0 otherwise (max 1 animal per pixel)
+  spop <- addLayer(spop, temp)
+
   # Form quadrats of side quadrat.size (default 4 -> area 16 -> 625 quadrats)
   quadfact <- c(quadrat.size, quadrat.size)
-  squad <- raster::aggregate(s, fact=quadfact, fun=mean)
-  # mean is ok for x and w, but for 'n' we need the sum
-  abund <- raster::aggregate(raster::subset(s, 'n'), fact=quadfact, fun=sum)
+  squad <- raster::aggregate(spop, fact=quadfact, fun=mean)
+  # mean is ok for x and w, but for 'presence' we need the sum
+  abund <- raster::aggregate(raster::subset(spop, 'presence'), fact=quadfact, fun=sum)
   names(abund) <- 'N'
   squad <- addLayer(squad, abund)
-  squad <- dropLayer(squad, 'n') # clean up, N/16 not useful
+  squad <- dropLayer(squad, 'presence') # clean up, N/16 not useful
 
   # Simulate replicate counts at every quadrat (aka "site")
   nsite <- ncell(squad)          # number of sites/quadrats in count design
@@ -171,7 +178,7 @@ simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
   #   but a different covar could be generated.)
   pcount <- plogis(gamma[1] + gamma[2] * values(squad)[,'w'])
 
-  # Do the nsurveys counts
+  # Do the nsurveys surveys
   counts <- array(NA, dim = c(nsite, nsurveys))
   for(j in 1:nsurveys){
     counts[,j] <- rbinom(nsite, N, pcount)
@@ -190,10 +197,13 @@ simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
 
     # Fig.1
+    loc.ipp <- s.loc[pixel.id.ipp, ]
     raster::plot(raster::subset(s, 'x'), axes = FALSE, box = FALSE, asp=1,
-      main = paste("Inhomogenous Poisson point process:\nIntensity  covariate 'x' and\nlocations of", N.pop, "individuals"))
-    points(loc.pop, pch = 16, cex = 0.5)    # location of the individuals
+      main = paste("Inhomogenous Poisson point process:\nIntensity  covariate 'x' and\nlocations of", N.ipp, "individuals"))
+    points(loc.ipp, pch = 16, cex = 0.5)    # location of the individuals
 
+    loc.det <- s.loc[pixel.id.det, ]
+    N.det <- length(pixel.id.det)
     raster::plot(raster::subset(s, 'w'), axes = FALSE, box = FALSE,  asp=1,
       main = paste("Presence-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
     points(loc.det, pch = 16, cex = 0.5)    # location of the individuals
@@ -226,14 +236,14 @@ simDataDK2 <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     s.loc = s.loc,                 # Coordinates of every pixel in the landscape
     xcov = xcov,                   # 'x' (intensity) covariate
     wcov = wcov,                   # 'w' (detection) covariate
-    N.ipp = N.pop,                 # True number of individuals in the landscape
-    pixel.id.ipp = pixel.id.pop,   # Pixel ID for each individual in the population
-    loc.ipp = loc.pop,             # Coordinates for each individual in the population
-    pTrue.ipp = pTrue,         # Probability of detection for each individual
+    N.ipp = N.ipp,                 # True number of individuals in the landscape
+    pixel.id.ipp = pixel.id.ipp,   # Pixel ID for each individual in the population
+    loc.ipp = s.loc[pixel.id.ipp, ],
+        # Coordinates for each individual in the population
+    pTrue.ipp = pTrue.ipp,         # Probability of detection for each individual
     pixel.id.det = pixel.id.det,   # Pixel ID for each individual detected
-    N.det = N.det,     # Number of detections
-    loc.det = loc.det,
-        # Coordinates for each individual detected
+    N.det = length(pixel.id.det),  # Number of detections
+    loc.det = s.loc[pixel.id.det, ], # Coordinates for each individual detected
     pcount = pcount,               # Probability of detection in each quadrat
     fullCountData = fullCountData,
       # matrix with rows for each quadrat, columns for ID, x and w coords,
