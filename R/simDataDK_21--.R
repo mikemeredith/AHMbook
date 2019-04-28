@@ -203,7 +203,7 @@ simDataDK <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     loc.det <- s.loc[pixel.id.det, ]
     N.det <- length(pixel.id.det)
     raster::plot(raster::subset(s, 'w'), axes = FALSE, box = FALSE,  asp=1,
-      main = paste("Detection-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
+      main = paste("Presence-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
     points(loc.det, pch = 16, cex = 0.5)    # location of the individuals
 
     # Fig.2
