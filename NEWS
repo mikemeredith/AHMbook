@@ -1,4 +1,9 @@
 
+CHANGES in 0.1.4.9058 (2019-05-13)
+
+  * changes to the way authors are included in DESCRIPTION file (so we can spell
+    Marc's name correctly).
+
 CHANGES in 0.1.4.9057 (2019-04-29)
 
   * 'simDataDK2' renamed 'simDataDK'; the old 'simDataDK' with 1-per-pixel limit
