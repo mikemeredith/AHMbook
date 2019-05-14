@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9059 (2019-05-14)
+
+  * Added Hubbard Brook warbler data set.
+
 CHANGES in 0.1.4.9058 (2019-05-13)
 
   * changes to the way authors are included in DESCRIPTION file (so we can spell
