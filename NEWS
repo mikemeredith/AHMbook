@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9061 (2019-05-17)
+
+  * Added 'simDynoccSpatial' function.
+
 CHANGES in 0.1.4.9060 (2019-05-14)
 
   * Added SwissAtlasHa data set.
