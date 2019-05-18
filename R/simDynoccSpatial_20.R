@@ -26,7 +26,6 @@ ask.plot = TRUE
 
 }
 
-# ------------------ Start function definition ---------------------
 simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0.4, beta.Xpsi1 = 0,
       range.phi = c(0.8, 0.8), beta.Xphi = 0,
       range.gamma = c(0.1, 0.1), beta.Xgamma = 0,
@@ -121,10 +120,30 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   # seed – allows to 'fix' the simulation such that it becomes reproducible
   # ask.plot – if TRUE permits to browse through plots (otherwise if FALSE)
 
-  if(FALSE) {x <- NULL; rm(x)}
+  if(FALSE) {x <- NULL; rm(x)}  # Stops R CMD check choking on 'curve'.
 
-  devAskNewPage(ask = ask.plot)
-
+  # Checks and fixes for input data -----------------------------
+  side <- round(side[1])
+  nyears <- round(nyears[1])
+  stopifnotGreaterthan(nyears, 1)
+  nsurveys <- round(nsurveys[1])
+  stopifnotProbability(mean.psi1)
+  stopifnotProbability(range.phi) # bounds
+  stopifnotProbability(range.gamma) # bounds
+  stopifnotProbability(range.p) # bounds
+  stopifNegative(expo.range.XAC, allowZero=FALSE)
+  stopifnotLength(beta.XAC, 4)
+  stopifnotLength(beta.Xautolog, 2)
+  stopifnotLength(trend.sd.site, 2) # trend
+  stopifNegative(trend.sd.site)
+  stopifnotLength(trend.sd.survey, 2) # trend
+  stopifNegative(trend.sd.survey)
+  # ----------------------------------------------------------------
+  # Restore graphical settings on exit -----------------------------
+  oldpar <- par("mfrow", "mar", "cex.main", "cex.lab", "cex.axis")
+  oldAsk <- devAskNewPage(ask = ask.plot && dev.interactive(orNone=TRUE))
+  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  # ----------------------------------------------------------------
 
   # Create grid
   xcoord <- 1:side
@@ -132,14 +151,12 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   grid <- as.matrix(expand.grid(x=xcoord, y=ycoord))
   M <- side^2             # Total number of cells or sites
 
-
   # Compute adjacency matrix for grid
   neigh <- spdep::dnearneigh(as.matrix(grid), d1 = 0, d2 = sqrt(2) * 1 + 0.01)
   winnb <- spdep::nb2WB(neigh)        # Function to get CAR ingredients for BUGS
   nneigh <- winnb$num          # number of neighbours
   amatrix <- spdep::nb2mat(neigh)
   amatrix[amatrix > 0] <- 1    # Neighbours get a 1, non-neighbours a 0
-
 
   # Set up arrays needed
   site <- 1:M                                      # Sites
@@ -231,8 +248,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
     image(1:side, 1:side, z[,,k], col=c("white", "black"),
       main = paste('Presence/absence (z) in year', k, ':\n black = occupied, white = unoccupied'),
       xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, col = "lightgrey")
-    abline(v = 0:side+0.5, col = "lightgrey")
+    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
 
     # Compute autocovariate and plot
     Xautovec <- amatrix %*% c(z[,,k])
@@ -291,11 +307,9 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
   for(k in 1:nyears){
     image(1:side, 1:side, z[,,k], col=c("white", "black"), main = paste('Presence/absence (z) in year', k), xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, col = "lightgrey")
-    abline(v = 0:side+0.5, col = "lightgrey")
+    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
     image(1:side, 1:side, zobs[,,k], col=c("white", "black"), main = paste('Ever_detected (zobs) in year', k), xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, col = "lightgrey")
-    abline(v = 0:side+0.5, col = "lightgrey")
+    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
   }
 
   # Compute values of naive autocovariate (observed prop.
@@ -422,7 +436,7 @@ str(data <- simDynoccSpatial(range.phi = c(0, 0.8), range.gamma = c(0, 0.6)))
 
 
 # Time-variation in all potentially time-varying params
-str(data <- simDynoccSpatial(range.phi = c(0.5, 1), range.gamma = c(0, 0.5), range.p = c(0.1, 0.9)))
+str(data <- simDynoccSpatial(range.phi = c(0.5), range.gamma = c(0, 0.5), range.p = c(0.1, 0.9)))
 
 # Strong spatial autocorrelation via a spatially structured covariate
 str(data <- simDynoccSpatial(beta.XAC = c(1, 1, 1, 1), beta.Xautolog = c(0, 0)))
@@ -446,7 +460,7 @@ apply(data$z, 3, sum)
 # [1] 7 4 2 1 0 0 0 0 0 0
 
 str(simDynoccSpatial(nyears = 1))  ### error
-str(d <- simDynoccSpatial(nsurveys = 1))
+str(d <- simDynoccSpatial(nsurveys = 1))  # ok
 
 } # if FALSE
 

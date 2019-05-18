@@ -72,7 +72,7 @@ export("simDCM")
 export("valid_data", "modSelFP")
 
 # Chapter 20
-export("spatial.exp", "simDynoccSpatial")
+export("simDynoccSpatial")
 
 # Chapter 21
 export("simPPe", "simDataDK", "simDataDK1")

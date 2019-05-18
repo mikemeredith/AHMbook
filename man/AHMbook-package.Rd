@@ -111,7 +111,6 @@ The functions are listed by chapter below.
 
 \section{Chapter 20}{
   \describe{
-  \item{\code{\link{spatial.exp}}}{ Generate Gaussian random field with negative exponential correlation}
   \item{\code{\link{simDynoccSpatial}}}{ Simulate data under a dynamic occupancy model with spatial covariate and spatial autocorrelation}
   } }
 
