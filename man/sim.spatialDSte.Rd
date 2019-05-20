@@ -11,7 +11,7 @@ See book text Chapter 22 and Mizel et al (2018).
 
 }
 \usage{
-sim.spatialDSte(nsites=100, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
+sim.spatialDSte(nsites=28, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
   phi=0.6, show.plots=3)
 }
 

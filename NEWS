@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9063 (2019-05-20)
+
+  * Tweaks to 'sim.spatialDSte'.
+
 CHANGES in 0.1.4.9062 (2019-05-18)
 
   * 'simDynoccSpatial' gets input checks.

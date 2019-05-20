@@ -10,7 +10,7 @@
 #   argument delta removed (values other than 1 throw an error)
 
 sim.spatialDSte <- function(
-    nsites=100,     # number of sites
+    nsites=28,     # number of sites
     dim=10,         # number of pixels along each side of the square site
     beta=1,         # the effect of habitat on the number of individuals in a pixel
     lam0=2.5,       # expected population size in the square
@@ -45,7 +45,7 @@ sim.spatialDSte <- function(
   d <- apply(d1,2,min)
 
   # V <- exp(-e2dist(gr,gr)/1)
-  V <- exp(-e2dist(gr,gr))
+  V <- exp(-e2dist(gr,gr)/2) #### changed 2019-05-20 v.0.1.4.9063
 
   # Create spatially correlated covariate x and plot it
   beta0 <- log(lam0/n.pixels) # intercept of log(N) ~ beta0 + beta(Habitat)
