@@ -17,6 +17,7 @@ sim.spatialDSte <- function(
     nsurveys=4,     # number of surveys
     sigma=3,        # scale of half-normal detection function in pixels
     phi=0.6,        # availability
+    theta=2,        # exponential correlation in the spatial covariate
     show.plots=3) {
 
   # Checks and fixes for input data -----------------------------
@@ -26,6 +27,7 @@ sim.spatialDSte <- function(
   nsurveys <- round(nsurveys[1])
   stopifNegative(sigma, allowZero=FALSE)
   stopifnotProbability(phi)
+  stopifNegative(theta, allowZero=FALSE)
   # --------------------------------------------
 
 
@@ -45,7 +47,8 @@ sim.spatialDSte <- function(
   d <- apply(d1,2,min)
 
   # V <- exp(-e2dist(gr,gr)/1)
-  V <- exp(-e2dist(gr,gr)/2) #### changed 2019-05-20 v.0.1.4.9063
+  # V <- exp(-e2dist(gr,gr)/2) #### changed 2019-05-20 v.0.1.4.9063
+  V <- exp(-e2dist(gr,gr)/theta) #### changed 2019-05-20 v.0.1.4.9064
 
   # Create spatially correlated covariate x and plot it
   beta0 <- log(lam0/n.pixels) # intercept of log(N) ~ beta0 + beta(Habitat)
@@ -71,7 +74,6 @@ sim.spatialDSte <- function(
   superpop <- array(0, c(Mind, nsites))
   for (j in 1:nsites){
     # ifelse(M[j]>0, superpop[1:M[j],j] <-1, superpop[,j] <- 0)
-    # superpop[1:M[j],j] <- ifelse(M[j]>0, 1, 0)
     superpop[1:M[j], j] <- M[j] > 0
   }
   all(colSums(superpop) == M)
@@ -146,7 +148,7 @@ sim.spatialDSte <- function(
 
   return(list(  # ---------- arguments supplied -----------
     nsites=nsites, dim=dim, beta=beta, lam0=lam0, nsurveys=nsurveys,
-    sigma=sigma, phi=phi,
+    sigma=sigma, phi=phi, theta=theta,
     # ------------ values generated ---------------------------
     n.pixels=n.pixels,  # number of pixels in each site (= dim^2)
     B=B,                # distance from line to edge of square (= dim/2)

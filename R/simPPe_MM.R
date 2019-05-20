@@ -1,4 +1,6 @@
 
+# Chapter 21
+
 if(FALSE) {
 library(raster)
 library(RandomFields)
@@ -131,20 +133,20 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
     # main = paste("Point pattern with average intensity, lambda =", round(lambda_pp, 5), "\nwith ncore and buffer area"),
     main = "Point pattern with\ncore and buffer area",
     xlab = "", ylab = "", axes = FALSE, asp = 1)
-    mtext(paste("Average intensity (lambda) =", round(lambda_pp, 5)), side=1)
+    mtext(paste("Mean intensity (lambda) =", round(lambda_pp, 5)), side=1)
     polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
-  points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
+  points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
+  # points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
 
   # *** Fig. 2: Show abundance and presence/absence in each quadrat on original landscape ***
   # Covariate 1: the Gaussian random field with autocorrelation
   # Reproduce random field with activity centers
   # image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = paste("Abundance N, \nE(N) = ", round(E_N, 5), sep = ''), xlab = "", ylab = "", axes = FALSE, asp = 1)
   image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Abundance, N",  xlab = "", ylab = "", axes = FALSE, asp = 1)
-    mtext(paste0("E(N) = ", E_N, ", var(N) = ", round(var(c(Nac)), 2)), side=1)
+    mtext(paste0("Mean(N) = ", E_N, ", var(N) = ", round(var(c(Nac)), 2)), side=1)
   polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
   # Add activity centers
-  points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
-  #points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
+  points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
   # Overlay survey quadrats
   for(i in 1:length(breaks)){
      for(k in 1:length(breaks)){
@@ -156,14 +158,13 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   for(i in 1:length(mid.pt)){
     for(k in 1:length(mid.pt)){
      text(mid.pt[i], mid.pt[k], Nac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
-  #   text(mid.pt[i], mid.pt[k], Nac[i,k], cex =10^(0.8-0.5*log10(quads.along.side)), col='black')
     }
   }
 
   # Figure 3 for presence/absence of activity centers (= distribution)
   # Reproduce random field with activity centers
   image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Occurrence, z", xlab = "", ylab = "", axes = FALSE, asp = 1)
-  mtext(paste("E(z) =", E_z), side=1)
+  mtext(paste("Mean(z) =", E_z), side=1)
   polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
   # Add activity centers
   points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
@@ -178,7 +179,6 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   for(i in 1:length(mid.pt)){
     for(k in 1:length(mid.pt)){
      text(mid.pt[i], mid.pt[k], zac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
-  #   text(mid.pt[i], mid.pt[k], zac[i,k], cex =10^(0.8-0.5*log10(quads.along.side)), col='black')
     }
   }
 
