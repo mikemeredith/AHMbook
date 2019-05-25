@@ -20,7 +20,7 @@ Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National
 
 \describe{
   \item{\bold{covs }}{a data frame with rows for 43 points and the following columns:
-    \enumerate{
+    \itemize{
       \item time1 : time of ??start?? of first survey, hr; NA for the missing survey.
       \item time2 : same for second survey.
       \item time3 : same for third survey.
@@ -38,7 +38,7 @@ Chestnut-sided Warblers in 38 "wildlife openings" in the White Mountain National
 
 \describe{
   \item{\bold{spotMaps }}{a data frame with rows for 38 patches and the following columns:
-    \enumerate{
+    \itemize{
       \item CSWA : estimated population of chestnut-sided warblers in each patch obtained from spot-mapping.
       \item parea : ??patch area, ??ha??.
     }}}

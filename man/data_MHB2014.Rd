@@ -19,7 +19,7 @@ The list \code{MHB2014} has the data for 2014.
 \describe{
   \item{\bold{species }}{a data frame with row for 158 species, including 13 species not recorded in 2014, and the following columns:
 
-    \enumerate{
+    \itemize{
       \item specid : a numeric species ID based on phylogeny.
       \item latabb : a 6-letter abbreviation of the Latin name.
       \item engname : the English name.
@@ -31,7 +31,7 @@ The list \code{MHB2014} has the data for 2014.
 \describe{
   \item{\bold{sites }}{a data frame with rows for 267 1x1 km quadrat, including 1 quadrat not surveyed in 2014, and the following columns:
 
-    \enumerate{
+    \itemize{
       \item siteID : an alphanumeric site identifier.
       \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.

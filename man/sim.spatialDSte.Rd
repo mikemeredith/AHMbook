@@ -47,7 +47,7 @@ the number of sites for which plots should be displayed.
 
 \value{
 A list with the values of the input arguments and the following additional elements:
- \item{n.pixels }{the number of pixels in each site (= dim^2)}
+ \item{npixels }{the number of pixels in each site (= dim^2)}
  \item{B }{distance from line to edge of square (= dim/2)}
  \item{M }{true number of individuals at each site}
  \item{d }{perpendicular distance of each pixel from the line}

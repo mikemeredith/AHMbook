@@ -17,15 +17,15 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
 \describe{
   \item{\bold{species }}{a data frame with a row for each species and the following columns:
 
-    \enumerate{
+    \itemize{
       \item species : the English name.
       \item latin : the Latin name.
       \item assemblage : the guild of the species.
     }}}
-\describe{    
+\describe{
   \item{\bold{sites }}{a data frame with a row for each plot and the following columns:
 
-    \enumerate{
+    \itemize{
       \item region : a factor, 3 levels, Ilford, Komag, and Vestre Jakobselv.
       \item catchment : a factor, 11 levels.
       \item plot : a factor, the alphanumeric ID of each plot.
@@ -35,7 +35,7 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
       \item height : the mean height of willows at 4 measuring points.
       \item density : a measure of thicket density at 4 measuring points.
     }}}
-\describe{    
+\describe{
   \item{\bold{counts }}{a sites x replicates x years x species array of counts}
 
   \item{\bold{timeOfDay }}{a sites x replicates x years array with the time of day that the survey was carried out.}
@@ -48,7 +48,7 @@ Data generously provided by Jon-Andren Henden.
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Chapter 17
 
-Henden J-A, Yoccoz NG, Ims RA, Langeland K (2013) How Spatial Variation in Areal Extent and Configuration of Labile Vegetation States Affect the Riparian Bird Community in Arctic Tundra. PLoS ONE 8(5): e63312. 
+Henden J-A, Yoccoz NG, Ims RA, Langeland K (2013) How Spatial Variation in Areal Extent and Configuration of Labile Vegetation States Affect the Riparian Bird Community in Arctic Tundra. PLoS ONE 8(5): e63312.
 }
 %% will be able to tidy up the examples with page numbers etc once we have the proofs.
 \examples{

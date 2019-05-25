@@ -17,7 +17,7 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 \describe{
   \item{\bold{obs }}{a data frame with a row for each of the 5974 observations and the following columns:
 
-    \enumerate{
+    \itemize{
       \item site_name : a numeric site ID.
       \item year : the year of the observation.
       \item jdate : the Julian date of the observation (1 = Jan 1st).
@@ -26,7 +26,7 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 \describe{
   \item{\bold{sites }}{a data frame with rows for 274 1x1km quadrats containing the sites, and the following columns:
 
-    \enumerate{
+    \itemize{
       \item site_name : the numeric site ID, corresponding to site_name in the obs data frame.
       \item region : codes for six regions of Switzerland.
       \item elev : the elevation of the centre of the quadrat, m.

@@ -31,12 +31,12 @@ sim.spatialDSte <- function(
   # --------------------------------------------
 
 
-  n.pixels <- dim * dim
+  npixels <- dim * dim
   B <- dim/2
 
   # sigma <- adj.sigma*B  # Default adj.sigma is 0.6 x radius B
 
-  # Create coordinates for n.pixels x n.pixels grid
+  # Create coordinates for npixels x npixels grid
   delta <- 1
   grx <- seq(delta/2, 2*B - delta/2, delta) # mid-point coordinates
   gr <- expand.grid(grx,grx)         # Create grid coordinates
@@ -51,18 +51,18 @@ sim.spatialDSte <- function(
   V <- exp(-e2dist(gr,gr)/theta) #### changed 2019-05-20 v.0.1.4.9064
 
   # Create spatially correlated covariate x and plot it
-  beta0 <- log(lam0/n.pixels) # intercept of log(N) ~ beta0 + beta(Habitat)
-  x <- probs <- array(NA,dim=c(n.pixels,nsites))
+  beta0 <- log(lam0/npixels) # intercept of log(N) ~ beta0 + beta(Habitat)
+  x <- probs <- array(NA,dim=c(npixels,nsites))
   M <- rep(NA,nsites)
 
   for (j in 1:nsites){
-    # z <-  t(chol(V))%*%rnorm(n.pixels)
+    # z <-  t(chol(V))%*%rnorm(npixels)
     # x[,j]<- z
-    x[,j] <- t(chol(V))%*%rnorm(n.pixels)     # habitat covariate for this site
+    x[,j] <- t(chol(V))%*%rnorm(npixels)     # habitat covariate for this site
     M[j] <- rpois(1, sum(exp(beta0 + beta*x[,j]))) # number of individuals at site ??
   }
 
-  for (i in 1:n.pixels){
+  for (i in 1:npixels){
     for (j in 1:nsites){
       probs[i,j] <- exp(beta*x[i,j])/sum(exp(beta*x[,j])) # prob that animal at site j is at pixel i
     }
@@ -84,8 +84,8 @@ sim.spatialDSte <- function(
   for (i in 1:Mind){
     for (j in 1:nsites){
       for (k in 1:nsurveys){
-        # pixel.id[i,j,k]  <-  sample(1:n.pixels, 1, replace=TRUE, prob=probs[,j])
-        pixel.id[i,j,k]  <-  sample.int(n.pixels, 1, prob=probs[,j])
+        # pixel.id[i,j,k]  <-  sample(1:npixels, 1, replace=TRUE, prob=probs[,j])
+        pixel.id[i,j,k]  <-  sample.int(npixels, 1, prob=probs[,j])
       }
     }
   }
@@ -112,12 +112,12 @@ sim.spatialDSte <- function(
   pixel.id[y1==0] <- 0  # zap pixel.id for animals not detected or not real individual
 
   # Re-shape individual data structure into counts in site x pixel x visit array
-  y <- array(NA, dim = c(nsites, n.pixels, nsurveys),
-    dimnames = list(NULL, c(1:n.pixels)))
+  y <- array(NA, dim = c(nsites, npixels, nsurveys),
+    dimnames = list(NULL, c(1:npixels)))
   for(i in 1:nsites){
     for (k in 1:nsurveys){
-      # y[i,,k] <- table(factor(paste(pixel.id[,i,k], sep = ""), levels = c(1:n.pixels)))
-      y[i,,k] <- tabulate(pixel.id[,i,k], nbins=n.pixels)
+      # y[i,,k] <- table(factor(paste(pixel.id[,i,k], sep = ""), levels = c(1:npixels)))
+      y[i,,k] <- tabulate(pixel.id[,i,k], nbins=npixels)
     }
   }
 
@@ -150,7 +150,7 @@ sim.spatialDSte <- function(
     nsites=nsites, dim=dim, beta=beta, lam0=lam0, nsurveys=nsurveys,
     sigma=sigma, phi=phi, theta=theta,
     # ------------ values generated ---------------------------
-    n.pixels=n.pixels,  # number of pixels in each site (= dim^2)
+    npixels=npixels,  # number of pixels in each site (= dim^2)
     B=B,                # distance from line to edge of square (= dim/2)
     M=M,                # true number of individuals at each site
     d=d,                # perpendicular distance of each pixel from the line
