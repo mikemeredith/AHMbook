@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9065 (2019-05-25)
+
+  * Added 'treeSparrow' data set.
+
 CHANGES in 0.1.4.9064 (2019-05-20)
 
   * Tweaks to 'sim.spatialDSte' and 'simPPe'.
