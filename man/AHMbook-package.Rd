@@ -109,6 +109,11 @@ The functions are listed by chapter below.
   \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive models }
   } }
 
+\section{Chapter 19}{
+  \describe{
+  \item{\code{\link{getLVcorrMat}}}{ Compute the correlation matrix from an analysis of a latent variable model}
+  } }
+
 \section{Chapter 20}{
   \describe{
   \item{\code{\link{simDynoccSpatial}}}{ Simulate data under a dynamic occupancy model with spatial covariate and spatial autocorrelation}

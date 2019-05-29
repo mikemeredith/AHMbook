@@ -11,7 +11,7 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "model.frame", "model.matrix", "model.offset", "optim",
            "plogis", "qlogis", "quantile", "rbinom", "residuals",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
-           "var", "vcov", "sd", "aggregate")
+           "var", "vcov", "cov2cor", "sd", "aggregate")
 importFrom("utils", "head", "stack", "packageVersion")
 
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
@@ -70,6 +70,9 @@ export("simDCM")
 
 # Chapter 18
 export("valid_data", "modSelFP")
+
+# Chapter 19
+export("getLVcorrMat")
 
 # Chapter 20
 export("simDynoccSpatial")
