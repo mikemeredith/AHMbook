@@ -151,9 +151,9 @@ The functions are listed by chapter below.
   \item{\code{\link{SwissMarbledWhite}}}{ Data from the Aargau Biodiversity Monitoring Program (LANAG) for marbled white butterflies (12.8.2)}
   \item{\code{\link{SwissSquirrels}}}{ Data for red squirrels in Switzerland (10.9)}
   \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from 2004 to 2013 (6.13.1)}
-  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (10.12.2)}
- \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (15..)}
   \item{\code{\link{treeSparrow}}}{ Data for tree sparrows (22.8.4)}
+  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (10.12.2)}
+  \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (15..)}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands (9.5.3)}
   \item{\code{\link{waterVoles}}}{ Data for water voles from Scotland (18.2.2)}
   \item{\code{\link{willowWarbler}}}{ Data for willow warblers in Britain (14.4.1)}

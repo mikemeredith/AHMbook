@@ -9,14 +9,14 @@ Compute results of a species correlation model
 Computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2019) chapter 19.
 }
 \usage{
-getLVcorrMat(LV, lv.coef, stat=mean)
+getLVcorrMat(lv.coef, type=c("occupancy", "Nmix"), stat=mean)
 }
 \arguments{
-  \item{LV}{
-MCMC chains for the latent variables typically from the \code{sims.list} of a model fit; an iterations x sites x latent variables array.
-}
   \item{lv.coef}{
-Matching MCMC chains for the coefficients of the latent variables from the \code{sims.list} of the same model fit; an iterations x species x latent variables array.
+MCMC chains for the coefficients of the latent variables, typically from the \code{sims.list} of a model fit; an iterations x species x latent variables array.
+}
+  \item{type}{
+Indication of whether the model fit was for occupancy data (with a probit link) or an N-mixture model based on count data.
 }
   \item{stat}{
 The function used to summarise the MCMC chains for the correlations.

@@ -1,6 +1,10 @@
 
 CHANGES in 0.1.4.9067 (2019-05-29)
 
+  * Tweaks to 'getLVcorrMat' function.
+
+CHANGES in 0.1.4.9067 (2019-05-29)
+
   * Added 'getLVcorrMat' function.
 
 CHANGES in 0.1.4.9066 (2019-05-26)
