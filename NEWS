@@ -1,5 +1,9 @@
 
-CHANGES in 0.1.4.9067 (2019-05-29)
+CHANGES in 0.1.4.9069 (2019-05-31)
+
+  * Shorter species names for 'SwissAtlasHa' data set.
+
+CHANGES in 0.1.4.9068 (2019-05-30)
 
   * Tweaks to 'getLVcorrMat' function.
 
