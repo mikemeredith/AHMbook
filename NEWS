@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9070 (2019-06-01)
+
+  * Added 'getEcorrMat' function.
+
 CHANGES in 0.1.4.9069 (2019-05-31)
 
   * Shorter species names for 'SwissAtlasHa' data set.

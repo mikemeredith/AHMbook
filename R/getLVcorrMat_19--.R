@@ -19,3 +19,12 @@ getLVcorrMat <- function(lv.coef, type=c("occupancy", "Nmix"), stat=mean){
   cm.est <- apply(cm.all, c(2, 3), stat)
   return(cm.est)
 }
+
+# Function by Marc, email 2019-05-31
+
+getEcorrMat <- function(beta, stat=mean){
+  nspec <- dim(beta)[2]
+  ecorraw <- apply(beta, 1, function(x) cor(t(x)))
+  ecor <- matrix(apply(ecorraw, 1, stat), nspec, nspec)
+  return(ecor)
+}
