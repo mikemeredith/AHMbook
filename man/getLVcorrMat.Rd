@@ -27,11 +27,11 @@ MCMC chains for the coefficients of the environment variables (excluding the int
 Indication of whether the model fit was for occupancy data (with a probit link) or an N-mixture model based on count data.
 }
   \item{stat}{
-The function used to summarise the MCMC chains for the correlations.
+The function used to summarise the MCMC chains for the correlations; if \code{stat = NULL}. the full array with the MCMC chains is returned
 }
 }
 \value{
-The relevant correlation matrix, species x species.
+The relevant correlation matrix, species x species; if \code{stat = NULL}, an array, iterations x species x species, with the MCMC chains.
 }
 \references{
 Tobler et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology} (accepted) doi: 10.1002/ecy.2754

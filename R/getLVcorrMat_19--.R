@@ -16,15 +16,22 @@ getLVcorrMat <- function(lv.coef, type=c("occupancy", "Nmix"), stat=mean){
   for(i in 1:niter){ # for each mcmc sample
     cm.all[i,,] <- cov2cor(tcrossprod(lv.coef[i,,]) + fix)
   }
-  cm.est <- apply(cm.all, c(2, 3), stat)
-  return(cm.est)
+  if(is.null(stat)) {
+    return(cm.all)
+  } else {
+    return(apply(cm.all, c(2, 3), stat))
+  }
 }
 
 # Function by Marc, email 2019-05-31
 
 getEcorrMat <- function(beta, stat=mean){
   nspec <- dim(beta)[2]
-  ecorraw <- apply(beta, 1, function(x) cor(t(x)))
-  ecor <- matrix(apply(ecorraw, 1, stat), nspec, nspec)
-  return(ecor)
+  ecorraw <- apply(beta, 1, function(x) cor(t(x))) #  matrix, nspec^2 x niter
+  ecorarr <- array(t(ecorraw), dim=c(dim(beta)[1], nspec, nspec))
+  if(is.null(stat)) {
+    return(ecorarr)
+  } else {
+    return(apply(ecorarr, c(2, 3), stat))
+  }
 }

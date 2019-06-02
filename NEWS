@@ -1,4 +1,9 @@
 
+CHANGES in 0.1.4.9071 (2019-06-03)
+
+  * 'getLVcorrMat' and 'getEcorrMat' return the MCMC chains if stat=NULL.
+
+
 CHANGES in 0.1.4.9070 (2019-06-01)
 
   * Added 'getEcorrMat' function.
