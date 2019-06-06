@@ -144,6 +144,7 @@ The functions are listed by chapter below.
   \item{\code{\link{greenWoodpecker}}}{ Count data for green woodpeckers in Switzerland (13.2)}
   \item{\code{\link{HubbardBrook}}}{ Point count data for warblers from Hubbard Brook, New Hampshire (19.2)}
   \item{\code{\link[unmarked]{jay}}}{ The European jay data set is now included in \pkg{unmarked} (7.9)}
+  \item{\code{\link{MesoCarnivores}}}{ Camera trap data for 3 species of meso-carnivores (19.3)}
   \item{\code{\link{MHB2014}}}{ Data from the Swiss Breeding Bird Survey for 2014 (11.3)}
   \item{\code{\link{spottedWoodpecker}}}{ Data for middle spotted woodpeckers in Switzerland (15.11.2)}
   \item{\code{\link{SwissAtlasHa}}}{ Data from the Swiss Bird Atlas at the scale of 1ha (19..)}

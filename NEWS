@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9072 (2019-06-06)
+
+  * Added 'MesoCarnivores' data set.
+
 CHANGES in 0.1.4.9071 (2019-06-03)
 
   * 'getLVcorrMat' and 'getEcorrMat' return the MCMC chains if stat=NULL.
