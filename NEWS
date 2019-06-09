@@ -1,4 +1,8 @@
 
+CHANGES in 0.1.4.9073 (2019-06-09)
+
+  * Changed name 'northness' to 'north' in 'SwissAtlasHa' data set.
+
 CHANGES in 0.1.4.9072 (2019-06-06)
 
   * Added 'MesoCarnivores' data set.

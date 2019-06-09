@@ -24,7 +24,7 @@ The data consists of replicate counts of birds from 2318 1ha quadrats for 78 pas
       \item y : the y coordinate of the centre of the quadrat.
       \item elevation : the mean elevation of the quadrat, m.
       \item slope : the slope.
-      \item northness : the aspect, with due south = -1, due north = 1.
+      \item north : the aspect, with due south = -1, due north = 1.
       \item forest : proportion of forest cover.
       \item nsurvey : the number of replicate surveys carried out in the quadrat.
     }}
