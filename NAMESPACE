@@ -84,6 +84,9 @@ export("simPPe", "simDataDK", "simDataDK1")
 export("sim.spatialDSline")
 export("sim.spatialDSte")
 
+# Chapter ??
+export("simExpCorrRF")
+
 # Utilities
 export("zinit")
 export("bigCrossCorr")

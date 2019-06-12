@@ -1,3 +1,10 @@
+TO DO
+
+  * Added 'xcoord', 'ycoord' and 'forest' columns to 'EurasianLynx' data set.
+
+CHANGES in 0.1.4.9074 (2019-06-12)
+
+  * Added 'simExpCorrRF' function.
 
 CHANGES in 0.1.4.9073 (2019-06-09)
 
@@ -166,13 +173,13 @@ CHANGES in 0.1.4.9035 (2019-03-22)
 
 CHANGES in 0.1.4.9034 (2019-03-21)
 
-  * Added lynx data set.
+  * Added 'EurasianLynx' data set.
 
   * Added 'valid_data' function.
 
 CHANGES in 0.1.4.9033 (2019-03-20)
 
-  * Added waterVoles data set.
+  * Added 'waterVoles' data set.
 
   * Added 'modSelFP' function.
 

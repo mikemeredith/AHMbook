@@ -131,6 +131,11 @@ The functions are listed by chapter below.
   \item{\code{\link{sim.spatialDSte}}}{ Simulate data for replicate line transect surveys with temporary emigration}
   } }
 
+\section{Chapter ??}{
+  \describe{
+  \item{\code{\link{simExpCorrRF}}}{ Create Gaussian random field with negative exponential correlation}
+  } }
+
 \section{DATA SETS}{
   \describe{
   \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999 to 2015 (12.3)}
