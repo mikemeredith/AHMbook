@@ -23,8 +23,7 @@ if(getRversion() >= '3.6.0')
 }
 
 # ------  Define function simNmixSpatial --------
-# simNmixSpatial<- function(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
-simNmixBO <- function(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
+simNmixSpatial<- function(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
   mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
   seeds = c(10, 100), truncN = 6, show.plots=TRUE){
 # Simulates replicated counts under a spatial, static binomial N-mixture model for a semi-realistic landscape in a square of 50x50 km in the BernesOberland around Interlaken, Switzerland.

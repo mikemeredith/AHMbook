@@ -8,6 +8,10 @@ CHANGES in 0.1.4.9075 (2019-06-14)
 
   * Added 'simNmixBO' function.
 
+CHANGES in 0.1.4.9076 (2019-06-14)
+
+  * Added 'simNmixBO' function renamed 'simNmixSpatial'.
+
 CHANGES in 0.1.4.9074 (2019-06-12)
 
   * Added 'simExpCorrRF' function.

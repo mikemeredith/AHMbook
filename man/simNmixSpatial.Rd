@@ -1,5 +1,5 @@
-\name{simNmixBO}
-\alias{simNmixBO}
+\name{simNmixSpatial}
+\alias{simNmixSpatial}
 \encoding{UTF-8}
 \title{
 Simulate replicated counts under a spatial, static binomial N-mixture model
@@ -20,7 +20,7 @@ Replicated counts are simulated as usual under a binomial observation model, and
 Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., counts from all non-surveyed quadrats will be NA'd out.
 }
 \usage{
-simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
+simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
   mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
   seeds = c(10, 100), truncN = 6, show.plots=TRUE)
 }
@@ -84,60 +84,60 @@ Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 22.
 }
 \examples{
 # Generate data with the default arguments and look at the structure:
-str(dat <- simNmixBO())
-str(dat <- simNmixBO(show.plots=FALSE))
+str(dat <- simNmixSpatial())
+str(dat <- simNmixSpatial(show.plots=FALSE))
 \donttest{
 # More surveys
-str(dat<- simNmixBO(nsurveys = 10))
+str(dat<- simNmixSpatial(nsurveys = 10))
 
 # Minimal number of surveys is 1
-str(dat<- simNmixBO(nsurveys = 1))
+str(dat<- simNmixSpatial(nsurveys = 1))
 
 # Much more common species
-str(dat<- simNmixBO(mean.lambda = exp(4)))
+str(dat<- simNmixSpatial(mean.lambda = exp(4)))
 
 # Only negative linear effect of elevation
-str(dat<- simNmixBO(beta = c(-2, 0)))
+str(dat<- simNmixSpatial(beta = c(-2, 0)))
 
 # No effect of elevation at all
-str(dat<- simNmixBO(beta = c(0, 0)))
+str(dat<- simNmixSpatial(beta = c(0, 0)))
 
 # Perfect detection (p = 1)
-str(dat<- simNmixBO(mean.p = 1))
+str(dat<- simNmixSpatial(mean.p = 1))
 
 # No effect of forest cover on detection
-str(dat<- simNmixBO(alpha = c(0, -1)))
+str(dat<- simNmixSpatial(alpha = c(0, -1)))
 
 # No effect of wind speed on detection
-str(dat<- simNmixBO(alpha = c(-1, 0)))
+str(dat<- simNmixSpatial(alpha = c(-1, 0)))
 
 # Sample only 100 quadrats
-str(dat<- simNmixBO(sample.size = 100))
+str(dat<- simNmixSpatial(sample.size = 100))
 
 # Sample all 2500 quadrats
-str(dat<- simNmixBO(sample.size = 2500))
+str(dat<- simNmixSpatial(sample.size = 2500))
 
 # Larger variance of the multivariate Gaussian Random variable in the random field
 #  (this will increase the effect of the field on abundance and counts)
-str(dat<- simNmixBO(variance.RF = 10))
+str(dat<- simNmixSpatial(variance.RF = 10))
 
 # No spatial autocorrelation (Variant 1: set variance to 0)
-str(dat<- simNmixBO(variance.RF = 0))
+str(dat<- simNmixSpatial(variance.RF = 0))
 
 # No spatial autocorrelation (Variant 2: set theta very close to 0,
 #  but not quite 0, otherwise function breaks)
-str(dat<- simNmixBO(theta.RF = 0.0001))
+str(dat<- simNmixSpatial(theta.RF = 0.0001))
 
 # Larger value of theta.RF gives larger 'islands'
-str(dat<- simNmixBO(theta.RF = 100))
+str(dat<- simNmixSpatial(theta.RF = 100))
 
 # Even larger value of theta.RF gives even larger 'islands'
-str(dat<- simNmixBO(theta.RF = 1000))
+str(dat<- simNmixSpatial(theta.RF = 1000))
 
 # Truncate abundance in final plots to presence/absence
-str(dat<- simNmixBO(truncN = 0.5))
+str(dat<- simNmixSpatial(truncN = 0.5))
 
 # Essentially do not truncate abundance in final plots
-str(dat<- simNmixBO(truncN = 70))
+str(dat<- simNmixSpatial(truncN = 70))
 }
 }
