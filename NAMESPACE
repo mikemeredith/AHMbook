@@ -81,7 +81,7 @@ export("simDynoccSpatial", "simExpCorrRF")
 export("simPPe", "simDataDK", "simDataDK1")
 
 # Chapter 22
-export("sim.spatialDSline", "sim.spatialDSte", "simNmixSpatial")
+export("sim.spatialDSline", "sim.spatialDSte", "simNmixSpatial", "simOccSpatial")
 
 # Utilities
 export("zinit")

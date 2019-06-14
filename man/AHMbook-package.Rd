@@ -130,6 +130,7 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{sim.spatialDSline}}}{ Simulate data for a standardized line transect}
   \item{\code{\link{sim.spatialDSte}}}{ Simulate data for replicate line transect surveys with temporary emigration}
+  \item{\code{\link{simOccSpatial}}}{ Simulate replicated detection/non-detection data under a spatial, static binomial occupancy model for Bernese Oberland}
   \item{\code{\link{simNmixSpatial}}}{ Simulate replicated counts under a spatial, static binomial N-mixture model for Bernese Oberland}
   } }
 

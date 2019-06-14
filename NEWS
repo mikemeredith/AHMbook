@@ -2,11 +2,9 @@ TO DO
 
   * Added 'xcoord', 'ycoord' and 'forest' columns to 'EurasianLynx' data set.
 
-CHANGES in 0.1.4.9075 (2019-06-14)
+CHANGES in 0.1.4.9077 (2019-06-14)
 
-  * Added 'BerneseOberland' data set.
-
-  * Added 'simNmixBO' function.
+  * Added 'simoccSpatial' function.
 
 CHANGES in 0.1.4.9076 (2019-06-14)
 
