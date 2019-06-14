@@ -1,7 +1,7 @@
 # NAMESPACE for AHMbook package
 
 importFrom("grDevices", "colorRampPalette", "devAskNewPage",  "dev.interactive",
-           "topo.colors", "adjustcolor")
+           "topo.colors", "adjustcolor", "rgb")
 importFrom("graphics", "abline", "barplot", "curve", "hist", "image",
            "lines", "matplot", "par", "plot", "points", "polygon", "mtext",
            "rect", "segments", "text", "title", "axis", "legend", "box")
@@ -12,7 +12,7 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "plogis", "qlogis", "quantile", "rbinom", "residuals",
            "rexp", "rmultinom", "rnbinom", "rnorm", "rpois", "runif", "rlnorm",
            "var", "vcov", "cov2cor", "cor", "sd", "aggregate")
-importFrom("utils", "head", "stack", "packageVersion")
+importFrom("utils", "head", "stack", "packageVersion", "data")
 
 importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
           "coef", "fitted", "residuals", "vcov", "confint")
@@ -75,17 +75,13 @@ export("valid_data", "modSelFP")
 export("getLVcorrMat", "getEcorrMat")
 
 # Chapter 20
-export("simDynoccSpatial")
+export("simDynoccSpatial", "simExpCorrRF")
 
 # Chapter 21
 export("simPPe", "simDataDK", "simDataDK1")
 
 # Chapter 22
-export("sim.spatialDSline")
-export("sim.spatialDSte")
-
-# Chapter ??
-export("simExpCorrRF")
+export("sim.spatialDSline", "sim.spatialDSte", "simNmixBO")
 
 # Utilities
 export("zinit")

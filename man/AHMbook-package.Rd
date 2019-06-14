@@ -117,6 +117,7 @@ The functions are listed by chapter below.
 \section{Chapter 20}{
   \describe{
   \item{\code{\link{simDynoccSpatial}}}{ Simulate data under a dynamic occupancy model with spatial covariate and spatial autocorrelation}
+  \item{\code{\link{simExpCorrRF}}}{ Create Gaussian random field with negative exponential correlation}
   } }
 
 \section{Chapter 21}{
@@ -129,15 +130,12 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{sim.spatialDSline}}}{ Simulate data for a standardized line transect}
   \item{\code{\link{sim.spatialDSte}}}{ Simulate data for replicate line transect surveys with temporary emigration}
-  } }
-
-\section{Chapter ??}{
-  \describe{
-  \item{\code{\link{simExpCorrRF}}}{ Create Gaussian random field with negative exponential correlation}
+  \item{\code{\link{simNmixBO}}}{ Simulate replicated counts under a spatial, static binomial N-mixture model for Bernese Oberland}
   } }
 
 \section{DATA SETS}{
   \describe{
+  \item{\code{\link{BerneseOberland}}}{ Landscape data for the Bernese Oberland around Interlaken, Switzerland (22...)}
   \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey for 1999 to 2015 (12.3)}
   \item{\code{\link{cswa}}}{ Chestnut-sided warbler data for point counts and spot-mapping from White Mountain National Forest (13.4.3)}
   \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (15...)}

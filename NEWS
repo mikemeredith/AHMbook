@@ -2,13 +2,19 @@ TO DO
 
   * Added 'xcoord', 'ycoord' and 'forest' columns to 'EurasianLynx' data set.
 
+CHANGES in 0.1.4.9075 (2019-06-14)
+
+  * Added 'BerneseOberland' data set.
+
+  * Added 'simNmixBO' function.
+
 CHANGES in 0.1.4.9074 (2019-06-12)
 
   * Added 'simExpCorrRF' function.
 
 CHANGES in 0.1.4.9073 (2019-06-09)
 
-  * Changed name 'northness' to 'north' in 'SwissAtlasHa' data set.
+  * Changed variable name 'northness' to 'north' in 'SwissAtlasHa' data set.
 
 CHANGES in 0.1.4.9072 (2019-06-06)
 
@@ -17,7 +23,6 @@ CHANGES in 0.1.4.9072 (2019-06-06)
 CHANGES in 0.1.4.9071 (2019-06-03)
 
   * 'getLVcorrMat' and 'getEcorrMat' return the MCMC chains if stat=NULL.
-
 
 CHANGES in 0.1.4.9070 (2019-06-01)
 

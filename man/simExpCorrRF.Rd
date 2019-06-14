@@ -14,7 +14,7 @@ simExpCorrRF(variance = 1, theta = 1, size = 50, seed = NA, show.plots = TRUE)
 
 \arguments{
   \item{variance}{
-variance of field
+variance of field.
 }
   \item{theta}{
 parameter governing spatial correlation (=1/phi) ("large theta means high correlation") Note that RMexp is specified in terms of phi = 1/theta.
@@ -36,7 +36,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{grid }{the grid corresponding to field, equivalent to expand.grid(1:size, 1:size)}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter ??
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 20
 }
 \author{
 Kéry & Royle
