@@ -1,6 +1,11 @@
-TO DO
+CHANGES in 0.1.4.9079 (2019-06-15)
 
-  * Added 'xcoord', 'ycoord' and 'forest' columns to 'EurasianLynx' data set.
+  * Replaced 'EurasianLynx' with 'EL2', coordinates named 'xcoord' and 'ycoord'.
+
+CHANGES in 0.1.4.9078 (2019-06-15) - not pushed to Github
+
+  * Added 'EL2' data set; similar to 'EurasianLynx' but different row order;
+    includes x, y and forest covariates.
 
 CHANGES in 0.1.4.9077 (2019-06-14)
 
