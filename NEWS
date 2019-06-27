@@ -1,3 +1,8 @@
+CHANGES in 0.1.4.9080 (2019-06-27)
+
+  * Additional elements from 'BerneseOberland' data set incorporated in the output of
+     'simNmixSpatial' and 'simOccSpatial'.
+
 CHANGES in 0.1.4.9079 (2019-06-15)
 
   * Replaced 'EurasianLynx' with 'EL2', coordinates named 'xcoord' and 'ycoord'.
@@ -9,11 +14,11 @@ CHANGES in 0.1.4.9078 (2019-06-15) - not pushed to Github
 
 CHANGES in 0.1.4.9077 (2019-06-14)
 
-  * Added 'simoccSpatial' function.
+  * Added 'simOccSpatial' function.
 
 CHANGES in 0.1.4.9076 (2019-06-14)
 
-  * Added 'simNmixBO' function renamed 'simNmixSpatial'.
+  * Added 'simNmixSpatial' function.
 
 CHANGES in 0.1.4.9074 (2019-06-12)
 

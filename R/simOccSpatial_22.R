@@ -142,10 +142,14 @@ if(show.plots){
 return(list(
   # ------------------- arguments input ----------------------
   nsurveys = nsurveys, mean.psi = mean.psi, beta = beta, mean.p = mean.p,
-  alpha = c(-1, -1), sample.size = sample.size, variance.RF = variance.RF,
+  alpha = alpha, sample.size = sample.size, variance.RF = variance.RF,
   theta.RF = theta.RF, seeds = seeds,
   # ------------------- from BerneseOberland ----------------------
-  elev = elev, forest = forest,
+  xcoord = BerneseOberland$x,
+  ycoord = BerneseOberland$y,
+  elevation = BerneseOberland$elevation,
+  forest = BerneseOberland$forest,
+  elevationS = elev, forestS = forest,
   # ------------------- generated variables ------------------------
   wind = wind,
   field = s$field,

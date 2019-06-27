@@ -59,8 +59,11 @@ if TRUE, plots of the data will be displayed; set to FALSE if you are running ma
 
 \value{
 A list with the arguments input and the following additional elements:
- \item{elev }{The elevation covariate from the \code{BerneseOberland} data set.}
+ \item{xcoord, ycoord }{The x and y coordinates from the \code{BerneseOberland} data set.}
+ \item{elevation }{The elevation covariate from the \code{BerneseOberland} data set.}
  \item{forest }{The forest cover covariate from the \code{BerneseOberland} data set.}
+ \item{elevationS }{The elevation covariate standardised to mean 0, SD 1.}
+ \item{forestS }{The forest cover covariate standardised to mean 0, SD 1.}
  \item{wind }{The wind covariate, generated internally.}
  \item{field }{The spatially-autocorrelated covariate, generated internally.}
  \item{alpha0 }{Intercept for the detection model, equal to \code{qlogis(mean.p)}.}
