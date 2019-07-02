@@ -177,61 +177,61 @@ return(list(
 if(FALSE) {
 
 # Possible usages
-str(dat <- simNmixBO())
-str(dat <- simNmixBO(show.plots=FALSE))
+str(dat <- simNmixSpatial())
+str(dat <- simNmixSpatial(show.plots=FALSE))
 # Call with explicit default arguments
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # More surveys
-str(dat<- simNmixBO(nsurveys = 10, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 10, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Minimal number of surveys is 1
-str(dat<- simNmixBO(nsurveys = 1, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 1, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Much more common species
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(4), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(4), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Only negative linear effect of elevation
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(-2, 0), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(-2, 0), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # No effect of elevation at all
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(0, 0), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(0, 0), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Perfect detection (p = 1)
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 1, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 1, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # No effect in detection of forest cover
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(0, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(0, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # No effect in detection of wind speed
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, 0), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, 0), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Sample only 100 quadrats
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 100, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 100, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Sample all 2500 quadrats
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 2500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 2500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # Larger variance of the multivariate Gaussian Random variable in the random field (this will increase the effect of the field on abundance and counts)
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 10, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 10, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # No spatial autocorrelation (Variant 1: set variance to 0)
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 0, theta.RF = 10, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 0, theta.RF = 10, seeds = c(10, 100), truncN = 6))
 
 # No spatial autocorrelation (Variant 2: set theta very close to 0, but not quite 0 --- otherwise function breaks)
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 0.0001, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 0.0001, seeds = c(10, 100), truncN = 6))
 
 # Larger value of theta.RF gives larger 'islands'
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 100, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 100, seeds = c(10, 100), truncN = 6))
 
 # Even larger value of theta.RF gives even larger 'islands'
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 1000, seeds = c(10, 100), truncN = 6))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 1000, seeds = c(10, 100), truncN = 6))
 
 # Truncate abundance in final plots to presence/absence
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 0.5))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 0.5))
 
 # Essentially do not truncate abundance in final plots
-str(dat<- simNmixBO(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 70))
+str(dat<- simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2), mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100), truncN = 70))
 
 }
 

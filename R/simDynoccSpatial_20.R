@@ -15,7 +15,7 @@ beta.Xpsi1 = 0
 beta.Xphi = 0
 beta.Xgamma = 0
 beta.Xp = 0
-expo.range.XAC = 5000
+theta.XAC = 5000
 beta.XAC = c(0, 0, 0, 0)
 beta.Xautolog = c(0, 0)
 trend.sd.site = c(0, 0)
@@ -30,7 +30,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
       range.phi = c(0.8, 0.8), beta.Xphi = 0,
       range.gamma = c(0.1, 0.1), beta.Xgamma = 0,
       range.p = c(0.4, 0.4), beta.Xp = 0,
-      expo.range.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
+      theta.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
       trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
       seed.XAC = NA, seed = NULL, ask.plot = TRUE) {
   #
@@ -53,7 +53,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   #   for all 4 (mediated by underlying density).
   #   That spatial covariate is simulated as a Gaussian random field
   #   with negative exponential correlation function with
-  #   'range parameter' expo.range.XAC
+  #   'range parameter' theta.XAC
   # (4) autologistic effects (beta.Xautolog) in persistence and colonization
   #   probability can be chosen, which fits a logistic regression of
   #   these parameters on the proportion of occupied neighbouring cells
@@ -91,11 +91,11 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   #
   #
   # *** Parameters governing the spatial correlations ***
-  # expo.range.XAC: 'range parameter' of a covariate with exponential
+  # theta.XAC: 'range parameter' of a covariate with exponential
   #   spatial correlation (i.e., a Gaussian random field is used as an
   #   environmental covariate). NOTE: if you want to set to zero the effects
   #   of this spatially autocorrelated variable, you CANNOT
-  #   set expo.range.XAC=0 because this breaks the function,
+  #   set theta.XAC=0 because this breaks the function,
   #   nor can you simply choose a very small value.
   #   Instead you MUST set the elements of coefficients vector beta.XAC
   #   to zero.
@@ -131,7 +131,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   stopifnotProbability(range.phi) # bounds
   stopifnotProbability(range.gamma) # bounds
   stopifnotProbability(range.p) # bounds
-  stopifNegative(expo.range.XAC, allowZero=FALSE)
+  stopifNegative(theta.XAC, allowZero=FALSE)
   stopifnotLength(beta.XAC, 4)
   stopifnotLength(beta.Xautolog, 2)
   stopifnotLength(trend.sd.site, 2) # trend
@@ -170,7 +170,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   # Create values of 1 spatially autocorrelated covariate XAC
   # Generate correlated random variables in a square
   RandomFields::RFoptions(seed=seed.XAC)     # Default NA; 88 gives cool pattern
-  XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = expo.range.XAC), x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
+  XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = theta.XAC), x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
     ncol = side, byrow = TRUE)  # variance 1
   if(!is.na(seed.XAC))
     RandomFields::RFoptions(seed=NA)
@@ -210,7 +210,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
 
   # Plot random field covariate XAC
   # rows are in x, columns in y direction
-  image(1:side, 1:side, XAC, col=topo.colors(100), main = paste("Gaussian random field XAC with \n neg. exponential correlation (range =", expo.range.XAC, ")"), xlab = 'x', ylab = 'y')
+  image(1:side, 1:side, XAC, col=topo.colors(100), main = paste("Gaussian random field XAC with \n neg. exponential correlation (range =", theta.XAC, ")"), xlab = 'x', ylab = 'y')
 
   # (a) Simulate state process parameters: initial state (first year)
   psi[,,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1 +
@@ -333,7 +333,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
     range.phi=range.phi, beta.Xphi=beta.Xphi,
     range.gamma=range.gamma, beta.Xgamma=beta.Xgamma,
     range.p=range.p, beta.Xp=beta.Xp,
-    expo.range.XAC=expo.range.XAC, beta.XAC= beta.XAC, beta.Xautolog=beta.Xautolog,
+    theta.XAC=theta.XAC, beta.XAC= beta.XAC, beta.Xautolog=beta.Xautolog,
     trend.sd.site=trend.sd.site, trend.sd.survey=trend.sd.survey,
     seed=seed, seed.XAC = seed.XAC,
     # ----------------- values generated --------------------
@@ -414,7 +414,7 @@ return(unmarked::unmarkedMultFrame(y=yy, siteCovs=siteCovs, yearlySiteCovs=yearl
 if(FALSE) {
 
 # Execute function (with explicit defaults, plus seed.XAC = 88)
-str(data <- simDynoccSpatial(side = 50, nsurveys = 3, nyears = 10, mean.psi1 = 0.4, range.phi = c(0.8, 0.8), range.gamma = c(0.1, 0.1), range.p = c(0.4, 0.4), beta.Xpsi1 = 1, beta.Xphi = -1, beta.Xgamma = -1, beta.Xp = 1, expo.range.XAC = 5000, beta.XAC = c(-1, 1, 1, -1), beta.Xautolog = c(1, 1), trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), seed = NULL, seed.XAC = 88, ask.plot = TRUE))
+str(data <- simDynoccSpatial(side = 50, nsurveys = 3, nyears = 10, mean.psi1 = 0.4, range.phi = c(0.8, 0.8), range.gamma = c(0.1, 0.1), range.p = c(0.4, 0.4), beta.Xpsi1 = 1, beta.Xphi = -1, beta.Xgamma = -1, beta.Xp = 1, theta.XAC = 5000, beta.XAC = c(-1, 1, 1, -1), beta.Xautolog = c(1, 1), trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), seed = NULL, seed.XAC = 88, ask.plot = TRUE))
 
 # ... with implicit defaults
 str(data <- simDynoccSpatial())

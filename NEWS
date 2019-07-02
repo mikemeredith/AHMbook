@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9081 (2019-07-03)
+
+  * In 'simDynoccSpatial': argument 'expo.range.XAC' renamed 'theta.Xac'.
+
 CHANGES in 0.1.4.9080 (2019-06-27)
 
   * Additional elements from 'BerneseOberland' data set incorporated in the output of

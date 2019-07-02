@@ -15,7 +15,7 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 
 * Additional detection heterogeneity at the site or survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
-* A single, spatially structured covariate for habitat suitability may affect all parameters via coefficient beta.XAC (for a biologically reasonable way, choose coefficients with the same sign for all 4 (mediated by underlying density). That spatial covariate is simulated as a Gaussian random field with negative exponential correlation function with 'range parameter' expo.range.XAC.
+* A single, spatially structured covariate for habitat suitability may affect all parameters via coefficient beta.XAC (for a biologically reasonable way, choose coefficients with the same sign for all 4 (mediated by underlying density). That spatial covariate is simulated as a Gaussian random field with negative exponential correlation function with 'range parameter' theta.XAC.
 
 * Autologistic effects (beta.Xautolog) in persistence and colonization probability can be chosen, which fits a logistic regression of these parameters on the proportion of occupied neighbouring cells (in a queen's or 2nd order neighbourhood) during the previous time step.
 
@@ -27,7 +27,7 @@ simDynoccSpatial(side = 50, nyears = 10, nsurveys = 3,
       range.phi = c(0.8, 0.8), beta.Xphi = 0,
       range.gamma = c(0.1, 0.1), beta.Xgamma = 0,
       range.p = c(0.4, 0.4), beta.Xp = 0,
-      expo.range.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
+      theta.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
       trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
       seed.XAC = NA, seed = NULL, ask.plot = TRUE)
 }
@@ -65,7 +65,7 @@ bounds of uniform distribution from which probability of detection is randomly d
   \item{beta.Xp}{
 coefficient of environmental covariate in probability of detection.
 }
-  \item{expo.range.XAC}{
+  \item{theta.XAC}{
 'range parameter' of a covariate with exponential spatial correlation (i.e., a Gaussian random field is used as an environmental covariate); must be > 0.
 }
  \item{beta.XAC}{
