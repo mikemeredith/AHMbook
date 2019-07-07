@@ -161,6 +161,7 @@ The functions are listed by chapter below.
   \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterflies (15..)}
   \item{\code{\link{wagtail}}}{ Data for yellow wagtails in Netherlands (9.5.3)}
   \item{\code{\link{waterVoles}}}{ Data for water voles from Scotland (18.2.2)}
+  \item{\code{\link{wigglyLine}}}{ Coordinates for a wiggly transect line (22...)}
   \item{\code{\link{willowWarbler}}}{ Data for willow warblers in Britain (14.4.1)}
 
   } }

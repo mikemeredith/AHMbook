@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9082 (2019-07-07)
+
+  * Added 'wigglyLine' data set.
+
 CHANGES in 0.1.4.9081 (2019-07-03)
 
   * In 'simDynoccSpatial': argument 'expo.range.XAC' renamed 'theta.Xac'.
