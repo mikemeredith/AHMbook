@@ -9,7 +9,8 @@ Helper function to draw scale for image
 Plots a scale in the right margin of a plot, typically an image plot.
 }
 \usage{
-image_scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "ranges"))
+image_scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "ranges"),
+      cex.legend=1)
 }
 \arguments{
   \item{z}{
@@ -33,6 +34,9 @@ the number of decimal places to display
   \item{labels}{
 if "breaks", the dividing lines in the scale bar are labelled, if "ranges", each box is labelled with its range; may be abbreviated
 }
+  \item{cex.legend}{
+the magnification to be used for axis annotation
+}
 }
 
 \value{
@@ -53,11 +57,11 @@ This function appears in the text as \code{image.scale}; renamed to avoid confus
 require(grDevices) # for colours
 require(graphics)
 par(mar = c(3,3,3,6))  # make the right margin wide enough
-image(t(volcano)[ncol(volcano):1,], col=terrain.colors(12)) 
+image(t(volcano)[ncol(volcano):1,], col=terrain.colors(12))
 image_scale(volcano, col=terrain.colors(12))
 # Try placing the scale bar on the left
 par(mar = c(3,8,3,1))  # make the left margin wide enough
-image(t(volcano)[ncol(volcano):1,], col=terrain.colors(12)) 
-image_scale(volcano, col=terrain.colors(12), x= -0.28, digits=0)
+image(t(volcano)[ncol(volcano):1,], col=terrain.colors(12))
+image_scale(volcano, col=terrain.colors(12), x= -0.28, digits=0, cex.legend=1.2)
 # Trial and error needed to get the x value right.
 }

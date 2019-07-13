@@ -4,9 +4,11 @@
 # Helper function to draw scale for image (from SCR book)
 # (introduced somewhere in Chapter 9)
 
+# cex.legend added 12 July 2019, v.0.1.4.9083
+
 image_scale <-
 function (z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks",
-    "ranges"))
+    "ranges"), cex.legend=1)
 {
     n <- length(col)
     usr <- par("usr")
@@ -47,5 +49,5 @@ function (z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks",
         ypts <- y - (i - 0.5) * size[2]
     }
     text(x = x + 1.2 * size[1], y = ypts, labels = bks, adj = ifelse(size[1] >
-        0, 0, 1), xpd = TRUE)
+        0, 0, 1), xpd = TRUE, cex=cex.legend)
 }
