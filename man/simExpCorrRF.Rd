@@ -32,8 +32,8 @@ if TRUE, the result will be displayed.
 
 \value{
 A list with the values of the input arguments and the following additional elements:
- \item{field }{the random field variable, a size x size matrix}
- \item{grid }{the grid corresponding to field, equivalent to expand.grid(1:size, 1:size)}
+ \item{field }{the random field variable, a vector of length size^2}
+ \item{grid }{the grid corresponding to field}
 }
 \references{
 Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 20

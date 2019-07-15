@@ -1,4 +1,18 @@
 # Define function for simulating spatially correlated random field
+
+if(FALSE) {
+variance = 1
+theta = 10
+size = 50
+seed = NA
+show.plots = TRUE
+
+library(raster)
+library(RandomFields)
+
+set.seed(10)
+}
+
 # ------------ Start of function definition ----------------
 simExpCorrRF <- function(variance = 1, theta = 1, size = 50, seed = NA, show.plots = TRUE){
 # Function creates Gaussian random field with negative
@@ -20,10 +34,12 @@ simExpCorrRF <- function(variance = 1, theta = 1, size = 50, seed = NA, show.plo
 step <- 1
 x <- seq(1, size, step)
 y <- seq(1, size, step)
-grid <- as.matrix(expand.grid(x,y))
+# grid <- as.matrix(expand.grid(x,y))
+grid <- cbind(x = rep(x, each=size), y = y)
 
 RFoptions(seed=seed)
-field <- matrix(RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=TRUE)@data$variable1, ncol = size)
+# field <- matrix(RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=TRUE)@data$variable1, ncol = size)
+field <- RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=TRUE)@data$variable1
 RFoptions(seed=NA)
 
 # Plots
@@ -36,7 +52,11 @@ if(show.plots){
   text(0.8*max(dis), 0.8, labels = paste("theta:", theta))
 
   # Random field
-  image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
+  # image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
+  par(mar = c(2,2,3,1))
+  raster::plot(rasterFromXYZ(cbind(grid, field)), col=topo.colors(20),
+  main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1, legend=FALSE, box=FALSE)
+  box()
 }
 
 # Output
@@ -45,6 +65,10 @@ return(list(variance = variance, theta = theta, size = size, seed = seed,
   grid = grid))
 } # ------------ End of function definition ----------------
 
-
+if(FALSE){
+set.seed(10)          # Fig. 20–3
+s <- simExpCorrRF(theta = 10, size = 50)
+str(s)
+}
 
 

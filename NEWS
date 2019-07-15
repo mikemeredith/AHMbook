@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9084 (2019-07-15)
+
+  * In 'simExpCorrRF', changes to flip the plot; 'field' output is now vector, not matrix.
+
 CHANGES in 0.1.4.9083 (2019-07-12)
 
   * 'image_scale' gets 'cex.legend' argument.

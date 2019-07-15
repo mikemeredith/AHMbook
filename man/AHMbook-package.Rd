@@ -118,6 +118,8 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{simDynoccSpatial}}}{ Simulate data under a dynamic occupancy model with spatial covariate and spatial autocorrelation}
   \item{\code{\link{simExpCorrRF}}}{ Create Gaussian random field with negative exponential correlation}
+  \item{\code{\link{simOccSpatial}}}{ Simulate replicated detection/non-detection data under a spatial, static binomial occupancy model for Bernese Oberland}
+  \item{\code{\link{simNmixSpatial}}}{ Simulate replicated counts under a spatial, static binomial N-mixture model for Bernese Oberland}
   } }
 
 \section{Chapter 21}{
@@ -130,8 +132,6 @@ The functions are listed by chapter below.
   \describe{
   \item{\code{\link{sim.spatialDSline}}}{ Simulate data for a standardized line transect}
   \item{\code{\link{sim.spatialDSte}}}{ Simulate data for replicate line transect surveys with temporary emigration}
-  \item{\code{\link{simOccSpatial}}}{ Simulate replicated detection/non-detection data under a spatial, static binomial occupancy model for Bernese Oberland}
-  \item{\code{\link{simNmixSpatial}}}{ Simulate replicated counts under a spatial, static binomial N-mixture model for Bernese Oberland}
   } }
 
 \section{DATA SETS}{
