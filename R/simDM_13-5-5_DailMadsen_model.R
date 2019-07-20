@@ -1,5 +1,5 @@
 
-# 13.5.5 A function to simulate data for a Dail-Madsen model with covariates.
+# AHM2 section 2.5.5 A function to simulate data for a Dail-Madsen model with covariates.
 
 simDM <- function(nsites = 50, nsurveys = 3, nyears = 5,
   mean.lambda = 4, mean.gamma.rel = 0.5,

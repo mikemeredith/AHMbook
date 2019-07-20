@@ -39,7 +39,7 @@ On 26 occasions when surveys were carried out, the time taken was not recorded, 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 13.2.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 2.2.
 }
 \examples{
 data(greenWoodpecker)

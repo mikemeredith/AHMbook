@@ -2,7 +2,7 @@
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
 # Helper function to draw scale for image (from SCR book)
-# (introduced somewhere in Chapter 9)
+# (introduced somewhere in AHM1 Chapter 9)
 
 # cex.legend added 12 July 2019, v.0.1.4.9083
 

@@ -95,7 +95,7 @@ A list with the values of the arguments entered and the following additional ele
 
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 12.7.1
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 1.7.1
 
 Sollmann et al.(2015) An open-population hierarchical distance sampling model \emph{Ecology} 96, 325-331.
 }

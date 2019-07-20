@@ -153,7 +153,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{y }{Observed detection history, a nsites x nsurveys x nyears x nspecies array of 0/1}
 }
 \references{
-Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Section 17.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 6.2
 }
 \author{
 Marc Kéry, 28 Nov 2016

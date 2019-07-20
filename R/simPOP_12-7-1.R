@@ -1,6 +1,6 @@
 
 
-# AHM section 12.7.1 Simulation of a demographic state-space model
+# AHM2 section 1.7.1 Simulation of a demographic state-space model
 
 # Called simpop in the draft
 

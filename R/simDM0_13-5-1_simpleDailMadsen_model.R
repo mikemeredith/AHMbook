@@ -1,5 +1,5 @@
 
-# section 13.5.1, originally called 'DMsim.fn'
+# AHM2 section 2.5.1, originally called 'DMsim.fn'
 # A function to simulate data for a Dail-Madsen model without covariates.
 
 # ---------- simulator function ------------------------

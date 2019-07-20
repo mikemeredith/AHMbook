@@ -26,61 +26,61 @@ importFrom("coda", "crosscorr")
 importFrom("mvtnorm", "dmvnorm")
 
 
-# Chapter 1
+# AHM1 Chapter 1
 export("sim.fn")
 
-# Chapter 4
+# AHM1 Chapter 4
 export("data.fn")
 
-# Chapter 6
+# AHM1 Chapter 6
 export("simNmix", "ppc.plot", "map.Nmix.resi", "simpleNmix", "playRN")
 export("plot_Nmix_resi")
 
-# Chapter 7
+# AHM1 Chapter 7
 export("fitstats", "fitstats2")
 export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
 
-# Chapter 8
+# AHM1 Chapter 8
 export("sim.ldata", "sim.pdata", "simHDS")
 
-# Chapter 9
+# AHM1 Chapter 9
 export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")
 #  "pcount.spHDS" # now in unmarked
 
-# Chapter 10
+# AHM1 Chapter 10
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
 
-# Chapter 11
+# AHM1 Chapter 11
 export("simComm")
 
-# Chapter 12
+# AHM2 Chapter 1
 export("simNpC", "simPH", "simPOP", "graphSSM")
 
-# Chapter 13
+# AHM2 Chapter 2
 export("simDM0", "simDM", "simMultMix")
 
-# Chapter 14
+# AHM2 Chapter 3
 export("simCJS", "ch2marray")
 
-# Chapter 15
+# AHM2 Chapter 4
 export("simDynocc", "simDemoDynocc")
 
-# Chapter 17
+# AHM2 Chapter 6
 export("simDCM")
 
-# Chapter 18
+# AHM2 Chapter 7
 export("valid_data", "modSelFP")
 
 # Chapter 19
 export("getLVcorrMat", "getEcorrMat")
 
-# Chapter 20
+# AHM2 Chapter 9
 export("simDynoccSpatial", "simExpCorrRF")
 
-# Chapter 21
+# AHM2 Chapter 10
 export("simPPe", "simDataDK", "simDataDK1")
 
-# Chapter 22
+# AHM2 Chapter 11
 export("sim.spatialDSline", "sim.spatialDSte", "simNmixSpatial", "simOccSpatial")
 
 # Utilities

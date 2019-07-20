@@ -36,7 +36,7 @@ Data courtesy of Roland Kays, Arielle Parsons, and their group at the North Caro
 \references{
 Rota, C.T., Ferreira, M.A.R., Kays, R.W., Forrester, T.D., Kalies, E.L., McShea, W.J., Parsons, A.W., & Millspaugh, J.J. (2016) A multispecies occupancy model for two or more interacting species. \emph{Methods in Ecology and Evolution}, 7, 1164-1173.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 19.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
 }
 \examples{
 data(MesoCarnivores)

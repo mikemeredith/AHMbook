@@ -28,7 +28,7 @@ Sutherland, C., Elston, D.A., & Lambin, X. (2012) Multi-scale processes in metap
 
 Sutherland, C.S., Elston, D.A., & Lambin, X. (2014) A demographic, spatially explicit patch occupancy model of metapopulation dynamics and persistence. \emph{Ecology}, 95, 3149-3160.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 18.2.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 7.2.2
 }
 \examples{
 data(waterVoles)

@@ -35,7 +35,7 @@ A list with the values of the arguments entered and the following additional ele
 \item{C }{T vector, observed counts.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 12.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 1.2
 
 }
 \author{

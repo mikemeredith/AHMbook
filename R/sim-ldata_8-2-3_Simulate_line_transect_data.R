@@ -1,12 +1,12 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# sim.ldata  - section 8.2.3 p402
+# sim.ldata  - AHM1 section 8.2.3 p402
 
 
 
 # Function to simulate non-hierarchical line transect data
-#   (introduced in Section 8.2.3)
+#   (introduced in AHM1 Section 8.2.3)
 sim.ldata <- function(N = 200, sigma = 30, show.plot = TRUE){
 # Function to simulate line transect data under CDS.
 # Function arguments:

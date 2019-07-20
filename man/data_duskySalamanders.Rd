@@ -27,7 +27,7 @@ Evan Grant (USGS Patuxent Wildlife Research Center)
 \references{
 Zipkin et al (2014) Modeling structured population dynamics using data from unmarked individuals, \emph{Ecology}, 95(1) 22-29.
 
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 13.9.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 2.9.2
 }
 \examples{
 data(duskySalamanders)

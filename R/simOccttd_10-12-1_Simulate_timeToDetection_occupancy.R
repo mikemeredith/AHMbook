@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simOccttd - section 10.12.1 p616
+# simOccttd - AHM1 section 10.12.1 p616
 
 # Function simulates time-to-detection occupancy design data under model
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
-#   (introduced in Section 10.12.1)
+#   (introduced in AHM1 Section 10.12.1)
 
 simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
   beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE){

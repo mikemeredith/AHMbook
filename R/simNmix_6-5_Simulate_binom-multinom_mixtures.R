@@ -1,9 +1,9 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simNmix - section 6.5 p241
+# simNmix - AHM1 section 6.5 p241
 
-# Function to simulate data for binomial and multinomial mixture models under wide range of conditions (introduced in Section 6.5)
+# Function to simulate data for binomial and multinomial mixture models under wide range of conditions (introduced in AHM1 Section 6.5)
 simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0, beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0, beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10, sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0, Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE) {
 #
 # This very general function generates single-season count data

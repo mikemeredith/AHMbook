@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# sim.spatialDS - section 9.8.3 p534
+# sim.spatialDS - AHM1 section 9.8.3 p534
 
 # Function generates data under spatial hierarchical distance sampling model
-#   (introduced in Section 9.8.3)
+#   (introduced in AHM1 Section 9.8.3)
 
 # Changes April/May 2017 (v. 0.1.3.9000/9001)
 #   Added lambda

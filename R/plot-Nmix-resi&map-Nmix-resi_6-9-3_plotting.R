@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# plot.Nmix.resi and map.Nmix.resi - section 6.9.3 p261
+# plot.Nmix.resi and map.Nmix.resi - AHM1 section 6.9.3 p261
 
 
-# Function to produce some residual plots in Section 6.9.3
+# Function to produce some residual plots in AHM1 Section 6.9.3
 plot_Nmix_resi <- function(fmP, fmNB, fmZIP){
 # Function does diagnostic plots for one Nmix model fitted with all three
 #   mixture distributions currently availabe in unmarked:
@@ -45,7 +45,7 @@ abline(lm(c(residuals(fmZIP)) ~ c(fitted(fmZIP))), col = "blue", lwd = 3)
 
 
 
-# Function to produce a map of the residuals in Section 6.9.3
+# Function to produce a map of the residuals in AHM1 Section 6.9.3
 map.Nmix.resi <- function(fm, x, y){
 # Function produces a map of the mean residuals from an N-mixture model
 #    object named fm, which was fit by function pcount in unmarked

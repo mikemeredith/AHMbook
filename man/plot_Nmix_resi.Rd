@@ -6,7 +6,7 @@
 Produce some residual plots
 }
 \description{
-Function does diagnostic plots for one Nmix model fitted with all three mixture distributions currently availabe in package \pkg{unmarked}: Poisson, negative binomial and zero-inflated Poisson. For each, fitted values vs. observed data and residuals vs. fitted values are plotted.
+Function does diagnostic plots for one Nmix model fitted with all three mixture distributions currently available in package \pkg{unmarked}: Poisson, negative binomial and zero-inflated Poisson. For each, fitted values vs. observed data and residuals vs. fitted values are plotted.
 }
 \usage{
 plot_Nmix_resi(fmP, fmNB, fmZIP)

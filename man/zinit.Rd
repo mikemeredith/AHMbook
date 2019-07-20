@@ -20,7 +20,7 @@ An individuals x time matrix of capture records, 1 if captured, 0 otherwise, no 
 An individuals x time matrix with 1 in each row after the first capture; all other elements NA, including the first capture occasion.
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 14.2.3
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 3.2.3
 }
 \author{
 Marc Kéry.

@@ -7,7 +7,7 @@
 Compute results of a species correlation model
 }
 \description{
-\code{getLVcorrMat} computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2019) chapter 19.
+\code{getLVcorrMat} computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2019) chapter 8.
 
 \code{getEcorrMat} computes the correlation matrix for the coefficients of the observed environmental covariates.
 }
@@ -36,7 +36,7 @@ The relevant correlation matrix, species x species; if \code{stat = NULL}, an ar
 \references{
 Tobler et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology} (accepted) doi: 10.1002/ecy.2754
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 19.5.1
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8.5.1
 }
 \author{
 Mathias Tobler (\code{getLVcorrMat}), Marc Kéry (\code{getEcorrMat}).

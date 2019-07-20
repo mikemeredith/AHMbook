@@ -1,7 +1,7 @@
 
 # Generate starting values for survival analysis in JAGS or WinBUGS
 
-# AHM2 section 14.2.3
+# AHM2 section 3.2.3
 
 zinit  <- function(CH){
   CH <- round(as.matrix(CH)) # could also be a data frame

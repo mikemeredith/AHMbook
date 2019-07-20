@@ -2,9 +2,9 @@
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
 # Function returning three fit-statistics (used in parboot GOF tests throughout book)
-# (used, among others, in Chapter 7, e.g., Section 7.5.4)
+# (used, among others, in AHM1 Chapter 7, e.g., AHM1 Section 7.5.4)
 
-# Updated 2019-01-14 to cope with NAs in the data, see 13.3.3
+# Updated 2019-01-14 to cope with NAs in the data, see AHM2 2.3.3
 
 fitstats <- function(fm) {
   observed <- unmarked::getY(fm@data)
@@ -20,7 +20,7 @@ fitstats <- function(fm) {
 
 
 # Define new fitstats function
-#   (introduced in Section 7.9.3)
+#   (introduced in AHM1 Section 7.9.3)
 fitstats2 <- function(fm) {
    observed <- unmarked::getY(fm@data)
    expected <- fitted(fm)

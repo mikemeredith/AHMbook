@@ -1,10 +1,10 @@
 
-# AHM2 section 12.6, old name graph.ssm2
+# AHM2 section 1.6, old name graph.ssm2
 
-# To plot the observed time-series and the estimated population trajectories, we have adapted the SSM graphing function graph.ssm from chapter 5 in Kery & Schaub (2012) to multivariate SSMs and call this new function graph.ssm2. When browsing through the graphs for each site, we see that the estimated states (i.e., the latent relative abundance) represent a greatly smoothed picture with respect to the more jagged observed data (Fig. 12-11).
+# To plot the observed time-series and the estimated population trajectories, we have adapted the SSM graphing function graph.ssm from chapter 5 in Kery & Schaub (2012) to multivariate SSMs and call this new function graph.ssm2. When browsing through the graphs for each site, we see that the estimated states (i.e., the latent relative abundance) represent a greatly smoothed picture with respect to the more jagged observed data (Fig. 1-11).
 
 # Define function to draw a graph to summarize results
-# for multivariate time series of counts 
+# for multivariate time series of counts
 
 graphSSM<- function(ssm, C){
   par(cex.main = 0.8)

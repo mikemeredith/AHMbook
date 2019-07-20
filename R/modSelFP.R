@@ -1,5 +1,5 @@
 
-# Section 18.2.2
+# AHM2 Section 7.2.2
 
 # Named fp.modSel in earlier drafts.
 
@@ -14,5 +14,5 @@ modSelFP <- function(mod.list){   # Thanks to Chris Sutherland!
   modTab <- data.frame(nPars, AIC, dAIC, AICwt, row.names = Model)[order(AIC),]
   modTab$cuWt <- cumsum(modTab$AICwt)  # Do this after sorting.
   return(modTab)
-} 
+}
 

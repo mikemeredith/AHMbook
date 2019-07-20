@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simpleNmix - section 6.12 p298
+# simpleNmix - AHM1 section 6.12 p298
 
 # Function to generate Nmix data under a time-for-space substitution design
-#   (introduced in Section 6.12)
+#   (introduced in AHM1 Section 6.12)
 # Define function to simulate such data
 
 simpleNmix <- function(nyears = 12, nreps = 4, beta0 = 2, beta1 = 0.1, alpha0 = 0.5, alpha1 = -0.1, alpha2 = 1, show.plot = TRUE){

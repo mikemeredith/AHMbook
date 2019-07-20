@@ -7,7 +7,7 @@ Simulate data for replicate line transect surveys with temporary emigration
 }
 \description{
 
-See book text Chapter 22 and Mizel et al (2018).
+See book text Chapter 11 and Mizel et al (2018). ?? do description
 
 }
 \usage{
@@ -58,7 +58,7 @@ A list with the values of the input arguments and the following additional eleme
 \references{
 Mizel, J.D., Schmidt, J.H., & Lindberg, M.S. (2018) Accommodating temporary emigration in spatial distance sampling models. \emph{Journal of Applied Ecology}, 55, 1456-1464.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 22
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
 
 Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} vol 1.
 }

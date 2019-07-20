@@ -27,7 +27,7 @@ The data set is based on checklists which volunteers submit from their bird-watc
 Database of Swiss Ornithological Institute (courtesy of Nicolas Strebel).
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 15.11.2.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 4.11.2.
 }
 \examples{
 data(spottedWoodpecker)

@@ -51,7 +51,7 @@ The list \code{MHB2014} has the data for 2014.
 }
 
 \note{
-Section 11.3 of the book has code to read in data from a CSV file, "MHB_2014.csv". This is a huge file, because the site data are repeated for all 158 species and the species data are repeated for all 267 sites. The \code{MHB2014} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
+Section 11.3 of the AHM1 book has code to read in data from a CSV file, "MHB_2014.csv". This is a huge file, because the site data are repeated for all 158 species and the species data are repeated for all 267 sites. The \code{MHB2014} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
 }
 \source{
 Swiss Ornithological Institute

@@ -53,7 +53,7 @@ A list with the values of the arguments input and the following additional eleme
 \references{
 Roth, T. and Amrhein, V. (2010), Estimating individual survival using territory occupancy data on unmarked animals. \emph{Journal of Applied Ecology}, 47: 386-392.
 
-Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Chapter 15
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
 }
 \author{
 Marc Kéry

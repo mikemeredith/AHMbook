@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# spline.prep - section 10.14 p623
+# spline.prep - AHM1 section 10.14 p623
 
 # Function to prepare input for BUGS model when fitting a spline for a covariate
-#   (introduced in Section 10.14)
+#   (introduced in AHM1 Section 10.14)
 
 spline.prep <- function(cov, nknot = NA){
 # Function chooses knots and creates design matrices for fixed and

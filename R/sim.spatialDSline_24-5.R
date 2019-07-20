@@ -1,5 +1,5 @@
 
-# Function for Chapter 22, section 22.5
+# Function for AHM2 Chapter 11, section 11.5
 
 if(FALSE) {  # use this when stepping thro code
   library(raster)      # Load required packages

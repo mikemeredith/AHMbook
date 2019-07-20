@@ -1,5 +1,5 @@
 
-# AHM section 13.7.1 Simulate data for a multinomial-mixture model
+# AHM2 section 2.7.1 Simulate data for a multinomial-mixture model
 
 # Called data.fn in the draft
 # with R=nsites, J=nsurveys, K=nyears

@@ -5,7 +5,7 @@
 Plot results from posterior predictive check
 }
 \description{
-Function plots results from posterior predictive check in AHM section 6.8 for a fitted model object with JAGS.
+Function plots results from posterior predictive check in AHM1 section 6.8 for a fitted model object with JAGS.
 }
 \usage{
 ppc.plot(fm)

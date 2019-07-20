@@ -51,12 +51,12 @@ Three replicated point counts of 10 min each, out to a maximum distance of 100 m
 }
 
 \source{
-Scott Sillett ... insert proper attribution.
+Scott Sillett ... ?? insert proper attribution.
 }
 \references{
 Zipkin...??
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 19.2
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
 }
 \examples{
 data(HubbardBrook)

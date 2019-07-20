@@ -1,13 +1,13 @@
-# AHM2 chapter 15
+# AHM2 chapter 4
 
 # Revised 4 Dec 2018, 1 March 2019
 
 # ------------------ Start function definition ---------------------
 simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = NA,
-    mean.psi1 = 0.4, beta.Xpsi1 = 0, 
-    range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0, 
-    range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0, 
-    sd.lphi.lgamma.site = 0, 
+    mean.psi1 = 0.4, beta.Xpsi1 = 0,
+    range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0,
+    range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0,
+    sd.lphi.lgamma.site = 0,
     range.p = c(0.1, 0.9), beta.Xp = 0,
     range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0), trend.sd.site = c(0, 0),
     trend.sd.survey = c(0, 0), trend.sd.site.survey = c(0, 0), show.plot = TRUE) {

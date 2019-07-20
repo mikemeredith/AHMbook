@@ -23,11 +23,11 @@ describe data collection
       \item Visit : a numeric visit identifier, 1 to 5
       \item Survey : a numeric survey identifier, 1 to 466
       \item count : the number of tree sparrows detected.
-      \item juldate : the Julian date of the survey.
-      \item effort :
-      \item reltime :
-      \item Noise :
-      \item Observer2 :
+      \item juldate : the Julian date of the survey. ?? origin??
+      \item effort : ??
+      \item reltime : ??
+      \item Noise : ??
+      \item Observer2 : ??
     }}
 
   \item{\bold{obs }}{a data frame with rows for 325 birds observed and the following columns:
@@ -56,12 +56,12 @@ describe data collection
 }
 
 \source{
-Mizel et al. (2018) ... insert proper attribution.
+Mizel et al. (2018) ...?? insert proper attribution.
 }
 \references{
 Mizel et al. (2018)...??
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 22.8.4
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 11.8.4
 }
 \examples{
 data(treeSparrow)

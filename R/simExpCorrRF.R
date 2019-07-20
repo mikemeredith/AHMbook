@@ -66,7 +66,7 @@ return(list(variance = variance, theta = theta, size = size, seed = seed,
 } # ------------ End of function definition ----------------
 
 if(FALSE){
-set.seed(10)          # Fig. 20–3
+set.seed(10)          # Fig. 20-3
 s <- simExpCorrRF(theta = 10, size = 50)
 str(s)
 }

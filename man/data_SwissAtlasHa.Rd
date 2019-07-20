@@ -37,7 +37,7 @@ The data consists of replicate counts of birds from 2318 1ha quadrats for 78 pas
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 19....
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8....
 }
 \examples{
 data(SwissAtlasHa)

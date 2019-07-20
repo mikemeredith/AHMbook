@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# wigglyOcc - section 10.14 p622
+# wigglyOcc - AHM1 section 10.14 p622
 
 # Function to generate a static occupancy data set with really wiggly covariate relationships
 # in occupancy and detection probability
-#   (introduced in Section 10.14)
+#   (introduced in AHM1 Section 10.14)
 wigglyOcc <- function(seed = 1, show.plot=TRUE){
 # Function simulates really wiggly static site-occupancy data
 #
@@ -25,11 +25,11 @@ z <- rbinom(M, 1, psi)
 # Put covariate Xsurvey and p in order
 Xsurvey <- seq(-2, 2,, M*J)
 p.bp <- c(0, 0.6, 0.2, 0.9, 0.2, 0, 0.2) # "break points" for p model
-p.ordered <- c(seq(p.bp[1], p.bp[2],, 120), 
-               seq(p.bp[2], p.bp[3],, 120), 
-               seq(p.bp[3], p.bp[4],, 120), 
-               seq(p.bp[4], p.bp[5],, 120), 
-               seq(p.bp[5], p.bp[6],, 120), 
+p.ordered <- c(seq(p.bp[1], p.bp[2],, 120),
+               seq(p.bp[2], p.bp[3],, 120),
+               seq(p.bp[3], p.bp[4],, 120),
+               seq(p.bp[4], p.bp[5],, 120),
+               seq(p.bp[5], p.bp[6],, 120),
                seq(p.bp[6], p.bp[7],, 120))
 x.index <- sample(1:length(Xsurvey))
 Xsurvey <- matrix(Xsurvey[x.index], M, J, byrow = F)
@@ -51,7 +51,7 @@ cat("   Proportional underestimation of distribution:", round((sum(z)-sum(apply(
 # Plot system (state and observation)
 if(show.plot) {
   op <- par(mfrow = c(1,2), cex.main = 0.8) ; on.exit(par(op))
-  plot(Xsite, psi, 
+  plot(Xsite, psi,
     main = "Occupancy probability (red) and \nrealized presence/absence (black circles)",
     type = "l", ylim = c(-0.1, 1.1), col = "red", xlab = "Site covariate (Xsite)",
     lwd = 2, frame = FALSE)

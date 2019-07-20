@@ -79,7 +79,7 @@ A list with the arguments input and the following additional elements:
  \item{yobs }{number of individuals detected in each quadrat surveyed, NA for quadrats not surveyed.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 22..
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 11..
 
 }
 \author{

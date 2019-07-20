@@ -5,7 +5,7 @@
 
 # The original D-K code only allows one individual per pixel, which works if you have many more pixels than animals, but is not necessary. This version allows more than one animal per pixel.
 
-# AHM chapter 21
+# AHM2 chapter 10
 
 # Helper function to generate bivariate normal covariate surfaces; not exported:
 getCovSurface <- function(mWt=c(0.75, 0.4),sWt=c(0.25, 0.5), rho=0.5,

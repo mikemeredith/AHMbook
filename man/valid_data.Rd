@@ -33,7 +33,7 @@ A list with components:
 \references{
 Chambert, T., Waddle, J.H., Miller, D.A.W., Walls, S.C., & Nichols, J.D. (2017) A new framework for analysing automated acoustic species-detection data: occupancy estimation and optimization of recordings post-processing. \emph{Methods in Ecology and Evolution}, 9, 560-570.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 18...
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 7...
 }
 
 \author{

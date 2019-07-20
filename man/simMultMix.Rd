@@ -45,7 +45,7 @@ A list with the values of the input arguments and the following additional eleme
 \references{
 Chandler, R. B., J. A. Royle, and D. I. King. 2011. Inference about density and temporary emigration in unmarked populations. \emph{Ecology} 92:1429-1435.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 13.7.1
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 2.7.1
 }
 \author{
 Adapted by Andy Royle from code in documentation for \code{\link[unmarked]{gmultmix}} by Richard Chandler and Andy Royle.

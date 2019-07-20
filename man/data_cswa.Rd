@@ -53,7 +53,7 @@ Chandler, R.B., King, D.I., & Chandler, C.C. (2009) Effects of management regime
 
 Chandler, R.B., Royle, J.A., & King, D.I. (2011) Inference about density and temporary emigration in unmarked populations. \emph{Ecology}, 92, 1429-1435.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 13.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 2.
 }
 \examples{
 data(cswa)

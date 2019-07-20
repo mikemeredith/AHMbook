@@ -56,7 +56,7 @@ A new method for recording breeding territories was introduced in 2004, but the 
 }
 
 \note{
-Sections 6.9.1 and 6.13.1 of the book have code to read in data from a CSV file, "SwissTits_mhb_2004_2013.csv". The \code{SwissTits} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
+Sections 6.9.1 and 6.13.1 of the AHM1 book have code to read in data from a CSV file, "SwissTits_mhb_2004_2013.csv". The \code{SwissTits} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
 }
 \source{
 Swiss Ornithological Institute

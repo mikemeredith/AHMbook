@@ -39,13 +39,13 @@ A new method for recording breeding territories was introduced in 2004, but the 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 12.
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 1.
 }
 \examples{
 data(crestedTit)
 str(crestedTit)
 
-# Prepare objects needed for section 12.3 and following
+# Prepare objects needed for section AHM2 - 1.3 and following
 C <- as.matrix(crestedTit[, 6:23]) # matrix of counts
 year <- 1999:2016
 datetmp <- as.matrix(crestedTit[, 24:77])  # matrix of Julian dates
@@ -61,7 +61,7 @@ mdate[is.nan(mdate)] <- NA  # Replace NaN with NA
 mdur <- apply(durfull, c(1,3), mean, na.rm=TRUE)
 mdur[is.nan(mdur)] <- NA
 
-# For Sec 12.5, we need standardised covariates with missing values imputed
+# For Sec 1.5, we need standardised covariates with missing values imputed
 elev.sc <- as.numeric(scale(crestedTit$elev))     # site elevation
 forest.sc <- as.numeric(scale(crestedTit$forest)) # site forest cover
 
@@ -75,7 +75,7 @@ sd.dur <- sd(mdur, na.rm=TRUE)
 mdur.sc <- (mdur - mean.dur) / sd.dur
 mdur.sc[is.na(mdur.sc)] <- 0                 # mean imputation
 
-# For sections 12.6 and 12.7, we remove sites with no crested tits recorded,
+# For sections 1.6 and 1.7, we remove sites with no crested tits recorded,
 #   or recorded in only one year:
 nzero <- apply(C == 0, 1, sum, na.rm=TRUE) # number of zero years per site
 sel <- nzero <= 1  # TRUE if site has 2 or more years of non-zero data

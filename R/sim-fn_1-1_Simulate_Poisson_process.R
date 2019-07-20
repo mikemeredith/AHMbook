@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# sim.fn - section 1.1 p4
+# sim.fn - AHM1 section 1.1 p4
 
 # A function to help to understand the relationship between point patterns,
 # abundance data and occurrence data (also called presence/absence or distribution data)
-# (introduced in Section 1.1)
+# (introduced in AHM1 Section 1.1)
 
 sim.fn <- function(quad.size = 10, cell.size = 1, intensity = 1, show.plot = TRUE){
 #

@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# instRemPiFun, crPiFun, crPiFun.Mb, MhPiFun  - section 7.7 p346
+# instRemPiFun, crPiFun, crPiFun.Mb, MhPiFun  - AHM1 section 7.7 p346
 # Customised 'piFun's for unmarked::multinomPois
 
 # pi function for removal design with 3 intervals of unequal length (2, 3, 5 minutes)
-#    (introduced in Section 7.7)
+#    (introduced in AHM1 Section 7.7)
 instRemPiFun <- function(p){
    M <- nrow(p)
    J <- ncol(p)
@@ -22,7 +22,7 @@ instRemPiFun <- function(p){
 
 
 # pi function for capture-recapture design with 3 surveys
-#    (introduced in Section 7.8)
+#    (introduced in AHM1 Section 7.8)
 crPiFun <- function(p) {
    p1 <- p[,1]
    p2 <- p[,2]
@@ -40,7 +40,7 @@ crPiFun <- function(p) {
 
 
 # pi function for capture-recapture design with 3 surveys and behavioural response
-#    (introduced in Section 7.8.2)
+#    (introduced in AHM1 Section 7.8.2)
 crPiFun.Mb <- function(p) {
  pNaive <- p[,1]
  pWise <- p[,3]
@@ -56,7 +56,7 @@ crPiFun.Mb <- function(p) {
 
 
 # Pi function for model with individual detection heterogeneity
-#   (introduced in Section 7.8.3)
+#   (introduced in AHM1 Section 7.8.3)
 MhPiFun <- function(p) {
   mu <- qlogis(p[,1])       # logit(p)
   sig <- exp(qlogis(p[1,2]))

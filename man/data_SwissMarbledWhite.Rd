@@ -28,7 +28,7 @@ Biodiversity Monitoring Program in the canton of Aargau, Switzerland (Courtesy I
 \references{
 Roth, T., Strebel, N. and Amrhein, V. (2014), Estimating unbiased phenological trends by adapting site-occupancy models. \emph{Ecology}, 95: 2144-2154
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 15...
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 4...
 }
 \seealso{
 \code{\link{UKmarbledWhite}}.

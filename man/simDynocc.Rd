@@ -25,7 +25,7 @@ simDynocc(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = NA,
   mean.psi1 = 0.4, beta.Xpsi1 = 0,
   range.phi = c(0.5, 1), sd.lphi.site = 0, impact.phi = 0, beta.Xphi = 0,
   range.gamma = c(0, 0.5), sd.lgamma.site = 0, impact.gamma = 0, beta.Xgamma = 0,
-  sd.lphi.lgamma.site = 0, 
+  sd.lphi.lgamma.site = 0,
   range.p = c(0.1, 0.9), beta.Xp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
   trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
@@ -135,7 +135,7 @@ A list with the values of the arguments input and the following additional eleme
   \item{eps3 }{the site/survey/year random effects on detection, a nsites x nsurveys x nyears array}
 }
 \references{
-Kéry & Royle (2017) \emph{Applied Hierarchical Modeling in Ecology} Chapter 15
+Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
 
 }
 \author{

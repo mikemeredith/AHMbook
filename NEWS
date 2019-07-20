@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9085 (2019-07-20)
+
+  * Chapter numbering corrected in help pages and in comments in R files; no changes to code. Not yet done in file names.
+
 CHANGES in 0.1.4.9084 (2019-07-15)
 
   * In 'simExpCorrRF', changes to flip the plot; 'field' output is now vector, not matrix.

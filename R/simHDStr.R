@@ -1,7 +1,7 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simHDStr - section 9.3.2 p474
+# simHDStr - AHM1 section 9.3.2 p474
 
 
 simHDStr <-

@@ -1,12 +1,12 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simComm - section 11.2 p634
+# simComm - AHM1 section 11.2 p634
 
 # Function to simulate community occupancy or community abundance data
 #   with random species effects for psi/lambda and p (both including
 #   effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p)
-#   (introduced in Section 11.2)
+#   (introduced in AHM1 Section 11.2)
 
 simComm <- function(type=c("det/nondet", "counts"), nsites=30, nreps=3, nspecies=100,
   mean.psi=0.25, sig.lpsi=1, mu.beta.lpsi=0, sig.beta.lpsi=0,

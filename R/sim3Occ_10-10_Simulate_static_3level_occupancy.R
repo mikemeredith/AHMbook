@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# sim3Occ - section 10.10 p604
+# sim3Occ - AHM1 section 10.10 p604
 
 # Function to simulate data for static 3-level occupancy models
-#   (introduced in Section 10.10)
+#   (introduced in AHM1 Section 10.10)
 sim3Occ <- function(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8, beta.Xpsi = 1,
   sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1,
   sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2), beta.Xp = -1, sd.logit.p = 0,

@@ -1,5 +1,5 @@
 
-# AHM2 section 14.4.1
+# AHM2 section 3.4.1
 
 # Define a function to create an m-array based on capture-histories (CH)
 

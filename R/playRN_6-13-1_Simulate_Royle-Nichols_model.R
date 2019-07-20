@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# playRN - section 6.13.1 p301
+# playRN - AHM1 section 6.13.1 p301
 
 # Function to play Royle-Nichols model
-#   (introduced in Section 6.13.1)
+#   (introduced in AHM1 Section 6.13.1)
 
 playRN <- function(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, show.plot=TRUE){
 # Function generates replicated count data under the Nmix model of Royle (2004),

@@ -1,4 +1,4 @@
-# AHM2 section 14.2.2
+# AHM2 section 3.2.2
 
 # ------ Start of definition of the data simulation function ------
 simCJS <- function(

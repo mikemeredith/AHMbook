@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simHDSopen - section 9.5.4.1 p499
+# simHDSopen - AHM1 section 9.5.4.1 p499
 
 # Function to generate open hierarchical distance sampling data
-#   (introduced in Section 9.5.4.1)
+#   (introduced in AHM1 Section 9.5.4.1)
 
 simHDSopen <-
 function(type=c("line", "point"), nsites = 100, mean.lam = 2,

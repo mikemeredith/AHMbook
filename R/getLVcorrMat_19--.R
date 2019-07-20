@@ -1,6 +1,6 @@
 
 
-# function by Mathias Tobler which computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model as showcased on Chapter 19 of the book. Input must be the sims.list of the latent variables (LV), the sims.list of their coefficients (lv.coef) and the number of species. The function returns the residual correlation matrix, as described in Tobler et al. (Ecology, 2019) and other recent JSDM papers.
+# function by Mathias Tobler which computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model as showcased on Chapter 8 of AHM2. Input must be the sims.list of the latent variables (LV), the sims.list of their coefficients (lv.coef) and the number of species. The function returns the residual correlation matrix, as described in Tobler et al. (Ecology, 2019) and other recent JSDM papers.
 
 getLVcorrMat <- function(lv.coef, type=c("occupancy", "Nmix"), stat=mean){
   type <- match.arg(type)

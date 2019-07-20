@@ -1,5 +1,5 @@
 
-## AHM2 section 12.8.1
+## AHM2 section 1.8.1
 
 simPH <- function(
   # --- Sample sizes and design stuff ---

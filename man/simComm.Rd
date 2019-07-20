@@ -5,7 +5,7 @@
 Simulate community occupancy or community abundance data
 }
 \description{
-Function to simulate community occupancy or community abundance data with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in Section 11.2)
+Function to simulate community occupancy or community abundance data with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 Section 11.2)
 }
 \usage{
 simComm(type = c("det/nondet", "counts"), nsites = 30, nreps = 3, nspecies = 100,

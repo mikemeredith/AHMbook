@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# sim.pdata  - section 8.2.5.1 p410
+# sim.pdata  - AHM1 section 8.2.5.1 p410
 
 # Function to simulate non-hierarchical point transect (= point count) data
-#   (introduced in Section 8.2.5.1)
+#   (introduced in AHM1 Section 8.2.5.1)
 
 sim.pdata <- function(N=1000, sigma=1, B=3, keep.all=FALSE, show.plot=TRUE) {
 # Function simulates coordinates of individuals on a square

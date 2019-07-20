@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# issj.sim - section 9.7.1 p517
+# issj.sim - AHM1 section 9.7.1 p517
 
 # Function to simulate open distance sampling data for the Island Scrub Jays
-#   (introduced in Section 9.7.1)
+#   (introduced in AHM1 Section 9.7.1)
 
 issj.sim <-
 function(B, db, lam, sigma, phi, gamma, npoints, nyrs, nbsize=-1.02){

@@ -1,10 +1,10 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# simOcc - section 10.5 p577
+# simOcc - AHM1 section 10.5 p577
 
 # Function to simulate data for static occupancy models under wide range of conditions
-#   (introduced in Section 10.5)
+#   (introduced in AHM1 Section 10.5)
 simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1), alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE){
 #
 # Written by Marc Kery, 21 March 2015

@@ -1,11 +1,11 @@
 # Functions for the book Applied Hierarchical Modeling in Ecology (AHM)
 # Marc Kery & Andy Royle, Academic Press, 2016.
 
-# data.fn - section 4.3 p135
+# data.fn - AHM1 section 4.3 p135
 
 # Function to simulate data for binomial mixture model
 #   (generally: spatially and temporally replicated counts)
-# (introduced in Section 4.3)
+# (introduced in AHM1 Section 4.3)
 data.fn <- function(M = 267, J = 3, mean.lambda = 2, beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, alpha1 = 1, alpha2 = -3, alpha3 = 0, show.plot = TRUE){
 #
 # Function to simulate point counts replicated at M sites during J occasions.
