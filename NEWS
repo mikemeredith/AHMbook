@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9087 (2019-07-25)
+
+  * 'wigglyOcc' now returns 'x.index' and 'p.ordered', needed for plots on p.AHM1/623.
+
 CHANGES in 0.1.4.9086 (2019-07-21)
 
   * Changes to file names only, no change to contents. All 'sim*' files now begin with 'sim' followed by an uppercase letter (exception 'sim3Occ'). Sort order should now be the same on case-sensitive systems (eg, Github) and on Windows.
