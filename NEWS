@@ -1,3 +1,11 @@
+CHANGES in 0.1.4.9089 (2019-08-16)
+
+  * Added plots to 'simDM0'.
+
+CHANGES in 0.1.4.9088 (2019-07-26)
+
+  * Updated README.md file, added badges.
+
 CHANGES in 0.1.4.9087 (2019-07-25)
 
   * 'wigglyOcc' now returns 'x.index' and 'p.ordered', needed for plots on p.AHM1/623.

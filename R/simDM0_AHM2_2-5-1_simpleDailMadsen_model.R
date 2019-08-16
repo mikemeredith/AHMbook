@@ -1,10 +1,11 @@
 
 # AHM2 section 2.5.1, originally called 'DMsim.fn'
 # A function to simulate data for a Dail-Madsen model without covariates.
+# Plots added 2019-08-16, see email from Marc.
 
 # ---------- simulator function ------------------------
 simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
-  lambda = 4, gamma = 1.5, phi = 0.8, p = 0.7){
+  lambda = 4, gamma = 1.5, phi = 0.8, p = 0.7, show.plots=TRUE){
   ## Simulation for multiple-visit data (from pcountOpen help file)
   ## No covariates, constant time intervals between primary periods
   # nsites: Number of sites
@@ -39,6 +40,16 @@ simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
   yy <- array(NA, dim = c(nsites, nsurveys*nyears))
   for(t in 1:nyears){
      yy[,(nsurveys * t-(nsurveys-1)):(nsurveys*t)] <- y[,t,]
+  }
+
+  if(show.plots) {
+    op <- par(mfrow = c(2,2), mar = c(5,5,4,3), cex.lab = 1.5, cex.axis = 1.5)
+    on.exit(par(op))
+
+    matplot(t(N), type = 'l', main = paste('Population trajectories under a simple DM model \nwith lambda =', lambda, ', phi =', phi, 'and gamma =', gamma, ''), lty = 1, lwd = 3, las = 1, frame = F, xlab = 'Year', ylab = 'N')
+    matplot(t(S), type = 'l', main = 'Number of apparent survivors', lty = 1, lwd = 3, las = 1, frame = F, xlab = 'Year', ylab = 'S')
+    hist(N[,1], main = 'Distribution of N in first year', breaks = 50, col = 'grey')
+    hist(N[,nyears], main = 'Distribution of N in last year', breaks = 50, col = 'grey')
   }
   return(list(
     # -------------- arguments input -------------------

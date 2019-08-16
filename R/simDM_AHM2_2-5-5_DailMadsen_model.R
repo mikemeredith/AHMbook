@@ -5,7 +5,7 @@ simDM <- function(nsites = 50, nsurveys = 3, nyears = 5,
   mean.lambda = 4, mean.gamma.rel = 0.5,
   mean.phi = 0.8, mean.p = 0.7,
   beta.lam = 1, beta.gamma = 1, beta.phi = -1, beta.p = -1,
-  show.plot=TRUE){
+  show.plots=TRUE){
   # Simulation for multiple-visit data,
   # constant time intervals between primary periods
   # nsites: Number of sites
@@ -63,7 +63,7 @@ simDM <- function(nsites = 50, nsurveys = 3, nyears = 5,
   }
 
   # Visualisations
-  if(show.plot) {
+  if(show.plots) {
     op <- par(mfrow = c(3, 2), mar = c(5,5,4,3), cex.lab = 1.5, cex.axis = 1.5)
     on.exit(par(op))
 

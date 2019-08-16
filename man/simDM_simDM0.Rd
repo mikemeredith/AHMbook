@@ -11,14 +11,13 @@ Simulation for multiple-visit data (from pcountOpen help file). \code{simDM0} ha
 }
 \usage{
 simDM0(nsites = 50, nsurveys = 3, nyears = 5,
-  lambda = 4, gamma = 1.5, phi = 0.8, p = 0.7)
+  lambda = 4, gamma = 1.5, phi = 0.8, p = 0.7, show.plots=TRUE)
 
 simDM(nsites = 50, nsurveys = 3, nyears = 5,
   mean.lambda = 4, mean.gamma.rel = 0.5,
   mean.phi = 0.8, mean.p = 0.7,
   beta.lam = 1, beta.gamma = 1, beta.phi = -1, beta.p = -1,
-  show.plot=TRUE)
-
+  show.plots=TRUE)
 }
 
 \arguments{
@@ -67,7 +66,7 @@ the slope of parameter phi (link transformed) on the cov.phi covariate
   \item{beta.p}{
 the slope of parameter p (link transformed) on the cov.p covariate
 }
-  \item{show.plot}{
+  \item{show.plots}{
 if TRUE, plots are produced. Set this to FALSE when running many simulations.
 }
 }
@@ -88,7 +87,7 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
  \item{ccov.p }{cov.p formated as a matrix, nsites x (nyears*nsurveys)}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 2.5
+Kéry & Royle (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 2.5
 
 Dail & Madsen (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.
 }
