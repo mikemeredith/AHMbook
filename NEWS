@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9090 (2019-09-20)
+
+  * Increased top and bottom margins of raster plot in 'simExpCorrRF'.
+
 CHANGES in 0.1.4.9089 (2019-08-16)
 
   * Added plots to 'simDM0'.

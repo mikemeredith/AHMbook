@@ -53,7 +53,7 @@ if(show.plots){
 
   # Random field
   # image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
-  par(mar = c(2,2,3,1))
+  par(mar = c(3,2,5,1))
   raster::plot(rasterFromXYZ(cbind(grid, field)), col=topo.colors(20),
   main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1, legend=FALSE, box=FALSE)
   box()
