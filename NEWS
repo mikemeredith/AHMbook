@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9091 (2019-12-29)
+
+  * Fixed help page for 'crPiFun' and friends, added examples.
+
 CHANGES in 0.1.4.9090 (2019-09-20)
 
   * Increased top and bottom margins of raster plot in 'simExpCorrRF'.
