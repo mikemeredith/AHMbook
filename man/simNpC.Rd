@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 
 \title{
-Generate counts from a single population observed over T years
+Generate counts from a single population observed over T years under a binomial observation process
 }
 \description{
 Generates counts from a single population observed over T years and which can be observed with or without imperfect detection. The goal is to focus on what happens with relative-abundance inference when temporal patterns in abundance are confounded with temporal patterns in detection probability. Hence, we can simulate a stable population or one with linear increase or decrease with specified start and end points, and around which there is Poisson noise. The observed counts are Binomial outcomes with a detection probability which can similarly be chosen to be constant or change linearly over time.
@@ -35,11 +35,11 @@ A list with the values of the arguments entered and the following additional ele
 \item{C }{T vector, observed counts.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 1.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 1.2
 
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{

@@ -6,7 +6,7 @@
 Camera trap data for bobcat, coyote and red fox
 }
 \description{
-Camera trap data for bobcat, coyote and red fox from six Mid-Atlantic states in the eastern United States analysed by Rota et al (2016).
+Camera trap (detection/nondetection) data for bobcat (\emph{Lynx rufus}), Coyote (\emph{Canis latrans}) and Red Fox (\emph{Vulpes vulpes}) from six Mid-Atlantic states in the eastern United States analysed by Rota et al (2016).
 }
 
 \usage{data("MesoCarnivores")}
@@ -24,19 +24,19 @@ Camera trap data for bobcat, coyote and red fox from six Mid-Atlantic states in 
       \item HDens_5km : housing density in the surrounding 5km.
       \item Latitude : the latitude of the point, units??.
       \item Longitude : the longitude, units??.
-      \item People_site : ??.
+      \item People_site : number of people photographed at a site divided by 1000.
       \item Trail : 1 if the camera was located on a trail, 0 otherwise.
     }}
 }
 }
 
 \source{
-Data courtesy of Roland Kays, Arielle Parsons, and their group at the North Carolina Museum of Natural Sciences and North Carolina State University.
+Data courtesy of eMammal, Roland Kays, Arielle Parsons, and their group at the North Carolina Museum of Natural Sciences and North Carolina State University.
 }
 \references{
 Rota, C.T., Ferreira, M.A.R., Kays, R.W., Forrester, T.D., Kalies, E.L., McShea, W.J., Parsons, A.W., & Millspaugh, J.J. (2016) A multispecies occupancy model for two or more interacting species. \emph{Methods in Ecology and Evolution}, 7, 1164-1173.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
 }
 \examples{
 data(MesoCarnivores)

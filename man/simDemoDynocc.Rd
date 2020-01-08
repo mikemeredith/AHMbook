@@ -17,7 +17,7 @@ simDemoDynocc(nsites = 100, nyears = 10, nvisits = 5, psi1 = 0.6,
 Number of sites.
 }
   \item{nyears}{
-Number of years (or 'seasons').
+Number of years (or 'seasons', as they are somewhat confusingly often also called in the occupancy literature).
 }
   \item{nvisits}{
 Number of replicate surveys (= occasions) within a year.
@@ -51,25 +51,25 @@ A list with the values of the arguments input and the following additional eleme
   \item{nocc.true }{the observed number of occupied sites, a vector of length nyears}
 }
 \references{
-Roth, T. and Amrhein, V. (2010), Estimating individual survival using territory occupancy data on unmarked animals. \emph{Journal of Applied Ecology}, 47: 386-392.
+Roth, T. & Amrhein, V. (2010), Estimating individual survival using territory occupancy data on unmarked animals. \emph{Journal of Applied Ecology}, 47: 386-392.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{
 # Generate data with the default arguments and look at the structure:
-str(data <- simDemoDynocc() )            # Implicit defaults
-str(data <- simDemoDynocc(psi1 = 1))     # All sites initially occupied
-str(data <- simDemoDynocc(nsites = 1000)) # Plenty more sites
-str(data <- simDemoDynocc(nyears = 100))  # Plenty more years
-str(data <- simDemoDynocc(nvisits = 20))  # Plenty more visits
+str(data <- simDemoDynocc() )                # Implicit defaults
+str(data <- simDemoDynocc(psi1 = 1))         # All sites initially occupied
+str(data <- simDemoDynocc(nsites = 1000))    # Plenty more sites
+str(data <- simDemoDynocc(nyears = 100))     # Plenty more years
+str(data <- simDemoDynocc(nvisits = 20))     # Plenty more visits
 str(data <- simDemoDynocc(range.phi = c(0.8, 0.8))) # Constant survival
 str(data <- simDemoDynocc(range.phi = c(0.2,0.3), range.r = c(0,0.2))) # Decline
 str(data <- simDemoDynocc(range.phi = c(0.8,1), range.r = c(0.5,0.7))) # Increase
-str(data <- simDemoDynocc(nvisits = 1))   # Single visit
+str(data <- simDemoDynocc(nvisits = 1))      # Single visit
 str(data <- simDemoDynocc(range.p = c(1,1))) # Perfect detection
 }
 

@@ -6,7 +6,7 @@
 Produce some residual plots
 }
 \description{
-Function does diagnostic plots for one Nmix model fitted with all three mixture distributions currently available in package \pkg{unmarked}: Poisson, negative binomial and zero-inflated Poisson. For each, fitted values vs. observed data and residuals vs. fitted values are plotted.
+Function does diagnostic plots for one binomial N-mixture model fitted with all three mixture distributions currently available in package \pkg{unmarked}: Poisson, negative binomial and zero-inflated Poisson. For each, fitted values vs. observed data and residuals vs. fitted values are plotted.
 }
 \usage{
 plot_Nmix_resi(fmP, fmNB, fmZIP)
@@ -27,16 +27,12 @@ Fitted model object for zero-inflated Poisson distribution.
 None, used for its plotting effect.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
 
 }
 \author{
- Marc Kéry
+ Marc Kéry & Andy Royle
 }
 \note{
-This function appears in the text as \code{plot.Nmix.resi}; renamed to avoid confusion with generic \code{plot} functions.
-}
-
-\examples{
-##
+This function appears in the text as \code{plot.Nmix.resi}; renamed here to avoid confusion with generic \code{plot} functions.
 }

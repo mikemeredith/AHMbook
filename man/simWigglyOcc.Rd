@@ -31,11 +31,11 @@ A list with the following elements:
   \item{y }{detection history, a M x J matrix of 0/1}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.14
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.14
 
 }
 \author{
-Kéry & Royle
+Marc Kéry & Andy Royle
 }
 
 \examples{

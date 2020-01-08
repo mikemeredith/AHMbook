@@ -6,7 +6,7 @@
 Coordinates for a wiggly line transect
 }
 \description{
-Coordinates for a wiggly line transect used as an example in Kéry & Royle (2019) chapter 22.
+Coordinates for a wiggly line transect used as an example in Kéry & Royle (2020) chapter 11.9.
 }
 
 \usage{data("wigglyLine")}
@@ -19,7 +19,7 @@ Coordinates for a wiggly line transect used as an example in Kéry & Royle (2019
 Made-up data.
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 11.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} chapter 11.
 }
 \examples{
 data(wigglyLine)

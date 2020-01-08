@@ -5,9 +5,9 @@
 Simulate replicated detection/nondetection data under a spatial, static occupancy model
 }
 \description{
-Simulates replicated detection/nondetection data under a spatial, static occupancy model for a semi-realistic landscape in a square of 50x50 km in the BernesOberland around Interlaken, Switzerland. Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units. It uses the data set \code{\link{BerneseOberland}}, which has covariates for elevation and forest cover.
+Simulates replicated detection/nondetection data under a spatial, static occupancy model for a semi-realistic landscape in a square of 50x50 km in the Bernese Oberland around Interlaken, Switzerland. Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units. It uses the data set \code{\link{BerneseOberland}}, which has covariates for elevation and forest cover.
 
-For occupancy, the function allows you to specify a quadratic effect of elevation. Then, a Gaussian spatial random field (s) with negative exponential correlation function is simulated using \code{\link{simExpCorrRF}}; you can set the variance and the range scale parameter theta. Basically, the larger the value of theta.RF, the bigger are the 'islands' simulated in the random field. The abundance in each quadrat (i) is built up via the following linear predictor:
+For occupancy, the function allows you to specify a quadratic effect of elevation. Then, a Gaussian spatial random field (s) with negative exponential correlation function is simulated using \code{\link{simExpCorrRF}}; you can set the variance and the range (scale) parameter theta. Basically, the larger the value of theta.RF, the bigger are the 'islands' simulated in the random field. The abundance in each quadrat (i) is built up via the following linear predictor:
 
 \code{psi[i] <- qlogis(beta0 + beta[1] * elev[i] + beta[2] * elev[i]^2 + s[i])} \cr
 \code{z[i] ~ Bernoulli(psi[i])}
@@ -79,11 +79,11 @@ A list with the arguments input and the following additional elements:
  \item{yobs }{detected/non-detected data for each quadrat surveyed, NA for quadrats not surveyed.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 11..
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 9.2.
 
 }
 \author{
- Marc Kéry
+Marc Kéry & Andy Royle
 }
 \examples{
 # Generate data with the default arguments and look at the structure:

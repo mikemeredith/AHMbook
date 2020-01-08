@@ -56,18 +56,17 @@ A list with the values of the input arguments and the following additional eleme
  \item{Counts }{sites x surveys matrix, number of animals detected (summed over pixels)}
 }
 \references{
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology}.
+
 Mizel, J.D., Schmidt, J.H., & Lindberg, M.S. (2018) Accommodating temporary emigration in spatial distance sampling models. \emph{Journal of Applied Ecology}, 55, 1456-1464.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
-
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} vol 1.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
 }
 \author{
-Adapted from Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).
+Marc Kéry & Andy Royle, adapted from Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).
 }
 
 \examples{
 # Run the function with default values and look at the output
 str(tmp <- sim.spatialDSte())
 }
-

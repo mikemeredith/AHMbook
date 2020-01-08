@@ -2,7 +2,7 @@
 \alias{simOccttd}
 \encoding{UTF-8}
 \title{
-Simulate time-to-detection occupancy data
+Simulate time-to-detection occupancy data (single visits)
 }
 \description{
 Function simulates time-to-detection occupancy design data under model of Garrard et al. (2008), also see Bornand et al. (2014)
@@ -49,14 +49,14 @@ A list with the values of the arguments input and the following additional eleme
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.12.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.12.1
 
 Garrard, G.E., Bekessy, S.A., McCarthy, M.A., & Wintle, B.A. (2008) When have we looked hard enough? A novel method for setting minimum survey effort protocols for flora surveys. \emph{Austral Ecology}, 33, 986-998.
 
 Bornand, C.N., Kéry, M., Bueche, L., & Fischer, M. (2014) Hide and seek in vegetation: time-to-detection is an efficient design for estimating detectability and occurrence. \emph{Methods in Ecology and Evolution}, 5, 433-442.
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{

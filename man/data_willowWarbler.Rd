@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Constant effort site (CES) data for British willow warblers
+Constant effort site (CES) data for British Willow Warblers
 }
 \description{
-British willow warblers (Phylloscopus trochilus) caught at a total of 193 ringing stations in England, Wales and Scotland. The willow warbler is a small (8–10 g) migratory species that used to be extremely widespread and common throughout Britain, but whose populations have suffered severe declines since the mid-90s. We analyse data from 11 years (1986–1996) before the major population decline.
+British Willow Warblers (Phylloscopus trochilus) caught at a total of 193 ringing (or banding) stations in England, Wales and Scotland. The willow warbler is a small (8–10 g) migratory species that used to be extremely widespread and common throughout Britain, but whose populations have suffered severe declines since the mid-90s. We analyse data from 11 years (1986–1996) before the major population decline.
 }
 
 \usage{data("willowWarbler")}
@@ -46,10 +46,10 @@ British willow warblers (Phylloscopus trochilus) caught at a total of 193 ringin
 }
 
 \source{
-British Ornithological Trust
+British Ornithological Trust (BTO)
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 3.4
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 3.4
 }
 \examples{
 data(willowWarbler)

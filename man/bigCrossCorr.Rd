@@ -5,7 +5,7 @@
 Cross correlations for MCMC output
 }
 \description{
-A wrapper for \code{coda::crosscorr}, which calculates cross-correlations between variables in Markov Chain Monte Carlo output. When the output has hundreds of parameters, the matrix produced by \code{crosscorr} is unweildy, and \code{bigCrossCorr} extracts those greater than a given threshold.
+A wrapper for \code{coda::crosscorr}, which calculates cross-correlations between posterior draws of parameters in Markov Chain Monte Carlo output. When the output has hundreds of parameters, the matrix produced by \code{crosscorr} is unwieldy, and \code{bigCrossCorr} extracts only those greater than a given threshold.
 }
 \usage{
 bigCrossCorr(x, big = 0.6, digits = 3)

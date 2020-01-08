@@ -2,10 +2,10 @@
 \alias{playRN}
 \encoding{UTF-8}
 \title{
-Function to play Royle-Nichols model
+Function to play Royle-Nichols (RN) model
 }
 \description{
-Function generates replicated count data under the Nmix model of Royle (2004), then 'degrades' the data to detection/nondetection and fits the RN model (Royle & Nichols 2003) using \pkg{unmarked} and estimates site-specific abundance.
+Function generates replicated count data under the binomial N-mixture model of Royle (2004), then 'degrades' the counts to detection/nondetection and fits the Royle-Nichols (RN) model (Royle & Nichols 2003) using \pkg{unmarked} and estimates site-specific abundance.
 }
 \usage{
 playRN(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, show.plot = TRUE)
@@ -36,10 +36,10 @@ A list with the following elements:
 \item{slope }{Slope of the regression of the estimated number on the true number; 1 if the model is perfect}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.13.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.13.1
 }
 \author{
-Kéry & Royle
+Marc Kéry & Andy Royle
 }
 
 \examples{

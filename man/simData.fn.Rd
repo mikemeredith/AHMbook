@@ -2,10 +2,10 @@
 \alias{data.fn}
 \encoding{UTF-8}
 \title{
-Simulate data for binomial mixture model
+Simulate count data under a binomial N-mixture model
 }
 \description{
-Function to simulate point counts replicated at M sites during J occasions. Population closure is assumed for each site. Expected abundance may be affected by elevation (elev), forest cover (forest) and their interaction. Expected detection probability may be affected by elevation, wind speed (wind) and their interaction.
+Function to simulate point counts replicated at M sites during J occasions. Population closure is assumed for each site. Expected abundance may be affected by elevation (elev), forest cover (forest) and their interaction. Expected detection probability may be affected by elevation, wind speed (wind) and their interaction. Used in AHM1 to illustrate how a data set under some specific model of interest can be simulated.
 }
 \usage{
 data.fn(M = 267, J = 3, mean.lambda = 2, beta1 = -2, beta2 = 2, beta3 = 1,
@@ -67,10 +67,10 @@ A list with the input arguments and the following additional elements:
 The colours used for points in some of the plots indicate different temporal replicates.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 4.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 4.3
 }
 \author{
-Marc Kéry and Andy Royle
+Marc Kéry & Andy Royle
 }
 
 \examples{

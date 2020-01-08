@@ -4,10 +4,12 @@
 \encoding{UTF-8}
 
 \title{
-Compute results of a species correlation model
+Compute results of a Joint Species Distribution Model (JSDM)
 }
 \description{
-\code{getLVcorrMat} computes the correlation matrix in residual occurrence in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2019) chapter 8.
+Compute pairwise residual correlation in occurrence or abundance in a Joint Species Distribution Model (JSDM) with latent variables.
+
+\code{getLVcorrMat} computes the correlation matrix in residual occurrence or abundance in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2020) chapter 8.
 
 \code{getEcorrMat} computes the correlation matrix for the coefficients of the observed environmental covariates.
 }
@@ -34,11 +36,11 @@ The function used to summarise the MCMC chains for the correlations; if \code{st
 The relevant correlation matrix, species x species; if \code{stat = NULL}, an array, iterations x species x species, with the MCMC chains.
 }
 \references{
-Tobler et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology} (accepted) doi: 10.1002/ecy.2754
+Tobler, M. et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology}, 100(8), e02754.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8.5.1
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.4.2 and 8.5.4.
 }
 \author{
-Mathias Tobler (\code{getLVcorrMat}), Marc Kéry (\code{getEcorrMat}).
+Mathias Tobler.
 }
 

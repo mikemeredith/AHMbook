@@ -3,14 +3,14 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data from the Swiss Breeding Bird Survey for European crossbill from 2001 to 2012
+Data from the Swiss Breeding Bird Survey MHB for European Crossbill from 2001 to 2012
 }
 \description{
-The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol, where each square is surveyed up to three times during the breeding season (only twice above the tree line). Surveys are conducted along a transect that does not change over the years.
+The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
 
-The data frame \code{crossbillAHM} has the data for European crossbill (\emph{Loxia curvirostra})  from 2001 to 2012.
+The data frame \code{crossbillAHM} has the data for European Crossbill (\emph{Loxia curvirostra})  from 2001 to 2012.
 
-A similar data set for 1999 to 2007 is included in package \pkg{unmarked}.
+A variant of this data set for 1999 to 2007 only is included in package \pkg{unmarked}.
 }
 
 \usage{data("crossbillAHM")}
@@ -32,7 +32,7 @@ A similar data set for 1999 to 2007 is included in package \pkg{unmarked}.
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} chapter 4.
+Kéry, M & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} chapter 4.
 }
 \examples{
 data(crossbillAHM)

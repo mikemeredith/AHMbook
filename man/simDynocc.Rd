@@ -2,22 +2,22 @@
 \alias{simDynocc}
 \encoding{UTF-8}
 \title{
-Simulate data under a non-spatial dynamic occupancy model
+Simulate detection/nondetection data under a wide variety of non-spatial dynamic occupancy models
 }
 \description{
 Function to simulate detection/nondetection data under a general dynamic site-occupancy model, including:
 
 * Annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
 
-* One covariate is allowed to affect a parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p. Covariates are generated internally from uniform(-2, 2) distributions.
+* One covariate is allowed to affect each parameter: a site covariate for psi1, site-by-year covariates for phi and gamma, and an observational covariate for p. Covariates are generated internally from uniform(-2, 2) distributions.
 
 * Additional heterogeneity among sites in persistence and colonization or both.
 
 * Additional detection heterogeneity at the site-, the survey, or the site-by-survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
-* Additional detection heterogeneity that varies over the survey (= occasion) according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
+* Additional detection heterogeneity that varies over the survey (= occasion) according to a quadratic effect of occasion number (to model the typical phenology of an insect species for instance).
 
-* Simulation of data under a BACI (before-after-control-impact) design, where some event happens in a given year and \emph{reduces} phi or gamma by a stated percentage (only reductions, no increases allowed !)
+* Simulation of data under a BACI (before-after-control-impact) design, where some event happens in a given year and \emph{reduces} phi or gamma by a stated percentage (only reductions, no increases allowed!)
 
 }
 \usage{
@@ -135,11 +135,11 @@ A list with the values of the arguments input and the following additional eleme
   \item{eps3 }{the site/survey/year random effects on detection, a nsites x nsurveys x nyears array}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 4
 
 }
 \author{
-Marc Kéry, 4 Dec 2014, modified 4 Dec 2018 and 1 March 2019
+Marc Kéry & Andy Royle
 }
 
 \examples{

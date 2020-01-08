@@ -6,7 +6,7 @@
 Generate counts under a variant of a 'phenomenological model'
 }
 \description{
-Function generates (insect) counts under a variant of a 'phenomenological model' of Dennis et al. (2016). Interannual population model is exponential population growth, with Poisson initial abundance governed by initial.lambda and annually varying growth rate (or productivity parameter) gamma. Within-year dynamics is described by a Gaussian curve with date of mean flight period mu (site- and year-specific) and length of flight period sigma (only year-specific). Counts are made subject to a detection probability (p), which varies randomly according to a uniform distribution for every single count. Counts are plotted for up to 16 populations only.
+Function generates (insect) counts under a variant of a 'phenomenological model' of Dennis et al. (2016). Interannual population model is exponential population growth, with Poisson initial abundance governed by initial.lambda and annually varying growth rate (or productivity parameter) gamma. Within-year dynamics is described by a Gaussian curve with date of mean flight period mu (site- and year-specific) and length of flight period sigma (only year-specific). Counts are made subject to a detection probability (p), which varies randomly according to a uniform distribution for every single count. Counts are plotted for up to 16 populations only (but can be simulated for any number).
 }
 \usage{
 simPH(npop = 18, nyears = 17, nreps = 10, date.range = 1:150, initial.lambda = 300,
@@ -59,12 +59,12 @@ A list with the values of the arguments entered and the following additional ele
 \item{C }{site x year x reps array, simulated counts.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 1.8.1
+Dennis, E.B., et al (2016) Dynamic models for longitudinal butterfly data, \emph{Journal of Agricultural, Biological and Environmental Statistics} 21, 1-21
 
-Dennis et al (2016) Dynamic models for longitudinal butterfly data, \emph{Journal of Agricultural, Biological and Environmental Statistics} 21, 1-21
+Kéry & Royle (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 1.8.1
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{

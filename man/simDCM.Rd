@@ -10,13 +10,13 @@ Function to simulate detection/nondetection data under a general dynamic communi
 
 * annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
 
-* species heterogeneity around the means is specified by the SD of a normal distribution and expressed on the logit scale
+* species heterogeneity around the community means is specified by the SD of a normal distribution and expressed on the logit scale
 
-* one covariate is allowed to a parameter (site covariate for psi1, site-year covariate for phi and gamma and site-year-rep covariate for p). Each covariate is allowed to differ among species again according to a logit-normal model of heterogeneity.
+* one covariate is allowed per parameter (site covariate for psi1, site-year covariate for phi and gamma and site-year-rep covariate for p). Each covariate is allowed to differ among species again according to a logit-normal model of heterogeneity.
 
 * additional detection heterogeneity at the site- or the occasion level, with the possibility of a temporal trend in this heterogeneity over years. E.g., an annual trend in detection heterogeneity at the site or the occasion level is specified by the value in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site-level heterogeneity in detection from 0 in the first year to 1 in the last year, with interpolation for the years in between.
 
-* additional detection heterogeneity that among occasions according to a quadratic effect of occasion number (to model phenology of an insect species for instance).
+* additional detection heterogeneity that among occasions according to a quadratic effect of occasion number (to model the typical 'phenological curve' of an insect species for instance).
 
 These last two types of detection heterogeneity are not (yet) allowed to be species-specific.
 }
@@ -153,10 +153,10 @@ A list with the values of the input arguments and the following additional eleme
  \item{y }{Observed detection history, a nsites x nsurveys x nyears x nspecies array of 0/1}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 6.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 5.2
 }
 \author{
-Marc Kéry, 28 Nov 2016
+Marc Kéry & Andy Royle
 }
 
 \examples{
@@ -170,12 +170,12 @@ str(data <- simDCM(show.plot = FALSE))
 # More examples:
 str(data <- simDCM(nspecies = 200)) # More species (looks great)
 str(data <- simDCM(nspecies = 1))   # A single species (ha, works !)
-str(data <- simDCM(nsites = 267)) # More sites
-str(data <- simDCM(nsites = 1))   # A single site
-str(data <- simDCM(nsurveys = 10))   # More visits
-str(data <- simDCM(nyears = 25))  # More years
-str(data <- simDCM(nyears = 2))   # Just two years
-# str(data <- simDCM(nyears = 1)) # A single year ... crashes
+str(data <- simDCM(nsites = 267))   # More sites
+str(data <- simDCM(nsites = 1))     # A single site
+str(data <- simDCM(nsurveys = 10))  # More visits
+str(data <- simDCM(nyears = 25))    # More years
+str(data <- simDCM(nyears = 2))     # Just two years
+# str(data <- simDCM(nyears = 1))   # A single year ... crashes
 
 # No species heterogeneity in parameters of initial occupancy
 str(data <- simDCM(sig.lpsi1 = 0, sig.beta.lpsi1 = 0))

@@ -6,7 +6,7 @@
 Data for 1ha quadrats from the Swiss Breeding Bird Atlas
 }
 \description{
-The data consists of replicate counts of birds from 2318 1ha quadrats for 78 passerine species. Each quadrat is surveyed up to three times during the breeding season (only twice above the tree line).
+A 1ha-scale subset of the count data from the most recent Swiss Breeding Bird Atlas (Knaus et al. 2018). The data consists of replicate counts of birds from 2,318 1ha quadrats for 78 passerine species. Each quadrat is surveyed up to three times during the breeding season (only twice above the tree line).
 }
 
 \usage{data("SwissAtlasHa")}
@@ -37,7 +37,9 @@ The data consists of replicate counts of birds from 2318 1ha quadrats for 78 pas
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 8....
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.4.2.
+
+Knaus, P., S. Antoniazza, S. Wechsler, J. Guélat, M. Kéry, N. Strebel, & T. Sattler (2018) Brutvogelatlas 2013–2016. Bestandsentwicklung der Brutvögel der Schweiz und des Fürstentums Liechtensteins (Swiss Breeding Bird Atlas 2013–2016). Schweizerische Vogelwarte, Sempach.
 }
 \examples{
 data(SwissAtlasHa)

@@ -32,10 +32,5 @@ For \code{fitstats2}, a named vector of length 6 with the same information plus 
 Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 7.5.4 and 7.9.3.
 }
 \author{
-Kéry & Royle
-}
-
-
-\examples{
-## TO DO
+Marc Kéry & Andy Royle
 }

@@ -23,7 +23,7 @@ A \code{nrows(x)} x \code{nrows(y)} matrix with the pair-wise distances.
 }
 
 \author{
-J. Andrew Royle
+Andy Royle
 }
 \examples{
 

@@ -3,12 +3,12 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data from the Swiss Breeding Bird Survey 2014
+Data from the Swiss Breeding Bird Survey MHB 2014
 }
 \description{
-The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol, where each square is surveyed up to three times during the breeding season (only twice above the tree line). Surveys are conducted along a transect that does not change over the years.
+The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
 
-The list \code{MHB2014} has the data for 2014.
+The list \code{MHB2014} has the full survey data for the year 2014.
 }
 
 \usage{data("MHB2014")}
@@ -17,7 +17,7 @@ The list \code{MHB2014} has the data for 2014.
 \code{MHB2014} is a list with 5 elements:
 
 \describe{
-  \item{\bold{species }}{a data frame with row for 158 species, including 13 species not recorded in 2014, and the following columns:
+  \item{\bold{species }}{a data frame with row for 158 species, including 13 species not recorded in the year 2014, and the following columns:
 
     \itemize{
       \item specid : a numeric species ID based on phylogeny.
@@ -35,8 +35,8 @@ The list \code{MHB2014} has the data for 2014.
       \item siteID : an alphanumeric site identifier.
       \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.
-      \item elev : the mean elevation of the quadrat, m.
-      \item rlength : the length of the route walked in the quadrat, km.
+      \item elev : the mean elevation of the quadrat in m.
+      \item rlength : the length of the route walked in the quadrat in km.
       \item nsurvey : the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.
       \item forest : percentage forest cover.
       \item obs14 : identifying number of the observer.
@@ -51,13 +51,13 @@ The list \code{MHB2014} has the data for 2014.
 }
 
 \note{
-Section 11.3 of the AHM1 book has code to read in data from a CSV file, "MHB_2014.csv". This is a huge file, because the site data are repeated for all 158 species and the species data are repeated for all 267 sites. The \code{MHB2014} list has all the same data in a more compact format. See Examples for ways to generate the objects used in the book from the list.
+Section 11.3 of the AHM1 book has code to read in data from a CSV file, "MHB_2014.csv". This is a huge file, because the site data are repeated for all 158 species and the species data are repeated for all 267 sites. The \code{MHB2014} list has all the same data, but in a more compact format. See Examples for ways to generate the objects used in the book from the list.
 }
 \source{
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.3
 }
 \examples{
 data(MHB2014)

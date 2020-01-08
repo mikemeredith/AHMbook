@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for observations of middle spotted woodpecker in Switzerland
+Data for observations of Middle Spotted Woodpecker in Switzerland
 }
 \description{
-The data set is based on checklists which volunteers submit from their bird-watching trips and which were then summarized by day and site (1 km2 quadrat) such that we have the the number of surveys (= checklists) per quadrat and day, and the number among these on which a middle-spotted woodpecker was recorded, during 162 days (Julian days 51–212, corresponding to 20 February–31 July). There are data from a total of 144,517 recorded surveys on 116,204 day/quadrat combinations during 26 years from 1545 1 km2 quadrats in which the species was ever recorded since 1985.
+The data set is based on checklists which volunteers submit from their bird-watching trips and which were then summarized by day and site (1 km2 quadrat) such that we have the number of surveys (= checklists) per quadrat and day, and the number among these on which a Middle-Spotted Woodpecker was recorded, during 162 days (Julian days 51–212, corresponding to 20 February–31 July). There are data from a total of 144,517 recorded surveys on 116,204 day/quadrat combinations during 26 years from 1545 1 km2 quadrats in which the species was ever recorded in Switzerland since 1985.
 }
 
 \usage{data("spottedWoodpecker")}
@@ -27,7 +27,7 @@ The data set is based on checklists which volunteers submit from their bird-watc
 Database of Swiss Ornithological Institute (courtesy of Nicolas Strebel).
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} section 4.11.2.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} section 4.11.2.
 }
 \examples{
 data(spottedWoodpecker)

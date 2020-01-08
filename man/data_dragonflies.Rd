@@ -10,10 +10,10 @@
 \docType{data}
 \encoding{UTF-8}
 \title{
-Imaginary data for dragonflies
+Fictional data for dragonflies
 }
 \description{
-A toy data set with fictional data for 9 dragonflies \emph{Onychogomphus uncatus} from 3 populations in the Spanish Pyrenees.
+A toy data set with fictional data for 9 individuals of the dragonfly \emph{Onychogomphus uncatus} from 3 populations in the Spanish Pyrenees.
 }
 \usage{
 data(dragonflies)}
@@ -34,7 +34,7 @@ data(dragonflies)}
 Fictitious data.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 3.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 3.1
 }
 \examples{
 data(dragonflies)

@@ -3,10 +3,12 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for Eagle Owls in Switzerland
+Territory-level, multi-state detection/nondetection data for Eagle Owls in Switzerland
 }
 \description{
-Data stem from more or less opportunistic surveys of a total of 274 territories of the Eagle Owl (\emph{Bubo bubo}), the largest owl in the world, between 2007 and 2016 (10 years). Sites are all over Switzerland and the complete list of sites where a territorial Eagle Owl was ever detected during this period. For site/year combinations with more than 20 observations, 20 were randomly selected for inclusion.
+Multi-state detection/nondetection data stem from more or less opportunistic surveys of a total of 274 territories of the Eurasian Eagle Owl (\emph{Bubo bubo}), the largest owl in the world, between 2007 and 2016 (10 years). Sites are all over Switzerland and represent the complete list of sites where a territorial Eagle Owl was ever detected during this period. For site/year combinations with more than 20 observations, 20 were randomly selected for inclusion.
+
+The data set recognizes four observed states: 'nondetection', 'detection of single bird', 'detection of a pair without breeding evidence' and 'detection of a pair with confirmed breeding'; these being the classical criteria of bird atlases for possible, probable or confirmed breeding. For the analysis in the book, the last two are aggregated into a single state 'Pair'.
 }
 
 \usage{data("SwissEagleOwls")}
@@ -40,7 +42,7 @@ Data stem from more or less opportunistic surveys of a total of 274 territories 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 6.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 6.
 }
 \examples{
 data("SwissEagleOwls")

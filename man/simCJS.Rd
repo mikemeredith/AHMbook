@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 
 \title{
-Generate capture-histories under a CJS model
+Simulate individual capture-histories under a Cormack-Jolly-Seber (CJS) survival model
 }
 \description{
 Function generates individual capture-histories under a CJS model with possibly time-dependent parameters. The number of values for interval-specific survival (phi) and time-specific detection (p) must be ensured to be equal to the number of occasions (n.occ) minus 1.
@@ -38,12 +38,12 @@ A list with the values of the arguments entered and the following additional ele
 \item{n.alive }{n.occ vector, number of animals alive and in the study area each year.}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 3.2.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 3.2.2
 
-Kéry and Schaub (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
+Kéry, M. & Schaub, M. (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 }
 \author{
-Marc Kéry, based on code written by Michael Schaub for chap. 7 of Kéry and Schaub (2012).
+Marc Kéry & Andy Royle, based on code written by Michael Schaub for Chapter 7 of Kéry & Schaub (2012).
 }
 
 \examples{

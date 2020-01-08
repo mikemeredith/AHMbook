@@ -4,7 +4,7 @@
 \encoding{UTF-8}
 
 \title{
-Simulate the dynamic N-mixture model of Dail-Madsen
+Simulate count data under the dynamic N-mixture model of Dail-Madsen
 }
 \description{
 Simulation for multiple-visit data (from pcountOpen help file). \code{simDM0} has no covariates while \code{simDM} allows for covariates. Both functions assume constant time intervals between primary periods.
@@ -87,12 +87,12 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
  \item{ccov.p }{cov.p formated as a matrix, nsites x (nyears*nsurveys)}
 }
 \references{
-Kéry & Royle (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 2.5
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 2.5
 
-Dail & Madsen (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.
+Dail, D. & Madsen, L. (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.
 }
 \author{
-Andy Royle
+Marc Kéry & Andy Royle, based in part on code written by Richard Chandler.
 }
 
 \examples{

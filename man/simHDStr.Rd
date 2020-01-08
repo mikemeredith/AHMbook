@@ -66,8 +66,11 @@ A list with the values of the arguments and the following additional elements:
 \item{M.true }{for point counts, the simulated number of groups within the circle sampled}
 \item{params }{a vector with the input arguments}
 }
+\author{
+Marc Kéry & Andy Royle
+}
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.3.2 (time removal) and 9.4.1 (double observer).
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.3.2 (time removal) and 9.4.1 (double observer).
 
 }
 

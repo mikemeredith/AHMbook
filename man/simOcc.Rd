@@ -5,7 +5,7 @@
 Simulate data for static occupancy models under wide range of conditions
 }
 \description{
-Function to simulate occupancy measurements replicated at M sites during J occasions. Population closure is assumed for each site. Expected occurrence may be affected by elevation (elev), forest cover (forest) and their interaction. Expected detection probability may be affected by elevation, wind speed (wind) and their interaction.
+Function to simulate static occupancy measurements replicated at M sites during J occasions. Population closure is assumed for each site. Expected occurrence may be affected by elevation (elev), forest cover (forest) and their interaction. Expected detection probability may be affected by elevation, wind speed (wind) and their interaction.
 }
 \usage{
 simOcc(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1,
@@ -78,11 +78,11 @@ A list with the values of the  input arguments and the following additional elem
  \item{psi.fs.obs }{Proportion of sites observed to be occupied (sumZ.obs/N)}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.8
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.8
 
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{
@@ -91,7 +91,7 @@ tmp <- simOcc()
 str(tmp)
 
 # Simplest possible occupancy model, with constant occupancy and detection
-str(simOcc(mean.occ=0.6, beta1=0, beta2=0, beta3=0, mean.det=0.3, time.effects=c(0, 0), 
+str(simOcc(mean.occ=0.6, beta1=0, beta2=0, beta3=0, mean.det=0.3, time.effects=c(0, 0),
   alpha1=0, alpha2=0, alpha3=0, sd.lp=0, b=0))
 # psi = 1 (i.e., species occurs at every site)
 str(simOcc(mean.occ=1))

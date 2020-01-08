@@ -6,7 +6,7 @@
 Data from the Swiss Breeding Bird Survey for 6 species of tits
 }
 \description{
-The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol, where each square is surveyed up to three times during the breeding season (only twice above the tree line). Surveys are conducted along a transect that does not change over the years.
+The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
 
 The list \code{SwissTits} has the data for six species of tits from 2004 to 2013. There are some missing values: see Details.
 }
@@ -31,7 +31,7 @@ The list \code{SwissTits} has the data for six species of tits from 2004 to 2013
       \item siteID : an alphanumeric site identifier.
       \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.
-      \item AQ : an identifier for the 10km x 10km "Atlas Quadrat" within which the site falls.
+      \item AQ : an identifier for the 10km x 10km block called "Atlas Quadrat" within which the site falls.
       \item AQ.coordx : the x coordinate of the centre of the AQ.
       \item AQ.coordy : the y coordinate of the centre of the AQ.
       \item elev : the mean elevation of the quadrat, m.
@@ -62,7 +62,7 @@ Sections 6.9.1 and 6.13.1 of the AHM1 book have code to read in data from a CSV 
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 6.9.1 and 6.13.1.
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 6.9.1 and 6.13.1.
 }
 \examples{
 data(SwissTits)

@@ -56,10 +56,10 @@ and if \code{perp = FALSE} we have
 }
 \references{
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
 }
 \author{
-Andy Royle.
+Marc Kéry & Andy Royle
 }
 
 \examples{

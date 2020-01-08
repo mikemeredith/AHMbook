@@ -2,7 +2,7 @@
 \alias{sim3Occ}
 \encoding{UTF-8}
 \title{
-Simulate data for static 3-level occupancy models
+Simulate detection/nondetection data for static 3-level occupancy models
 }
 \description{
 Function generates 3-level occupancy data with possibility of site-specific random variation at every level, "time effects" at the middle and the lower levels and effects of one distinct covariate at each level.
@@ -77,11 +77,11 @@ A list with the values of the input arguments and the following additional eleme
  \item{covC }{Simulated covariate C, a \code{nunits x nsubunits x nreps} array}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.10
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.10
 
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 
 \examples{

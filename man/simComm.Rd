@@ -5,7 +5,7 @@
 Simulate community occupancy or community abundance data
 }
 \description{
-Function to simulate community occupancy or community abundance data with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 Section 11.2)
+Simulate detection/nondetection or count data, respectively, under a community occupancy or abundance model with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 Section 11.2)
 }
 \usage{
 simComm(type = c("det/nondet", "counts"), nsites = 30, nreps = 3, nspecies = 100,
@@ -69,7 +69,7 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 \details{
 Function simulates data from repeated sampling of a metacommunity (or spatially structured community) according the model of Dorazio & Royle (JASA, 2005) for type = "det/nondet" (this is the default) or under the model of Yamaura et al. (2012) for type = "counts".
 
-Occupancy probability (psi) or expected abundance (lambda) can be made dependent on a continuous site covariate 'habitat', while detection probability can be made dependent an observational covariate 'wind'. Both intercept and slope of the two log- or logistic regressions (for occupancy or expected abundance, respectively, and for detection) are simulated as draws from a normal distribution with  mean and standard deviation that can be selected using function arguments.
+Occupancy probability (psi) or expected abundance (lambda) can be made dependent on a continuous site covariate 'habitat', while detection probability can be made dependent an observational covariate 'wind'. Both intercept and slope of the two log-linear or logistic regressions (for occupancy or expected abundance, respectively, and for detection) are simulated as draws from a normal distribution with  mean and standard deviation that can be selected using function arguments.
 
 Specifically, the data are simulated under the following linear models:
 
@@ -133,19 +133,19 @@ A list with the arguments supplied and the following additional elements:
 
 }
 \references{
-Dorazio et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854
+Dorazio, R.M., et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854
 
-Kéry & Royle (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
+Kéry, M. & Royle, J.A. (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
 
-Dorazio & Royle (2005) Estimating size and composition of biological communities by modeling the occurrence of species. \emph{J American Statistical Association}, 100, 389-398.
+Dorazio, R.M. & Royle, J.A. (2005) Estimating size and composition of biological communities by modeling the occurrence of species. \emph{J American Statistical Association}, 100, 389-398.
 
-Yamaura et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
+Yamaura, Y., et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
 
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.2
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.2
 
 }
 \author{
-Community occupancy model code partly based on code by Richard Chandler.
+Marc Kéry & Andy Royle, with community occupancy model code partly based on code by Richard Chandler.
 
 }
 

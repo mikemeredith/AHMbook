@@ -7,7 +7,7 @@ Simulates data for a hierarchical spatial distance sampling model
 \description{
 Generates data for distance sampling from spatially-replicated point transects, with density dependent on a spatially correlated habitat covariate. For each point count, the procedure is:
 
-1. Simulate the habitat covariate over a grid of pixels covering a square. 
+1. Simulate the habitat covariate over a grid of pixels covering a square.
 
 2. Distribute the population of individuals over the square with probability of location in a pixel related to the covariate.
 
@@ -52,11 +52,11 @@ A list with the following components:
  \item{nsites }{the number sites}
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.8.5
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.8.5
 
 }
 \author{
-Andy Royle
+Marc Kéry & Andy Royle
 }
 
 \examples{

@@ -5,10 +5,10 @@
 % former name 'graph.ssm2'
 
 \title{
-Plot the results for multivariate time series of counts
+Plot the results for a Gaussian state-space model
 }
 \description{
-Plot the observed time-series and the estimated population trajectories for state-space models (SSMs).
+Plot the observed time-series and the estimated population trajectories for a multivariate Gaussian state-space model (SSM).
 }
 \usage{
 graphSSM(ssm, C)
@@ -25,14 +25,10 @@ The original count data: an individuals x year matrix of counts, no missing valu
 No output, the function is called for plotting.
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 12.6
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 1.6
 
-Kéry and Schaub (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
+Kéry, M. & Schaub, M.  (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 }
 \author{
-Adapted for multivariate SSMs from the SSM graphing function \code{graph.ssm} in chapter 5 in Kéry & Schaub (2012).
-}
-
-\examples{
-# Would need the fitted model object to do this.
+Marc Kéry & Andy Royle, adapted for multivariate SSMs from the SSM graphing function \code{graph.ssm} in Chapter 5 in Kéry & Schaub (2012).
 }

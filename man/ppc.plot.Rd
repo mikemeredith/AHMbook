@@ -19,12 +19,9 @@ The fitted model object
 None, used for its plotting side effect.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.8
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.8
 
 }
 \author{
- Marc Kéry,
-}
-\examples{
-## We would need a fitted model object to demonstrate this, but that takes a long time to run
+Marc Kéry & Andy Royle
 }

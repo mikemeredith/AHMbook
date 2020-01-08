@@ -64,14 +64,14 @@ A list with the values of the input arguments and the following additional eleme
  \item{E_z }{average realized occupancy per quadrat}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 10
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 10
 }
 \author{
-Marc Kéry.
+Marc Kéry & Andy Royle.
 }
 
 \examples{
-# Nice plot (produces Fig. 10-2 in the book) # ?? check fig number
+# Nice plot (produces the really nice Fig. 10-2 in the book)
 set.seed(117)
 str(dat <- simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1,
   theta.X = 70, M = 200, beta = 1, quads.along.side = 6))

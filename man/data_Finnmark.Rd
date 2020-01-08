@@ -20,7 +20,7 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
     \itemize{
       \item species : the English name.
       \item latin : the Latin name.
-      \item assemblage : the guild of the species.
+      \item assemblage : the guild to which each species belongs.
     }}}
 \describe{
   \item{\bold{sites }}{a data frame with a row for each plot and the following columns:
@@ -46,9 +46,9 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
 Data generously provided by Jon-Andren Henden.
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 6
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 5
 
-Henden J-A, Yoccoz NG, Ims RA, Langeland K (2013) How Spatial Variation in Areal Extent and Configuration of Labile Vegetation States Affect the Riparian Bird Community in Arctic Tundra. PLoS ONE 8(5): e63312.
+Henden, J.-A., Yoccoz, N.G., Ims, R.A., Langeland, K. (2013) How Spatial Variation in Areal Extent and Configuration of Labile Vegetation States Affect the Riparian Bird Community in Arctic Tundra. PLoS ONE 8(5): e63312.
 }
 %% will be able to tidy up the examples with page numbers etc once we have the proofs.
 \examples{

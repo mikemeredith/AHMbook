@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for water voles from Scotland, UK.
+Data for the mighty Water Voles of Scotland, UK.
 }
 \description{
-Habitat patches suitable for water voles (\emph{Arvicola amphibius}) were surveyed for vole latrines (fecal deposits used for territory marking), used to indicate presence. It is suspected that some of the detections recorded may be false positives. The data set covers 114 patches surveyed up to 3 times per year from 2009 to 2011.
+Habitat patches suitable for Water Voles (\emph{Arvicola amphibius}) were surveyed for vole latrines (fecal deposits used for territory marking), used to indicate presence. It is suspected that some of the detections recorded may be false positives. The data set covers 114 patches surveyed up to 3 times per year from 2009 to 2011.
 }
 
 \usage{data("waterVoles")}
@@ -21,14 +21,14 @@ Habitat patches suitable for water voles (\emph{Arvicola amphibius}) were survey
 }
 }
 \source{
-Chris Sutherland (organisation...?)
+Chris Sutherland, Xavier Lambin and the Volers and Volettes of NW-Scotland
 }
 \references{
 Sutherland, C., Elston, D.A., & Lambin, X. (2012) Multi-scale processes in metapopulations: effects of stage structure, rescue effect and correlated extinctions. \emph{Ecology}, 93, 2465-2473.
 
 Sutherland, C.S., Elston, D.A., & Lambin, X. (2014) A demographic, spatially explicit patch occupancy model of metapopulation dynamics and persistence. \emph{Ecology}, 95, 3149-3160.
 
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Section 7.2.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 7.2.2
 }
 \examples{
 data(waterVoles)

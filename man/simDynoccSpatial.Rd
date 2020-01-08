@@ -2,10 +2,10 @@
 \alias{simDynoccSpatial}
 \encoding{UTF-8}
 \title{
-Simulate data under a dynamic occupancy model with spatial components
+Simulate data under a dynamic occupancy model with spatial autocorrelation
 }
 \description{
-Function to simulate detection/nondetection data under a general dynamic site-occupancy model, including:
+Function to simulate detection/nondetection data under a general dynamic site-occupancy model with autocorrelation, including:
 
 * Annual variation in the probabilities of patch persistence, colonization and detection is specified by the bounds of a uniform distribution.
 
@@ -15,7 +15,7 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 
 * Additional detection heterogeneity at the site or survey level, with the possibility of a temporal trend in this heterogeneity over the years. E.g., an annual trend in detection heterogeneity at the site or the survey level is specified by the first and second value, which correspond to the heterogeneity in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
 
-* A single, spatially structured covariate for habitat suitability may affect all parameters via coefficient beta.XAC (for a biologically reasonable way, choose coefficients with the same sign for all 4 (mediated by underlying density). That spatial covariate is simulated as a Gaussian random field with negative exponential correlation function with 'range parameter' theta.XAC.
+* A single, spatially structured covariate for habitat suitability may affect all parameters via coefficient beta.XAC; for a biologically reasonable way, choose coefficients with the same sign for all 4 (mediated by underlying density). That spatial covariate is simulated as a Gaussian random field with negative exponential correlation function with 'range parameter' theta.XAC.
 
 * Autologistic effects (beta.Xautolog) in persistence and colonization probability can be chosen, which fits a logistic regression of these parameters on the proportion of occupied neighbouring cells (in a queen's or 2nd order neighbourhood) during the previous time step.
 
@@ -122,11 +122,11 @@ A list with the values of the arguments input and the following additional eleme
    \item{umf }{an unmarked data frame object with the simulated data}
 }
 \references{
-Kéry & Royle (2019) \emph{Applied Hierarchical Modeling in Ecology} Chapter 9
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 9
 
 }
 \author{
-Marc Kéry, 2014-2018
+Marc Kéry & Andy Royle
 }
 
 \examples{

@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for red squirrels in Switzerland
+Data for red squirrels in Switzerland from the Swiss breeding bird survey MHB
 }
 \description{
-A file with detection/nondetection data for the red squirrel in 265 1 km2 survey quadrats in Switzerland for 2007, together with covariates. See Examples for code to load the data.
+A file with detection/nondetection data for the Red Squirrel (\emph{Sciurus vulgaris})in 265 1 km2 survey quadrats in Switzerland for 2007, together with covariates. See Examples for code to load the data.
 }
 
 % \usage{data("MHB2014")}
@@ -30,7 +30,7 @@ The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows an
 Swiss Ornithological Institute
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.9
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.9
 }
 \examples{
 # To read in the text file:

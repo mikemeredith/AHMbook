@@ -143,16 +143,16 @@ A list with the arguments input and the following additional elements:
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.5
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.5
 
-Royle (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60, 108-115
+Royle, J.A. (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60, 108-115
 
-Royle et al (2007) Hierarchical spatial models of abundance and occurrence from imperfect survey data. \emph{Ecological Monographs}, 77, 465-481.
+Royle, J.A., et al (2007) Hierarchical spatial models of abundance and occurrence from imperfect survey data. \emph{Ecological Monographs}, 77, 465-481.
 
-Kéry (2008) Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships, \emph{Auk} 125, 336-345
+Kéry, M. (2008) Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships, \emph{Auk} 125, 336-345
 }
 \author{
- Marc Kéry, 2014-2015
+Marc Kéry & Andy Royle
 }
 \examples{
 # Generate data with the default arguments and look at the structure:

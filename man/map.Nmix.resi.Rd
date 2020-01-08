@@ -26,15 +26,11 @@ y coordinates of each site
 None. Used for its plotting side effects.
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
 }
 \author{
-Marc Kéry
+Marc Kéry & Andy Royle
 }
 \note{
 In previous versions, the defaults were \code{x = tits$coordx} and \code{y = tits$coordy}, but those defaults only worked if the data object \code{tits} was in the workspace. To run the code on page 263 of AHM1, you now need to specify the coordinates, eg, \code{map.Nmix.resi(fm5, x = tits$coordx, y = tits$coordy)}.
-}
-
-\examples{
-# Not possible as would require a fitted model object. See section 6.9.3 of AHM1.
 }

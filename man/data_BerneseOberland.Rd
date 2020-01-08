@@ -2,11 +2,10 @@
 \alias{BerneseOberland}
 \docType{data}
 \title{
-Landscape data for the Bernese Oberland around Interlaken, Switzerland
+Landscape data for the Bernese Oberland around Interlaken, in the Alps of central Switzerland
 }
 \description{
-Spatially-referenced data on elevation, forest cover, and water at a
-1km-sq resolution for a 50km x 50km region in Switzerland, the Bernese Oberland. This is a small subset of the \code{Switzerland} data in the \code{unmarked} package. See the Examples for a plot of the location.
+Spatially-referenced data on elevation, forest cover, and water cover at a 1km-sq resolution for a 50km x 50km region in Switzerland, the Bernese Oberland. This is a small subset of the \code{Switzerland} data in the \code{unmarked} package. See the Examples for a plot of the location.
 }
 \usage{data(BerneseOberland)}
 \format{

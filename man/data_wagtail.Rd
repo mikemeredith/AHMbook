@@ -6,7 +6,7 @@
 Data for Dutch wagtails
 }
 \description{
-The Dutch Centre for Field Ornithology Sovon monitored grassland birds in Flevoland between April and mid-July 2011. 235 points were surveyed on up to 4 occasions; observations were divided into distance classes 50m wide, and the number of observations in each class recorded. These data are for yellow wagtails.
+The Dutch Centre for Field Ornithology Sovon monitored grassland birds in Flevoland between April and mid-July 2011. 235 points were surveyed on up to 4 occasions; observations were divided into distance classes 50m wide, and the number of observations in each class recorded. These data are for the yellow wagtail (\emph{Motacilla flava}).
 }
 
 \usage{data("wagtail")}
@@ -26,10 +26,10 @@ The Dutch Centre for Field Ornithology Sovon monitored grassland birds in Flevol
 }
 }
 \source{
-Data provided with the AHM book at \url{https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/}
+Dutch Centre for Field Ornithology (SOVON)
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.5.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.5.3
 }
 \examples{
 data(wagtail)
