@@ -43,7 +43,7 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
 }
 
 \source{
-Data generously provided by Jon-Andren Henden.
+Data generously provided by John-André Henden.
 }
 \references{
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 5

@@ -86,7 +86,7 @@ Koshkina, V., Wang, Y., Gordon, A., Dorazio, R.M., White, M., & Stone, L. (2017)
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 10
 }
 \author{
-Marc Kéry & Andy Royle, based on the code written by Dorazio (2014) and adapted by Koshkina et al. (2017).
+Marc Kéry, Andy Royle & Mike Meredith, based on the code written by Dorazio (2014) and adapted by Koshkina et al. (2017).
 }
 
 \examples{

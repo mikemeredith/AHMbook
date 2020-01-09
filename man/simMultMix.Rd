@@ -48,7 +48,7 @@ Chandler, R. B., J. A. Royle, and D. I. King. 2011. Inference about density and 
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 2.7.1
 }
 \author{
-Marc Kéry & Andy Royle, adapting code in documentation for \code{\link[unmarked]{gmultmix}} by Richard Chandler and Andy Royle.
+Marc Kéry & Andy Royle, adapting code in documentation for \code{\link[unmarked]{gmultmix}} by Richard Chandler.
 }
 
 \examples{

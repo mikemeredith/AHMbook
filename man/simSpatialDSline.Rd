@@ -6,9 +6,7 @@
 Simulate data for a standardized line transect
 }
 \description{
-
-See AHM" book text Chapter 11 section 11.2. ?? do description ??
-
+This simulates line transect distance sampling data with a spatial distribution of objects in a heterogeneous landscape where the parameter beta controls the effect of habitat. Habitat is simulated according to a Gaussian random field model defined within the function. Uses a half normal detection model (if perp = TRUE) or a Gaussian hazard model (perp = FALSE).
 }
 \usage{
 sim.spatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE)
@@ -19,7 +17,7 @@ sim.spatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=
 total population size in the rectangle
 }
   \item{beta}{
-coefficient of SOMETHING on spatial covariate x.
+coefficient of spatial covariate x for the density model.
 }
   \item{sigma}{
 scale of half-normal detection function

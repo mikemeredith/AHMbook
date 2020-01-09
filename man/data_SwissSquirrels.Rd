@@ -14,7 +14,7 @@ A file with detection/nondetection data for the Red Squirrel (\emph{Sciurus vulg
 \format{
 The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows and the following columns:
 
-    \enumerate{
+    \itemize{
       \item spec.name : the species name.
       \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the centre of the quadrat.

@@ -6,9 +6,7 @@
 Simulate data for replicate line transect surveys with temporary emigration
 }
 \description{
-
-See book text Chapter 11 and Mizel et al (2018). ?? do description
-
+This simulates line transect distance sampling data with a spatial distribution of objects in a heterogeneous landscape where the parameter beta controls the effect of habitat. Multiple sample occasions are simulated and temporary emigration is allowed (parameter phi). Habitat is simulated according to a Gaussian random field model defined within the function. Uses a half normal detection model (if perp = TRUE) or a Gaussian hazard model (perp = FALSE).
 }
 \usage{
 sim.spatialDSte(nsites=28, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
@@ -63,7 +61,7 @@ Mizel, J.D., Schmidt, J.H., & Lindberg, M.S. (2018) Accommodating temporary emig
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
 }
 \author{
-Marc Kéry & Andy Royle, adapted from Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).
+Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).
 }
 
 \examples{

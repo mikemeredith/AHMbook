@@ -46,9 +46,7 @@ A matrix with a row for each site corresponding to the rows of \code{p} and...
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Chapter 7
 }
 \author{
-For \code{instRemPiFun}, Richard Chandler.
-
-For other functions, Andy Royle
+Richard Chandler, Andy Royle
 }
 
 \examples{

@@ -46,7 +46,7 @@ None, used for its plotting side effect.
 Royle, J.A., Chandler, R.B., Sollmann, R., & Gardner, B. (2014) \emph{Spatial capture-recapture} Elsevier.
 }
 \author{
-Andy Royle, borrowed from the \pkg{SCRbook} package.
+Andy Royle, borrowed from the \pkg{SCRbook} package, originally stolen from the internet.
 }
 \note{
 This function appears in the text as \code{image.scale}; renamed here to avoid confusion with generic \code{image} functions.
