@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9094 (2020-01-09)
+
+  * Rename functions sim.spatialDSline and sim.spatialDSte to simSpatial*.
+
 CHANGES in 0.1.4.9093 (2020-01-09)
 
   * Corrections to help files from Andy.

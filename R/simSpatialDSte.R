@@ -9,7 +9,7 @@
 #   b1 -> beta, int.lam -> lam0, adj.sigma ~~> sigma, T -> nsurveys
 #   argument delta removed (values other than 1 throw an error)
 
-sim.spatialDSte <- function(
+simSpatialDSte <- function(
     nsites=28,     # number of sites
     dim=10,         # number of pixels along each side of the square site
     beta=1,         # the effect of habitat on the number of individuals in a pixel

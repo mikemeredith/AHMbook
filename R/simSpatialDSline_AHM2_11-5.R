@@ -1,20 +1,7 @@
 
 # Function for AHM2 Chapter 11, section 11.5
 
-if(FALSE) {  # use this when stepping thro code
-  library(raster)      # Load required packages
-  library(plotrix)
-  library(AHMbook)
-N=1000
-beta = 1
-sigma=0.25
-alpha0 = -2
-W=1/2
-L = 4
-perp=FALSE
-}
-
-sim.spatialDSline <-
+simSpatialDSline <-
 function(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE){
 
   #   N: total population size in the rectangle

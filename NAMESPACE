@@ -71,7 +71,7 @@ export("simDCM")
 # AHM2 Chapter 7
 export("valid_data", "modSelFP")
 
-# Chapter 19
+# Chapter 8
 export("getLVcorrMat", "getEcorrMat")
 
 # AHM2 Chapter 9
@@ -81,7 +81,7 @@ export("simDynoccSpatial", "simExpCorrRF")
 export("simPPe", "simDataDK", "simDataDK1")
 
 # AHM2 Chapter 11
-export("sim.spatialDSline", "sim.spatialDSte", "simNmixSpatial", "simOccSpatial")
+export("simSpatialDSline", "simSpatialDSte", "simNmixSpatial", "simOccSpatial")
 
 # Utilities
 export("zinit")

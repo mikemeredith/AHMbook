@@ -1,5 +1,5 @@
-\name{sim.spatialDSte}
-\alias{sim.spatialDSte}
+\name{simSpatialDSte}
+\alias{simSpatialDSte}
 \encoding{UTF-8}
 
 \title{
@@ -9,7 +9,7 @@ Simulate data for replicate line transect surveys with temporary emigration
 This simulates line transect distance sampling data with a spatial distribution of objects in a heterogeneous landscape where the parameter beta controls the effect of habitat. Multiple sample occasions are simulated and temporary emigration is allowed (parameter phi). Habitat is simulated according to a Gaussian random field model defined within the function. Uses a half normal detection model (if perp = TRUE) or a Gaussian hazard model (perp = FALSE).
 }
 \usage{
-sim.spatialDSte(nsites=28, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
+simSpatialDSte(nsites=28, dim=10, beta=1, lam0=2.5, nsurveys=4, sigma=3,
   phi=0.6, theta=2, show.plots=3)
 }
 
@@ -66,5 +66,5 @@ Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).
 
 \examples{
 # Run the function with default values and look at the output
-str(tmp <- sim.spatialDSte())
+str(tmp <- simSpatialDSte())
 }

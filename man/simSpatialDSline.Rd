@@ -1,5 +1,5 @@
-\name{sim.spatialDSline}
-\alias{sim.spatialDSline}
+\name{simSpatialDSline}
+\alias{simSpatialDSline}
 \encoding{UTF-8}
 
 \title{
@@ -9,7 +9,7 @@ Simulate data for a standardized line transect
 This simulates line transect distance sampling data with a spatial distribution of objects in a heterogeneous landscape where the parameter beta controls the effect of habitat. Habitat is simulated according to a Gaussian random field model defined within the function. Uses a half normal detection model (if perp = TRUE) or a Gaussian hazard model (perp = FALSE).
 }
 \usage{
-sim.spatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE)
+simSpatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE)
 }
 
 \arguments{
@@ -62,7 +62,5 @@ Marc Kéry & Andy Royle
 
 \examples{
 # Run the function with default values and look at the output
-str(tmp <- sim.spatialDSline(), 1)  # use str(., max.level=1) to limit the amount of output.
-
+str(tmp <- simSpatialDSline(), 1)  # use str(., max.level=1) to limit the amount of output.
 }
-
