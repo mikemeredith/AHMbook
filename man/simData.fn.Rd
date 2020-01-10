@@ -67,7 +67,7 @@ A list with the input arguments and the following additional elements:
 The colours used for points in some of the plots indicate different temporal replicates.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 4.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 4.3.
 }
 \author{
 Marc Kéry & Andy Royle

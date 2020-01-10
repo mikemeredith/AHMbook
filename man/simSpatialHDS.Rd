@@ -52,7 +52,7 @@ A list with the following components:
  \item{nsites }{the number sites}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.8.5
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 9.8.5.
 
 }
 \author{

@@ -6,7 +6,7 @@
 Point count and spot-mapping data for Chestnut-sided Warbler
 }
 \description{
-Chestnut-sided Warblers (emph{Setophaga pensylvanica})in 38 "wildlife openings" in the White Mountain National Forest were surveyed using point counts and spot-mapping during June and July 2004 as part of Richard Chandler's MS thesis. Counts are for birds detected by song at each point. Two of the larger openings had more than one point, giving 43 points in all. Surveys lasted 10 mins and were divided into intervals of (0–2], (2–5], and (5–10] min. Each point was surveyed 3 times, except for one point surveyed only twice. The spot-mapping data come from intensive surveys of each patch recording individual sightings and nest locations, and using counter-singing to separate adjacent territories.
+Chestnut-sided Warblers (\emph{Setophaga pensylvanica})in 38 "wildlife openings" in the White Mountain National Forest were surveyed using point counts and spot-mapping during June and July 2004 as part of Richard Chandler's MS thesis. Counts are for birds detected by song at each point. Two of the larger openings had more than one point, giving 43 points in all. Surveys lasted 10 mins and were divided into intervals of (0–2], (2–5], and (5–10] min. Each point was surveyed 3 times, except for one point surveyed only twice. The spot-mapping data come from intensive surveys of each patch recording individual sightings and nest locations, and using counter-singing to separate adjacent territories.
 }
 
 \usage{data("cswa")}
@@ -53,7 +53,7 @@ Chandler, R.B., King, D.I., & Chandler, C.C. (2009) Effects of management regime
 
 Chandler, R.B., Royle, J.A., & King, D.I. (2011) Inference about density and temporary emigration in unmarked populations. \emph{Ecology}, 92, 1429-1435.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} chapter 2.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.
 }
 \examples{
 data(cswa)

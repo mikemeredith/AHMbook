@@ -53,7 +53,7 @@ A list with the values of the arguments entered and the following additional ele
 
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 8.5.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 8.5.1.
 }
 \author{
 Marc Kéry & Andy Royle

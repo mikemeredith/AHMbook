@@ -57,7 +57,7 @@ Section 11.3 of the AHM1 book has code to read in data from a CSV file, "MHB_201
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 11.3.
 }
 \examples{
 data(MHB2014)

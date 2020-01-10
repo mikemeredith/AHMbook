@@ -64,7 +64,7 @@ A list with the values of the arguments entered and the following additional ele
 
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.5.4.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 9.5.4.1.
 }
 \author{
 Marc Kéry & Andy Royle

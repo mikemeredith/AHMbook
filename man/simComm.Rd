@@ -5,7 +5,7 @@
 Simulate community occupancy or community abundance data
 }
 \description{
-Simulate detection/nondetection or count data, respectively, under a community occupancy or abundance model with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 Section 11.2)
+Simulate detection/nondetection or count data, respectively, under a community occupancy or abundance model with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 - 11.2)
 }
 \usage{
 simComm(type = c("det/nondet", "counts"), nsites = 30, nreps = 3, nspecies = 100,
@@ -133,16 +133,15 @@ A list with the arguments supplied and the following additional elements:
 
 }
 \references{
-Dorazio, R.M., et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854
-
-Kéry, M. & Royle, J.A. (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598
-
 Dorazio, R.M. & Royle, J.A. (2005) Estimating size and composition of biological communities by modeling the occurrence of species. \emph{J American Statistical Association}, 100, 389-398.
+
+Dorazio, R.M., et al (2006) Estimating species richness and accumulation by modeling species occurrence and detectability. \emph{Ecology} 87, 842-854.
+
+Kéry, M. & Royle, J.A. (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598.
 
 Yamaura, Y., et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
 
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 11.2
-
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 11.2.
 }
 \author{
 Marc Kéry & Andy Royle, with community occupancy model code partly based on code by Richard Chandler.

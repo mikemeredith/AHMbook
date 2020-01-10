@@ -48,7 +48,7 @@ A list with the values of the arguments input and the following additional eleme
 \item{p }{The probability of detection, a \code{nyears x nreps} matrix.}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.12
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 6.12.
 }
 \author{
 Marc Kéry & Andy Royle

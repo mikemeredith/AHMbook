@@ -31,7 +31,7 @@ We thank the Foundation KORA, the SCALP Project and the Progetto Lince Italia (A
 \references{
 Molinari-Jobin, A., Kéry, M., Marboutin, E., Molinari, P., Koren, I., Fuxjäger, C., Breitenmoser-Würsten, C., Wölfl, S., Fasel, M., Kos, I., Wölfl, M., & Breitenmoser, U. (2012) Monitoring in the presence of species misidentification: the case of the Eurasian lynx in the Alps. \emph{Animal Conservation}, 15, 266-273.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Sections 7.3.2 and 9.6.1.3.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.3.2 and 9.6.1.3.
 }
 \examples{
 data(EurasianLynx)

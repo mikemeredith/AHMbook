@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Camera trap data for bobcat, coyote and red fox
+Camera trap data for Bobcat, Coyote and Red Fox
 }
 \description{
-Camera trap (detection/nondetection) data for bobcat (\emph{Lynx rufus}), Coyote (\emph{Canis latrans}) and Red Fox (\emph{Vulpes vulpes}) from six Mid-Atlantic states in the eastern United States analysed by Rota et al (2016).
+Camera trap (detection/nondetection) data for Bobcat (\emph{Lynx rufus}), Coyote (\emph{Canis latrans}) and Red Fox (\emph{Vulpes vulpes}) from six Mid-Atlantic states in the eastern United States analysed by Rota et al (2016).
 }
 
 \usage{data("MesoCarnivores")}
@@ -36,7 +36,7 @@ Data courtesy of eMammal, Roland Kays, Arielle Parsons, and their group at the N
 \references{
 Rota, C.T., Ferreira, M.A.R., Kays, R.W., Forrester, T.D., Kalies, E.L., McShea, W.J., Parsons, A.W., & Millspaugh, J.J. (2016) A multispecies occupancy model for two or more interacting species. \emph{Methods in Ecology and Evolution}, 7, 1164-1173.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.2.
 }
 \examples{
 data(MesoCarnivores)

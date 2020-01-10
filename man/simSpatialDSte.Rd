@@ -58,7 +58,7 @@ Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology}.
 
 Mizel, J.D., Schmidt, J.H., & Lindberg, M.S. (2018) Accommodating temporary emigration in spatial distance sampling models. \emph{Journal of Applied Ecology}, 55, 1456-1464.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.
 }
 \author{
 Mizel et al (2018) Appendix S1, based in turn on Kéry & Royle (2016).

@@ -31,7 +31,7 @@ A list with the following elements:
  \item{x }{absolute distance from the transect line for those individuals detected}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 8.2.3.
 }
 \author{
 Marc Kéry & Andy Royle

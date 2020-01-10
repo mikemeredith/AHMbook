@@ -19,7 +19,7 @@ Coordinates for a wiggly line transect used as an example in Kéry & Royle (2020
 Made-up data.
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} chapter 11.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.
 }
 \examples{
 data(wigglyLine)

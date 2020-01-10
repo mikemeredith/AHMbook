@@ -49,11 +49,11 @@ A list with the values of the arguments input and the following additional eleme
 
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.12.1
-
 Garrard, G.E., Bekessy, S.A., McCarthy, M.A., & Wintle, B.A. (2008) When have we looked hard enough? A novel method for setting minimum survey effort protocols for flora surveys. \emph{Austral Ecology}, 33, 986-998.
 
 Bornand, C.N., Kéry, M., Bueche, L., & Fischer, M. (2014) Hide and seek in vegetation: time-to-detection is an efficient design for estimating detectability and occurrence. \emph{Methods in Ecology and Evolution}, 5, 433-442.
+
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 10.12.1.
 }
 \author{
 Marc Kéry & Andy Royle

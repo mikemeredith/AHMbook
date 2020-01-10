@@ -77,9 +77,9 @@ A list with the values of the input arguments and the following additional eleme
  \item{covC }{Simulated covariate C, a \code{nunits x nsubunits x nreps} array}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 10.10
-
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 10.10.
 }
+
 \author{
 Marc Kéry & Andy Royle
 }

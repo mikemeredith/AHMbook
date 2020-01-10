@@ -65,7 +65,7 @@ A list with the values of the input arguments and the following additional eleme
 If \code{keep.all = FALSE} (the default), only the animals detected are included in \code{u1, u2, d, pixel.id}.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.8.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.8.3.
 
 }
 \author{

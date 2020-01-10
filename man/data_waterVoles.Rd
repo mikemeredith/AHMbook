@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Data for the mighty Water Voles of Scotland, UK.
+Data for the Mighty Water Voles of Scotland, UK.
 }
 \description{
 Habitat patches suitable for Water Voles (\emph{Arvicola amphibius}) were surveyed for vole latrines (fecal deposits used for territory marking), used to indicate presence. It is suspected that some of the detections recorded may be false positives. The data set covers 114 patches surveyed up to 3 times per year from 2009 to 2011.
@@ -28,7 +28,7 @@ Sutherland, C., Elston, D.A., & Lambin, X. (2012) Multi-scale processes in metap
 
 Sutherland, C.S., Elston, D.A., & Lambin, X. (2014) A demographic, spatially explicit patch occupancy model of metapopulation dynamics and persistence. \emph{Ecology}, 95, 3149-3160.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 7.2.2
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.2.2.
 }
 \examples{
 data(waterVoles)

@@ -4,7 +4,7 @@
 \docType{package}
 \encoding{UTF-8}
 \title{
-Functions and data for the Two-Volume Publication 'Applied Hierarchical Modeling in Ecology'
+Functions and data for the Book "Applied Hierarchical Modeling in Ecology" Volumes 1 and 2
 }
 \description{
 Provides functions and data sets needed to run the code given in the two-volume publication, \emph{Applied Hierarchical Modeling in Ecology: analysis of distribution, abundance and species richness in R and BUGS} by Marc Kéry and Andy Royle, Academic Press (Vol 1, 2016; Vol 2, 2020).
@@ -54,7 +54,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{simHDSopen}}}{ Simulate open hierarchical distance sampling data (AHM1 - 9.5.4)}
   \item{\code{\link{issj.sim}}}{ Simulate data under the open distance sampling protocol for the Island Scrub Jays (AHM1 - 9.7.1)}
   \item{\code{\link{sim.spatialDS}}}{ Simulate data under a basic spatial distance sampling model  (AHM1 - 9.8.3)}
-  \item{\code{\link{sim.spatialHDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (9.8.5)}
+  \item{\code{\link{sim.spatialHDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (AHM1 - 9.8.5)}
   } }
 
 \section{AHM1 - Chapter 10}{
@@ -136,43 +136,42 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 
 \section{DATA SETS}{
   \describe{
-  \item{\code{\link{BerneseOberland}}}{ Landscape data for the Bernese Oberland around Interlaken, Switzerland (AHM2-9.2)}
-  \item{\code{\link{crestedTit}}}{ Crested tit data from the Swiss Breeding Bird Survey MHB (Monitoring Häufige Brutvögel) for 1999 to 2015 (AHM2-1.3)}
-  \item{\code{\link{cswa}}}{ Chestnut-sided warbler data for point counts and spot-mapping from White Mountain National Forest (AHM2-2.4.3)}
-  \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (AHM2-4.9)}
-  \item{\code{\link{dragonflies}}}{ Toy data set used in AHM1-3.1}
-  \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (AHM2-2.9.2).}
-  \item{\code{\link{EurasianLynx}}}{ Data for Eurasian lynx in Italy and Switzerland (AHM2-7.3.2)}
-  \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (AHM2-5.7)}
-  \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (AHM2-4.11)}
-  \item{\code{\link{greenWoodpecker}}}{ Count data for green woodpeckers in Switzerland from the MHB (AHM2-2.2)}
-  \item{\code{\link{HubbardBrook}}}{ Point count data for warblers from Hubbard Brook, New Hampshire (AHM2-8.2)}
-  \item{\code{\link[unmarked]{jay}}}{ The European jay data set (from the MHB) is now included in \pkg{unmarked} (AHM1-7.9)}
-  \item{\code{\link{MesoCarnivores}}}{ Camera trap data for 3 species of meso-carnivores (AHM2-8.2)}
-  \item{\code{\link{MHB2014}}}{ Complete data from the Swiss Breeding Bird Survey MHB (Monitoring Häufige Brutvögel) for the year 2014 (AHM1-11.3)}
-  \item{\code{\link{spottedWoodpecker}}}{ Data for middle spotted woodpeckers in Switzerland (AHM2-4.11.2)}
-  \item{\code{\link{SwissAtlasHa}}}{ A 1ha-scale subset of the count data from the Swiss Breeding Bird Atlas (AHM2-8.4.2)}
- \item{\code{\link{SwissEagleOwls}}}{ Territory-level, multi-state detection/nondetection data for Eagle Owls in Switzerland (AHM2-6.4}
-  \item{\code{\link{SwissMarbledWhite}}}{ Data from the Biodiversity Monitoring Program (LANAG) in the Swiss Canton of Aargau for Marbled White butterfly (AHM2-1.8.2)}
-  \item{\code{\link{SwissSquirrels}}}{ Count data for red squirrels in Switzerland from the Swiss breeding bird survey MHB (AHM1-10.9)}
-  \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from from the Swiss breeding bird survey MHB  during 2004 to 2013 (AHM1-6.13.1)}
-  \item{\code{\link{treeSparrow}}}{ Data for tree sparrows in Alaska (AHM2-11.8.4)}
-  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (AHM1-10.12.2)}
-  \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for marbled white butterfly (AHM2-1.8.2)}
-  \item{\code{\link{wagtail}}}{ Distance sampling data for yellow wagtails in The Netherlands (AHM1-9.5.3)}
-  \item{\code{\link{waterVoles}}}{ Detection/nondetection data for the mighty water vole of Scotland (AHM2-7.2.2)}
-  \item{\code{\link{wigglyLine}}}{ Coordinates for a wiggly transect line (AHM2-11.9)}
-  \item{\code{\link{willowWarbler}}}{ Capture-history (survival) data for willow warblers in Britain (AHM2-3.4.1)}
-
+  \item{\code{\link{BerneseOberland}}}{ Landscape data for the Bernese Oberland around Interlaken, Switzerland (AHM2 - 9.2)}
+  \item{\code{\link{crestedTit}}}{ Crested Tit data from the Swiss Breeding Bird Survey MHB (Monitoring Häufige Brutvögel) for 1999 to 2015 (AHM2 - 1.3)}
+  \item{\code{\link{cswa}}}{ Chestnut-sided Warbler data for point counts and spot-mapping from White Mountain National Forest (AHM2 - 2.4.3)}
+  \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (AHM2 - 4.9)}
+  \item{\code{\link{dragonflies}}}{ Toy data set used in AHM1 - 3.1}
+  \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (AHM2 - 2.9.2).}
+  \item{\code{\link{EurasianLynx}}}{ Data for Eurasian Lynx in Italy and Switzerland (AHM2 - 7.3.2)}
+  \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (AHM2 - 5.7)}
+  \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (AHM2 - 4.11)}
+  \item{\code{\link{greenWoodpecker}}}{ Count data for Green Woodpeckers in Switzerland from the MHB (AHM2 - 2.2)}
+  \item{\code{\link{HubbardBrook}}}{ Point count data for warblers from Hubbard Brook, New Hampshire (AHM2 - 8.2)}
+  \item{\code{\link[unmarked]{jay}}}{ The European Jay data set (from the MHB) is now included in \pkg{unmarked} (AHM1 - 7.9)}
+  \item{\code{\link{MesoCarnivores}}}{ Camera trap data for 3 species of meso-carnivores (AHM2 - 8.2)}
+  \item{\code{\link{MHB2014}}}{ Complete data from the Swiss Breeding Bird Survey MHB (Monitoring Häufige Brutvögel) for the year 2014 (AHM1 - 11.3)}
+  \item{\code{\link{spottedWoodpecker}}}{ Data for Middle Spotted Woodpeckers in Switzerland (AHM2 - 4.11.2)}
+  \item{\code{\link{SwissAtlasHa}}}{ A 1ha-scale subset of the count data from the Swiss Breeding Bird Atlas (AHM2 - 8.4.2)}
+ \item{\code{\link{SwissEagleOwls}}}{ Territory-level, multi-state detection/nondetection data for Eagle Owls in Switzerland (AHM2 - 6.4}
+  \item{\code{\link{SwissMarbledWhite}}}{ Data from the Biodiversity Monitoring Program (LANAG) in the Swiss Canton of Aargau for Marbled White butterfly (AHM2 - 1.8.2)}
+  \item{\code{\link{SwissSquirrels}}}{ Count data for Red Squirrels in Switzerland from the Swiss breeding bird survey MHB (AHM1 - 10.9)}
+  \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from from the Swiss breeding bird survey MHB  during 2004 to 2013 (AHM1 - 6.13.1)}
+  \item{\code{\link{treeSparrow}}}{ Data for Tree Sparrows in Alaska (AHM2 - 11.8.4)}
+  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (AHM1 - 10.12.2)}
+  \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for Marbled White butterfly (AHM2 - 1.8.2)}
+  \item{\code{\link{wagtail}}}{ Distance sampling data for Yellow Wagtails in The Netherlands (AHM1 - 9.5.3)}
+  \item{\code{\link{waterVoles}}}{ Detection/nondetection data for the Mighty Water Vole of Scotland (AHM2 - 7.2.2)}
+  \item{\code{\link{wigglyLine}}}{ Coordinates for a wiggly transect line (AHM2 - 11.9)}
+  \item{\code{\link{willowWarbler}}}{ Capture-history (survival) data for Willow Warblers in Britain (AHM2 - 3.4.1)}
   } }
 
 \section{UTILITY FUNCTIONS}{
   \describe{
-  \item{\code{\link{zinit}}}{ Generate starting values for fitting survival models (introduced in AHM2-3.2.3).}
+  \item{\code{\link{zinit}}}{ Generate starting values for fitting survival models (introduced in AHM2 - 3.2.3).}
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
-  \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout the book (eg, Sections AHM1-7.5.4, AHM1-7.9.3, AHM2-2.3.3)}
+  \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout the book (eg, Sections AHM1 - 7.5.4, AHM1 - 7.9.3, AHM2 - 2.3.3)}
   \item{\code{\link{e2dist}}}{ Compute a matrix of Euclidean distances}
-  \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter AHM2-11.7.2) }
+  \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter AHM2 - 11.7.2) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
   \item{\code{\link{Color_Ramps}}}{ Color ramps for use with image or raster plots }
   } }
@@ -180,7 +179,6 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 
 \author{
 Marc Kéry, Andy Royle, Mike Meredith
-
 }
 
 \keyword{package}

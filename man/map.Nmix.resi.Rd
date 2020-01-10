@@ -5,7 +5,7 @@
 Mapping of residuals
 }
 \description{
-Produces a map of the mean residuals from an N-mixture model fit by function \code{pcount} in \pkg{unmarked}. Used in AHM1 Section 6.9.3 to produce maps of Switzerland with the residuals for each site.
+Produces a map of the mean residuals from an N-mixture model fit by function \code{pcount} in \pkg{unmarked}. Used in AHM1 - 6.9.3 to produce maps of Switzerland with the residuals for each site.
 }
 \usage{
 map.Nmix.resi(fm, x, y)
@@ -26,7 +26,7 @@ y coordinates of each site
 None. Used for its plotting side effects.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.9.3.
 }
 \author{
 Marc Kéry & Andy Royle

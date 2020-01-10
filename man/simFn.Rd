@@ -12,7 +12,7 @@ sim.fn(quad.size = 10, cell.size = 1, intensity = 1, show.plot = TRUE)
 }
 \arguments{
   \item{quad.size}{
-The length of each side of the quadrat (in arbitary units) 
+The length of each side of the quadrat (in arbitary units)
 }
   \item{cell.size}{
 The length of each side of the cells into which the quadrat is divided. The ratio of quad.size to cell.size must be an integer.
@@ -39,7 +39,7 @@ A list with the values of the arguments and the following additional elements:
 
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 1.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 1.1.
 }
 \author{
 Marc Kéry and Andy Royle

@@ -54,7 +54,7 @@ and if \code{perp = FALSE} we have
 }
 \references{
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 11
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.
 }
 \author{
 Marc Kéry & Andy Royle

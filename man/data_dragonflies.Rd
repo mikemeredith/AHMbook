@@ -34,7 +34,7 @@ data(dragonflies)}
 Fictitious data.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 3.1
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 3.1
 }
 \examples{
 data(dragonflies)

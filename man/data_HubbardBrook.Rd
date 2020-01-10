@@ -51,18 +51,18 @@ Three replicated point counts of 10 min each, out to a maximum distance of 100 m
 }
 
 \source{
-Rodenhouse N.L. & Sillett, T.S. (2019) Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing). Environmental Data Initiative. https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217. Dataset accessed 1/07/2020.}
+Rodenhouse N.L. & Sillett, T.S. (2019) Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing). Environmental Data Initiative. https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217. Dataset accessed 2020-01-07.}
 
 \references{
-Goetz, S.J., Steinberg, D., Betts, M.G., Holmes, R.T., Doran, P.J., Dubayah, R., & Hofton, M. (2010). Lidar remote sensing variables predict breeding habitat of a Neotropical migrant bird. \emph{Ecology} 91:1569–1576.
-
 Betts, M.G., Rodenhouse, N.L., Sillett, T.S., Doran, P.J. & Holmes, R.T. (2008). Dynamic occupancy models reveal within-breeding season movement up a habitat quality gradient by a migratory songbird. \emph{Ecography} 31:592–600.
+
+Goetz, S.J., Steinberg, D., Betts, M.G., Holmes, R.T., Doran, P.J., Dubayah, R., & Hofton, M. (2010). Lidar remote sensing variables predict breeding habitat of a Neotropical migrant bird. \emph{Ecology} 91:1569–1576.
 
 Van Tatenhove, A., Filiberti, E., Sillett, T.S., Rodenhouse, N.L. & Hallworth, M. T. (2019). Climate-related distribution shifts of migratory songbirds and sciurids in the White Mountain National Forest. \emph{Forests} 10:84.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.2
-
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.2.
 }
+
 \examples{
 data(HubbardBrook)
 str(HubbardBrook)

@@ -37,9 +37,9 @@ A 1ha-scale subset of the count data from the most recent Swiss Breeding Bird At
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.4.2.
-
 Knaus, P., S. Antoniazza, S. Wechsler, J. Guélat, M. Kéry, N. Strebel, & T. Sattler (2018) Brutvogelatlas 2013–2016. Bestandsentwicklung der Brutvögel der Schweiz und des Fürstentums Liechtensteins (Swiss Breeding Bird Atlas 2013–2016). Schweizerische Vogelwarte, Sempach.
+
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.4.2.
 }
 \examples{
 data(SwissAtlasHa)

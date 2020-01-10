@@ -70,8 +70,7 @@ A list with the values of the arguments and the following additional elements:
 Marc Kéry & Andy Royle
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 9.3.2 (time removal) and 9.4.1 (double observer).
-
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 9.3.2 (time removal) and 9.4.1 (double observer).
 }
 
 \examples{

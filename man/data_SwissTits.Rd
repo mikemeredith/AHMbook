@@ -62,7 +62,7 @@ Sections 6.9.1 and 6.13.1 of the AHM1 book have code to read in data from a CSV 
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Sections 6.9.1 and 6.13.1.
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.9.1 and 6.13.1.
 }
 \examples{
 data(SwissTits)

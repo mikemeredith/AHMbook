@@ -46,9 +46,9 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
 Data generously provided by John-André Henden.
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Chapter 5
-
 Henden, J.-A., Yoccoz, N.G., Ims, R.A., Langeland, K. (2013) How Spatial Variation in Areal Extent and Configuration of Labile Vegetation States Affect the Riparian Bird Community in Arctic Tundra. PLoS ONE 8(5): e63312.
+
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 5.
 }
 %% will be able to tidy up the examples with page numbers etc once we have the proofs.
 \examples{

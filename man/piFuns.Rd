@@ -43,7 +43,7 @@ A matrix with a row for each site corresponding to the rows of \code{p} and...
 ...for other functions, a column for each detection history; for 3 detection occasions these are 001, 010, 011, 100, 101, 110, 111.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Chapter 7
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 7.
 }
 \author{
 Richard Chandler, Andy Royle

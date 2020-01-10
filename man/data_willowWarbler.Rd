@@ -49,7 +49,7 @@ British Willow Warblers (Phylloscopus trochilus) caught at a total of 193 ringin
 British Ornithological Trust (BTO)
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 3.4
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 3.4.
 }
 \examples{
 data(willowWarbler)

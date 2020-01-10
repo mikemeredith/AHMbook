@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-Count data from the Swiss Breeding Bird Survey for green woodpeckers from 2004 to 2017
+Count data from the Swiss Breeding Bird Survey for Green Woodpeckers from 2004 to 2017
 }
 \description{
 The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
@@ -39,7 +39,7 @@ On 26 occasions when surveys were carried out, the time taken was not recorded, 
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M. & Royle, J.A.  (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 2.2.
+Kéry, M. & Royle, J.A.  (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.2.
 }
 \examples{
 data(greenWoodpecker)

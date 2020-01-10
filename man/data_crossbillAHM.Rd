@@ -32,7 +32,7 @@ A variant of this data set for 1999 to 2007 only is included in package \pkg{unm
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} chapter 4.
+Kéry, M & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.
 }
 \examples{
 data(crossbillAHM)

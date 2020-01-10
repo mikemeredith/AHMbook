@@ -38,7 +38,7 @@ The relevant correlation matrix, species x species; if \code{stat = NULL}, an ar
 \references{
 Tobler, M. et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology}, 100(8), e02754.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 8.4.2 and 8.5.4.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.4.2 and 8.5.4.
 }
 \author{
 Mathias Tobler.

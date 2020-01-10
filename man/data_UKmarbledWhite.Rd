@@ -33,7 +33,7 @@ UK Butterfly Monitoring Scheme (UKBMS) data © copyright and database right Butt
  \url{https://www.ceh.ac.uk/our-science/projects/uk-butterfly-monitoring-scheme}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 1.8.2.
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.8.2.
 }
 \seealso{
 \code{\link{SwissMarbledWhite}}.

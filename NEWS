@@ -1,3 +1,9 @@
+CHANGES in 0.1.4.9095 (2020-01-10)
+
+  * Update Title and Description in DESCRIPTION.
+
+  * Clean up References sections: chronological order, AHM1/2 with sections.
+
 CHANGES in 0.1.4.9094 (2020-01-09)
 
   * Rename functions sim.spatialDSline and sim.spatialDSte to simSpatial*.

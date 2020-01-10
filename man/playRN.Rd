@@ -36,7 +36,11 @@ A list with the following elements:
 \item{slope }{Slope of the regression of the estimated number on the true number; 1 if the model is perfect}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.13.1
+Royle, J.A. & Nichols, J.D. (2003) Estimating abundance from repeated presence-absence data or point counts, \emph{Ecology}, 84, 777-790.
+
+Royle, J.A. (2004) N-mixture models for estimating population size from spatially replicated counts, \emph{Biometrics}, 60, 108-115.
+
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.13.1.
 }
 \author{
 Marc Kéry & Andy Royle

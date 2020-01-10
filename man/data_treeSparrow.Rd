@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \docType{data}
 \title{
-American tree sparrow data from Alaska
+American Tree Sparrow data from Alaska
 }
 \description{
-Mizel et al. (2018) describe the _data on American tree sparrows (\emph{Spizella arborea}) that were collected in May and June 2016 at Noatak National Preserve, Alaska. The study area was a 10.8 x 9.6 km rectangle divided up into 288 plots of 600 m x 600 m, of which 150 had some coverage by a transect running through them. Routes were usually chosen to intersect the centroid of the cell and deflected by 0 or 90 degrees when required to move into an adjacent cell. In some cases, a transect was shifted to avoid terrain features. Distance measurements were truncated at 250m from the observer. Each visited plot was surveyed an average of three times (max = 5). Each plot was gridded to a 30-m resolution and spatial attributes were associated with each of these pixels. This resulted in an average of 328 pixels per plot within the buffered transect. Bird locations were assigned to the nearest pixel centroid.
+Mizel et al. (2018) describe the _data on American Tree Sparrows (\emph{Spizella arborea}) that were collected in May and June 2016 at Noatak National Preserve, Alaska. The study area was a 10.8 x 9.6 km rectangle divided up into 288 plots of 600 m x 600 m, of which 150 had some coverage by a transect running through them. Routes were usually chosen to intersect the centroid of the cell and deflected by 0 or 90 degrees when required to move into an adjacent cell. In some cases, a transect was shifted to avoid terrain features. Distance measurements were truncated at 250m from the observer. Each visited plot was surveyed an average of three times (max = 5). Each plot was gridded to a 30-m resolution and spatial attributes were associated with each of these pixels. This resulted in an average of 328 pixels per plot within the buffered transect. Bird locations were assigned to the nearest pixel centroid.
 }
 
 \usage{data("treeSparrow")}
@@ -61,8 +61,7 @@ Mizel et al. (2018)
 \references{
 Mizel, J.D., Schmidt, J.H. and Lindberg, M.S. (2018) Accommodating temporary emigration in spatial distance sampling models. \emph{Journal of Applied Ecology}, 55(3), pp.1456-1464.
 
-
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 11.8.4
+Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.8.4.
 }
 \examples{
 data(treeSparrow)

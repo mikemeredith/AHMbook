@@ -27,7 +27,7 @@ Fitted model object for zero-inflated Poisson distribution.
 None, used for its plotting effect.
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} Section 6.9.3
+Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.9.3.
 
 }
 \author{
