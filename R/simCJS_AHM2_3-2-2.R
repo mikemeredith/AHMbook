@@ -103,7 +103,7 @@ simCJS <- function(
     tmp[z==1 & ch == 0] <- -1.1  # Mark detection errors as -1
     mapPalette <- colorRampPalette(c("blue", "white", "black"))
     image(x = 1:n.occ, y = 1:n.ind, z = t(tmp), col = mapPalette(10), axes = TRUE,
-    xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive &detected (black), \nalive & undetected (blue) and dead (grey) per individual and occasion')
+    xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive & detected (black), \nalive & undetected (blue) and dead (grey) per individual and occasion')
 
     # Population size trajectory of marked and alive in study area
     plot(1:n.occ, n.alive, xlab = 'Year', ylab = 'Number alive',
