@@ -1,7 +1,11 @@
+CHANGES in 0.1.4.9097 (2020-04-03)
+
+  * Fixed bug in helper function histCount to deal properly with large counts.
+
 CHANGES in 0.1.4.9096 (2020-02-03)
 
   * Fixed typo in simCJS
-  
+
   * Updated README.md file
 
 CHANGES in 0.1.4.9095 (2020-01-10)

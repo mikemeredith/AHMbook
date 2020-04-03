@@ -137,13 +137,15 @@ if(area[1] != FALSE) A <- area          # use supplied vector as area for offset
 # Zero-inflation: create "suitability" indicator z
 # Linear predictor of suitability model
 alpha.theta <- ifelse(mean.theta == 1, 25, qlogis(mean.theta))   # Avoid Inf.
-theta <- plogis(alpha.theta + beta1.theta * site.cov[,1] + beta2.theta * site.cov[,2] + beta3.theta * site.cov[,3])
+theta <- plogis(alpha.theta + beta1.theta * site.cov[,1] + beta2.theta * site.cov[,2] +
+    beta3.theta * site.cov[,3])
 s <- rbinom(n = nsites, 1, theta)  # Suitability indicator
 
 # (2) Abundance process (for sites suitable in principle)
 # Linear predictor of abundance model excluding random effects
 # this is directly the lin.pred. for the Neg.Bin abundance model
-log.lam.partial <- log(A) + log(mean.lam) + beta2.lam * site.cov[,2] + beta3.lam * site.cov[,3] + beta4.lam * site.cov[,4]
+log.lam.partial <- log(A) + log(mean.lam) + beta2.lam * site.cov[,2] +
+    beta3.lam * site.cov[,3] + beta4.lam * site.cov[,4]
 
 # Draw abundance under the (zero-inflated) Poisson distribution
 # (For baseline comparison of the abundance distributions in histo below)
@@ -219,16 +221,15 @@ if(show.plot){
   if(Neg.Bin == TRUE){
     xlim <- c(min(c(N.P, N.NB)), max(c(N.P, N.NB)))
     par(mfrow = c(1, 1), cex.main = 1)
-    # hist(N.NB, breaks = 60, col = "red", main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N", xlim = xlim)
-    # hist(N.P, breaks = 60, col = "blue", add = TRUE)
-    histCount(N.P, N.NB, main = "N under (zero-infl.) Neg.bin (red) \nand (zero-infl.) Poisson (blue) mixtures", xlab = "Abundance N")
+    histCount(N.P, N.NB, xlab = "Abundance N",
+    main = paste("N under (zero-infl.) Neg.bin (red)", "and (zero-infl.) Poisson (blue) mixtures", sep="\n"))
   } else {
     xlim <- c(min(c(N.P, N.PLN)), max(c(N.P, N.PLN)))
     par(mfrow = c(1, 2), cex.main = 1)
     hist(eta.lam, col = "grey", main = "Random site effects in abundance")
-    # hist(N.PLN, breaks = 60, col = "red", main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N", xlim = xlim)
-    # hist(N.P, breaks = 60, col = "blue", add = TRUE)
-    histCount(N.P, N.PLN, main = "N under (zero-infl.) Poisson log-normal (red) \ncompared with baseline (zero-infl.) Poisson mixture (blue)", xlab = "Abundance N")
+    histCount(N.P, N.PLN, xlab = "Abundance N",
+        main = paste(c("N under (zero-infl.) Poisson log-normal (red)",
+        "compared with baseline (zero-infl.) Poisson mixture (blue)"), sep="\n"))
   }
 }  # End of first block of plotting code, more from line 310
 
