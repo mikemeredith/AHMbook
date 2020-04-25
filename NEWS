@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9100 (2020-04-25)
+
+  * Tweaked argument and output names for 'simDSM'.
+
 CHANGES in 0.1.4.9099 (2020-04-25)
 
   * Added 'N.pix' to the output of 'simDSM'.

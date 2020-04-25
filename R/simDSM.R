@@ -4,14 +4,14 @@
 
 # X : a 2-column matrix with coordinates of _regularly_spaced_ points along the transect line
 #   (X <- regpoints@coords in book)
-# N : true number of individuals in the study area
+# Ntotal : true number of individuals in the study area
 # sigma.move = 0 :  not used! I took it out ####
 # sigma : scale parameter for the half-normal detection function
 # beta1 : coefficient for the relationship between density and the habitat covariate
 # nSurveys : the number of surveys to simulate
 # xlim, ylim : the extent of the (rectangular) study area
 
-simDSM <- function(X, N = 400, sigma = 0.65, beta1 = 1.0,
+simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
     nsurveys = 2, xlim = c(-0.5, 3.5), ylim = c(-0.5, 4.5), show.plot = TRUE) {
 
   # Create coordinates rasterized transect
@@ -33,20 +33,20 @@ simDSM <- function(X, N = 400, sigma = 0.65, beta1 = 1.0,
   # Simulate activity centre locations
   probs <- exp(beta1*x)/(sum(exp(beta1*x)))
   # Activity centers selected based on habitat
-  s.pix.id <- sample(1:nPix, N, prob = probs, replace=TRUE)  ### stochastic - sample ###
-  N.pix <- tabulate(s.pix.id, nbins = nPix)
+  s.pix.id <- sample(1:nPix, Ntotal, prob = probs, replace=TRUE)  ### stochastic - sample ###
+  N <- tabulate(s.pix.id, nbins = nPix)
   sx <- gr[s.pix.id,1]
   sy <- gr[s.pix.id,2]
   # Uniformly distributed within their pixel
-  sx <- runif(N, gr[s.pix.id,1] - delta/2, gr[s.pix.id,1] + delta/2)  ### stochastic
-  sy <- runif(N, gr[s.pix.id,2] - delta/2, gr[s.pix.id,2] + delta/2)
+  sx <- runif(Ntotal, gr[s.pix.id,1] - delta/2, gr[s.pix.id,1] + delta/2)  ### stochastic
+  sy <- runif(Ntotal, gr[s.pix.id,2] - delta/2, gr[s.pix.id,2] + delta/2)
 
   ### new simulation - observation process
 
   # Compute p for each activity center for each point along the line
-  parr <- numeric(N) # same for all surveys
-  y2d <- array(0, c(N, nsurveys))  # 0/1 detection matrix
-  for (i in 1:N) {
+  parr <- numeric(Ntotal) # same for all surveys
+  y2d <- array(0, c(Ntotal, nsurveys))  # 0/1 detection matrix
+  for (i in 1:Ntotal) {
     dvec <- min( sqrt((sx[i] - X[, 1])^2 +(sy[i] - X[, 2])^2) )
     loghaz <- -(1/(2*sigma*sigma)) * dvec * dvec
     parr[i] <- exp(loghaz)
@@ -82,15 +82,15 @@ simDSM <- function(X, N = 400, sigma = 0.65, beta1 = 1.0,
     closest <- X[apply(dd, 2, which.min), ]
     segments(x0=U[,1], y0=U[,2], x1=closest[,1], y1=closest[,2])
   }
-  
+
   return(list(
     # ............... arguments input ..........................
-    X=X, N=N, sigma=sigma, beta1=beta1, nsurveys=nsurveys, xlim=xlim, ylim=ylim,
+    X=X, Ntotal=Ntotal, sigma=sigma, beta1=beta1, nsurveys=nsurveys, xlim=xlim, ylim=ylim,
     # ............... generated values ..........................
     Habitat=as.vector(x), # a vector for the habitat covariate for each pixel
     Habgrid=gr,           # a 2-column matrix with the coordinates of each pixel
     nPix=nPix,            # the number of pixels in the study area
-    N.pix = N.pix,        # true number of individuals per pixel
+    N = N,                # true number of individuals per pixel
     nind=nind,            # the number of individuals detected at least once
     pixel=pixel)          # a matrix with a column for each survey and a row
         # for each individual detected at least once, with the pixel ID for the
