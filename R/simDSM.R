@@ -90,6 +90,7 @@ simDSM <- function(X, N = 400, sigma = 0.65, beta1 = 1.0,
     Habitat=as.vector(x), # a vector for the habitat covariate for each pixel
     Habgrid=gr,           # a 2-column matrix with the coordinates of each pixel
     nPix=nPix,            # the number of pixels in the study area
+    N.pix = N.pix,        # true number of individuals per pixel
     nind=nind,            # the number of individuals detected at least once
     pixel=pixel)          # a matrix with a column for each survey and a row
         # for each individual detected at least once, with the pixel ID for the

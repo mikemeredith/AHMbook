@@ -43,6 +43,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{Habitat }{a vector for the habitat covariate for each pixel}
  \item{Habgrid }{a 2-column matrix with the coordinates of each pixel}
  \item{nPix }{the number of pixels in the study area}
+ \item{N.pix }{true number of activity centres per pixel}
  \item{nind }{the number of individuals detected at least once}
  \item{pixel }{a nind x nsurvey matrix with the pixel ID for the activity centre or NA if the individual was not detected on the survey}
 }
@@ -60,6 +61,7 @@ data(wigglyLine)
 points <- sp::SpatialPoints( wigglyLine )
 sLine <- sp::Line(points)
 regpoints <- sp::spsample(sLine, 100, type = "regular")
+set.seed(2027, kind = "Mersenne-Twister") # Fig 11.15 in the book
 tmp <- simDSM(X = regpoints@coords)
 str(tmp)
 }
