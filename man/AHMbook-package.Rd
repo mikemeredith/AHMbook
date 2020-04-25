@@ -132,6 +132,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \describe{
   \item{\code{\link{simSpatialDSline}}}{ Simulate line transect distance sampling data with spatial variation in density}
   \item{\code{\link{simSpatialDSte}}}{ Simulate data for replicate line transect distance sampling surveys with spatial variation in density and temporary emigration}
+  \item{\code{\link{simDSM}}}{ Simulate line transect data for density surface modeling}
   } }
 
 \section{DATA SETS}{

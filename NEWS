@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9098 (2020-04-25)
+
+  * Added 'simDSM' function.
+
 CHANGES in 0.1.4.9097 (2020-04-03)
 
   * Fixed bug in helper function histCount to deal properly with large counts.
