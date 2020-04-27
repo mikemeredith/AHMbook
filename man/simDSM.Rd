@@ -6,8 +6,9 @@
 Simulate line transect data for density surface modeling
 }
 \description{
-The function generates a population represented as a point pattern in a heterogeneous landscape,
-ie, a Poisson point pattern (PPP) with intensity a function of the covariate Habitat. Data for multiple line transect surveys using a wiggly transect are then simulated, and the pixel IDs for the activity centres of detected individuals returned.
+The function generates a population represented as a binomial point pattern in a heterogeneous landscape with density a function of the covariate Habitat. Data for multiple line transect surveys using a wiggly transect are then simulated, and the pixel IDs for the activity centers of detected individuals returned.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 simDSM(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
@@ -16,7 +17,7 @@ simDSM(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
 
 \arguments{
   \item{X}{
-a 2-column matrix with coordinates of _regularly_spaced_ points along the transect line; see Examples.
+a 2-column matrix with coordinates of regularly spaced points along the transect line; see Examples.
 }
   \item{Ntotal}{
 the true total number of individuals in the study area.
@@ -61,7 +62,10 @@ data(wigglyLine)
 points <- sp::SpatialPoints( wigglyLine )
 sLine <- sp::Line(points)
 regpoints <- sp::spsample(sLine, 100, type = "regular")
-set.seed(2027, kind = "Mersenne-Twister") # Fig 11.15 in the book
-tmp <- simDSM(X = regpoints@coords)
-str(tmp)
+str(simDSM(X = regpoints@coords))
+
+# Generate the data set used in AHM2 11.10
+# RNGkind(sample.kind = "Rounding") # run this for R >= 3.6.0
+set.seed(2027, kind = "Mersenne-Twister")
+tmp <- simDSM(X = regpoints@coords) # Produces Fig 11.15 in the book
 }
