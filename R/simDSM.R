@@ -28,8 +28,6 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
   V <- exp(-e2dist(gr, gr)/1)
   x <- t(chol(V)) %*% rnorm(nrow(gr))  ### x = habitat covariate, stochastic
 
-  # Plot habitat  -- take this out, just show final plot
-
   # Simulate activity centre locations
   probs <- exp(beta1*x)/(sum(exp(beta1*x)))
   # Activity centers selected based on habitat
@@ -56,7 +54,7 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
   # Find which individuals are captured at least once, REMOVE the rest
   cap <- apply(y2d, 1, sum) > 0   # TRUE  if captured at least once
   nind <- sum(cap)                # number captured at least once
-  y2d <- y2d[cap, ]
+  y2d <- y2d[cap, , drop=FALSE]
   U <- cbind(sx,sy)[cap, ]  # matrix with AC coords
   gid <- s.pix.id[cap]      # pixel IDs for ACs
 
@@ -64,7 +62,7 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
   pixel <- matrix(gid, nrow=nind, ncol=nsurveys)
   pixel[y2d == 0] <- NA
   # for back compatibility we need to reverse the order and add colnames
-  pixel <- pixel[nind:1, ]
+  pixel <- pixel[nind:1, , drop=FALSE]
   colnames(pixel) <- paste0("gid", 1:nsurveys)
   # End of data preparation
 
