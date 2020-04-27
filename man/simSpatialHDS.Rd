@@ -14,6 +14,8 @@ Generates data for distance sampling from spatially-replicated point transects, 
 3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with a half normal detection function. (Note that individuals outside the circle of radius \code{B} can be detected.)
 
 The locations and detection status of individuals at all sites are collated and returned, except for individuals at sites when none are detected.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 sim.spatialHDS(lam0 = 4, sigma = 1.5, B = 3, nsites = 100,

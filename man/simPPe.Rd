@@ -11,6 +11,8 @@ The function simulates a spatial point pattern in a heterogeneous landscape simu
 There is one habitat covariate X that affects the intensity of the points. X is spatially structured with negative-exponential spatial autocorrelation; the parameters of the field can be chosen to create large 'islands' of similar values or no 'islands' at all, in which case the field is spatially unstructured.
 
 The intensity of STATIC points (e.g. animal activity centers) may be inhomogeneous and affected by the coefficient beta, which is the log-linear effect of X.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 simPPe(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X = 10,
@@ -72,7 +74,8 @@ Marc Kéry & Andy Royle.
 
 \examples{
 # Nice plot (produces the really nice Fig. 10-2 in the book)
-set.seed(117)
+# RNGkind(sample.kind = "Rounding") # run this for R >= 3.6.0
+set.seed(117, kind="Mersenne-Twister")
 str(dat <- simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1,
   theta.X = 70, M = 200, beta = 1, quads.along.side = 6))
 

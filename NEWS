@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9102 (2020-04-27)
+
+  * Added note about 'sample.kind="Rounding"' to all simulation functions affected.
+
 CHANGES in 0.1.4.9101 (2020-04-27)
 
   * Corrections to help file for 'simDSM'.

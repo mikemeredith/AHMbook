@@ -15,6 +15,8 @@ Generates data with the following steps:
 3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with either a half normal or a logit detection function. (Note that all the individuals in the square can be detected.)
 
 4. If \code{keep.all = FALSE}, return the locations of only the individuals detected.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3,
@@ -82,6 +84,7 @@ tmp <- sim.spatialDS()
 str(tmp)
 
 # Generate date with model = "logit" and analyse the data with unmarked::pcount.spatialHDS
+# RNGkind(sample.kind = "Rounding") # run this for R >= 3.6.0
 set.seed(1234)
 tmp <- sim.spatialDS(model="logit")
 # Plot shows a large area of good habitat west of the observer with many animals detected

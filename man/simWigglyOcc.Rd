@@ -6,7 +6,10 @@ Simulate static occupancy data
 }
 \description{
 Function to generate a static occupancy data set with really wiggly covariate relationships
-in occupancy and detection probability}
+in occupancy and detection probability.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
+}
 \usage{
 wigglyOcc(seed = 1, show.plot = TRUE)
 }

@@ -16,6 +16,8 @@ This PPP is first thinned with a pixel-wise thinning probability controlled by a
 A second data set is simulated by imagining replicated counts conducted in randomly-selected quadrats within the landscape. Detection of individuals is imperfect, with probability of detection controlled by the covariate W and coefficients gamma. These counts can be quantized to detection/nondetection data for use in a model as in Koshkina et al. (2017).
 
 For \code{simDataDK1} animals are limited to one individual per pixel; this is not the case for \code{simDataDK}.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 simDataDK(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
