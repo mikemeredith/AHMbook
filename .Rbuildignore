@@ -1,5 +1,6 @@
 .gitattributes
 .gitignore
 .git
+.local_checks
 README.md
 Rplots.pdf
