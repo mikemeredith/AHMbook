@@ -42,11 +42,12 @@ if TRUE, summary plots are displayed.
 \value{
 A list with the values of the input arguments and the following additional elements:
  \item{Habitat }{a vector for the habitat covariate for each pixel}
- \item{Habgrid }{a 2-column matrix with the coordinates of each pixel}
+ \item{Habgrid }{a 2-column matrix with the coordinates of center of each pixel}
  \item{nPix }{the number of pixels in the study area}
  \item{N }{true number of activity centers in each pixel}
+ \item{U }{a 2-column matrix with the locations of each activity center}
  \item{nind }{the number of individuals detected at least once}
- \item{pixel }{a nind x nsurvey matrix with the pixel ID for the activity centre or NA if the individual was not detected on the survey}
+ \item{pixel }{a nind x nsurvey matrix with the pixel ID for the activity center or NA if the individual was not detected on the survey}
 }
 \references{
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.10.

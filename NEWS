@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9104 (2020-04-30)
+
+  * Added 'U' to the output of 'simDSM'.
+
 CHANGES in 0.1.4.9103 (2020-04-27)
 
   * Fixed bug in 'simDSM' with 1 survey.

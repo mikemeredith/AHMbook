@@ -33,12 +33,10 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
   # Activity centers selected based on habitat
   s.pix.id <- sample(1:nPix, Ntotal, prob = probs, replace=TRUE)  ### stochastic - sample ###
   N <- tabulate(s.pix.id, nbins = nPix)
-  sx <- gr[s.pix.id,1]
-  sy <- gr[s.pix.id,2]
   # Uniformly distributed within their pixel
   sx <- runif(Ntotal, gr[s.pix.id,1] - delta/2, gr[s.pix.id,1] + delta/2)  ### stochastic
   sy <- runif(Ntotal, gr[s.pix.id,2] - delta/2, gr[s.pix.id,2] + delta/2)
-
+  U <- cbind(sx,sy)
   ### new simulation - observation process
 
   # Compute p for each activity center for each point along the line
@@ -55,7 +53,7 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
   cap <- apply(y2d, 1, sum) > 0   # TRUE  if captured at least once
   nind <- sum(cap)                # number captured at least once
   y2d <- y2d[cap, , drop=FALSE]
-  U <- cbind(sx,sy)[cap, ]  # matrix with AC coords
+  Ucap <- U[cap, ]  # matrix with AC coords
   gid <- s.pix.id[cap]      # pixel IDs for ACs
 
   # generate pixel matrix with nsurvey columns, with NA if not captured
@@ -74,11 +72,11 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
     lines(X, col = "black", pch = 20, lwd = 3)
     points(sx, sy, pch = 16, col = "black", lwd=1 )
     # plot observed locations (i.e. detected individuals)
-    points(U, pch = 20, col = "red")
+    points(Ucap, pch = 20, col = "red")
     # Add lines from detected ACs to nearest point on transect
-    dd <- e2dist(X, U)
+    dd <- e2dist(X, Ucap)
     closest <- X[apply(dd, 2, which.min), ]
-    segments(x0=U[,1], y0=U[,2], x1=closest[,1], y1=closest[,2])
+    segments(x0=Ucap[,1], y0=Ucap[,2], x1=closest[,1], y1=closest[,2])
   }
 
   return(list(
@@ -89,6 +87,7 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
     Habgrid=gr,           # a 2-column matrix with the coordinates of each pixel
     nPix=nPix,            # the number of pixels in the study area
     N = N,                # true number of individuals per pixel
+    U = U,                # locations of each individual
     nind=nind,            # the number of individuals detected at least once
     pixel=pixel)          # a matrix with a column for each survey and a row
         # for each individual detected at least once, with the pixel ID for the
