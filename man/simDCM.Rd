@@ -178,7 +178,7 @@ str(data <- simDCM(nsites = 1))     # A single site
 str(data <- simDCM(nsurveys = 10))  # More visits
 str(data <- simDCM(nyears = 25))    # More years
 str(data <- simDCM(nyears = 2))     # Just two years
-# str(data <- simDCM(nyears = 1))   # A single year ... crashes
+try(data <- simDCM(nyears = 1))     # A single year ... error
 
 # No species heterogeneity in parameters of initial occupancy
 str(data <- simDCM(sig.lpsi1 = 0, sig.beta.lpsi1 = 0))

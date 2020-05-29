@@ -51,10 +51,10 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-\donttest{
 # Run a simulation with the default arguments and look at the results:
 playRN()
 
+\donttest{
 # Execute the function using various settings
 playRN(M = 100, J = 3, mean.abundance = 0.1)  # Increasing abundance
 playRN(M = 100, J = 3, mean.abundance = 1)

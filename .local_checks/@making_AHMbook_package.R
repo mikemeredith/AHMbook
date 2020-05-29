@@ -11,13 +11,17 @@ out <- spell_check_package(pkg = "AHMbook")
 library(tools)
 checkTnF("AHMbook")
 
+# Install dependencies
+install.packages(c("plotrix", "raster", "RandomFields", "coda",
+    "unmarked", "mvtnorm", "spdep"))
+
 
 # Create the AHMbook package
 
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
 # system("R CMD check AHMbook_0.1.4.9107.tar.gz --no-manual")
-system("R CMD check AHMbook_0.1.4.9107.tar.gz")
+system("R CMD check --run-donttest AHMbook_0.1.4.9107.tar.gz")
 # system("R CMD check --as-cran AHMbook_0.1.4.9107.tar.gz")
 # system("R CMD check --as-cran AHMbook_0.1.4.9107.tar.gz --no-manual")
 # Sys.setenv(R_ZIPCMD = "C:/Rtools/bin/zip.exe")

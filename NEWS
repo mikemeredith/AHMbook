@@ -1,3 +1,7 @@
+CHANGES in 0.1.4.9108 (2020-05-29)
+
+  * Checked Examples for compliance with CRAN requirements.
+
 CHANGES in 0.1.4.9107 (2020-05-29)
 
   * Functions 'playRN', 'sim3occ', 'simDCM', 'simDynoccSpatial', 'simNmixSpatial', 'simNmix', 'simOccSpatial', 'simOccttd' and 'wigglyOcc' gain a 'verbose' argument; if FALSE, Console output is suppressed.

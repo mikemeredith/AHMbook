@@ -161,6 +161,7 @@ Marc Kéry & Andy Royle
 # Generate data with the default arguments and look at the structure:
 tmp <- simNmix()
 str(tmp)
+
 \donttest{
 str(data <- simNmix())                  # Null data-generating model
 str(data <- simNmix(mean.theta = 0.60)) # ZIP with 40% structural zeroes
