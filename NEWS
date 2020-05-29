@@ -1,6 +1,6 @@
 CHANGES in 0.1.4.9107 (2020-05-29)
 
-  * Check for output to Console with 'cat', wrap in 'if(verbose)', affecting 'sim3occ', 'simDCM', 'simDynoccSpatial', 'simNmixSpatial', 'simNmix', 'simOccSpatial', 'simOccttd', 'wigglyOcc'.
+  * Functions 'playRN', 'sim3occ', 'simDCM', 'simDynoccSpatial', 'simNmixSpatial', 'simNmix', 'simOccSpatial', 'simOccttd' and 'wigglyOcc' gain a 'verbose' argument; if FALSE, Console output is suppressed.
 
 CHANGES in 0.1.4.9106 (2020-05-29)
 

@@ -11,7 +11,7 @@ in occupancy and detection probability.
 To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
-wigglyOcc(seed = 1, show.plot = TRUE)
+wigglyOcc(seed = 1, show.plot = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{seed}{
@@ -19,6 +19,9 @@ Seed for random number generator
 }
   \item{show.plot}{
 choose whether to show plots or not. Set to FALSE when using function in simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

@@ -9,7 +9,7 @@ Function simulates time-to-detection occupancy design data under model of Garrar
 }
 \usage{
 simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
-  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE)
+  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{M}{
@@ -32,6 +32,9 @@ maximum search time (in arbitrary units, which are same as response), response w
 }
   \item{show.plot}{
 choose whether to show plots or not. Set to FALSE when running  many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

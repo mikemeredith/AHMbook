@@ -12,7 +12,7 @@ sim3Occ(nunits = 100, nsubunits = 5, nreps = 3,
   mean.psi = 0.8, beta.Xpsi = 1, sd.logit.psi = 0,
   mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1, sd.logit.theta = 0,
   mean.p = 0.4, p.time.range = c(-2, 2), beta.Xp = -1, sd.logit.p = 0,
-  show.plot=TRUE)
+  show.plot = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{nunits}{
@@ -59,6 +59,9 @@ SD of logit(p)
 }
   \item{show.plot}{
 choose whether to show plots or not. Set to FALSE when using function in simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 \value{

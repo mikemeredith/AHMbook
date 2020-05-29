@@ -6,7 +6,8 @@
 # Function to play Royle-Nichols model
 #   (introduced in AHM1 Section 6.13.1)
 
-playRN <- function(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, show.plot=TRUE){
+playRN <- function(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3,
+    show.plots = TRUE, verbose = TRUE){
 # Function generates replicated count data under the Nmix model of Royle (2004),
 #   then 'degrades' the data to detection/nondetection and fits the RN model
 #   (Royle & Nichols 2003) using unmarked and estimates site-specific abundance.
@@ -16,7 +17,7 @@ playRN <- function(M = 267, J = 3, mean.abundance = 1, mean.detection = 0.3, sho
 #
 # Simulate Nmix data under a range of abundance levels
 data <- simNmix(nsites = M, nvisits = J, mean.lam = mean.abundance, mean.p = mean.detection,
-  beta2.lam = 1, beta3.p = -1, beta.p.survey = -1, show.plot = FALSE)
+  beta2.lam = 1, beta3.p = -1, beta.p.survey = -1, show.plots = FALSE, verbose = verbose)
 # Turn counts into detection/nondetection data
 y <- data$C          # Copy counts C into y
 y[y>0] <- 1          # Turn counts >0 into 1
@@ -27,7 +28,7 @@ umf <- unmarkedFrameOccu(y=y, siteCovs= data.frame(cov2 = data$site.cov[,2],
 fm <- occuRN(~cov3+obscov ~cov2, data=umf)
 # Estimate local abundance N and plot against true N (known in simulation)
 Nest <- bup(ranef(fm, K = ), "mean")
-if(show.plot) {
+if(show.plots) {
   # par(mfrow = c(1,1)) ## leave it alone
   plot(data$N, Nest, xlab = "True local abundance",
     ylab = "Estimated local abundance", frame = FALSE)

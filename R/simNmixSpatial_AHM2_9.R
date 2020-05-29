@@ -6,26 +6,11 @@
 
 # Originally simNmixSpatial.
 
-if(FALSE) {
-nsurveys = 3
-mean.lambda = exp(2)
-beta = c(2, -2)
-mean.p = 0.5
-alpha = c(-1, -1)
-sample.size = 500
-variance.RF = 1
-theta.RF = 10
-seeds = c(10, 100)
-truncN = 6
-show.plots=TRUE
-if(getRversion() >= '3.6.0')
-  RNGkind(sample.kind="Round")
-}
-
 # ------  Define function simNmixSpatial --------
-simNmixSpatial<- function(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
+simNmixSpatial <- function(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
   mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
-  seeds = c(10, 100), truncN = 6, show.plots=TRUE){
+  seeds = c(10, 100), truncN = 6, show.plots = TRUE, verbose = TRUE) {
+
 # Simulates replicated counts under a spatial, static binomial N-mixture model for a semi-realistic landscape in a square of 50x50 km in the BernesOberland around Interlaken, Switzerland.
 # Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units.
 # For abundance, the function allows you to specify a quadratic effect of elevation, the data for which are contained in the data set BerneseOberland, which is part of the AHMbook package and is a subset of the data set 'Switzerland' in R package unmarked.
@@ -95,13 +80,14 @@ yobs[-surveyed.sites,] <- NA
 
 
 # Minimal console output
-true<- sum(N)
-obs<- sum(apply(y, 1, max))
-cat("\n\nTrue total population size:", true)
-cat("\nTheoretically observed population size (sumMaxC) in 2500 quadrats:",obs)
-cat(paste("\nObserved population size in", sample.size,"surveyed quadrats:", sum(apply(yobs, 1, max), na.rm = TRUE)))
-cat("\nUnderestimation of abundance in total of 2500 quadrats:", round(100*(1-obs/true)), "%\n\n")
-
+true <- sum(N)
+obs <- sum(apply(y, 1, max))
+if(verbose) {
+  cat("\n\nTrue total population size:", true)
+  cat("\nTheoretically observed population size (sumMaxC) in 2500 quadrats:",obs)
+  cat(paste("\nObserved population size in", sample.size,"surveyed quadrats:", sum(apply(yobs, 1, max), na.rm = TRUE)))
+  cat("\nUnderestimation of abundance in total of 2500 quadrats:", round(100*(1-obs/true)), "%\n\n")
+}
 # Plot stuff
 if(show.plots){
   # Restore graphical settings on exit ---------------------------

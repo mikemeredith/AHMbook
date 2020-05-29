@@ -6,7 +6,7 @@
 # Function to generate a static occupancy data set with really wiggly covariate relationships
 # in occupancy and detection probability
 #   (introduced in AHM1 Section 10.14)
-wigglyOcc <- function(seed = 1, show.plot=TRUE){
+wigglyOcc <- function(seed = 1, show.plot = TRUE, verbose = TRUE){
 # Function simulates really wiggly static site-occupancy data
 #
 # seed is for random number generator
@@ -44,9 +44,11 @@ for(j in 1:J){
 
 # Look at data and produce some summaries
 head(cbind(z = z, p = p, y = y))
-cat("   True number of occupied sites:", sum(z), "\n")
-cat("   Observed number of occupied sites:", sum(apply(y,1,max)), "\n")
-cat("   Proportional underestimation of distribution:", round((sum(z)-sum(apply(y,1,max)))/ sum(z), 2), "\n")
+if(verbose) {
+  cat("   True number of occupied sites:", sum(z), "\n")
+  cat("   Observed number of occupied sites:", sum(apply(y,1,max)), "\n")
+  cat("   Proportional underestimation of distribution:", round((sum(z)-sum(apply(y,1,max)))/ sum(z), 2), "\n")
+}
 
 # Plot system (state and observation)
 if(show.plot) {

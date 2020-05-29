@@ -29,7 +29,7 @@ simDynoccSpatial(side = 50, nyears = 10, nsurveys = 3,
       range.p = c(0.4, 0.4), beta.Xp = 0,
       theta.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
       trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
-      seed.XAC = NA, seed = NULL, ask.plot = TRUE)
+      seed.XAC = NA, seed = NULL, ask.plot = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{side}{
@@ -88,6 +88,9 @@ the seed to be used for simulation of values apart from the spatially structured
 }
   \item{ask.plot}{
 If TRUE, pause between plots of results; set to FALSE if running many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

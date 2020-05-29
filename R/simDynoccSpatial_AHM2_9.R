@@ -3,36 +3,14 @@
 
 # Code to define a function for simulating data.
 
-if(FALSE) {
-side = 50
-nsurveys = 3
-nyears = 10
-mean.psi1 = 0.4
-range.phi = c(0.8, 0.8)
-range.gamma = c(0.1, 0.1)
-range.p = c(0.4, 0.4)
-beta.Xpsi1 = 0
-beta.Xphi = 0
-beta.Xgamma = 0
-beta.Xp = 0
-theta.XAC = 5000
-beta.XAC = c(0, 0, 0, 0)
-beta.Xautolog = c(0, 0)
-trend.sd.site = c(0, 0)
-trend.sd.survey = c(0, 0)
-seed = NULL
-seed.XAC = NA
-ask.plot = TRUE
-
-}
-
-simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0.4, beta.Xpsi1 = 0,
+simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
+      mean.psi1 = 0.4, beta.Xpsi1 = 0,
       range.phi = c(0.8, 0.8), beta.Xphi = 0,
       range.gamma = c(0.1, 0.1), beta.Xgamma = 0,
       range.p = c(0.4, 0.4), beta.Xp = 0,
       theta.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
       trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
-      seed.XAC = NA, seed = NULL, ask.plot = TRUE) {
+      seed.XAC = NA, seed = NULL, ask.plot = TRUE, verbose=TRUE) {
   #
   #      Written by Marc Kéry, 2014-2018
   #
@@ -170,8 +148,9 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   # Create values of 1 spatially autocorrelated covariate XAC
   # Generate correlated random variables in a square
   RandomFields::RFoptions(seed=seed.XAC)     # Default NA; 88 gives cool pattern
-  XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = theta.XAC), x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
-    ncol = side, byrow = TRUE)  # variance 1
+  XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = theta.XAC),
+      x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
+      ncol = side, byrow = TRUE)  # variance 1
   if(!is.na(seed.XAC))
     RandomFields::RFoptions(seed=NA)
 
@@ -231,7 +210,8 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3, mean.psi1 = 0
   # (c) Simulate state process parameters: time steps 2:nyears
   for(k in 2:nyears){
     par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
-    cat(paste("** Year", k, "**\n"))
+    if(verbose)
+      cat(paste("** Year", k, "**\n"))
     # Compute colonisation and extinction parameters and plot
     phi[,,k-1] <- plogis(qlogis(mean.phi[k-1]) + beta.Xphi * Xphi[,,k-1] + beta.XAC[2] * XAC +
       beta.Xautolog[1] * Xauto[,,k-1])

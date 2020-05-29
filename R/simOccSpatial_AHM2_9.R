@@ -6,26 +6,10 @@
 
 # Originally simNmixSpatial.
 
-if(FALSE) {
-  nsurveys = 3
-  mean.psi = 0.6
-  beta = c(2, -2)
-  mean.p = 0.4
-  alpha = c(-1, -1)
-  sample.size = 500
-  variance.RF = 1
-  theta.RF = 10
-  seeds = c(10, 100)
-  show.plots=TRUE
-  if(getRversion() >= '3.6.0')
-    RNGkind(sample.kind="Round")
-  library(AHMbook)
-}
-
 # ------  Define function simOccSpatial --------
 simOccSpatial <- function(nsurveys = 3, mean.psi = 0.6, beta = c(2, -2), mean.p = 0.4,
   alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
-  seeds = c(10, 100), show.plots=TRUE){
+  seeds = c(10, 100), show.plots = TRUE, verbose = TRUE){
 # Simulates replicated detection/nondetection data under a spatial, static occupancy model for a semi-realistic landscape in a square of 50x50 km in the Bernese Oberland near Interlaken, Switzerland.
 # Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units (this cannot be varied in the function).
 # For occupancy, the function allows you to specify a quadratic effect of elevation, the data for which are contained in the data set BerneseOberland, which is part of the AHMbook package and is a subset of the data set 'Switzerland' in R package unmarked.
@@ -95,10 +79,12 @@ obsNocc <- sum(apply(y, 1, max))
 true_psi_fs <- trueNocc / 2500
 obs_psi_fs <- obsNocc / 2500
 
-cat("\n\n\nTrue number of occupied sites:", trueNocc)
-cat("\n\n\nObserved number of occupied sites:", obsNocc)
-cat("\n\n\nNumber of occupied sites where species missed:", trueNocc - obsNocc)
-cat("\nUnderestimation of 'species range size' in 2500 quadrats:", round(100*(1-obsNocc/trueNocc)), "%\n\n")
+if(verbose) {
+  cat("\n\n\nTrue number of occupied sites:", trueNocc)
+  cat("\n\n\nObserved number of occupied sites:", obsNocc)
+  cat("\n\n\nNumber of occupied sites where species missed:", trueNocc - obsNocc)
+  cat("\nUnderestimation of 'species range size' in 2500 quadrats:", round(100*(1-obsNocc/trueNocc)), "%\n\n")
+}
 
 # Plot stuff
 if(show.plots){
@@ -167,53 +153,3 @@ return(list(
   yobs = yobs))
 } # End of function definition
 
-if(FALSE) {
-# Possible usages
-# Call with explicit default arguments
-str(dat <- simOccSpatial(nsurveys = 3, mean.psi = 0.6, beta = c(2, -2), mean.p = 0.4, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10, seeds = c(10, 100)))
-
-# More surveys
-str(dat <- simOccSpatial(nsurveys = 10))
-
-# Minimal number of surveys is 1
-str(dat <- simOccSpatial(nsurveys = 1))
-
-# A truly ubiquitous species
-str(dat <- simOccSpatial(mean.psi = 1))
-
-# Only negative linear effect of elevation
-str(dat <- simOccSpatial(beta = c(2, 0)))
-
-# No effect of elevation at all (see effects of spatial field now clearly)
-str(dat <- simOccSpatial(beta = c(0, 0)))
-
-# Perfect detection (p = 1)
-str(dat <- simOccSpatial(mean.p = 1))
-
-# No effect in detection of forest cover
-str(dat <- simOccSpatial(alpha = c(0, -1)))
-
-# No effect in detection of wind speed (see neatly forest effect now)
-str(dat <- simOccSpatial(alpha = c(-1, 0)))
-
-# Sample only 100 quadrats
-str(dat <- simOccSpatial(sample.size = 100))
-
-# Sample all 2500 quadrats
-str(dat <- simOccSpatial(sample.size = 2500))
-
-# Larger variance of the multivariate Gaussian Random variable in the random field (this will increase the effect of the field on occupancy and detection)
-str(dat <- simOccSpatial(variance.RF = 10))
-
-# No spatial autocorrelation (Variant 1: set variance to 0)
-str(dat <- simOccSpatial(variance.RF = 0))
-
-# No spatial autocorrelation (Variant 2: set theta very close to 0, but not quite 0 --- otherwise function breaks)
-str(dat <- simOccSpatial(theta.RF = 0.0001))
-
-# Larger value of theta.RF gives larger 'islands'
-str(dat <- simOccSpatial(theta.RF = 100))
-
-# Even larger value of theta.RF gives even larger 'islands'
-str(dat <- simOccSpatial(theta.RF = 10000))
-}

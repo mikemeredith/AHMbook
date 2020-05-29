@@ -10,7 +10,8 @@ simDCM <- function(nspecies = 50, nsites = 100, nsurveys = 3, nyears = 10,
   range.mean.p = c(0.5, 0.5), sig.lp = 1,
   mu.beta.lp = 0, sig.beta.lp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
-  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0), show.plot = TRUE) {
+  trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
+  show.plot = TRUE, verbose = TRUE) {
 #
 # Written by Marc Kery, 28 Nov 2016
 #
@@ -259,11 +260,12 @@ nspecies.det <- sum(nyears.det > 0)         # Number of species ever detected
 
 
 # Print out number of occurring and detected species
-cat(paste("\n *** Number of species ever occurring:", nspecies.pres,
-"\n *** Number of species ever detected:", nspecies.det,
-"\n *** Avg. number of years of occurrence:", round(mean(nyears.pres), 3),
-"\n *** Avg. number of years with detection:", round(mean(nyears.det), 3), "\n\n"))
-
+if(verbose) {
+  cat(paste("\n *** Number of species ever occurring:", nspecies.pres,
+    "\n *** Number of species ever detected:", nspecies.det,
+    "\n *** Avg. number of years of occurrence:", round(mean(nyears.pres), 3),
+    "\n *** Avg. number of years with detection:", round(mean(nyears.det), 3), "\n\n"))
+}
 # Compute the average survey product of availability and detection
 # (ignoring the other terms in the model for detection)
 p.survey <- array(NA, dim = c(nsurveys, nyears))

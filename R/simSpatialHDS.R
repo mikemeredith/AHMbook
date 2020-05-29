@@ -1,11 +1,11 @@
 
 # Code from Andy, 29 Dec 2016
 
-# Mike reorganised the plotting commands, adding devAskNewPage and show.plot.
+# Mike reorganised the plotting commands, adding devAskNewPage and show.plots.
 # Mike moved beta1 and npix to the arguments.
 
 sim.spatialHDS <-
-function(lam0 = 4 , sigma= 1.5,  B=3, nsites=100, beta1 = 1, npix = 20, show.plot=3){
+function(lam0 = 4 , sigma= 1.5,  B=3, nsites=100, beta1 = 1, npix = 20, show.plots = 3){
 
 # Function simulates coordinates of individuals on a square
 # Square is [0,2B] x[0,2B], with a count location on the point (B,B)
@@ -21,7 +21,7 @@ nsites <- round(nsites[1])
 npix <- round(npix[1])
 # --------------------------------------------
 
-if(show.plot > 0) {
+if(show.plots > 0) {
   oldpar <- par(mar=c(3,3,3,6), "mfrow")
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
   on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
@@ -47,7 +47,6 @@ for(s in 1:nsites){
 
   # Note Poisson assumption which means in each pixel is also Poisson
   N[s]<- rpois(1, sum(exp( beta0 + beta1*Z[,s])))
-  # cat(N[s],fill=TRUE)
 
   probs<- exp(beta1*Z[,s])/sum(exp(beta1*Z[,s]))
   pixel.id<- sample(1:(npix^2), N[s], replace=TRUE, prob=probs)
@@ -62,7 +61,7 @@ for(s in 1:nsites){
   # Now we decide whether each individual is detected or not
   y <- rbinom(N[s], 1, p)
 
-  if(s <= show.plot) {
+  if(s <= show.plots) {
     img<- rasterFromXYZ(cbind(gr,z))
     image(img, col=topo.colors(10))
     #draw.circle(3,3,B)

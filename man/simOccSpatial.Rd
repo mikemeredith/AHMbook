@@ -22,7 +22,7 @@ Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, w
 \usage{
 simOccSpatial(nsurveys = 3, mean.psi = 0.6, beta = c(2, -2),
   mean.p = 0.4, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
-  seeds = c(10, 100), show.plots=TRUE)
+  seeds = c(10, 100), show.plots = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{nsurveys}{
@@ -54,6 +54,9 @@ vector of length 2; random seeds used for the random field and the selection of 
 }
   \item{show.plots}{
 if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

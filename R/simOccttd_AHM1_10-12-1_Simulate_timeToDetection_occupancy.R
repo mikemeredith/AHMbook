@@ -8,7 +8,7 @@
 #   (introduced in AHM1 Section 10.12.1)
 
 simOccttd <- function(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
-  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE){
+  beta1 = 1, alpha1 = -1, Tmax = 10, show.plot = TRUE, verbose = TRUE){
 #
 # Function simulates time-to-detection occupancy design data under model
 # of Garrard et al. (Austral Ecology, 2008), also see Bornand et al. (MEE, 2014)
@@ -38,7 +38,8 @@ covB <- rnorm(M)
 # Ecological process: Simulate occurrence z at each site
 psi <- plogis(qlogis(mean.psi) + beta1 * covB)
 (z <- rbinom(M, 1, psi))    # Realized occurrence at each site
-cat("   Number of occupied sites ( among", M ,"):", sum(z), "\n")
+if(verbose)
+  cat("   Number of occupied sites ( among", M ,"):", sum(z), "\n")
 
 # Observation process: Simulate time-to-detection (ttd) at each site
 # Start without censoring
@@ -58,11 +59,13 @@ if(show.plot) {
 
 # Number of sites where detected
 (n.obs <- sum(ttd < Tmax, na.rm = TRUE))
-cat("   Number of sites at which detected:", n.obs, "\n")
+if(verbose)
+  cat("   Number of sites at which detected:", n.obs, "\n")
 
 # Calculate censoring indicator
 d <- as.numeric(is.na(ttd))
-cat("   Number of times censored:", sum(d), "\n")
+if(verbose)
+  cat("   Number of times censored:", sum(d), "\n")
 
 # Output
 return(list(M = M, mean.psi = mean.psi, mean.lambda = mean.lambda, beta1 = beta1, alpha1 = alpha1, Tmax = Tmax, covA = covA, covB = covB, psi = psi, lambda = lambda, z = z, ttd.temp = ttd.temp, ttd = ttd, d = d, sum.z = sum(z), n.obs = n.obs))

@@ -4,7 +4,7 @@
 # simNmix - AHM1 section 6.5 p241
 
 # Function to simulate data for binomial and multinomial mixture models under wide range of conditions (introduced in AHM1 Section 6.5)
-simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0, beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0, beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10, sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0, Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE) {
+simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6, area = FALSE, beta1.theta = 0, beta2.theta = 0, beta3.theta = 0, beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0, beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10, sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0, Neg.Bin = FALSE, open.N = FALSE, show.plots = TRUE, verbose = TRUE) {
 #
 # This very general function generates single-season count data
 # under variants of the binomial N-mixture model of Royle (2004) and of the
@@ -90,8 +90,8 @@ simNmix <- function(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mea
 #   population, where N in the first occasion is drawn from the specified
 #   mixture distribution and for all further occasions j, we have
 #   N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have
-#   sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
-# show.plot: if TRUE, plots of the data will be displayed; set to FALSE
+#   sigma.p.ind = 0, show.plots = FALSE and nvisits >1.
+# show.plots: if TRUE, plots of the data will be displayed; set to FALSE
 #      if you are running simulations.
 
 if(FALSE) x <- NULL # Fix issues with 'curve'
@@ -116,11 +116,12 @@ nreps <- rep(nvisits, nsites)                   # No. visits (reps) per site
 site <- 1:nsites                              # Site index at site level
 site.per.unit <- rep(1:nsites, each = nvisits) # Site index at rep level
 
-cat("***** New simulation *****\n\n")
-cat("No. sites visited:      ", nsites, "\n")
-cat("No. rep. visits:          ", nvisits, "\n")
-cat("Total no. visits:       ", sum(nreps), "\n\n")
-
+if(verbose) {
+  cat("***** New simulation *****\n\n")
+  cat("No. sites visited:      ", nsites, "\n")
+  cat("No. rep. visits:          ", nvisits, "\n")
+  cat("Total no. visits:       ", sum(nreps), "\n\n")
+}
 # Generate covariates with standardised values between -2 and 2
 # Site covariates 1-6
 site.cov <- matrix(runif(n = nsites*6, -2, 2), ncol = 6)
@@ -181,7 +182,7 @@ if(open.N){
 }
 
 # Visualization of suitability and abundance
-if(show.plot){
+if(show.plots){
   # Restore graphical settings on exit ---------------------------
   oldpar <- par("mfrow", "cex", "cex.main")
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
@@ -322,7 +323,7 @@ p <- pp  ;  DH <- NA
 }
 
 # Plots and summaries of observation process
-if(show.plot){
+if(show.plots){
   # Page 5: Effects on p
   par(mfrow = c(3,2), cex.main = 1)
   curve(logit(qlogis(mean.p) + beta3.p * x), -2, 2, xlab = "Site covariate 3", main = "Site covariate 3 & detection", ylab = "p", col = "red", lwd = 3)
@@ -373,11 +374,13 @@ if(show.plot){
 # Compute naive 'overdispersion coefficients' at level latent N and observed C
 odcN <- round(var(N)/mean(N),2)     # Overdispersion coefficient
 if(open.N){
-odcN <- round(var(c(N.open))/mean(N.open),2)     # Overdispersion coefficient
+  odcN <- round(var(c(N.open))/mean(N.open),2)     # Overdispersion coefficient
 }
-cat("\nNaive overdispersion measure (var/mean) for true abundance (N):", odcN,"\n")
 odcC <- round(var(c(C))/mean(C),2)     # Overdispersion coefficient
-cat("Naive overdispersion measure (var/mean) for observed counts (C):", odcC,"\n")
+if(verbose) {
+  cat("\nNaive overdispersion measure (var/mean) for true abundance (N):", odcN,"\n")
+  cat("Naive overdispersion measure (var/mean) for observed counts (C):", odcC,"\n")
+}
 
 # Output
 # *** Key output elements are ***

@@ -8,7 +8,7 @@
 sim3Occ <- function(nunits = 100, nsubunits = 5, nreps = 3, mean.psi = 0.8, beta.Xpsi = 1,
   sd.logit.psi = 0, mean.theta = 0.6, theta.time.range = c(-1, 1), beta.Xtheta = 1,
   sd.logit.theta = 0, mean.p = 0.4, p.time.range = c(-2,2), beta.Xp = -1, sd.logit.p = 0,
-  show.plot = TRUE){
+  show.plot = TRUE, verbose = TRUE) {
 #
 # Function generates 3-level occupancy data
 #   with possibility of site-specific random variation at every level,
@@ -102,11 +102,12 @@ for (i in 1:nunits) {
 sum.z <- sum(z)
 sum.z.a <- sum(apply(a, 1, sum)>0)
 obs.sum.z <- sum(apply(apply(y, c(1,2), max), 1, max))
-cat(" Occupied units:                           ", sum.z, "\n",
-    "Units with >=1 occupied, surveyed subunit:", sum.z.a, "\n",
-    "Observed number of occupied units:        ", obs.sum.z, "\n",
-    "\n")
-
+if(verbose) {
+  cat(" Occupied units:                           ", sum.z, "\n",
+      "Units with >=1 occupied, surveyed subunit:", sum.z.a, "\n",
+      "Observed number of occupied units:        ", obs.sum.z, "\n",
+      "\n")
+}
 # Output
 return(list(nunits = nunits, nsubunits = nsubunits, nreps = nreps, mean.psi = mean.psi, beta.Xpsi = beta.Xpsi, sd.logit.psi = sd.logit.psi, psi = psi, mean.theta = mean.theta, theta.time.range = theta.time.range, theta.time.effect = theta.time.effect, beta.Xtheta = beta.Xtheta, sd.logit.theta = sd.logit.theta, theta = theta, mean.p = mean.p, p.time.range = p.time.range, p.time.effect = p.time.effect, beta.Xp = beta.Xp, sd.logit.p = sd.logit.p, p = p, z = z, a = a, y = y, sum.z = sum.z, obs.sum.z = obs.sum.z, sum.z.a = sum.z.a, covA = covA, covB = covB, covC = covC))
 }

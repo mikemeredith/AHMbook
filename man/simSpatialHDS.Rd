@@ -19,7 +19,7 @@ To recreate the data sets used in the book with R 3.6.0 or later, include \code{
 }
 \usage{
 sim.spatialHDS(lam0 = 4, sigma = 1.5, B = 3, nsites = 100,
-  beta1 = 1, npix = 20, show.plot=3)
+  beta1 = 1, npix = 20, show.plots = 3)
 }
 \arguments{
   \item{lam0}{
@@ -40,7 +40,7 @@ the size of the effect of the habitat covariate on the number of individuals in 
   \item{npix}{
 the number of pixels along each dimension of the square: the entire grid has \code{npix x npix} pixels.
 }
-  \item{show.plot}{
+  \item{show.plots}{
 the number of sites for which plots should be displayed.
 }
 }

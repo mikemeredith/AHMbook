@@ -22,7 +22,7 @@ Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, w
 \usage{
 simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
   mean.p = 0.5, alpha = c(-1, -1), sample.size = 500, variance.RF = 1, theta.RF = 10,
-  seeds = c(10, 100), truncN = 6, show.plots=TRUE)
+  seeds = c(10, 100), truncN = 6, show.plots=TRUE, verbose = TRUE)
 }
 \arguments{
   \item{nsurveys}{
@@ -57,6 +57,9 @@ used to limit the range of values of N displayed in some plots.
 }
   \item{show.plots}{
  if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

@@ -13,7 +13,7 @@ simNmix(nsites = 267, nvisits = 3, mean.theta = 1, mean.lam = 2, mean.p = 0.6,
   beta2.lam = 0, beta3.lam = 0, beta4.lam = 0, beta3.p = 0, beta5.p = 0,
   beta6.p = 0, beta.p.survey = 0, beta.p.N = 0, sigma.lam = 0, dispersion = 10,
   sigma.p.site = 0, sigma.p.visit = 0, sigma.p.survey = 0, sigma.p.ind = 0,
-  Neg.Bin = FALSE, open.N = FALSE, show.plot = TRUE)
+  Neg.Bin = FALSE, open.N = FALSE, show.plots = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{nsites}{
@@ -91,8 +91,11 @@ if FALSE, any overdispersion in abundance is modeled by a Poisson log-normal; if
   \item{open.N}{
 if TRUE, data are simulated under one specific form of an open population, where N in the first occasion is drawn from the specified mixture distribution and for all further occasions j, we have  N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
 }
-  \item{show.plot}{
+  \item{show.plots}{
  if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 \details{

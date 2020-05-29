@@ -28,7 +28,7 @@ simDCM(nspecies = 50, nsites = 100, nsurveys = 3, nyears = 10,
   mu.beta.lgamma = 0, sig.beta.lgamma = 0, range.mean.p = c(0.5, 0.5),
   sig.lp = 1, mu.beta.lp = 0, sig.beta.lp = 0, range.beta1.survey = c(0, 0),
   range.beta2.survey = c(0, 0), trend.sd.site = c(0, 0),
-  trend.sd.survey = c(0, 0), show.plot = TRUE)
+  trend.sd.survey = c(0, 0), show.plot = TRUE, verbose = TRUE)
 }
 
 \arguments{
@@ -106,6 +106,9 @@ sd of normal distribution to model logit-normal noise in p at the occasion level
 }
   \item{show.plot}{
 if TRUE, plots are produced. Set this to FALSE when running many simulations.
+}
+  \item{verbose}{
+if TRUE, output will be written to the Console.
 }
 }
 

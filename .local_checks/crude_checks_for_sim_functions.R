@@ -58,39 +58,39 @@ for(i in 1:nreps) {
 ## simNmix ##
   set.seed(123)
   # checkTotal(simNmix(show.plot=FALSE))
-  checkTotal(simNmix(show.plot=FALSE), 49.1620, 4, halt)
+  checkTotal(simNmix(show.plot=FALSE, verbose=FALSE), 49.1620, 4, halt)
 
   set.seed(123)
   # checkTotal(simNmix(Neg.Bin=TRUE, show.plot=FALSE))
-  checkTotal(simNmix(Neg.Bin=TRUE, show.plot=FALSE), 48.8637, 4, halt)
+  checkTotal(simNmix(Neg.Bin=TRUE, show.plot=FALSE, verbose=FALSE), 48.8637, 4, halt)
 
   set.seed(123)
   # checkTotal(simNmix(open.N = TRUE, show.plot=FALSE))
-  checkTotal(simNmix(open.N = TRUE, show.plot=FALSE), 50.1045, 4, halt)
+  checkTotal(simNmix(open.N = TRUE, show.plot=FALSE, verbose=FALSE), 50.1045, 4, halt)
 
   set.seed(123)
   # checkTotal(simNmix(Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE))
-  checkTotal(simNmix(Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE),
+  checkTotal(simNmix(Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE, verbose=FALSE),
     49.3230, 4, halt)
 
   set.seed(456) ; areas <- runif(267, 1, 2) # Use same areas for all
   set.seed(123)
   # checkTotal(simNmix(area=areas, show.plot=FALSE))
-  checkTotal(simNmix(area=areas, show.plot=FALSE), 61.0666, halt)
+  checkTotal(simNmix(area=areas, show.plot=FALSE, verbose=FALSE), 61.0666, halt)
 
   set.seed(123)
   # checkTotal(simNmix(area=areas, Neg.Bin=TRUE, show.plot=FALSE))
-  checkTotal(simNmix(area=areas, Neg.Bin=TRUE, show.plot=FALSE),
+  checkTotal(simNmix(area=areas, Neg.Bin=TRUE, show.plot=FALSE, verbose=FALSE),
     60.4715, 4, halt)
 
   set.seed(123)
   # checkTotal(simNmix(area=areas, open.N = TRUE, show.plot=FALSE))
-  checkTotal(simNmix(area=areas, open.N = TRUE, show.plot=FALSE),
+  checkTotal(simNmix(area=areas, open.N = TRUE, show.plot=FALSE, verbose=FALSE),
     62.3927, 4, halt)
 
   set.seed(123)
   # checkTotal(simNmix(area=areas, Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE))
-  checkTotal(simNmix(area=areas, Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE),
+  checkTotal(simNmix(area=areas, Neg.Bin=TRUE, open.N=TRUE, show.plot=FALSE, verbose=FALSE),
     61.9605, 4, halt)
 
 
@@ -102,7 +102,7 @@ for(i in 1:nreps) {
 ## playRN ##
   set.seed(123)
   # checkTotal(playRN(show.plot=FALSE))
-  checkTotal(playRN(show.plot=FALSE), 67.54638, 5, halt)
+  checkTotal(playRN(show.plot=FALSE, verbose=FALSE), 67.54638, 5, halt)
 
   # AHM1 Chapter 8
   # --------------
@@ -260,18 +260,18 @@ for(i in 1:nreps) {
 ## sim3Occ ##
   set.seed(123)
   # checkTotal(sim3Occ(show.plot=FALSE))
-  checkTotal(sim3Occ(show.plot=FALSE), 12.235466, 6, halt)
+  checkTotal(sim3Occ(show.plot=FALSE, verbose=FALSE), 12.235466, 6, halt)
 
 ## simOccttd ##
   set.seed(123)
   # checkTotal(simOccttd(show.plot=FALSE))
-  checkTotal(simOccttd(show.plot=FALSE), 28.646766, 6, halt)
+  checkTotal(simOccttd(show.plot=FALSE, verbose=FALSE), 28.646766, 6, halt)
 
 ## wigglyOcc ##
   set.seed(123)
   # checkTotal(wigglyOcc(show.plot=FALSE))
   chk <- c(60.552083, 60.554444)
-  checkTotal(wigglyOcc(show.plot=FALSE), chk[i], 6, halt)
+  checkTotal(wigglyOcc(show.plot=FALSE, verbose=FALSE), chk[i], 6, halt)
 
   # AHM1 Chapter 11
   # ---------------
@@ -341,26 +341,28 @@ for(i in 1:nreps) {
 ## sim DCM ##
   set.seed(123)
   # checkTotal(simDCM(show.plot=FALSE))
-  checkTotal(simDCM(show.plot=FALSE), 5.866008, 6, halt)
+  checkTotal(simDCM(show.plot=FALSE, verbose=FALSE), 5.866008, 6, halt)
 
   # AHM2 Chapter 9
   # ----------
 ## simDynoccSpatial ##
   # set.seed(123)
   # checkTotal(simDynoccSpatial(seed.XAC = 88, seed = 123, ask.plot=FALSE))
-  checkTotal(simDynoccSpatial(seed.XAC = 88, seed = 123, ask.plot=FALSE), 208.8291, 6, halt)
+  checkTotal(suppressMessages(
+      simDynoccSpatial(seed.XAC = 88, seed = 123, ask.plot=FALSE, verbose=FALSE)),
+      208.8291, 6, halt)
 
 ## simOccSpatial ##
   set.seed(123)
   # checkTotal(simOccSpatial(show.plot=FALSE))
   chk <- c(40899.993733, 40900.162859)
-  checkTotal(simOccSpatial(show.plot=FALSE), chk[i], 6, halt)
+  checkTotal(simOccSpatial(show.plot=FALSE, verbose=FALSE), chk[i], 6, halt)
 
 ## simNmixSpatial ##
   set.seed(123)
   # checkTotal(simNmixSpatial(show.plot=FALSE))
   chk <- c(45859.301649, 45859.490752)
-  checkTotal(simNmixSpatial(show.plot=FALSE), chk[i], 6, halt)
+  checkTotal(simNmixSpatial(show.plot=FALSE, verbose=FALSE), chk[i], 6, halt)
 
   # AHM2 Chapter 10
   # ----------
@@ -399,7 +401,7 @@ for(i in 1:nreps) {
     3.48, 3.74, 3.34, 2.66, 2.37, 1.81, 1.63, 1.54, 1.24, 0.79), ncol=2)
   set.seed(123)
   # checkTotal(simDSM(X, show.plot=FALSE))
-  chk <- c(107.0744, 106.8478)
+  chk <- c(99.5555, 99.3373)
   checkTotal(simDSM(X, show.plot=FALSE), chk[i], 4, halt)
 }
 
