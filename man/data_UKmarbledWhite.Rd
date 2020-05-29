@@ -22,7 +22,7 @@ A data frame with 9651 rows and the following columns:
   \item{C }{count, the number of butterflies recorded}
   \item{site }{identification number for site}
   \item{year }{the year of the record}
-  \item{north }{approximate northing of the site in the British National Grid, in metres}
+  \item{north }{approximate northing of the site in the British National Grid, in meters}
    \item{date }{Julian date of the survey, 1 = 1st January}
   }
 }

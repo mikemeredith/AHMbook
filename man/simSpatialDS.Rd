@@ -12,7 +12,7 @@ Generates data with the following steps:
 
 2. Distribute the population of N individuals over the square with probability of location in a pixel related to the covariate.
 
-3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with either a half normal or a logit detection function. (Note that all the individuals in the square can be detected.)
+3. Decide which individuals are detected using a distance sampling model with an observer at the center of the square, with either a half normal or a logit detection function. (Note that all the individuals in the square can be detected.)
 
 4. If \code{keep.all = FALSE}, return the locations of only the individuals detected.
 
@@ -58,12 +58,12 @@ The "logit" detection function is \code{2*plogis(-d^2/(2*sigma^2))}, which corre
 A list with the values of the input arguments and the following additional elements:
   \item{u1 }{x coordinate of each animal}
   \item{u2 }{y coordinate of each animal}
-  \item{d }{distance of each animal from the centre of the circle}
+  \item{d }{distance of each animal from the center of the circle}
   \item{pixel.id }{the pixel in which each animal is located, the row number in \code{grid}}
   \item{y }{indicator of detection of each animal, a vector of length N}
   \item{N.real }{the number of animals inside the circle of radius B}
   \item{Habitat }{Value of the spatially  correlated habitat covariate, a 900 x 1 matrix}
-  \item{grid }{Coordinates of the centres of each pixel, a dataframe with 900 rows and 2 columns}
+  \item{grid }{Coordinates of the center of each pixel, a dataframe with 900 rows and 2 columns}
 If \code{keep.all = FALSE} (the default), only the animals detected are included in \code{u1, u2, d, pixel.id}.
 }
 \references{

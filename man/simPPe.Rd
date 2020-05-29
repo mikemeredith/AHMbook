@@ -47,7 +47,7 @@ number of quadrats along the side of the core area; the total number of quadrats
 A list with the values of the input arguments and the following additional elements:
  \item{core }{range of x and y coordinates in the 'core'}
  \item{M2 }{number of ACs in the total landscape, including the buffer}
- \item{grid }{coordinates of the centre of each pixel}
+ \item{grid }{coordinates of the center of each pixel}
  \item{pixel.size }{length of side of each pixel}
  \item{size.core }{the width=height of the core area}
  \item{prop.core }{the proportion of the landscape inside the core}

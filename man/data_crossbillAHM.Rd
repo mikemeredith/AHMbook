@@ -19,7 +19,7 @@ A variant of this data set for 1999 to 2007 only is included in package \pkg{unm
 \code{crossbillAHM} is a data frame with 267 rows and 77 columns:
 
 \describe{
-  \item{coordx, coordy }{the x and y coordinates of the centre of the quadrat; the coordinate reference system intentionally not specified.}
+  \item{coordx, coordy }{the x and y coordinates of the center of the quadrat; the coordinate reference system intentionally not specified.}
   \item{elev }{the mean elevation of the quadrat, m.}
   \item{forest }{percentage forest cover}
   \item{nsurveys }{the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.}

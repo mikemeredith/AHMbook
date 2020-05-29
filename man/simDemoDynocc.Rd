@@ -29,7 +29,7 @@ occupancy probability in first year.
 bounds of uniform distribution from which annual local probability of persistence is randomly drawn.
 }
   \item{range.r}{
-bounds of uniform distribution from which annual local probability of colonisation is randomly drawn.
+bounds of uniform distribution from which annual local probability of colonization is randomly drawn.
 }
   \item{range.p}{
 bounds of uniform distribution from which annual probability of detection is randomly drawn.
@@ -42,7 +42,7 @@ If TRUE, plots of results are displayed; set to FALSE if running many simulation
 \value{
 A list with the values of the arguments input and the following additional elements:
   \item{phi }{persistence for each interval, a vector of length nyears - 1}
-  \item{r }{colonisation for each interval, a vector of length nyears - 1}
+  \item{r }{colonization for each interval, a vector of length nyears - 1}
   \item{p }{detection probability for each year, a vector of length nyears}
   \item{z }{true occurrence state, a nsites x nyears matrix of 0/1}
   \item{y }{the observed detection history, a nsites x nvisits x nyears array}

@@ -31,7 +31,7 @@ The data set recognizes four observed states: 'nondetection', 'detection of sing
     \itemize{
       \item site_name : the numeric site ID, corresponding to site_name in the obs data frame.
       \item region : codes for six regions of Switzerland.
-      \item elev : the elevation of the centre of the quadrat, m.
+      \item elev : the elevation of the center of the quadrat, m.
       \item forest : proportion of the quadrat covered by forest.
       \item slope : the slope of the quadrat in degrees.
       \item roads : total road length in the quadrat, m.

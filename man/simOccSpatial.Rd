@@ -17,7 +17,7 @@ Replicated detection/nondetection data are simulated as usual under a Bernoulli 
 \code{p[i,j] <- plogis(alpha0 + alpha[1] * forest[i] + alpha[2] * wind[i,j])} \cr
 \code{y[i,j] ~ Bernoulli(z[i] * p[i,j]) }
 
-Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., detection/non-detection data from all non-surveyed quadrats will be NA'd out.
+Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., detection/non-detection data from all non-surveyed quadrats will be replaced with NA.
 }
 \usage{
 simOccSpatial(nsurveys = 3, mean.psi = 0.6, beta = c(2, -2),
@@ -62,8 +62,8 @@ A list with the arguments input and the following additional elements:
  \item{xcoord, ycoord }{The x and y coordinates from the \code{BerneseOberland} data set.}
  \item{elevation }{The elevation covariate from the \code{BerneseOberland} data set.}
  \item{forest }{The forest cover covariate from the \code{BerneseOberland} data set.}
- \item{elevationS }{The elevation covariate standardised to mean 0, SD 1.}
- \item{forestS }{The forest cover covariate standardised to mean 0, SD 1.}
+ \item{elevationS }{The elevation covariate standardized to mean 0, SD 1.}
+ \item{forestS }{The forest cover covariate standardized to mean 0, SD 1.}
  \item{wind }{The wind covariate, generated internally.}
  \item{field }{The spatially-autocorrelated covariate, generated internally.}
  \item{alpha0 }{Intercept for the detection model, equal to \code{qlogis(mean.p)}.}

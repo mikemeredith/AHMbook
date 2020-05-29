@@ -30,7 +30,7 @@ A total of 37 plots were placed spanning the existing variation in extent and fr
       \item catchment : a factor, 11 levels.
       \item plot : a factor, the alphanumeric ID of each plot.
       \item plotnr : the ID number of each plot.
-      \item area : the percentage of a 400 x 400m quadrat centred on the sampling point covered by tall willow thickets.
+      \item area : the percentage of a 400 x 400m quadrat centered on the sampling point covered by tall willow thickets.
       \item edge : the length (m) of the edge of the willow thickets in the quadrat.
       \item height : the mean height of willows at 4 measuring points.
       \item density : a measure of thicket density at 4 measuring points.

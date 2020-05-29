@@ -39,8 +39,8 @@ choose whether to show plots or not. Set to FALSE when running  many simulations
 A list with the values of the arguments input and the following additional elements:
  \item{covA }{Simulated values of covariate A, a vector of length M}
  \item{covB }{Simulated values of covariate B, a vector of length M}
- \item{psi }{Probability of occurence at each site, a vector of length M}
- \item{z }{Realised occurence at each site, a 0/1 vector of length M}
+ \item{psi }{Probability of occurrence at each site, a vector of length M}
+ \item{z }{Realized occurrence at each site, a 0/1 vector of length M}
  \item{ttd.temp }{Uncensored simulated time-to-detection at each site, a vector of length M}
  \item{ttd }{Censored simulated time-to-detection at each site, a vector of length M}
  \item{d }{Censoring indicator, a 0/1 vector of length M}

@@ -12,7 +12,7 @@ sim.fn(quad.size = 10, cell.size = 1, intensity = 1, show.plot = TRUE)
 }
 \arguments{
   \item{quad.size}{
-The length of each side of the quadrat (in arbitary units)
+The length of each side of the quadrat (in arbitrary units)
 }
   \item{cell.size}{
 The length of each side of the cells into which the quadrat is divided. The ratio of quad.size to cell.size must be an integer.

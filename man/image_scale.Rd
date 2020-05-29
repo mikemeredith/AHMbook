@@ -17,7 +17,7 @@ image_scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "
 the values plotted in the image, the \code{z} argument to \code{image}
 }
   \item{col}{
-a vector of colours, use the same as in the image
+a vector of colors, use the same as in the image
 }
   \item{x}{
 the x coordinate of the left edge of the scale bar; or a list with components x and y, each of length 2, giving the x and y coordinates of the edges of the scale bar.
@@ -32,7 +32,7 @@ the size of the boxes making up the scale bar, a length 2 vector with the width 
 the number of decimal places to display
 }
   \item{labels}{
-if "breaks", the dividing lines in the scale bar are labelled, if "ranges", each box is labelled with its range; may be abbreviated
+if "breaks", the dividing lines in the scale bar are labeled, if "ranges", each box is labeled with its range; may be abbreviated
 }
   \item{cex.legend}{
 the magnification to be used for axis annotation
@@ -46,7 +46,7 @@ None, used for its plotting side effect.
 Royle, J.A., Chandler, R.B., Sollmann, R., & Gardner, B. (2014) \emph{Spatial capture-recapture} Elsevier.
 }
 \author{
-Andy Royle, borrowed from the \pkg{SCRbook} package, originally stolen from the internet.
+Andy Royle.
 }
 \note{
 This function appears in the text as \code{image.scale}; renamed here to avoid confusion with generic \code{image} functions.

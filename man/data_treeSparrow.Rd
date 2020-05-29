@@ -48,9 +48,9 @@ Mizel et al. (2018) describe the _data on American Tree Sparrows (\emph{Spizella
       \item Site : a numeric site identifier, 1 to 150
       \item X : x-coordinate of the pixel
       \item Y : y-coordinate of the pixel
-      \item NEAR_DIST : distance between the centre of the pixel and the transect line
+      \item NEAR_DIST : distance between the center of the pixel and the transect line
       \item NDVI : Normalized Difference Vegetation Index
-      \item elev : elevation of the centre of the pixel, m.
+      \item elev : elevation of the center of the pixel, m.
     }}
 }
 }

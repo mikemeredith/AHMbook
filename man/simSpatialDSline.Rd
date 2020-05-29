@@ -40,7 +40,7 @@ if TRUE, data are simulated for a traditional distance sampling model with perpe
 
 \value{
 A list with the values of the input arguments and the following additional elements:
- \item{delta }{the distance between pixel centres (spatial resolution of the raster}
+ \item{delta }{the distance between pixel centers (spatial resolution of the raster}
  \item{grid }{2-column matrix with x/y coordinates of all pixels}
  \item{Habitat }{value of habitat covariate for each pixel}
  \item{Habraster }{a Raster object with the habitat covariate}

@@ -25,7 +25,7 @@ British Willow Warblers (Phylloscopus trochilus) caught at a total of 193 ringin
   \item{\bold{cells }}{a data frame with rows for 9667 5x5 km cells covering the whole of Britain, and the following columns:
 
     \enumerate{
-      \item lon, lat : easting and northing of the centre of the cell.
+      \item lon, lat : easting and northing of the center of the cell.
       \item gdd : mean growing degree days (GDD: the sum of daily mean temperatures above 5.5C).
       \item blockID : the ID of the 25x25 km block into which the cell falls.
     }}}
@@ -41,7 +41,7 @@ British Willow Warblers (Phylloscopus trochilus) caught at a total of 193 ringin
   \item{\bold{blocks }}{a data frame with rows for 495 25x25 km blocks covering the whole of Britain, and the following columns:
 
     \enumerate{
-      \item blockX, blockY : easting and northing of the centre of the block.
+      \item blockX, blockY : easting and northing of the center of the block.
     }}}
 }
 

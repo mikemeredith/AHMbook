@@ -11,7 +11,7 @@ Generates data for distance sampling from spatially-replicated point transects, 
 
 2. Distribute the population of individuals over the square with probability of location in a pixel related to the covariate.
 
-3. Decide which individuals are detected using a distance sampling model with an observer at the centre of the square, with a half normal detection function. (Note that individuals outside the circle of radius \code{B} can be detected.)
+3. Decide which individuals are detected using a distance sampling model with an observer at the center of the square, with a half normal detection function. (Note that individuals outside the circle of radius \code{B} can be detected.)
 
 The locations and detection status of individuals at all sites are collated and returned, except for individuals at sites when none are detected.
 
@@ -46,11 +46,11 @@ the number of sites for which plots should be displayed.
 }
 \value{
 A list with the following components:
- \item{data }{a matrix with columns for siteID, the coordinates of each individual (\code{u1, u2}), distance from the centre of the square (\code{d}) and detection status, 0/1 (\code{y}), and rows for each individual, except that individuals at sites where no individuals were detected are NOT included, and those sites are represented by NAs}
+ \item{data }{a matrix with columns for siteID, the coordinates of each individual (\code{u1, u2}), distance from the center of the square (\code{d}) and detection status, 0/1 (\code{y}), and rows for each individual, except that individuals at sites where no individuals were detected are NOT included, and those sites are represented by NAs}
  \item{B }{the radius of the circle; the data are simulated over a square of side 2*B}
  \item{Habitat }{a matrix with the values of the Habitat covariate for each pixel at each site}
  \item{grid }{a data frame with the coordinates of each pixel (same for all sites)}
- \item{N }{the realised number of individuals in the square at each site}
+ \item{N }{the realized number of individuals in the square at each site}
  \item{nsites }{the number sites}
 }
 \references{

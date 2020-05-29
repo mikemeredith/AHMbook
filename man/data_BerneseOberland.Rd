@@ -21,7 +21,7 @@ Spatially-referenced data on elevation, forest cover, and water cover at a 1km-s
 \details{
 Forest and water coverage (in percent area) was computed using the
 1992-97 landcover dataset of the Swiss Federal Statistical Office
-(http://www.bfs.admin.ch). Median elevation (in metres) was computed
+(http://www.bfs.admin.ch). Median elevation (in meters) was computed
 using a median aggregation of the digital elevation model of the Swiss
 Federal Statistical Office.
 

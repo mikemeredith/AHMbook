@@ -16,8 +16,8 @@ The file \code{SwissSquirrels.txt} is a tab-delimited text file with 265 rows an
 
     \itemize{
       \item spec.name : the species name.
-      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
-      \item coordy : the y coordinate of the centre of the quadrat.
+      \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
+      \item coordy : the y coordinate of the center of the quadrat.
       \item ele : the mean elevation of the quadrat, m.
       \item route : the length of the route walked in the quadrat, km.
       \item forest : percentage forest cover.

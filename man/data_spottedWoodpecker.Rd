@@ -16,7 +16,7 @@ The data set is based on checklists which volunteers submit from their bird-watc
 
 \describe{
   \item{site }{quadrat identifier.}
-  \item{coordx, coordy }{the x and y coordinates of the centre of the quadrat; the coordinate reference system intentionally not specified.}
+  \item{coordx, coordy }{the x and y coordinates of the center of the quadrat; the coordinate reference system intentionally not specified.}
   \item{year, jdate }{the year and Julian date of the observations.}
   \item{y }{the number of surveys during which the species was detected.}
   \item{nsurveys }{the number of recorded surveys in the quadrat on that day.}

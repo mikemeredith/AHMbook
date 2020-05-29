@@ -29,7 +29,7 @@ MCMC chains for the coefficients of the environment variables (excluding the int
 Indication of whether the model fit was for occupancy data (with a probit link) or an N-mixture model based on count data.
 }
   \item{stat}{
-The function used to summarise the MCMC chains for the correlations; if \code{stat = NULL}. the full array with the MCMC chains is returned
+The function used to summarize the MCMC chains for the correlations; if \code{stat = NULL}. the full array with the MCMC chains is returned
 }
 }
 \value{

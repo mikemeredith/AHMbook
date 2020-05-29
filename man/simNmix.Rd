@@ -86,7 +86,7 @@ coefficient of centered local population size (log(N+1)) in detection model (i.e
 "Overdispersion SD" in linear predictor of detection coming from random site-by-individual effects
 }
   \item{Neg.Bin}{
-if FALSE, any overdispersion in abundance is modelled by a Poisson log-normal; if TRUE, abundance overdispersion is modelled by adoption of a Negative binomial distribution for latent N
+if FALSE, any overdispersion in abundance is modeled by a Poisson log-normal; if TRUE, abundance overdispersion is modeled by adoption of a Negative binomial distribution for latent N
 }
   \item{open.N}{
 if TRUE, data are simulated under one specific form of an open population, where N in the first occasion is drawn from the specified mixture distribution and for all further occasions j, we have  N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
@@ -106,15 +106,15 @@ Abundance ~ offset + cov2 + cov3 + cov4 + overdispersion
 
 Detection ~ cov3 + cov5 + cov6 + survey.covariate + log(N+1) + eps.site + eps.visit + eps.survey + eps.individual
 
-Overdispersion in abundance is modelled either as a Poisson-log-normal with a normal random site effect in lambda or with a Negative binomial with mean lambda and a 'size', or dispersion, parameter. Variable site areas can be specified to affect abundance as in an offset.
+Overdispersion in abundance is modeled either as a Poisson-log-normal with a normal random site effect in lambda or with a Negative binomial with mean lambda and a 'size', or dispersion, parameter. Variable site areas can be specified to affect abundance as in an offset.
 
 Abundance can be zero-inflated (this is the 'suitability' model). Note that the zero-inflation parameter is called theta here (in unmarked it is called psi). mean.phi is the probability that a site is suitable (i.e., 1 minus the expected proportion of sites with structural zero abundance.
 
 Site covariate 2 can affect both suitability and abundance, while covariate 3 may affect all three levels. Hence, the function permits to simulate the case where a single site covariate affects different levels in the process (e.g., abundance and detection) in opposing directions (as for instance in Kéry, Auk, 2008)
 
-Density-dependent detection can be modelled as a logistic-linear effect of local abundance (centered and log(x+1) transformed). Overdispersion in detection is modelled via normal random effects (the eps terms above) specific to sites, visits, surveys or individuals.
+Density-dependent detection can be modeled as a logistic-linear effect of local abundance (centered and log(x+1) transformed). Overdispersion in detection is modeled via normal random effects (the eps terms above) specific to sites, visits, surveys or individuals.
 
-Effects of covariates and random-effects factors are modelled as additive on the link scale (log for abundance and logit for suitability and detection).
+Effects of covariates and random-effects factors are modeled as additive on the link scale (log for abundance and logit for suitability and detection).
 
 Data may be generated under one specific open-population model when argument 'open.N' is set to TRUE.
 }
@@ -143,7 +143,7 @@ A list with the arguments input and the following additional elements:
 
 }
 \references{
-Royle, J.A. (2004) N-mixture models for estimating population size from spatialy replicated counts. \emph{Biometrics} 60, 108-115.
+Royle, J.A. (2004) N-mixture models for estimating population size from spatially replicated counts. \emph{Biometrics} 60, 108-115.
 
 Royle, J.A., et al (2007) Hierarchical spatial models of abundance and occurrence from imperfect survey data. \emph{Ecological Monographs}, 77, 465-481.
 

@@ -60,7 +60,7 @@ community standard deviation of logit(detection probability intercept)
 community mean of the effects of 'wind' covariate on detection probability
 }
   \item{sig.beta.lp}{
-community standard deviation of the effects of 'wind'covariate on detection probability
+community standard deviation of the effects of 'wind' covariate on detection probability
 }
   \item{show.plot}{
 choose whether to show plots or not. Set to FALSE when using function in simulations.
@@ -117,8 +117,8 @@ A list with the arguments supplied and the following additional elements:
   \item{y.sum.obs}{detection frequency for observed species}
   \item{Ntotal.fs}{finite sample (or conditional) species richness}
   \item{Ntotal.obs}{observed species richness}
-  \item{S.true}{true number of species occuring at each site}
-  \item{S.obs}{observed number of species occuring at each site}
+  \item{S.true}{true number of species occurring at each site}
+  \item{S.obs}{observed number of species occurring at each site}
 
 \bold{(2) for \code{type = "counts"} (i.e., community count)}
 
@@ -127,7 +127,7 @@ A list with the arguments supplied and the following additional elements:
   \item{N}{\code{N[i, k]} true number present for site i and species k}
   \item{y.all}{\code{y.all[i, j, k]} number observed for site i, occasion j and species k for all species}
   \item{y.obs}{\code{y.obs[i, j, k]} number observed for site i, occasion j and species k for observed species}
-  \item{ymax.obs}{\code{ymax.obs[i, k]} maximum nuumber observed for site i and species k}
+  \item{ymax.obs}{\code{ymax.obs[i, k]} maximum number observed for site i and species k}
   \item{Ntotal.fs}{finite sample (or conditional) species richness}
   \item{Ntotal.obs}{observed species richness}
 
@@ -139,7 +139,7 @@ Dorazio, R.M., et al (2006) Estimating species richness and accumulation by mode
 
 Kéry, M. & Royle, J.A. (2008) Hierarchical Bayes estimation of species richness and occupancy in spatialy replicated surveys. \emph{J. Appl. Ecol.} 45, 589-598.
 
-Yamaura, Y., et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodivers. Conserv.} 21, 1365-1380.
+Yamaura, Y., et al. (2012) Biodiversity of man-made open habitats in an underused country: a class of multispecies abundance models for count data. \emph{Biodiversity and Conservation} 21, 1365-1380.
 
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 11.2.
 }

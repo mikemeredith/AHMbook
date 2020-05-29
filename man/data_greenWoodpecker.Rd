@@ -17,7 +17,7 @@ The data frame \code{greenWoodpecker} has count data for Green Woodpeckers \emph
 \code{greenWoodpecker} is a data frame with 267 rows and 146 columns:
 
 \describe{
-  \item{x, y }{the x and y coordinates of the centre of the quadrat; the coordinate reference system intentionally not specified.}
+  \item{x, y }{the x and y coordinates of the center of the quadrat; the coordinate reference system intentionally not specified.}
   \item{nsurveys }{the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.}
   \item{elevation }{the mean elevation of the quadrat, m.}
   \item{forest }{percentage forest cover}

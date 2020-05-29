@@ -69,13 +69,13 @@ community mean of the coefficients of the covariate in probabilities of persiste
 sd of the normal distribution from which species-specific persistence slopes are drawn (centered on mu.beta.lphi).
 }
   \item{range.mean.gamma}{
-bounds of uniform distribution from which the average (across species) annual intercept of colonisation is drawn.
+bounds of uniform distribution from which the average (across species) annual intercept of colonization is drawn.
 }
   \item{sig.lgamma}{
 sd of the normal distribution from which species-specific colonization intercepts are drawn (centered on logit(mean.gamma), which are year-specific), on logit scale.
 }
   \item{mu.beta.lgamma}{
-community mean of the coefficients of the covariate in probabilities of colonization: the probability-scale mean of the normal distibution from which the species-specific coefficients are drawn.
+community mean of the coefficients of the covariate in probabilities of colonization: the probability-scale mean of the normal distribution from which the species-specific coefficients are drawn.
 }
   \item{sig.beta.lgamma}{
 sd of the normal distribution from which species-specific colonization slopes are drawn (centered on mu.beta.lgamma).
@@ -99,7 +99,7 @@ the range of the annual variation in the linear effect of survey (i.e., of surve
 the range of the annual variation in the quadratic effect of survey (i.e., of surveys 1-12 if nsurveys = 12) on the product of availability and detection.
 }
   \item{trend.sd.site}{
-sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation, with values for internediate years interpolated linearly.
+sd of normal distribution to model logit-normal noise in p at the site level in the first and the last year of the simulation, with values for intermediate years interpolated linearly.
 }
   \item{trend.sd.survey}{
 sd of normal distribution to model logit-normal noise in p at the occasion level, in the first and the last year, with values for intermediate years interpolated linearly.
@@ -119,15 +119,15 @@ A list with the values of the input arguments and the following additional eleme
  \item{beta1.lpsi }{initial (log-scale) occupancy slope on Xpsi1 for each species in the community, a vector of length nspecies}
  \item{psi }{occupancy probability per site, year and species, a nsites x nyears x nspecies array}
  \item{mean.phi }{mean persistence (across species) intercept for each interval, a vector of length (nyears - 1)}
- \item{mean.gamma }{mean colonisation (across species) intercept for each interval, a vector of length (nyears - 1)}
+ \item{mean.gamma }{mean colonization (across species) intercept for each interval, a vector of length (nyears - 1)}
  \item{eps.lphi }{additive species effects in logit(phi) intercept, a vector of length nspecies}
  \item{eps.lgamma }{additive species effects in logit(gamma) intercept, a vector of length nspecies}
  \item{beta0.lphi }{logit-scale persistence intercepts for each species in community, a nspecies x (nyears - 1) matrix}
- \item{beta0.lgamma }{logit scale colonisation intercepts for each species in the community, a nspecies x (nyears - 1) matrix}
+ \item{beta0.lgamma }{logit scale colonization intercepts for each species in the community, a nspecies x (nyears - 1) matrix}
  \item{beta1.lphi }{slope of logit(phi) on Xphi for each species in the community, a vector of length nspecies}
  \item{beta1.lgamma }{slope of logit(gamma) on Xgamma for each species in the community, a vector of length nspecies}
  \item{phi }{probability of persistence for each site, yearly interval and species, a nsites x (nyears-1) x nspecies array}
- \item{gamma }{probability of colonisation for each site, yearly interval and species, a nsites x (nyears-1) x nspecies array}
+ \item{gamma }{probability of colonization for each site, yearly interval and species, a nsites x (nyears-1) x nspecies array}
  \item{mean.p }{mean detection (across species) intercept for each year, a vector of length nyears}
  \item{eps.lp }{additive species effects in logit(p) intercept, a vector of length nspecies}
  \item{beta0.lp }{species- and site-specific intercepts in the linear predictor for p, a nspecies x nyears matrix}

@@ -76,7 +76,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{simNpC}}}{ Simulate data on abundance (N), detection probability (p) and resulting counts (C) under a counting process with imperfect detection  (AHM2 - 1.2)}
   \item{\code{\link{simPOP}}}{ Simulate count data under a demographic state-space, or Dial-Madsen, model (AHM2 - 1.7.1)}
   \item{\code{\link{simPH}}}{ Simulate count data with phenological curves within a year (AHM2 - 1.8.1)}
-  \item{\code{\link{graphSSM}}}{ Plot tractories of counts and latent abundance from a fitted Gaussian state-space model (AHM2 - 1.6)}
+  \item{\code{\link{graphSSM}}}{ Plot trajectories of counts and latent abundance from a fitted Gaussian state-space model (AHM2 - 1.6)}
   } }
 
 \section{AHM2 - Chapter 2}{

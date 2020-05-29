@@ -51,7 +51,7 @@ Interaction effect on detection of elevation and wind speed
 standard deviation of random site effects (on logit scale)
 }
   \item{b}{
-constant value of 'behavioural response' leading to 'trap-happiness' (if b > 0) or 'trap shyness' (if b < 0)
+constant value of 'behavioral response' leading to 'trap-happiness' (if b > 0) or 'trap shyness' (if b < 0)
 }
   \item{show.plot}{
 if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations
@@ -66,9 +66,9 @@ A list with the values of the  input arguments and the following additional elem
  \item{elev }{Elevation, a vector of length M}
  \item{forest }{Forest cover, a vector of length M}
  \item{wind }{wind speed, a M x J matrix}
- \item{psi }{Probability of occurence, a vector of length M}
- \item{z }{Realised occurence (0/1), a vector of length M}
- \item{p }{probability of capture, possibly with a behavioural effect, a M x J matrix}
+ \item{psi }{Probability of occurrence, a vector of length M}
+ \item{z }{Realized occurrence (0/1), a vector of length M}
+ \item{p }{probability of capture, possibly with a behavioral effect, a M x J matrix}
  \item{p0 }{probability of capture when not captured on previous occasion, a M x J matrix}
  \item{p1 }{probability of capture when captured on previous occasion, a M x J matrix}
  \item{y }{simulated capture history, a M x J matrix}

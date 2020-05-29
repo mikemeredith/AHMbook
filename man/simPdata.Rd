@@ -34,9 +34,9 @@ A list with the following elements:
  \item{sigma }{scale of half-normal detection function}
  \item{B }{circle radius}
  \item{u1, u2 }{the x and y coordinates of each of the individuals}
- \item{d }{the distance of each individual from the centre of the circle}
+ \item{d }{the distance of each individual from the center of the circle}
  \item{y }{a 0/1 indicator showing whether each individual is detected or not, a vector of length N}
- \item{N.real }{the realised number of individuals within the circle of radius B}
+ \item{N.real }{the realized number of individuals within the circle of radius B}
 
 }
 \references{

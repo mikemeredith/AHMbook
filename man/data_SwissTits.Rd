@@ -29,11 +29,11 @@ The list \code{SwissTits} has the data for six species of tits from 2004 to 2013
 
     \enumerate{
       \item siteID : an alphanumeric site identifier.
-      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
-      \item coordy : the y coordinate of the centre of the quadrat.
+      \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
+      \item coordy : the y coordinate of the center of the quadrat.
       \item AQ : an identifier for the 10km x 10km block called "Atlas Quadrat" within which the site falls.
-      \item AQ.coordx : the x coordinate of the centre of the AQ.
-      \item AQ.coordy : the y coordinate of the centre of the AQ.
+      \item AQ.coordx : the x coordinate of the center of the AQ.
+      \item AQ.coordy : the y coordinate of the center of the AQ.
       \item elev : the mean elevation of the quadrat, m.
       \item rlength : the length of the route walked in the quadrat, km.
       \item forest : percentage forest cover.

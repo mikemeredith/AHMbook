@@ -3,10 +3,10 @@
 \alias{standardize}
 \alias{standardize2match}
 \title{
-Scaling and centring of vectors, matrices and arrays
+Scaling and centering of vectors, matrices and arrays
 }
 \description{
-Maps a numeric variable to a new object with the same dimensions. \code{standardize} is typically used to standardise a covariate to mean 0 and SD 1. \code{standardize2match} is used to standardise one object using the mean and SD of another; it is a wrapper for \code{standardize(x, center=mean(y), scale=sd(y))}.
+Maps a numeric variable to a new object with the same dimensions. \code{standardize} is typically used to standardize a covariate to mean 0 and SD 1. \code{standardize2match} is used to standardize one object using the mean and SD of another; it is a wrapper for \code{standardize(x, center=mean(y), scale=sd(y))}.
 }
 \usage{
 standardize(x, center = TRUE, scale = TRUE)
@@ -26,7 +26,7 @@ either a logical or a numeric value of length 1.
 \details{
 \code{standardize} differs from \code{\link{scale}} by (1) accepting multidimensional arrays but not data frames; (2) \emph{not} standardizing column-wise but using a single value to center or to scale; (3) if \code{x} is a vector, the output will be a vector (not a 1-column matrix). If each column in the matrix represents a different variable, use \code{scale} not \code{standardize}.
 
-Centring is performed before scaling.
+Centering is performed before scaling.
 
 If \code{center} is numeric, that value will be subtracted from the whole object. If logical and TRUE, the mean of the object (after removing NAs) will be subtracted.
 
@@ -35,7 +35,7 @@ If \code{scale} is numeric, the whole object will be divided by that value. If l
 \value{
 A numeric object of the same dimensions as \code{x} with the standardized values. NAs in the input will be preserved in the output.
 
-For the default arguments, the object returned will have mean approximately zero and SD 1. (The mean is not exactly zero as scaling is performed after centring.)
+For the default arguments, the object returned will have mean approximately zero and SD 1. (The mean is not exactly zero as scaling is performed after centering.)
 }
 
 \author{

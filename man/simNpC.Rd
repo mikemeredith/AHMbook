@@ -31,7 +31,7 @@ A list with the values of the arguments entered and the following additional ele
 
 \item{lambda }{T vector, expected abundance for each year.}
 \item{p }{T vector, detection probability (dp) for each year.}
-\item{N }{T vector, realised abundance.}
+\item{N }{T vector, realized abundance.}
 \item{C }{T vector, observed counts.}
 }
 \references{

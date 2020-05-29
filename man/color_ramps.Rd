@@ -16,7 +16,7 @@ These create vectors of \code{n} contiguous colors for use in image and raster p
 
 * sequential light to dark green
 
-* sequential light to dark grey
+* sequential light to dark gray
 
 * diverging blue-yellow-red
 
@@ -37,7 +37,7 @@ rampGBr(n=5, range=1:11, bias=1, ...)
 the number of colors to be in the palette.
 }
   \item{range}{
-the range of colors from the underlying palette to include: each ramp is based on a palette of 9 (if sequential) or 11 (if diverging) colors; range allows the extreme colours to be excluded.
+the range of colors from the underlying palette to include: each ramp is based on a palette of 9 (if sequential) or 11 (if diverging) colors; range allows the extreme colors to be excluded.
 }
   \item{bias}{
 a positive number: values >1 give more widely spaced colors at the high end.

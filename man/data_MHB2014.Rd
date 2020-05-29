@@ -33,8 +33,8 @@ The list \code{MHB2014} has the full survey data for the year 2014.
 
     \itemize{
       \item siteID : an alphanumeric site identifier.
-      \item coordx : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
-      \item coordy : the y coordinate of the centre of the quadrat.
+      \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
+      \item coordy : the y coordinate of the center of the quadrat.
       \item elev : the mean elevation of the quadrat in m.
       \item rlength : the length of the route walked in the quadrat in km.
       \item nsurvey : the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.

@@ -63,7 +63,7 @@ negative effect in percent on annual phi (e.g., impact.phi = 20 means a 20\% red
 coefficients of environmental covariate in probability of persistence.
 }
   \item{range.gamma}{
-bounds of uniform distribution from which annual probability of colonisation is randomly drawn.
+bounds of uniform distribution from which annual probability of colonization is randomly drawn.
 }
   \item{sd.lgamma.site}{  % new 2019-03-01
 SD of random site effect on colonization on the logit scale drawn from a normal distribution with mean zero.
@@ -107,11 +107,11 @@ If TRUE, plots of results are displayed; set to FALSE if running many simulation
 A list with the values of the arguments input and the following additional elements:
   \item{impact }{a 0/1 vector of length (nyears-1) indicating if an impact applies to the interval}
   \item{BACI.effect.phi }{reduction in persistence due to impact, a vector of length nyears - 1}
-  \item{BACI.effect.gamma }{reduction in colonisation due to impact, a vector of length nyears - 1}
+  \item{BACI.effect.gamma }{reduction in colonization due to impact, a vector of length nyears - 1}
   \item{beta1 }{linear effect of occasion on the product of availability and detection, a vector of length nyears}
   \item{beta2 }{quadratic effect of occasion on the product of availability and detection, a vector of length nyears}
   \item{mean.phi }{mean persistence for each interval before application of any BACI effect, a vector of length nyears - 1}
-  \item{mean.gamma }{mean colonisation for each interval before application of any BACI effect, a vector of length nyears - 1}
+  \item{mean.gamma }{mean colonization for each interval before application of any BACI effect, a vector of length nyears - 1}
   \item{mean.p }{mean detection probability for each year, a vector of length nyears}
   \item{psi }{annual occupancy for each site, a nsites x nyears matrix}
   \item{mean.psi }{average occupancy over sites, a vector of length nyears}
@@ -120,12 +120,12 @@ A list with the values of the arguments input and the following additional eleme
   \item{psi.app }{apparent occupancy over sites, a vector of length nyears}
   \item{z }{true occurrence state, a nsites x nyears matrix of 0/1}
   \item{phi }{persistence, a nsites x nyears-1 matrix}
-  \item{gamma }{colonisation, a nsites x nyears-1 matrix}
+  \item{gamma }{colonization, a nsites x nyears-1 matrix}
   \item{p }{detection probability, a nsites x nsurveys x nyears array}
   \item{y }{the observed detection history, a nsites x nsurveys x nyears array}
   \item{Xpsi1 }{covariate affecting initial occupancy, a vector of length nsites}
   \item{Xphi }{covariate affecting persistence, a nsites x nyears matrix}
-  \item{Xgamma }{covariate affecting colonisation, a nsites x nyears matrix}
+  \item{Xgamma }{covariate affecting colonization, a nsites x nyears matrix}
   \item{Xp }{covariate affecting probability of detection, a nsites x nsurveys x nyears array}
   \item{eps.lphi.site }{site random effects on persistence, a vector of length nsites}
   \item{eps.lgamma.site }{site random effects on colonization, a vector of length nsites}

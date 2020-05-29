@@ -17,8 +17,8 @@ The data frame \code{crestedTit} has the data for Crested Tits \emph{Parus crist
 \code{crestedTit} is a data frame with 267 rows and 131 columns:
 
 \describe{
-  \item{coordx, coordy }{the x and y coordinates of the centre of the quadrat; the coordinate reference system intentionally not specified.}
-  \item{elev }{the mean elevation of the quadrat, in metres.}
+  \item{coordx, coordy }{the x and y coordinates of the center of the quadrat; the coordinate reference system intentionally not specified.}
+  \item{elev }{the mean elevation of the quadrat, in meters.}
   \item{forest }{percentage forest cover}
   \item{nsurveys }{the number of replicate surveys \emph{planned} in the quadrat; above the tree-line 2, otherwise 3.}
    \item{1999 to 2016 }{total number of territories observed for the year.}

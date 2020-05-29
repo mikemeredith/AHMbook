@@ -6,7 +6,7 @@
 Camera trap data for Bobcat, Coyote and Red Fox
 }
 \description{
-Camera trap (detection/nondetection) data for Bobcat (\emph{Lynx rufus}), Coyote (\emph{Canis latrans}) and Red Fox (\emph{Vulpes vulpes}) from six Mid-Atlantic states in the eastern United States analysed by Rota et al (2016).
+Camera trap (detection/nondetection) data for Bobcat (\emph{Lynx rufus}), Coyote (\emph{Canis latrans}) and Red Fox (\emph{Vulpes vulpes}) from six Mid-Atlantic states in the eastern United States analyzed by Rota et al (2016).
 }
 
 \usage{data("MesoCarnivores")}

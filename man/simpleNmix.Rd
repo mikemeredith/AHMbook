@@ -41,7 +41,7 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 
 \value{
 A list with the values of the arguments input and the following additional elements:
-\item{N }{The realised number of individuals at each primary season, a vector of length \code{nyears}}
+\item{N }{The realized number of individuals at each primary season, a vector of length \code{nyears}}
 \item{C }{The number of individuals counted at each survey, a \code{nyears x nreps} matrix.}
 \item{Time }{The Time covariate, a vector of length \code{nyears}.}
 \item{temp }{The temperature covariate, a \code{nyears x nreps} matrix.}

@@ -20,8 +20,8 @@ A 1ha-scale subset of the count data from the most recent Swiss Breeding Bird At
   \item{\bold{sites }}{a data frame with rows for 2318 1ha quadrats and the following columns:
 
     \itemize{
-       \item x : the x coordinate of the centre of the quadrat; the coordinate reference system intentionally not specified.
-      \item y : the y coordinate of the centre of the quadrat.
+       \item x : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
+      \item y : the y coordinate of the center of the quadrat.
       \item elevation : the mean elevation of the quadrat, m.
       \item slope : the slope.
       \item north : the aspect, with due south = -1, due north = 1.

@@ -91,7 +91,7 @@ A list with the values of the arguments entered and the following additional ele
 \item{Nextinct }{scalar, number of sites where N == 0 at time T.}
 \item{extrate }{scalar, proportion of sites where N == 0 at time T.}
 \item{sumN }{T vector, total population in each year.}
-\item{gammaX }{(T-1) vector, realised population growth rate.}
+\item{gammaX }{(T-1) vector, realized population growth rate.}
 
 }
 \references{

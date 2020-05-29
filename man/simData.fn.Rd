@@ -54,7 +54,7 @@ A list with the input arguments and the following additional elements:
  \item{forest }{Scaled forest cover (a vector of length M)}
  \item{wind }{Scaled wind speed (an M x J matrix)}
  \item{lambda }{Expected number of individuals at each site (a vector of length M)}
- \item{N }{Realised number of individuals at each site (a vector of length M)}
+ \item{N }{Realized number of individuals at each site (a vector of length M)}
  \item{p }{Probability of detection for each survey (an M x J matrix)}
  \item{C }{The number of detections for each survey (an M x J matrix)}
  \item{Ntotal }{Total abundance, \code{sum(N)} }
@@ -64,7 +64,7 @@ A list with the input arguments and the following additional elements:
 
 }
 \note{
-The colours used for points in some of the plots indicate different temporal replicates.
+The colors used for points in some of the plots indicate different temporal replicates.
 }
 \references{
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 4.3.

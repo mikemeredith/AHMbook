@@ -5,7 +5,7 @@
 Simulate replicated counts under a spatial, static binomial N-mixture model
 }
 \description{
-Simulates replicated counts under a spatial, static binomial N-mixture model for a semi-realistic landscape in a square of 50x50 km in the BernesOberland around Interlaken, Switzerland. Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units. It uses the data set \code{\link{BerneseOberland}}, which has covariates for elevation and forest cover.
+Simulates replicated counts under a spatial, static binomial N-mixture model for a semi-realistic landscape in a square of 50x50 km in the Bernese Oberland around Interlaken, Switzerland. Unit of the data simulation is a 1km2 quadrat, hence, there are 2500 units. It uses the data set \code{\link{BerneseOberland}}, which has covariates for elevation and forest cover.
 
 For abundance, the function allows you to specify a quadratic effect of elevation. Then, a Gaussian spatial random field (s) with negative exponential correlation function is simulated using \code{\link{simExpCorrRF}}; you can set the variance and the range (scale) parameter theta. Basically, the larger the value of theta.RF, the bigger are the 'islands' simulated in the random field. The abundance in each quadrat (i) is built up via the following linear predictor:
 
@@ -17,7 +17,7 @@ Replicated counts are simulated as usual under a binomial observation model, and
 \code{  p[i,j] <- plogis(alpha0 + alpha[1] * forest[i] + alpha[2] * wind[i,j])} \cr
 \code{C[i,j] ~ Binomial(N[i], p[i,j]) }
 
-Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., counts from all non-surveyed quadrats will be NA'd out.
+Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., counts from all non-surveyed quadrats will be NA.
 }
 \usage{
 simNmixSpatial(nsurveys = 3, mean.lambda = exp(2), beta = c(2, -2),
@@ -65,8 +65,8 @@ A list with the arguments input and the following additional elements:
  \item{xcoord, ycoord }{The x and y coordinates from the \code{BerneseOberland} data set.}
  \item{elevation }{The elevation covariate from the \code{BerneseOberland} data set.}
  \item{forest }{The forest cover covariate from the \code{BerneseOberland} data set.}
- \item{elevationS }{The elevation covariate standardised to mean 0, SD 1.}
- \item{forestS }{The forest cover covariate standardised to mean 0, SD 1.}
+ \item{elevationS }{The elevation covariate standardized to mean 0, SD 1.}
+ \item{forestS }{The forest cover covariate standardized to mean 0, SD 1.}
  \item{wind }{The wind covariate, generated internally.}
  \item{field }{The spatially-autocorrelated covariate, generated internally.}
  \item{beta0 }{Intercept for the abundance model, equal to \code{log(mean.lambda)}.}

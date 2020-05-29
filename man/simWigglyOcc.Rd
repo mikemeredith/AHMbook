@@ -29,7 +29,7 @@ A list with the following elements:
   \item{Xsite }{Simulated site covariate, a vector of length M}
   \item{Xsurvey }{Simulated survey covariate, a M x J matrix}
   \item{psi }{Occupancy probability, a vector of length M}
-  \item{z }{Realised occupancy, a 0/1 vector of length M}
+  \item{z }{Realized occupancy, a 0/1 vector of length M}
   \item{p }{Detection probability, a M x J matrix}
   \item{y }{detection history, a M x J matrix of 0/1}
 }

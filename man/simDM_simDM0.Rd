@@ -84,7 +84,7 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
  \item{cov.gamma }{covariate for gamma generated from Uniform(-1, 1), nsites vector}
  \item{cov.phi }{covariate for phi generated from Uniform(-1, 1), nsites vector}
  \item{cov.p }{covariate for p generated from Uniform(-1, 1), nsites x nyears x nsurveys}
- \item{ccov.p }{cov.p formated as a matrix, nsites x (nyears*nsurveys)}
+ \item{ccov.p }{cov.p formatted as a matrix, nsites x (nyears*nsurveys)}
 }
 \references{
 Dail, D. & Madsen, L. (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.

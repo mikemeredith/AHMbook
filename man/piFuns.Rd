@@ -31,9 +31,9 @@ a numeric matrix with rows for each site and 3 columns, see Details.
 
 \code{crPiFun} defines a pi function for capture-recapture design with 3 capture occasions. The columns of \code{p} give the detection probabilities for the three occasions. See AHM1 Section 7.8.5. NOTE that this is not the same as the custom \code{crPiFun} defined in Section 7.9.1.
 
-\code{crPiFun.Mb} defines a pi function for capture-recapture design with 3 capture occasions with a behavioural response. Detection probabilities do not vary with time. Column #1 of \code{p} gives the probability of detection for animals not previously detected; column #3 gives detection probability after the first detection; column #2 is ignored. See AHM1 Section 7.8.2.
+\code{crPiFun.Mb} defines a pi function for capture-recapture design with 3 capture occasions with a behavioral response. Detection probabilities do not vary with time. Column #1 of \code{p} gives the probability of detection for animals not previously detected; column #3 gives detection probability after the first detection; column #2 is ignored. See AHM1 Section 7.8.2.
 
-\code{MhPiFun} defines a pi function for a model with individual detection heterogeneity, modelled as a random effect with a logit-normal distribution. Column #1 of \code{p} gives the mean probability of detection; \code{p[1, 2]} is a value in [0, 1] which controls the scale parameter for the normal distribution; other entries are ignored. See Section 7.8.3.
+\code{MhPiFun} defines a pi function for a model with individual detection heterogeneity, modeled as a random effect with a logit-normal distribution. Column #1 of \code{p} gives the mean probability of detection; \code{p[1, 2]} is a value in [0, 1] which controls the scale parameter for the normal distribution; other entries are ignored. See Section 7.8.3.
 }
 \value{
 A matrix with a row for each site corresponding to the rows of \code{p} and...
