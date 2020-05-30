@@ -32,13 +32,13 @@ A list with components:
 }
 \references{
 Chambert, T., Waddle, J.H., Miller, D.A.W., Walls, S.C., & Nichols, J.D. (2017) A new framework for analysing automated acoustic species-detection data: occupancy estimation and optimization of recordings post-processing. \emph{Methods in Ecology and Evolution}, 9, 560-570.
-%% analysing is correct
+%% "analysing" is correct, this is a British journal.
 
 Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.6.2.
 }
 
 \author{
-Mike Meredith. Provides the same functionality as Chambert et al's (2017) \code{valid.data} function but with new code.
+Mike Meredith.
 }
 \examples{
 # Generate some data for 100 sites:

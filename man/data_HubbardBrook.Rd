@@ -51,7 +51,7 @@ Three replicated point counts of 10 min each, out to a maximum distance of 100 m
 }
 
 \source{
-Rodenhouse N.L. & Sillett, T.S. (2019) Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing). Environmental Data Initiative. https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217. Dataset accessed 2020-01-07.}
+Rodenhouse N.L. & Sillett, T.S. (2019) Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing). Environmental Data Initiative. <https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217>. Dataset accessed 2020-01-07.}
 
 \references{
 Betts, M.G., Rodenhouse, N.L., Sillett, T.S., Doran, P.J. & Holmes, R.T. (2008). Dynamic occupancy models reveal within-breeding season movement up a habitat quality gradient by a migratory songbird. \emph{Ecography} 31:592–600.

@@ -26,7 +26,7 @@ The data are observations of Eurasian lynx (\emph{Lynx lynx}) confirmed by exper
 }
 }
 \source{
-We thank the Foundation KORA, the SCALP Project and the Progetto Lince Italia (Anja Molinari-Jobin, Urs Breitenmoser, Fridolin Zimmermann) for making available the Alpine lynx monitoring data for Switzerland and Italy from 1995 to 2016.
+The Foundation KORA, the SCALP Project and the Progetto Lince Italia (Anja Molinari-Jobin, Urs Breitenmoser, Fridolin Zimmermann).
 }
 \references{
 Molinari-Jobin, A., Kéry, M., Marboutin, E., Molinari, P., Koren, I., Fuxjäger, C., Breitenmoser-Würsten, C., Wölfl, S., Fasel, M., Kos, I., Wölfl, M., & Breitenmoser, U. (2012) Monitoring in the presence of species misidentification: the case of the Eurasian lynx in the Alps. \emph{Animal Conservation}, 15, 266-273.
