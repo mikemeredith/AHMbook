@@ -97,8 +97,8 @@ if(show.plot) {
     ttt <- table(data[,1])
     n <- rep(0, nsites)
     n[as.numeric(rownames(ttt))] <- ttt
-    plot(habitat, n, main = "Observed group counts (n) vs. habitat", frame = F)
-    plot(table(data[,"gs"]), main = "Observed group sizes", ylab = "Frequency", frame = F)
+    plot(habitat, n, main = "Observed group counts (n) vs. habitat", frame = FALSE)
+    plot(table(data[,"gs"]), main = "Observed group sizes", ylab = "Frequency", frame = FALSE)
   }
   if(type=="point"){ # For point transect
     op <- par(mfrow = c(2,2)) ; on.exit(par(op))
@@ -112,8 +112,8 @@ if(show.plot) {
     ttt <- table(data[,1])
     n <- rep(0, nsites)
     n[as.numeric(rownames(ttt))] <- ttt
-    plot(habitat, n, main = "Observed group counts (n) vs. habitat", frame = F)
-    plot(table(data[,"gs"]), main = "Observed group sizes", ylab = "Frequency", frame = F)
+    plot(habitat, n, main = "Observed group counts (n) vs. habitat", frame = FALSE)
+    plot(table(data[,"gs"]), main = "Observed group sizes", ylab = "Frequency", frame = FALSE)
   }
 }
 

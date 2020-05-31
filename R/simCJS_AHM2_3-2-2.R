@@ -36,7 +36,6 @@ simCJS <- function(
   # Deal with input
   if(length(n.marked) == 1)
     n.marked <- rep(n.marked, n.occ-1)   # Annual number of newly marked individuals
-  # marked <- n.marked ######### change later, use n.marked throughout
   n.ind <- sum(n.marked)
   if(length(phi) == 1)
     phi <- rep(phi, n.occ-1)
@@ -44,7 +43,6 @@ simCJS <- function(
     p <- rep(p, n.occ-1)
 
   # Vector (f) with marking occasion (ie, first capture occasion)
-  # mark.occ <- rep(1:length(marked), marked[1:length(marked)])
   f <- rep(1:length(n.marked), n.marked)
 
   # Fill the true state matrix (z) and capture-history matrix (ch)
@@ -64,7 +62,6 @@ simCJS <- function(
   ch[is.na(ch)] <- 0 # fix the unwanted NAs
 
   # Tally up number alive, marked and in study area
-  # n.alive <- apply(z, 2, sum, na.rm = TRUE)
   n.alive <- colSums(z, na.rm = TRUE) ## Mike is a fan of colSums and rowSums!
 
   # Visualizations

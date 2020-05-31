@@ -1,5 +1,6 @@
 
 setwd("D:/Github/AHMbook_package")
+setwd("C:/Github/AHMbook_package")
 dir()
 
 # Spelling check
@@ -20,13 +21,13 @@ install.packages(c("plotrix", "raster", "RandomFields", "coda",
 
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-# system("R CMD check AHMbook_0.1.4.9109.tar.gz --no-manual")
-system("R CMD check --run-donttest AHMbook_0.1.4.9109.tar.gz")
-# system("R CMD check --as-cran AHMbook_0.1.4.9109.tar.gz")
-# system("R CMD check --as-cran AHMbook_0.1.4.9109.tar.gz --no-manual")
+# system("R CMD check AHMbook_0.1.4.9111.tar.gz --no-manual")
+system("R CMD check --run-donttest AHMbook_0.1.4.9111.tar.gz --no-manual")
+# system("R CMD check --as-cran AHMbook_0.1.4.9111.tar.gz")
+# system("R CMD check --as-cran AHMbook_0.1.4.9111.tar.gz --no-manual")
 # Sys.setenv(R_ZIPCMD = "C:/Rtools/bin/zip.exe")
-system("R CMD INSTALL --build AHMbook_0.1.4.9109.tar.gz") # installs and produces the .zip binary
-system("R CMD INSTALL AHMbook_0.1.4.9109.tar.gz") # installs only
+system("R CMD INSTALL --build AHMbook_0.1.4.9111.tar.gz") # installs and produces the .zip binary
+system("R CMD INSTALL AHMbook_0.1.4.9111.tar.gz") # installs only
 
 system("R CMD INSTALL AHMbook") # Use this for a "dev" install.
 

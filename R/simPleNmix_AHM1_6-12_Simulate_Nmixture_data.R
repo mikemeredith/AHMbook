@@ -33,12 +33,12 @@ for(j in 1:nreps){
 
 if(show.plot) {
   op <- par(mfrow = c(3, 2)) ; on.exit(par(op))
-  curve(exp(beta0 + beta1 * x), 1, nyears, main = "Expected abundance (lambda) over time", frame = F, lwd = 2, ylab = "lambda", xlab = "Time")
-  plot(Time, N, main = "Realized abundance (N) over time", frame = F)
-  curve(plogis(alpha0 +alpha1 * x), 1, nyears, main = "p over time", frame = F, lwd = 2, xlab = "Time", ylab = "p (at averate temp)")
-  matplot(Time, C, main = "Counts (C) over time", frame = F)
-  curve(plogis(alpha0 + alpha2 * x), -2, 2, main = "p vs. Temperature", frame = F, lwd = 2, xlab = "Temperature", ylab = "p (at start of study)")
-  matplot(temp, C, main = "Counts (C) over time", frame = F)
+  curve(exp(beta0 + beta1 * x), 1, nyears, main = "Expected abundance (lambda) over time", frame = FALSE, lwd = 2, ylab = "lambda", xlab = "Time")
+  plot(Time, N, main = "Realized abundance (N) over time", frame = FALSE)
+  curve(plogis(alpha0 +alpha1 * x), 1, nyears, main = "p over time", frame = FALSE, lwd = 2, xlab = "Time", ylab = "p (at averate temp)")
+  matplot(Time, C, main = "Counts (C) over time", frame = FALSE)
+  curve(plogis(alpha0 + alpha2 * x), -2, 2, main = "p vs. Temperature", frame = FALSE, lwd = 2, xlab = "Temperature", ylab = "p (at start of study)")
+  matplot(temp, C, main = "Counts (C) over time", frame = FALSE)
 }
 return(list(nyears=nyears, nreps=nreps, beta0=beta0, beta1=beta1, alpha0=alpha0, alpha1=alpha1, alpha2=alpha2, N=N, C=C, Time=Time, temp = temp, p = p))
 }

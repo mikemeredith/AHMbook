@@ -158,14 +158,3 @@ simSpatialDSte <- function(
     y=y,                # sites x pixels x surveys, number of animals detected
     Counts=Counts))     # sites x surveys, number of animals detected (summed over pixels)
 }
-
-if(FALSE) {
-str(tmp  <-  sim.spatialDSte())
-str(tmp  <-  sim.spatialDSte(show.plots=FALSE))
-str(tmp  <-  sim.spatialDSte(show.plots=6))
-str(tmp  <-  sim.spatialDSte(nsurveys=6))
-str(tmp  <-  sim.spatialDSte(nsurveys=3))
-str(tmp  <-  sim.spatialDSte(dim=8))
-str(tmp  <-  sim.spatialDSte(nsites=150,lam0=0.3,beta=2,phi=0.6,nsurveys=4))
-
-}

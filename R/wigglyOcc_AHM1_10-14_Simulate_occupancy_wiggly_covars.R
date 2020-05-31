@@ -32,9 +32,8 @@ p.ordered <- c(seq(p.bp[1], p.bp[2],, 120),
                seq(p.bp[5], p.bp[6],, 120),
                seq(p.bp[6], p.bp[7],, 120))
 x.index <- sample(1:length(Xsurvey))
-Xsurvey <- matrix(Xsurvey[x.index], M, J, byrow = F)
-p <- matrix(p.ordered[x.index], M, J, byrow = F)
-# plot(Xsurvey, p) ## ??
+Xsurvey <- matrix(Xsurvey[x.index], M, J, byrow = FALSE)
+p <- matrix(p.ordered[x.index], M, J, byrow = FALSE)
 
 # Sample detection/nondetection data
 y <- array(dim = c(M, J))

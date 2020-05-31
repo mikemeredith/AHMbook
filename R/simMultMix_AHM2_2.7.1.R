@@ -14,12 +14,12 @@ simMultMix <- function(nsites = 100, nsurveys = 3, nyears = 4,
   # lambda, theta and p: expected abundance, availability and detection prob.
 
   # Checks and fixes for input data -----------------------------
-  # nsites <- round(nsites[1])
-  # nsurveys <- round(nsurveys[1])
-  # nyears <- round(nyears[1])
-  # stopifNegative(lambda, allowZero=FALSE)
-  # stopifnotProbability(theta)
-  # stopifnotProbability(p)
+  nsites <- round(nsites[1])
+  nsurveys <- round(nsurveys[1])
+  nyears <- round(nyears[1])
+  stopifNegative(lambda, allowZero=FALSE)
+  stopifnotProbability(theta)
+  stopifnotProbability(p)
   # --------------------------------------------
 
   y <- array(NA, c(nsites, nyears, nsurveys))

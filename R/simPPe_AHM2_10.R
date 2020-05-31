@@ -1,19 +1,6 @@
 
 # AHM2 Chapter 10
 
-if(FALSE) {
-library(raster)
-library(RandomFields)
-lscape.size = 150
-buffer.width = 25
-variance.X = 1
-theta.X = 10
-M = 250
-beta = 1
-quads.along.side = 6
-}
-
-
 simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X = 10, M = 250, beta = 1, quads.along.side = 6) {
   #
   # Name means 'SIMulate Point Pattern Educational version'
@@ -218,37 +205,3 @@ return(list(
   E_N = E_N,    # scalar, average realized abundance per quadrat.
   E_z = E_z))   # scalar, average realized occupancy per quadrat.
 } # ------------ End of function definition --------------------
-
-if(FALSE) {
-# Play with educational point pattern function
-
-# Nice plot (Fig. 21-2)
-set.seed(27)
-str(simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1, theta.X = 70, M = 200, beta = 1.5, quads.along.side = 6))
-
-# Fewer individuals, smaller density
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
-
-# Stronger habitat heterogeneity: more aggregation
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 10, theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
-
-# Longer habitat gradient
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 100, M = 250, beta = 1, quads.along.side = 6))
-
-# No habitat preference: homogeneous point process
-str(simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1, theta.X = 10, M = 250, beta = 0, quads.along.side = 6))
-
-# Very small scale habitat heterogeneity -> (almost) homogeneous point process
-str(simPPe(lscape.size = 200, buffer.width = 20, variance.X = 1, theta.X = 0.01, M = 250, beta = 1, quads.along.side = 6))
-
-# Abundance (and occupancy) goes up when intensity goes up ...
-str(simPPe(M = 10))
-str(simPPe(M = 100))
-str(simPPe(M = 1000))
-
-# ... or when quadrat size increases too !
-str(simPPe(M = 100, quads.along.side = 10))
-str(simPPe(M = 100, quads.along.side = 5))
-str(simPPe(M = 100, quads.along.side = 1))
-
-}

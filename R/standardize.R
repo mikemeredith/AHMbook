@@ -4,8 +4,6 @@
 # Centre and scale a vector or array and return an object of the same class.
 # For an array, the mean and SD of the whole array is used.
 
-# Code modified from the function base::scale.
-
 standardize <- function (x, center = TRUE, scale = TRUE) {
   if (!is.numeric(x))
     stop("'x' must be a numeric vector or array.", call. = FALSE)

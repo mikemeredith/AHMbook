@@ -127,15 +127,15 @@ simPOP <- function(
     par(mfrow = c(1, 3))
     hist(N, breaks = 100, main = 'N', col = 'grey')
     hist(C, breaks = 100, main = 'C', col = 'grey')
-    plot(N, C, xlab = 'True N', ylab = 'Observed C', frame = F)
+    plot(N, C, xlab = 'True N', ylab = 'Observed C', frame = FALSE)
     abline(0,1)
 
     par(mfrow = c(2, 2))
     ylim <- range(c(N, C))
-    matplot(t(N), type = 'l', lty = 1, main = 'Trajectories of true N', frame = F, ylim = ylim)
-    matplot(t(C), type = 'l', lty = 1, main = 'Trajectories of observed C', frame = F, ylim = ylim)
-    plot(table(N[,1]), main = 'Initial N', frame = F)
-    plot(table(N[,T]), main = 'Final N', frame = F)
+    matplot(t(N), type = 'l', lty = 1, main = 'Trajectories of true N', frame = FALSE, ylim = ylim)
+    matplot(t(C), type = 'l', lty = 1, main = 'Trajectories of observed C', frame = FALSE, ylim = ylim)
+    plot(table(N[,1]), main = 'Initial N', frame = FALSE)
+    plot(table(N[,T]), main = 'Final N', frame = FALSE)
   }
   # Numeric output
   return(list(

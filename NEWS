@@ -1,3 +1,11 @@
+CHANGES in 0.1.4.9111 (2020-05-31)
+
+  * Removed commented-out code from several *.R files.
+
+  * Replace 'F' with 'FALSE' throughout.
+
+  * 'e2dist' now has default 'y = NULL', when y <- x.
+
 CHANGES in 0.1.4.9110 (2020-05-31)
 
   * Tidied up Authors@R and corresponding changes to help files.

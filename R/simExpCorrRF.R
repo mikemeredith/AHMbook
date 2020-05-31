@@ -1,18 +1,5 @@
 # Define function for simulating spatially correlated random field
 
-if(FALSE) {
-variance = 1
-theta = 10
-size = 50
-seed = NA
-show.plots = TRUE
-
-library(raster)
-library(RandomFields)
-
-set.seed(10)
-}
-
 # ------------ Start of function definition ----------------
 simExpCorrRF <- function(variance = 1, theta = 1, size = 50, seed = NA, show.plots = TRUE){
 # Function creates Gaussian random field with negative
@@ -64,11 +51,5 @@ return(list(variance = variance, theta = theta, size = size, seed = seed,
   field = field,
   grid = grid))
 } # ------------ End of function definition ----------------
-
-if(FALSE){
-set.seed(10)          # Fig. 20-3
-s <- simExpCorrRF(theta = 10, size = 50)
-str(s)
-}
 
 

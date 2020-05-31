@@ -8,14 +8,14 @@ Calculates the pair-wise distances between two sets of points
 Calculates the Euclidian distance between each of the points defined by the coordinates in 'x' and each of those in 'y'.
 }
 \usage{
-e2dist(x, y)
+e2dist(x, y = NULL)
 }
 \arguments{
   \item{x}{
 a 2-column matrix or data frame with the x and y coordinates of a set of points.
 }
   \item{y}{
-a 2-column matrix or data frame with the x and y coordinates of a second set of points.
+a 2-column matrix or data frame with the x and y coordinates of a second set of points; if NULL, y is taken to be the same as x.
 }
 }
 \value{
@@ -34,6 +34,5 @@ plot(pts1)
 points(pts2, pch=19, col='red')
 e2dist(x=pts1, y=pts2)
 # x and y can be the same:
-e2dist(x=pts2, y=pts2)
-
+e2dist(x=pts2)
 }

@@ -7,12 +7,9 @@
 # for multivariate time series of counts
 
 graphSSM<- function(ssm, C){
-  par(cex.main = 0.8)
   fitted <- lower <- upper <- numeric()
   nsites <- nrow(ssm$mean$n)
   T <- ncol(ssm$mean$n)
-  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
-      on.exit(devAskNewPage(oldAsk)) # Restore previous setting
   for(j in 1:nsites){
     for (i in 1:T){
       fitted[i] <- mean(ssm$sims.list$n[,j,i])
@@ -21,8 +18,10 @@ graphSSM<- function(ssm, C){
     }
     m1 <- min(c(C[j,], fitted, lower), na.rm = TRUE)
     m2 <- 1.2*max(c(C[j,], fitted, upper), na.rm = TRUE)
-    oldpar <- par(mar = c(4.5, 4, 1, 1), cex = 1.2)
-       on.exit(par(oldpar), add=TRUE)
+    oldpar <- par(mar = c(4.5, 4, 1, 1), cex = 1.2, cex.main = 0.8)
+       on.exit(par(oldpar))
+    oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+      on.exit(devAskNewPage(oldAsk), add=TRUE) # Restore previous setting
     plot(0, 0, ylim = c(m1, m2), xlim = c(0.5, T), main = paste('Site', j),
       ylab = "Population size", xlab = "Year", las = 1, col = "black",
       type = "l", lwd = 2, frame = FALSE, axes = FALSE)

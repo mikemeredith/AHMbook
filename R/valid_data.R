@@ -63,10 +63,6 @@ valid_data <- function(N, tp, n.valid, prop.valid=FALSE) {
     if(wanted == 0)
       break
   }
-  stopifnot(wanted == 0) # failure here means a bug.
-  stopifnot(all(k <= n))
-  stopifnot(all(k <= tp))
-  stopifnot(all(n <= N))
 
   return(list(n=n, k=k))
 }

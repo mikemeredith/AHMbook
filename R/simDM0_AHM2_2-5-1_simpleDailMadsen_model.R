@@ -46,8 +46,8 @@ simDM0 <- function(nsites = 50, nsurveys = 3, nyears = 5,
     op <- par(mfrow = c(2,2), mar = c(5,5,4,3), cex.lab = 1.5, cex.axis = 1.5)
     on.exit(par(op))
 
-    matplot(t(N), type = 'l', main = paste('Population trajectories under a simple DM model \nwith lambda =', lambda, ', phi =', phi, 'and gamma =', gamma, ''), lty = 1, lwd = 3, las = 1, frame = F, xlab = 'Year', ylab = 'N')
-    matplot(t(S), type = 'l', main = 'Number of apparent survivors', lty = 1, lwd = 3, las = 1, frame = F, xlab = 'Year', ylab = 'S')
+    matplot(t(N), type = 'l', main = paste('Population trajectories under a simple DM model \nwith lambda =', lambda, ', phi =', phi, 'and gamma =', gamma, ''), lty = 1, lwd = 3, las = 1, frame = FALSE, xlab = 'Year', ylab = 'N')
+    matplot(t(S), type = 'l', main = 'Number of apparent survivors', lty = 1, lwd = 3, las = 1, frame = FALSE, xlab = 'Year', ylab = 'S')
     hist(N[,1], main = 'Distribution of N in first year', breaks = 50, col = 'grey')
     hist(N[,nyears], main = 'Distribution of N in last year', breaks = 50, col = 'grey')
   }

@@ -21,7 +21,8 @@ hist(fit.s, breaks = 100, col = "grey", main = "", xlab = "Fit statistic simulat
 hist(ch, breaks = 100, col = "grey", main = "", xlab = "Lack of fit ratio (c-hat)")
 title(paste("c-hat =", round(mean(ch),2)))
 plot(fit.a[fit.a >= fit.s], fit.s[fit.a >= fit.s], xlab = "Fit statistic actual data",
-ylab = "Fit statistic simulated data", col = "blue", xlim = lims, ylim = lims, frame = F)
+ylab = "Fit statistic simulated data", col = "blue", xlim = lims, ylim = lims,
+    frame = FALSE)
 title(paste("bpv (proportion red) =", round(mean(fit.s>fit.a),2)))
 points(fit.a[fit.a < fit.s], fit.s[fit.a < fit.s], col = "red")
 abline(0,1)
