@@ -1,8 +1,8 @@
 Package: AHMbook
 Type: Package
 Title: Functions and Data for the Book "Applied Hierarchical Modeling in Ecology" Vols 1 and 2
-Version: 0.1.4.9109
-Date: 2020-05-30
+Version: 0.1.4.9110
+Date: 2020-05-31
 Depends: R (>= 2.10)
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda, unmarked (>= 0.12.2), mvtnorm, spdep
 Suggests:
@@ -33,7 +33,6 @@ Authors@R: c(
   person("British Ornithological Trust", role="dtc", comment="willowWarbler, UKmarbledWhite, <https://www.bto.org/>"),
   person("Butterfly Conservation", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://butterfly-conservation.org>"),
   person("Centre for Ecology & Hydrology", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://www.ceh.ac.uk>"),
-  person("Centre for Ecology & Hydrology", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://www.ceh.ac.uk>"),
   person("Dutch Centre for Field Ornithology (Sovon)", role="dtc", comment="wagtail, <https://www.sovon.nl>"),
   person("eMammal", role="dtc", comment="MesoCarnivores, <https://emammal.si.edu/>"),
   person("Groupe Pèlerin Jura", role="dtc", comment="FrenchPeregrines"),
@@ -49,12 +48,11 @@ Authors@R: c(
   person("Centre for Ecology & Hydrology", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://www.ceh.ac.uk>"),
   person("UK Butterfly Monitoring Scheme (UKBMS)", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://www.ceh.ac.uk/our-science/projects/uk-butterfly-monitoring-scheme>"),
   person("US Forest Service", role="dtc", comment="cswa"),
-  person("USGS Patuxent Wildlife Research Center", role="dtc", comment="duskySalamanders"),
-  person("Volers", role="dtc", comment="waterVoles"),
-  person("Volettes", role="dtc", comment="waterVoles") )
+  person("USGS Patuxent Wildlife Research Center", role="dtc", comment="duskySalamanders"))
 BugReports: https://github.com/mikemeredith/AHMbook/issues
 Description: Provides functions and data sets to accompany the two volume publication "Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS" by Marc Kéry and Andy Royle: volume 1 (2016, ISBN: 978-0-12-801378-6) and volume 2 (2020, ISBN: 978-0-12-809585-0), <https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook>.
 License: GPL (>=3)
+Copyright: file COPYRIGHTS
 NeedsCompilation: no
 URL: https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/,
   https://sites.google.com/site/appliedhierarchicalmodeling/home

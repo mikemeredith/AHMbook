@@ -21,7 +21,7 @@ Habitat patches suitable for Water Voles (\emph{Arvicola amphibius}) were survey
 }
 }
 \source{
-Chris Sutherland, Xavier Lambin and the Volers and Volettes of NW-Scotland
+Chris Sutherland, Xavier Lambin and colleagues.
 }
 \references{
 Sutherland, C., Elston, D.A., & Lambin, X. (2012) Multi-scale processes in metapopulations: effects of stage structure, rescue effect and correlated extinctions. \emph{Ecology}, 93, 2465-2473.

@@ -1,3 +1,9 @@
+CHANGES in 0.1.4.9110 (2020-05-31)
+
+  * Tidied up Authors@R and corresponding changes to help files.
+
+  * Added inst/COPYRIGHTS file.
+
 CHANGES in 0.1.4.9109 (2020-05-30)
 
   * Revised Authors@R, added URLs.
