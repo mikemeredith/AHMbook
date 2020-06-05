@@ -12,10 +12,10 @@ e2dist(x, y = NULL)
 }
 \arguments{
   \item{x}{
-a 2-column matrix or data frame with the x and y coordinates of a set of points.
+a 2-column matrix or data frame with the x and y coordinates of a set of points, or a length 2 vector with the coordinates of a single point.
 }
   \item{y}{
-a 2-column matrix or data frame with the x and y coordinates of a second set of points; if NULL, y is taken to be the same as x.
+an optional 2-column matrix or data frame, or a length 2 vector, with the x and y coordinates of a second set of points; if NULL, y is taken to be the same as x.
 }
 }
 \value{
@@ -33,6 +33,9 @@ require(graphics)
 plot(pts1)
 points(pts2, pch=19, col='red')
 e2dist(x=pts1, y=pts2)
-# x and y can be the same:
+# with a vector argument:
+vec <- colMeans(pts2)
+e2dist(vec, pts2)
+# with y = NULL:
 e2dist(x=pts2)
 }

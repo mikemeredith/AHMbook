@@ -28,7 +28,7 @@ A data frame with 9651 rows and the following columns:
 }
 
 \source{
-UK Butterfly Monitoring Scheme (UKBMS) data © copyright and database right Butterfly Conservation, the Centre for Ecology and Hydrology, British Trust for Ornithology, and the Joint Nature Conservation Committee, 2018. The UKBMS is indebted to all volunteers who contribute data to the scheme.
+UK Butterfly Monitoring Scheme (UKBMS) data © copyright and database right Butterfly Conservation, the Centre for Ecology and Hydrology, British Trust for Ornithology, and the Joint Nature Conservation Committee, 2018. The UKBMS is indebted to all volunteers who contribute data to the scheme. %% licensed under UK Open Govt Licence.
 
  \url{https://www.ceh.ac.uk/our-science/projects/uk-butterfly-monitoring-scheme}
 }

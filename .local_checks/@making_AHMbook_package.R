@@ -16,20 +16,22 @@ checkTnF("AHMbook")
 install.packages(c("plotrix", "raster", "RandomFields", "coda",
     "unmarked", "mvtnorm", "spdep"))
 
+# For package development
+system("R CMD INSTALL AHMbook") # Use this for a "dev" install.
+devtools::load_all("AHMbook")
 
 # Create the AHMbook package
-
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-# system("R CMD check AHMbook_0.1.4.9111.tar.gz --no-manual")
-system("R CMD check --run-donttest AHMbook_0.1.4.9111.tar.gz --no-manual")
-# system("R CMD check --as-cran AHMbook_0.1.4.9111.tar.gz")
-# system("R CMD check --as-cran AHMbook_0.1.4.9111.tar.gz --no-manual")
-# Sys.setenv(R_ZIPCMD = "C:/Rtools/bin/zip.exe")
-system("R CMD INSTALL --build AHMbook_0.1.4.9111.tar.gz") # installs and produces the .zip binary
-system("R CMD INSTALL AHMbook_0.1.4.9111.tar.gz") # installs only
-
-system("R CMD INSTALL AHMbook") # Use this for a "dev" install.
+chkstub <- "R CMD check AHMbook_0.1.4.9113.tar.gz"  # <-- fix version number here...
+instub <- "R CMD INSTALL AHMbook_0.1.4.9113.tar.gz" # <-- ...and here
+# Pick one to check:
+system(chkstub)
+system(paste(chkstub, "--run-donttest"))
+system(paste(chkstub, "--as-cran"))
+# Pick one to install
+system(instub)                   # install only
+system(paste(instub, "--build")) # install and produce the .zip binary
 
 
 # Try it out:
@@ -56,10 +58,6 @@ str(MesoCarnivores)
 dimnames(SwissAtlasHa$counts)[[3]]
 
 str(simPH())
-
-# library(lintr)
-?lintr
-# lint_package("AHMbook")  # just joking!
 
 library(AHMbook)
 data(wigglyLine)

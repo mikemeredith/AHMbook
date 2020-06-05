@@ -1,3 +1,11 @@
+CHANGES in 0.1.4.9113 (2020-06-05)
+
+  * 'e2dist' will now accept length 2 vector for coordinates of a single point.
+
+CHANGES in 0.1.4.9112 (2020-06-01)
+
+  * Updated COPYRIGHTS file and dtc fields.
+
 CHANGES in 0.1.4.9111 (2020-05-31)
 
   * Removed commented-out code from several *.R files.
@@ -62,11 +70,11 @@ CHANGES in 0.1.4.9098 (2020-04-25)
 
 CHANGES in 0.1.4.9097 (2020-04-03)
 
-  * Fixed bug in helper function histCount to deal properly with large counts.
+  * Fixed bug in helper function 'histCount' to deal properly with large counts.
 
 CHANGES in 0.1.4.9096 (2020-02-03)
 
-  * Fixed typo in simCJS
+  * Fixed typo in 'simCJS'
 
   * Updated README.md file
 
@@ -78,7 +86,7 @@ CHANGES in 0.1.4.9095 (2020-01-10)
 
 CHANGES in 0.1.4.9094 (2020-01-09)
 
-  * Rename functions sim.spatialDSline and sim.spatialDSte to simSpatial*.
+  * Rename functions 'sim.spatialDSline' and 'sim.spatialDSte' to 'simSpatial*'.
 
 CHANGES in 0.1.4.9093 (2020-01-09)
 

@@ -153,12 +153,12 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{MHB2014}}}{ Complete data from the Swiss Breeding Bird Survey MHB (Monitoring Häufige Brutvögel) for the year 2014 (AHM1 - 11.3)}
   \item{\code{\link{spottedWoodpecker}}}{ Data for Middle Spotted Woodpeckers in Switzerland (AHM2 - 4.11.2)}
   \item{\code{\link{SwissAtlasHa}}}{ A 1ha-scale subset of the count data from the Swiss Breeding Bird Atlas (AHM2 - 8.4.2)}
- \item{\code{\link{SwissEagleOwls}}}{ Territory-level, multi-state detection/nondetection data for Eagle Owls in Switzerland (AHM2 - 6.4}
+ \item{\code{\link{SwissEagleOwls}}}{ Territory-level, multi-state detection/nondetection data for Eagle Owls in Switzerland (AHM2 - 6.4)}
   \item{\code{\link{SwissMarbledWhite}}}{ Data from the Biodiversity Monitoring Program (LANAG) in the Swiss Canton of Aargau for Marbled White butterfly (AHM2 - 1.8.2)}
   \item{\code{\link{SwissSquirrels}}}{ Count data for Red Squirrels in Switzerland from the Swiss breeding bird survey MHB (AHM1 - 10.9)}
   \item{\code{\link{SwissTits}}}{ Data for 6 species of tits in Switzerland from from the Swiss breeding bird survey MHB  during 2004 to 2013 (AHM1 - 6.13.1)}
   \item{\code{\link{treeSparrow}}}{ Data for Tree Sparrows in Alaska (AHM2 - 11.8.4)}
-  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for peregrines (AHM1 - 10.12.2)}
+  \item{\code{\link{ttdPeregrine}}}{ Time-to-detection data for Peregrines (AHM1 - 10.12.2)}
   \item{\code{\link{UKmarbledWhite}}}{ Data from the UK Butterfly Monitoring Scheme (UKBMS) for Marbled White butterfly (AHM2 - 1.8.2)}
   \item{\code{\link{wagtail}}}{ Distance sampling data for Yellow Wagtails in The Netherlands (AHM1 - 9.5.3)}
   \item{\code{\link{waterVoles}}}{ Detection/nondetection data for the Mighty Water Vole of Scotland (AHM2 - 7.2.2)}
@@ -172,7 +172,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
   \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout the book (eg, Sections AHM1 - 7.5.4, AHM1 - 7.9.3, AHM2 - 2.3.3)}
   \item{\code{\link{e2dist}}}{ Compute a matrix of Euclidean distances}
-  \item{\code{\link{image_scale}}}{ Draw scale for image (from SCR book, introduced in chapter AHM2 - 11.7.2) }
+  \item{\code{\link{image_scale}}}{ Draw scale for image (introduced in chapter AHM2 - 11.7.2) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
   \item{\code{\link{Color_Ramps}}}{ Color ramps for use with image or raster plots }
   } }

@@ -1,6 +1,8 @@
 
 # Some crude checks for the simulation functions in AHMbook package
 
+# No text should appear in the Console.
+
 # This checks both old and new (> 3.6.0) sample algorithms
 
 # It uses the new improved version of checkTotal
