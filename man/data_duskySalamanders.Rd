@@ -22,7 +22,7 @@ Northern dusky salamanders (\emph{Desmognathus fuscus}) were sampled in 12 headw
 }
 }
 \source{
-Evan Grant (USGS Patuxent Wildlife Research Center)
+Evan Grant and colleagues.
 }
 \references{
 Zipkin, E.F. et al (2014) Modeling structured population dynamics using data from unmarked individuals, \emph{Ecology}, 95(1) 22-29.

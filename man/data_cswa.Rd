@@ -46,7 +46,7 @@ Chestnut-sided Warblers (\emph{Setophaga pensylvanica})in 38 "wildlife openings"
 }
 
 \source{
-David King, US Forest Service.
+David King and colleagues.
 }
 \references{
 Chandler, R.B., King, D.I., & Chandler, C.C. (2009) Effects of management regime on the abundance and nest survival of shrubland birds in wildlife openings in northern New England, USA. \emph{Forest Ecology and Management}, 258, 1669-1676.
