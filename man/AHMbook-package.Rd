@@ -76,7 +76,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{simNpC}}}{ Simulate data on abundance (N), detection probability (p) and resulting counts (C) under a counting process with imperfect detection  (AHM2 - 1.2)}
   \item{\code{\link{simPOP}}}{ Simulate count data under a demographic state-space, or Dial-Madsen, model (AHM2 - 1.7.1)}
   \item{\code{\link{simPH}}}{ Simulate count data with phenological curves within a year (AHM2 - 1.8.1)}
-  \item{\code{\link{graphSSM}}}{ Plot trajectories of counts and latent abundance from a fitted Gaussian state-space model (AHM2 - 1.6)}
+  \item{\code{\link{graphSSM}}}{ Plot trajectories of counts and latent abundance from a fitted Gaussian state-space model (AHM2 - 1.6.1)}
   } }
 
 \section{AHM2 - Chapter 2}{
@@ -94,45 +94,45 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 
 \section{AHM2 - Chapter 4}{
   \describe{
-  \item{\code{\link{simDynocc}}}{ Simulate detection/nondetection data under a dynamic occupancy model under a wide range of conditions}
-  \item{\code{\link{simDemoDynocc}}}{ Simulate detection/nondetection data under a demographic dynamic occupancy model}
+  \item{\code{\link{simDynocc}}}{ Simulate detection/nondetection data under a dynamic occupancy model under a wide range of conditions (AHM2 - 4.4)}
+  \item{\code{\link{simDemoDynocc}}}{ Simulate detection/nondetection data under a demographic dynamic occupancy model (AHM2 - 4.12)}
   } }
 
 \section{AHM2 - Chapter 5}{
   \describe{
-  \item{\code{\link{simDCM}}}{ Simulate detection/nondetection data under a general dynamic community model (site-occupancy variant) }
+  \item{\code{\link{simDCM}}}{ Simulate detection/nondetection data under a general dynamic community model (site-occupancy variant)  (AHM2 - 5.2)}
   } }
 
 \section{AHM2 - Chapter 7}{
   \describe{
-  \item{\code{\link{valid_data}}}{ Partial validation of simulated data with false positives}
-  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive occupancy models }
+  \item{\code{\link{valid_data}}}{ Partial validation of simulated data with false positives (AHM2 - 7.6.2)}
+  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive occupancy models  (AHM2 - 7.2.2)}
   } }
 
 \section{AHM2 - Chapter 8}{
   \describe{
-  \item{\code{\link{getLVcorrMat}}}{ Compute the correlation matrix from an analysis of a latent variable occupancy or binomial N-mixture model}
+  \item{\code{\link{getLVcorrMat}}}{ Compute the correlation matrix from an analysis of a latent variable occupancy or binomial N-mixture model (AHM2 - 8.4.2)}
   } }
 
 \section{AHM2 - Chapter 9}{
   \describe{
-  \item{\code{\link{simDynoccSpatial}}}{ Simulate detection/nondetection data under a dynamic occupancy model with spatial covariate and spatial autocorrelation}
-  \item{\code{\link{simExpCorrRF}}}{ Simulate data from a Gaussian random field with negative exponential correlation function}
-  \item{\code{\link{simOccSpatial}}}{ Simulate detection/nondetection data under a spatial, static occupancy model for a real landscape in the Bernese Oberland (Swiss Alps)}
-  \item{\code{\link{simNmixSpatial}}}{ Simulate counts under a spatial, static binomial N-mixture model for a real landscape in the Bernese Oberland (Swiss Alps)}
+  \item{\code{\link{simDynoccSpatial}}}{ Simulate detection/nondetection data under a dynamic occupancy model with spatial covariate and spatial autocorrelation (AHM2 - 9.6.1.1)}
+  \item{\code{\link{simExpCorrRF}}}{ Simulate data from a Gaussian random field with negative exponential correlation function (AHM2 - 9.2)}
+  \item{\code{\link{simOccSpatial}}}{ Simulate detection/nondetection data under a spatial, static occupancy model for a real landscape in the Bernese Oberland (Swiss Alps) (AHM2 - 9.2)}
+  \item{\code{\link{simNmixSpatial}}}{ Simulate counts under a spatial, static binomial N-mixture model for a real landscape in the Bernese Oberland (Swiss Alps) (AHM2 - 9.2)}
   } }
 
 \section{AHM2 - Chapter 10}{
   \describe{
-  \item{\code{\link{simPPe}}}{ Simulate a spatial point pattern in a heterogeneous landscape and show aggregation to abundance and occurrence ('e' for educational version)}
-  \item{\code{\link{simDataDK}}}{ Simulate data for an integrated species distribution model (SDM) of Dorazio-Koshkina}
+  \item{\code{\link{simPPe}}}{ Simulate a spatial point pattern in a heterogeneous landscape and show aggregation to abundance and occurrence ('e' for educational version)  (AHM2 - 10.2)}
+  \item{\code{\link{simDataDK}}}{ Simulate data for an integrated species distribution model (SDM) of Dorazio-Koshkina (AHM2 - 10.6.1)}
   } }
 
 \section{AHM2 - Chapter 11}{
   \describe{
-  \item{\code{\link{simSpatialDSline}}}{ Simulate line transect distance sampling data with spatial variation in density}
-  \item{\code{\link{simSpatialDSte}}}{ Simulate data for replicate line transect distance sampling surveys with spatial variation in density and temporary emigration}
-  \item{\code{\link{simDSM}}}{ Simulate line transect data for density surface modeling}
+  \item{\code{\link{simSpatialDSline}}}{ Simulate line transect distance sampling data with spatial variation in density  (AHM2 - 11.5)}
+  \item{\code{\link{simSpatialDSte}}}{ Simulate data for replicate line transect distance sampling surveys with spatial variation in density and temporary emigration (AHM2 - 11.8.1)}
+  \item{\code{\link{simDSM}}}{ Simulate line transect data for density surface modeling (AHM2 - 11.10.1)}
   } }
 
 \section{DATA SETS}{
@@ -142,7 +142,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{cswa}}}{ Chestnut-sided Warbler data for point counts and spot-mapping from White Mountain National Forest (AHM2 - 2.4.3)}
   \item{\code{\link{crossbillAHM}}}{ Crossbill data from the Swiss Breeding Bird Survey for 2001 to 2012 (AHM2 - 4.9)}
   \item{\code{\link{dragonflies}}}{ Toy data set used in AHM1 - 3.1}
-  \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (AHM2 - 2.9.2).}
+  \item{\code{\link{duskySalamanders}}}{ Counts of juvenile vs adult salamanders over 7 years (AHM2 - 2.9.2)}
   \item{\code{\link{EurasianLynx}}}{ Data for Eurasian Lynx in Italy and Switzerland (AHM2 - 7.3.2)}
   \item{\code{\link{Finnmark}}}{ Data from surveys of birds in Finnmark in NE Norway (AHM2 - 5.7)}
   \item{\code{\link{FrenchPeregrines}}}{ Detection data for peregrines in the French Jura (AHM2 - 4.11)}
@@ -172,7 +172,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{standardize}}}{ Standardize covariates to mean 0, SD 1.}
   \item{\code{\link{fitstats}}, \code{\link{fitstats2}}}{ Calculate fit-statistics used in parboot GOF tests throughout the book (eg, Sections AHM1 - 7.5.4, AHM1 - 7.9.3, AHM2 - 2.3.3)}
   \item{\code{\link{e2dist}}}{ Compute a matrix of Euclidean distances}
-  \item{\code{\link{image_scale}}}{ Draw scale for image (introduced in chapter AHM2 - 11.7.2) }
+  \item{\code{\link{image_scale}}}{ Draw scale for image (introduced in chapter AHM1 - 9.8.3) }
   \item{\code{\link{bigCrossCorr}}}{ Report cross-correlations above a given threshold }
   \item{\code{\link{Color_Ramps}}}{ Color ramps for use with image or raster plots }
   } }

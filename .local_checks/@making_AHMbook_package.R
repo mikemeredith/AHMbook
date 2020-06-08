@@ -1,6 +1,6 @@
 
-setwd("D:/Github/AHMbook_package")
-setwd("C:/Github/AHMbook_package")
+setwd("D:/Github/AHMbook_package") # my desktop
+setwd("C:/Github/AHMbook_package") # my laptop
 dir()
 
 # Spelling check
@@ -21,14 +21,17 @@ system("R CMD INSTALL AHMbook") # Use this for a "dev" install.
 devtools::load_all("AHMbook")
 
 # Create the AHMbook package
+# ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-chkstub <- "R CMD check AHMbook_0.1.4.9113.tar.gz"  # <-- fix version number here...
-instub <- "R CMD INSTALL AHMbook_0.1.4.9113.tar.gz" # <-- ...and here
+chkstub <- "R CMD check AHMbook_0.1.4.9114.tar.gz"  # <-- fix version number here...
+instub <- "R CMD INSTALL AHMbook_0.1.4.9114.tar.gz" # <-- ...and here
+
 # Pick one to check:
 system(chkstub)
-system(paste(chkstub, "--run-donttest"))
-system(paste(chkstub, "--as-cran"))
+# system(paste(chkstub, "--run-donttest"))
+system(paste(chkstub, "--as-cran"))  # as-cran now runs donttest
+
 # Pick one to install
 system(instub)                   # install only
 system(paste(instub, "--build")) # install and produce the .zip binary
