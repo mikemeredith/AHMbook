@@ -1,0 +1,563 @@
+CHANGES in 0.1.4.9114 (2020-06-05)
+
+  * Corrected section numbers on main help page.
+
+CHANGES in 0.1.4.9113 (2020-06-05)
+
+  * 'e2dist' will now accept length 2 vector for coordinates of a single point.
+
+CHANGES in 0.1.4.9112 (2020-06-01)
+
+  * Updated COPYRIGHTS file and dtc fields.
+
+CHANGES in 0.1.4.9111 (2020-05-31)
+
+  * Removed commented-out code from several *.R files.
+
+  * Replace 'F' with 'FALSE' throughout.
+
+  * 'e2dist' now has default 'y = NULL', when y <- x.
+
+CHANGES in 0.1.4.9110 (2020-05-31)
+
+  * Tidied up Authors@R and corresponding changes to help files.
+
+  * Added inst/COPYRIGHTS file.
+
+CHANGES in 0.1.4.9109 (2020-05-30)
+
+  * Revised Authors@R, added URLs.
+
+CHANGES in 0.1.4.9108 (2020-05-29)
+
+  * Checked Examples for compliance with CRAN requirements.
+
+CHANGES in 0.1.4.9107 (2020-05-29)
+
+  * Functions 'playRN', 'sim3occ', 'simDCM', 'simDynoccSpatial', 'simNmixSpatial', 'simNmix', 'simOccSpatial', 'simOccttd' and 'wigglyOcc' gain a 'verbose' argument; if FALSE, Console output is suppressed.
+
+CHANGES in 0.1.4.9106 (2020-05-29)
+
+  * Spell check; changed instances of GB usage to US.
+
+CHANGES in 0.1.4.9105 (2020-05-23)
+
+  * Added contributors to the DESCRIPTION file.
+
+CHANGES in 0.1.4.9104 (2020-04-30)
+
+  * Added 'U' to the output of 'simDSM'.
+
+CHANGES in 0.1.4.9103 (2020-04-27)
+
+  * Fixed bug in 'simDSM' with 1 survey.
+
+CHANGES in 0.1.4.9102 (2020-04-27)
+
+  * Added note about 'sample.kind="Rounding"' to all simulation functions affected.
+
+CHANGES in 0.1.4.9101 (2020-04-27)
+
+  * Corrections to help file for 'simDSM'.
+
+CHANGES in 0.1.4.9100 (2020-04-25)
+
+  * Tweaked argument and output names for 'simDSM'.
+
+CHANGES in 0.1.4.9099 (2020-04-25)
+
+  * Added 'N.pix' to the output of 'simDSM'.
+
+CHANGES in 0.1.4.9098 (2020-04-25)
+
+  * Added 'simDSM' function.
+
+CHANGES in 0.1.4.9097 (2020-04-03)
+
+  * Fixed bug in helper function 'histCount' to deal properly with large counts.
+
+CHANGES in 0.1.4.9096 (2020-02-03)
+
+  * Fixed typo in 'simCJS'
+
+  * Updated README.md file
+
+CHANGES in 0.1.4.9095 (2020-01-10)
+
+  * Update Title and Description in DESCRIPTION.
+
+  * Clean up References sections: chronological order, AHM1/2 with sections.
+
+CHANGES in 0.1.4.9094 (2020-01-09)
+
+  * Rename functions 'sim.spatialDSline' and 'sim.spatialDSte' to 'simSpatial*'.
+
+CHANGES in 0.1.4.9093 (2020-01-09)
+
+  * Corrections to help files from Andy.
+
+CHANGES in 0.1.4.9092 (2020-01-08)
+
+  * Corrections to help files from Marc.
+
+CHANGES in 0.1.4.9091 (2019-12-29)
+
+  * Fixed help page for 'crPiFun' and friends, added examples.
+
+CHANGES in 0.1.4.9090 (2019-09-20)
+
+  * Increased top and bottom margins of raster plot in 'simExpCorrRF'.
+
+CHANGES in 0.1.4.9089 (2019-08-16)
+
+  * Added plots to 'simDM0'.
+
+CHANGES in 0.1.4.9088 (2019-07-26)
+
+  * Updated README.md file, added badges.
+
+CHANGES in 0.1.4.9087 (2019-07-25)
+
+  * 'wigglyOcc' now returns 'x.index' and 'p.ordered', needed for plots on p.AHM1/623.
+
+CHANGES in 0.1.4.9086 (2019-07-21)
+
+  * Changes to file names only, no change to contents. All 'sim*' files now begin with 'sim' followed by an uppercase letter (exception 'sim3Occ'). Sort order should now be the same on case-sensitive systems (eg, Github) and on Windows.
+
+CHANGES in 0.1.4.9085 (2019-07-20)
+
+  * Chapter numbering corrected in help pages and in comments in R files; no changes to code. Not yet done in file names.
+
+CHANGES in 0.1.4.9084 (2019-07-15)
+
+  * In 'simExpCorrRF', changes to flip the plot; 'field' output is now vector, not matrix.
+
+CHANGES in 0.1.4.9083 (2019-07-12)
+
+  * 'image_scale' gets 'cex.legend' argument.
+
+CHANGES in 0.1.4.9082 (2019-07-07)
+
+  * Added 'wigglyLine' data set.
+
+CHANGES in 0.1.4.9081 (2019-07-03)
+
+  * In 'simDynoccSpatial': argument 'expo.range.XAC' renamed 'theta.XAC'.
+
+CHANGES in 0.1.4.9080 (2019-06-27)
+
+  * Additional elements from 'BerneseOberland' data set incorporated in the output of
+     'simNmixSpatial' and 'simOccSpatial'.
+
+CHANGES in 0.1.4.9079 (2019-06-15)
+
+  * Replaced 'EurasianLynx' with 'EL2', coordinates named 'xcoord' and 'ycoord'.
+
+CHANGES in 0.1.4.9078 (2019-06-15) - not pushed to Github
+
+  * Added 'EL2' data set; similar to 'EurasianLynx' but different row order;
+    includes x, y and forest covariates.
+
+CHANGES in 0.1.4.9077 (2019-06-14)
+
+  * Added 'simOccSpatial' function.
+
+CHANGES in 0.1.4.9076 (2019-06-14)
+
+  * Added 'simNmixSpatial' function.
+
+CHANGES in 0.1.4.9074 (2019-06-12)
+
+  * Added 'simExpCorrRF' function.
+
+CHANGES in 0.1.4.9073 (2019-06-09)
+
+  * Changed variable name 'northness' to 'north' in 'SwissAtlasHa' data set.
+
+CHANGES in 0.1.4.9072 (2019-06-06)
+
+  * Added 'MesoCarnivores' data set.
+
+CHANGES in 0.1.4.9071 (2019-06-03)
+
+  * 'getLVcorrMat' and 'getEcorrMat' return the MCMC chains if stat=NULL.
+
+CHANGES in 0.1.4.9070 (2019-06-01)
+
+  * Added 'getEcorrMat' function.
+
+CHANGES in 0.1.4.9069 (2019-05-31)
+
+  * Shorter species names for 'SwissAtlasHa' data set.
+
+CHANGES in 0.1.4.9068 (2019-05-30)
+
+  * Tweaks to 'getLVcorrMat' function.
+
+CHANGES in 0.1.4.9067 (2019-05-29)
+
+  * Added 'getLVcorrMat' function.
+
+CHANGES in 0.1.4.9066 (2019-05-26)
+
+  * Tweaks to 'treeSparrow' data set, 'sim.spatialDSte' and help pages.
+
+CHANGES in 0.1.4.9065 (2019-05-25)
+
+  * Added 'treeSparrow' data set.
+
+CHANGES in 0.1.4.9064 (2019-05-20)
+
+  * Tweaks to 'sim.spatialDSte' and 'simPPe'.
+
+CHANGES in 0.1.4.9063 (2019-05-20)
+
+  * Tweaks to 'sim.spatialDSte'.
+
+CHANGES in 0.1.4.9062 (2019-05-18)
+
+  * 'simDynoccSpatial' gets input checks.
+
+  * Removed 'spatial.exp' function.
+
+CHANGES in 0.1.4.9061 (2019-05-17)
+
+  * Added 'simDynoccSpatial' function.
+
+CHANGES in 0.1.4.9060 (2019-05-14)
+
+  * Added SwissAtlasHa data set.
+
+CHANGES in 0.1.4.9059 (2019-05-14)
+
+  * Added Hubbard Brook warbler data set.
+
+CHANGES in 0.1.4.9058 (2019-05-13)
+
+  * changes to the way authors are included in DESCRIPTION file (so we can spell
+    Marc's name correctly).
+
+CHANGES in 0.1.4.9057 (2019-04-29)
+
+  * 'simDataDK2' renamed 'simDataDK'; the old 'simDataDK' with 1-per-pixel limit
+    becomes 'simDataDK1'.
+
+CHANGES in 0.1.4.9056 (2019-04-28)
+
+  * Changed plot titles for simDataDK*.
+
+CHANGES in 0.1.4.9055 (2019-04-25)
+
+  * Correct correction to data set!
+
+CHANGES in 0.1.4.9054 (2019-04-25)
+
+  * Correction to data set.
+
+CHANGES in 0.1.4.9053 (2019-04-24)
+
+  * 'sim.spatialDSte' gets plots and input checks.
+
+CHANGES in 0.1.4.9052 (2019-04-23)
+
+  * Added 'sim.spatialDSte'.
+
+  * Small bug fixes.
+
+CHANGES in 0.1.4.9051 (2019-04-14)
+
+  * Fixed plots not cleaned up after 'data.fn', 'simPPe', 'sim.spatialDS', 'sim.spatialDSline' and 'spatial.exp'.
+
+CHANGES in 0.1.4.9050 (2019-04-13)
+
+  * Added color ramps 'rampYOR', 'rampGreens', 'rampGreys', 'rampBYR', 'rampGBr'.
+
+CHANGES in 0.1.4.9049 (2019-04-12)
+
+  * 'N' changed to 'n' in 'simPH'.
+
+CHANGES in 0.1.4.9048 (2019-04-12)
+
+  * Small changes to plots in 'simDCM', 'simNpC' and 'graphSSM'; no change in numeric output.
+
+CHANGES in 0.1.4.9047 (2019-04-08)
+
+  * Added 'sim.spatialDSline' function.
+
+  * Add '.onAttach' function to show version number.
+
+CHANGES in 0.1.4.9046 (2019-04-08)
+
+  * Change to output in 'simDataDK*' functions.
+
+CHANGES in 0.1.4.9045 (2019-04-07)
+
+  * Change to argument name 'npix' -> 'sqrt.npix' in 'simDataDK*' functions.
+
+CHANGES in 0.1.4.9044 (2019-04-06)
+
+  * Added 'simDataDK2' function.
+
+CHANGES in 0.1.4.9043 (2019-04-04)
+
+  * Changes to output of 'simDataDK' function.
+
+CHANGES in 0.1.4.9042 (2019-04-04)
+
+  * Informative error messages for 'simDataDK' function.
+
+CHANGES in 0.1.4.9041 (2019-04-03)
+
+  * Added 'simDataDK' function.
+
+CHANGES in 0.1.4.9040 (2019-04-02)
+
+  * Tweaks to 'simPPe' function plots, SwissEagleOwls, more input checks.
+
+CHANGES in 0.1.4.9039 (2019-04-01)
+
+  * Tweaks to 'simPPe' function plots.
+
+CHANGES in 0.1.4.9038 (2019-03-31)
+
+  * Added 'simPPe' function.
+
+CHANGES in 0.1.4.9037 (2019-03-23)
+
+  * Added 'simMultMix' function.
+
+CHANGES in 0.1.4.9036 (2019-03-22)
+
+  * Corrected  spelling of "Hierarachical" -> "Hierarchical" in 43 help files.
+
+CHANGES in 0.1.4.9035 (2019-03-22)
+
+  * Changed 'valid_data' to use Mike Meredith's code.
+
+CHANGES in 0.1.4.9034 (2019-03-21)
+
+  * Added 'EurasianLynx' data set.
+
+  * Added 'valid_data' function.
+
+CHANGES in 0.1.4.9033 (2019-03-20)
+
+  * Added 'waterVoles' data set.
+
+  * Added 'modSelFP' function.
+
+CHANGES in 0.1.4.9032 (2019-03-11)
+
+  * Added sanity checks to all sim* functions, incl. vol 1.
+
+CHANGES in 0.1.4.9031 (2019-03-05)
+
+  * Eliminated use of par(no.readonly = TRUE).
+
+CHANGES in 0.1.4.9030 (2019-03-04)
+
+  * Argument names 'nsite', 'nyear', 'nsurvey', 'nvisit' changed to plural ('nsites', etc)
+     for vol 1 functions.
+
+  * Argument name 'nrep' changed to plural, 'nreps', and 'nspec' changed to 'nspecies'.
+
+CHANGES in 0.1.4.9029 (2019-03-04)
+
+  * Argument names 'nsite', 'nyear', 'nsurvey', 'nvisit' changed to plural ('nsites', etc)
+     for vol 2 functions.
+
+CHANGES in 0.1.4.9028 (2019-03-01)
+
+  * Additional arguments to 'smDynocc'.
+
+CHANGES in 0.1.4.9027 (2019-02-05)
+
+  * Pernickerty test removed from 'simDynocc' (sadly!)
+
+CHANGES in 0.1.4.9026 (2019-01-23)
+
+  * Added duskySalamanders data set.
+
+CHANGES in 0.1.4.9025 (2019-01-20)
+
+  * Small changes to SwissEagleOwls data set.
+
+CHANGES in 0.1.4.9024 (2019-01-20)
+
+  * Better messages from 'stopifnot' when NAs are allowed.
+
+  * 'simDynocc' plots now have a vertical line at year of impact.
+
+CHANGES in 0.1.4.9023 (2019-01-16)
+
+  * Corrected NAs in cswa data set.
+
+CHANGES in 0.1.4.9022 (2019-01-15)
+
+  * Added 'simDM0' and 'simDM' functions.
+
+  * Modified SwissEagleOwls data set.
+
+CHANGES in 0.1.4.9021 (2019-01-14)
+
+  * Added cswa (Chestnut-sided Warbler) data set.
+
+  * Improved 'fitstats' to cope with NAs in the data.
+
+CHANGES in 0.1.4.9020 (2019-01-13)
+
+  * Added greenWoodpecker data set.
+
+CHANGES in 0.1.4.9019 (2019-01-12)
+
+  * Added SwissEagleOwls data set.
+
+  * Updated 'simDCM' function with new argument names.
+
+CHANGES in 0.1.4.9018 (2018-12-22)
+
+  * Changes to plots to make them color-blind-friendly.
+
+CHANGES in 0.1.4.9017 (2018-12-21)
+
+  * Corrections to 'FrenchPeregrines' data set.
+
+CHANGES in 0.1.4.9016 (2018-12-21)
+
+  * Function 'simDemoDynocc' added.
+
+CHANGES in 0.1.4.9015 (2018-12-21)
+
+  * 'crossbillAHM' data set added.
+
+CHANGES in 0.1.4.9014 (2018-12-18)
+
+  * 'SwissMarbledWhite' data set added.
+
+CHANGES in 0.1.4.9013 (2018-12-17)
+
+  * 'FrenchPeregrines' data set added.
+
+CHANGES in 0.1.4.9012 (2018-12-14)
+
+  * 'middleSpottedWoodpecker' data set renamed to 'spottedWoodpecker'.
+
+CHANGES in 0.1.4.9011 (2018-12-12)
+
+  * Changes to file names so data files begin 'data' and simulation functions begin 'sim...'.
+
+  * Restore settings and input checks changed in some code files.
+
+CHANGES in 0.1.4.9010 (2018-12-11)
+
+  * Added middleSpottedWoodpecker data set.
+
+  * Moved unmarked from Depends to Imports.
+
+CHANGES in 0.1.4.9009 (2018-12-10)
+
+  * Improved fixes and checks for input arguments for AHM2 functions
+
+  * Changed 'range' to 'trend' where appropriate in 'simDynocc'.
+
+CHANGES in 0.1.4.9008 (2018-12-05)
+
+  * Updated simDynocc function.
+
+  * Added 'stopifnot*' functions.
+
+CHANGES in 0.1.4.9007 (2018-12-03)
+
+  * Added 'zinit' function.
+
+CHANGES in 0.1.4.9006 (2018-12-01)
+
+  * Fixed: NAs removed from 'forest' covariate in crestedTit
+
+CHANGES in 0.1.4.9005 (2018-11-30)
+
+  * marbledWhite help page gets proper acknowledgement.
+
+  * simSSM renamed simPOP.
+
+CHANGES in 0.1.4.9004 (2018-11-29)
+
+  * Fixed: graphSSM now restores graphics settings on exit.
+
+  * Fixed: in willowWarbler data, 1d arrays changed to vectors.
+
+CHANGES in 0.1.4.9003 (2018-11-28)
+
+  * 'standardize' no longer adds attributes to output (causes problems with jagsUI).
+
+  * Added function 'standardize2match'.
+
+CHANGES in 0.1.4.9002 (2018-11-26)
+
+  * Added new functions simPH, simNpC, simSSM (ne simpop), graphSSM (ne graph.ssm2), simCJS and ch2marray (ne marray).
+
+  * Added utility function 'standardize'.
+
+  * Updated main package help page
+
+  * Better Examples for crestedTit data set
+
+CHANGES in 0.1.4.9001 (2018-11-22)
+
+  * Added help pages for 'crestedTit' and 'marbledWhite' data sets.
+
+  * Added 'willowWarbler' data set and documentation.
+
+CHANGES in 0.1.4.9000 (2018-11-04)
+
+  * Added 'crestedTit' and 'marbledWhite' data sets, but not yet documented.
+
+CHANGES in 0.1.4 (2017-05-19)
+
+  * New "logit" detection function added to sim.spatialDS function, which corresponds to the model fitted in unmarked::pcount.spDS v.0.12.2; old "hazard" detection function removed.
+
+  * Improvements to help pages and additional examples.
+
+  * Fixed: argument discard0 in simHDS now works as documented.
+
+  * Fixed: bugs in issj.sim which produced errors with argument values other than those in the book; tidied up ambiguity in help page with nsites and npoints; added example.
+
+CHANGES in 0.1.3 (2017-04-20)
+
+  * Function pcount.spHDS and predict methods for unmarkedFit objects have moved to the unmarked package v.0.12; AHMbook now Depends on unmarked (>=0.12).
+
+  * Added the MHB2014, SwissSquirrels, SwissTits, Finnmark, ttdPeregrine and wagtail data sets; see the help pages for ways to use these instead of .csv files with the code in the book.
+
+  * Removed default arguments for the coordinates in map.Nmix.resi, making it more generally useful.
+
+  * Fixed: slew of warnings produced by simNmix, also dropping of dimensions with small numbers of individuals.
+
+  * Added more examples to the help pages for simulation functions.
+
+CHANGES in 0.1.1 (2017-01-03)
+
+  * Full help pages for all functions.
+
+  * New names: plot.Nmix.resi -> plot_Nmix_resi and image.scale -> image_scale, to prevent clashes with R's 'plot' and 'image' generic functions.
+
+  * Fewer dependencies, and all checked when you load AHMbook: no more "there is no package called xxx" when you try to run a function.
+
+  * Changes to the "histograms" of counts, using transparent colours when two counts are plotted together.
+
+  * The dragonfly data have been tidied up; do data(dragonfly) before use.
+
+  * New functions for Volume 2: simDynocc and simDCM.
+
+  * The 'jay' dataset has moved to 'unmarked' package.
+
+  * Fixed: bugs involving 'logit'.
+
+  * Fixed: data.fn() now corresponds to the code in section 4.3.
+
+  * Fixed: simHDSg("point", ...), sim.spatialDS() and sim.spatialHDS() now work.
+
+  * Fixed: plotting functions now restore the settings of the graphics window on exit.
+
+  * Note: simComm("counts",...), simHDStr("point",...), and simHDSopen("point",...)
+      give slightly different results even with the same seed; all the other simulations
+      give the same values as before when set.seed() is used.

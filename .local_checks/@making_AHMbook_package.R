@@ -24,8 +24,8 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-chkstub <- "R CMD check AHMbook_0.1.4.9114.tar.gz"  # <-- fix version number here...
-instub <- "R CMD INSTALL AHMbook_0.1.4.9114.tar.gz" # <-- ...and here
+chkstub <- "R CMD check AHMbook_0.2.0.tar.gz"  # <-- fix version number here...
+instub <- "R CMD INSTALL AHMbook_0.2.0.tar.gz" # <-- ...and here
 
 # Pick one to check:
 system(chkstub)
