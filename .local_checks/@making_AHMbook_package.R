@@ -24,17 +24,19 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-chkstub <- "R CMD check AHMbook_0.2.0.tar.gz"  # <-- fix version number here...
-instub <- "R CMD INSTALL AHMbook_0.2.0.tar.gz" # <-- ...and here
+pkg <- "AHMbook_0.2.0.9001.tar.gz"  # <-- fix version number here
 
 # Pick one to check:
-system(chkstub)
-# system(paste(chkstub, "--run-donttest"))
-system(paste(chkstub, "--as-cran"))  # as-cran now runs donttest
+## on desktop
+system(paste("R CMD check ", pkg))
+system(paste("R CMD check ", pkg, "--as-cran"))  # as-cran now runs donttest
+## on laptop
+system(paste("R CMD check ", pkg, "--no-manual"))
+system(paste("R CMD check ", pkg, "--as-cran --no-manual"))
 
 # Pick one to install
-system(instub)                   # install only
-system(paste(instub, "--build")) # install and produce the .zip binary
+system(paste("R CMD INSTALL ", pkg))            # install only
+system(paste("R CMD INSTALL ", pkg, "--build")) # install and produce the .zip binary
 
 
 # Try it out:

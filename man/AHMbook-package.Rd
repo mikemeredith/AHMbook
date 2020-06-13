@@ -84,6 +84,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{simDM0}}}{ Simulate count data from a Dail-Madsen model, no covariates (AHM2 - 2.5.1)}
   \item{\code{\link{simDM}}}{  Simulate count data from a Dail-Madsen model, with covariates (AHM2 - 2.5.5)}
   \item{\code{\link{simMultMix}}}{  Simulate "removal" data from a multinomial-mixture model (AHM2 - 2.7.1)}
+  \item{\code{\link{simFrogDisease}}}{  Simulate detection data for diseased frogs (AHM2 - 2.9.1)}
   } }
 
 \section{AHM2 - Chapter 3}{

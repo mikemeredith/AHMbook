@@ -1,52 +1,56 @@
+CHANGES in 0.2.0.9001 (2020-06-13)
+
+  * Added `simFrogDisease` function.
+
 CHANGES in 0.2.0 (2020-06-05)
 
-  * Added simulation functions for AHM vol 2: 'simNpc', 'simPOP', 'simPH', 'simDM0', 'simDM', 'simMultMix', 'simCJS', 'simDemoDynocc', 'simDM', 'simDynOccSpatial', 'simExpCorrRF', 'simOccSpatial', 'simNmixSpatial', 'simPPe', 'simDataDK', 'simSpatialDSline', 'simSpatialDSte', 'simDSM'.
+  * Added simulation functions for AHM vol 2: `simNpc`, `simPOP`, `simPH`, `simDM0`, `simDM`, `simMultMix`, `simCJS`, `simDemoDynocc`, `simDM`, `simDynOccSpatial`, `simExpCorrRF`, `simOccSpatial`, `simNmixSpatial`, `simPPe`, `simDataDK`, `simSpatialDSline`, `simSpatialDSte`, `simDSM`.
 
-  * Added data sets for AHM vol 2: 'BerneseOberland', 'crestedTit', 'cswa', 'crossbillAHM', 'duskySalamanders', 'EurasianLynx', 'FrenchPeregrines', 'greenWoodpecker', 'HubbardBrook', 'MesoCarnivores', 'spottedWoodpecker', 'SwissAtlasHa', 'SwissEagleOwls', 'SwissMarbledWhite', 'treeSparrow', 'UKmarbledWhite', 'waterVoles', 'wigglyLine', 'willowWarbler'.
+  * Added data sets for AHM vol 2: `BerneseOberland`, `crestedTit`, `cswa`, `crossbillAHM`, `duskySalamanders`, `EurasianLynx`, `FrenchPeregrines`, `greenWoodpecker`, `HubbardBrook`, `MesoCarnivores`, `spottedWoodpecker`, `SwissAtlasHa`, `SwissEagleOwls`, `SwissMarbledWhite`, `treeSparrow`, `UKmarbledWhite`, `waterVoles`, `wigglyLine`, `willowWarbler`.
 
-  * Added utility functions: 'graphSSM',  'ch2marray', 'valid_data', 'modSelFP', 'getLVcorrMat', 'zinit', 'Color_Ramps', 'standardize', 'standardize2match'.
+  * Added utility functions: `graphSSM`,  `ch2marray`, `valid_data`, `modSelFP`, `getLVcorrMat`, `zinit`, `Color_Ramps`, `standardize`, `standardize2match`.
 
-  * 'e2dist' now has default 'y = NULL', when y <- x; now accepts length 2 vector for coordinates of a single point.
+  * `e2dist` now has default `y = NULL`, when y <- x; now accepts length 2 vector for coordinates of a single point.
 
-  * Authors and contributors now listed as 'Authors@R' in DESCRIPTION file.
+  * Authors and contributors now listed as `Authors@R` in DESCRIPTION file.
 
   * Added inst/COPYRIGHTS file.
 
-  * Functions 'playRN', 'sim3occ', 'simNmix', 'simOccttd' and 'wigglyOcc' gain a 'verbose' argument; if FALSE, Console output is suppressed.
+  * Functions `playRN`, `sim3occ`, `simNmix`, `simOccttd` and `wigglyOcc` gain a `verbose` argument; if FALSE, Console output is suppressed.
 
-  * Added note about 'sample.kind="Rounding"' to help files for all simulation functions affected.
+  * Added note about `sample.kind="Rounding"` to help files for all simulation functions affected.
 
-  * 'wigglyOcc' now returns 'x.index' and 'p.ordered', needed for plots on p.AHM1/623.
+  * `wigglyOcc` now returns `x.index` and `p.ordered`, needed for plots on p.AHM1/623.
 
-  * 'image_scale' gets 'cex.legend' argument.
+  * `image_scale` gets `cex.legend` argument.
 
-  * Added input checks to all 'sim*' functions.
+  * Added input checks to all `sim*` functions.
 
-  * Argument names 'nsite', 'nyear', 'nsurvey', 'nvisit', 'nrep', 'nspec' changed to plural ('nsites', etc) for all functions.
+  * Argument names `nsite`, `nyear`, `nsurvey`, `nvisit`, `nrep`, `nspec` changed to plural (`nsites`, etc) for all functions.
 
   * Changes to plots to make them more color-blind friendly.
 
-  * Moved package 'unmarked' from Depends to Imports.
+  * Moved package `unmarked` from Depends to Imports.
 
 CHANGES in 0.1.4 (2017-05-19)
 
-  * New "logit" detection function added to 'sim.spatialDS' function, which corresponds to the model fitted in 'unmarked::pcount.spDS' v.0.12.2; old "hazard" detection function removed.
+  * New "logit" detection function added to `sim.spatialDS` function, which corresponds to the model fitted in `unmarked::pcount.spDS` v.0.12.2; old "hazard" detection function removed.
 
   * Improvements to help pages and additional examples.
 
-  * Fixed: argument 'discard0' in 'simHDS' now works as documented.
+  * Fixed: argument `discard0` in `simHDS` now works as documented.
 
-  * Fixed: bugs in 'issj.sim' which produced errors with argument values other than those in the book; tidied up ambiguity in help page with 'nsites' and 'npoints'; added example.
+  * Fixed: bugs in `issj.sim` which produced errors with argument values other than those in the book; tidied up ambiguity in help page with `nsites` and `npoints`; added example.
 
 CHANGES in 0.1.3 (2017-04-20)
 
-  * Function 'count.spHDS' and predict methods for 'unmarkedFit' objects have moved to the 'unmarked' package v.0.12; AHMbook now Depends on 'unmarked' (>=0.12).
+  * Function `count.spHDS` and predict methods for `unmarkedFit` objects have moved to the `unmarked` package v.0.12; AHMbook now Depends on `unmarked` (>=0.12).
 
-  * Added the 'MHB2014', 'SwissSquirrels', 'SwissTits', 'Finnmark', 'ttdPeregrine' and 'wagtail' data sets; see the help pages for ways to use these instead of .csv files with the code in the book.
+  * Added the `MHB2014`, `SwissSquirrels`, `SwissTits`, `Finnmark`, `ttdPeregrine` and `wagtail` data sets; see the help pages for ways to use these instead of .csv files with the code in the book.
 
-  * Removed default arguments for the coordinates in 'map.Nmix.resi', making it more generally useful.
+  * Removed default arguments for the coordinates in `map.Nmix.resi`, making it more generally useful.
 
-  * Fixed: slew of warnings produced by 'simNmix', also dropping of dimensions with small numbers of individuals.
+  * Fixed: slew of warnings produced by `simNmix`, also dropping of dimensions with small numbers of individuals.
 
   * Added more examples to the help pages for simulation functions.
 
@@ -54,26 +58,26 @@ CHANGES in 0.1.1 (2017-01-03)
 
   * Full help pages for all functions.
 
-  * New names: 'plot.Nmix.resi' -> 'plot_Nmix_resi' and 'image.scale' -> 'image_scale', to prevent clashes with R's 'plot' and 'image' generic functions.
+  * New names: `plot.Nmix.resi` -> `plot_Nmix_resi` and `image.scale` -> `image_scale`, to prevent clashes with R`s `plot` and `image` generic functions.
 
-  * Fewer dependencies, and all checked when you load 'AHMbook': no more "there is no package called xxx" when you try to run a function.
+  * Fewer dependencies, and all checked when you load `AHMbook`: no more "there is no package called xxx" when you try to run a function.
 
   * Changes to the "histograms" of counts, using transparent colours when two counts are plotted together.
 
-  * The 'dragonfly' data have been tidied up; do 'data(dragonfly)' before use.
+  * The `dragonfly` data have been tidied up; do `data(dragonfly)` before use.
 
-  * New functions for Volume 2: 'simDynocc' and 'simDCM'.
+  * New functions for Volume 2: `simDynocc` and `simDCM`.
 
-  * The 'jay' dataset has moved to 'unmarked' package.
+  * The `jay` dataset has moved to `unmarked` package.
 
-  * Fixed: bugs involving 'logit'.
+  * Fixed: bugs involving `logit`.
 
-  * Fixed: 'data.fn()' now corresponds to the code in section 4.3.
+  * Fixed: `data.fn()` now corresponds to the code in section 4.3.
 
-  * Fixed: 'simHDSg("point", ...)', 'sim.spatialDS()' and 'sim.spatialHDS()' now work.
+  * Fixed: `simHDSg("point", ...)`, `sim.spatialDS()` and `sim.spatialHDS()` now work.
 
   * Fixed: plotting functions now restore the settings of the graphics window on exit.
 
-  * Note: 'simComm("counts",...)', 'simHDStr("point",...)', and 'simHDSopen("point",...)'
+  * Note: `simComm("counts",...)`, `simHDStr("point",...)`, and `simHDSopen("point",...)`
       give slightly different results even with the same seed; all the other simulations
-      give the same values as before when 'set.seed()' is used.
+      give the same values as before when `set.seed()` is used.
