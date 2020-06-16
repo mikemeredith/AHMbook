@@ -71,41 +71,45 @@ simCJS <- function(
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
-    # PLOT 1
-    # Plot trajectory of phi and p
-    plot(1:(n.occ-1), phi, typ= 'n', ylim = c(0, 1),
-      frame = FALSE, main = 'Trajectories of phi and p')
-    points(1:(n.occ-1), phi, type= 'b', cex = 2, pch = 16, col = 2)
-    points(1:(n.occ-1), p, type= 'b', cex = 2, pch = 16, col = 4, lty=3)
-    legend('top', legend = c('Apparent survival (phi)', 'Recapture (p)'),
-      lty=c(1,3), lwd=2, col=c(2,4), pch=16, cex=2,
-      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
+    tryPlot <- try( {
+      # PLOT 1
+      # Plot trajectory of phi and p
+      plot(1:(n.occ-1), phi, typ= 'n', ylim = c(0, 1),
+        frame = FALSE, main = 'Trajectories of phi and p')
+      points(1:(n.occ-1), phi, type= 'b', cex = 2, pch = 16, col = 2)
+      points(1:(n.occ-1), p, type= 'b', cex = 2, pch = 16, col = 4, lty=3)
+      legend('top', legend = c('Apparent survival (phi)', 'Recapture (p)'),
+        lty=c(1,3), lwd=2, col=c(2,4), pch=16, cex=2,
+        inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
-    # PLOT 2
-    par(mfrow = c(2, 2))
-    # Plot the true alive/dead pattern (z)
-    mapPalette <- colorRampPalette(c("white", "black"))
-    image(x = 1:n.occ, y = 1:n.ind, z = t(z), col = mapPalette(10), axes = TRUE,
-      xlab = "Year", ylab = "Individual",
-      main = 'z matrix of latent states in the CJS model: \nAlive (black) or dead (white) per individual and occasion')
+      # PLOT 2
+      par(mfrow = c(2, 2))
+      # Plot the true alive/dead pattern (z)
+      mapPalette <- colorRampPalette(c("white", "black"))
+      image(x = 1:n.occ, y = 1:n.ind, z = t(z), col = mapPalette(10), axes = TRUE,
+        xlab = "Year", ylab = "Individual",
+        main = 'z matrix of latent states in the CJS model: \nAlive (black) or dead (white) per individual and occasion')
 
-    # Plot the observed alive/dead pattern (y, or ch)
-    image(x = 1:n.occ, y = 1:n.ind, z = t(ch), col = mapPalette(10), axes = TRUE,
-      xlab = "Year", ylab = "Individual",
-      main = 'Observed data = capture-history matrix ch in the CJS model: \nDetected (black) or not detected (white) per individual and occasion')
-    box()
+      # Plot the observed alive/dead pattern (y, or ch)
+      image(x = 1:n.occ, y = 1:n.ind, z = t(ch), col = mapPalette(10), axes = TRUE,
+        xlab = "Year", ylab = "Individual",
+        main = 'Observed data = capture-history matrix ch in the CJS model: \nDetected (black) or not detected (white) per individual and occasion')
+      box()
 
-    # Superimpose the two images
-    tmp <- z    # copy z into tmp
-    tmp[z==1 & ch == 0] <- -1.1  # Mark detection errors as -1
-    mapPalette <- colorRampPalette(c("blue", "white", "black"))
-    image(x = 1:n.occ, y = 1:n.ind, z = t(tmp), col = mapPalette(10), axes = TRUE,
-    xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive & detected (black), \nalive & undetected (blue) and dead (grey) per individual and occasion')
+      # Superimpose the two images
+      tmp <- z    # copy z into tmp
+      tmp[z==1 & ch == 0] <- -1.1  # Mark detection errors as -1
+      mapPalette <- colorRampPalette(c("blue", "white", "black"))
+      image(x = 1:n.occ, y = 1:n.ind, z = t(tmp), col = mapPalette(10), axes = TRUE,
+      xlab = "Year", ylab = "Individual", main = 'Combopic of z and ch: not in study (white), alive & detected (black), \nalive & undetected (blue) and dead (grey) per individual and occasion')
 
-    # Population size trajectory of marked and alive in study area
-    plot(1:n.occ, n.alive, xlab = 'Year', ylab = 'Number alive',
-    main = 'Number of marked animals alive and in study area', frame = FALSE,
-    type = 'b', cex = 2, pch = 16, ylim = c(0, max(n.alive)))
+      # Population size trajectory of marked and alive in study area
+      plot(1:n.occ, n.alive, xlab = 'Year', ylab = 'Number alive',
+      main = 'Number of marked animals alive and in study area', frame = FALSE,
+      type = 'b', cex = 2, pch = 16, ylim = c(0, max(n.alive)))
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   # Output

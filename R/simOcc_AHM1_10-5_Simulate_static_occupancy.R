@@ -5,7 +5,9 @@
 
 # Function to simulate data for static occupancy models under wide range of conditions
 #   (introduced in AHM1 Section 10.5)
-simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1), alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE){
+simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, 
+    beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1),
+    alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE){
 #
 # Written by Marc Kery, 21 March 2015
 #
@@ -57,20 +59,7 @@ beta0 <- qlogis(mean.occupancy)            # Mean occurrence on link scale
 psi <- plogis(beta0 + beta1*elev + beta2*forest + beta3*elev*forest)
 z <- rbinom(n = M, size = 1, prob = psi)   # Realised occurrence (true state)
 
-# Plots for system state
-if(show.plot){
-  # Restore graphical settings on exit -------------------------
-  oldpar <- par("mfrow", "cex.main", "cex.lab", "mar")
-  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
-  on.exit({par(oldpar); devAskNewPage(oldAsk)})
-  # ------------------------------------------------------------
-
-  par(mfrow = c(2, 2), cex.main = 1)
-  curve(plogis(beta0 + beta1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "psi", lwd = 2)
-  plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "")
-  curve(plogis(beta0 + beta2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "psi", lwd = 2)
-  plot(forest, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "")
-}
+# Plots for system state moved to line
 
 # Model for observations: simulate observations y, given system state z
 alpha0 <- qlogis(mean.detection)        # mean detection on link scale
@@ -105,64 +94,87 @@ sumZ.obs <- sum(apply(y,1,max))    # Observed number of occ sites
 psi.fs.true <- sum(z) / M          # True proportion of occ. sites in sample
 psi.fs.obs <- mean(apply(y,1,max)) # Observed proportion of occ. sites in sample
 
-# More plots, for observation process
 if(show.plot){
-  par(mfrow = c(2, 3), cex.main = 1.2, cex.lab = 1.5, mar = c(5,5,3,2))
-  # Plots for elevation, time, 'heterogeneity', and 'behavioural response'
-  # Plots for elevation and time
-  curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-    xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
-    main = "Effects of elev and time")
-  for(j in 1:J){
-    curve(plogis(alpha0 + gamma[j] + alpha1*x),-1,1,lwd = 1, col="grey", add=TRUE)
-  }
-  # Plots for elevation and 'heterogeneity'
-  curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-    xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
-    main = "Effects of elev and site heterogeneity")
-  for(i in 1:M){
-    curve(plogis(alpha0 + eps[i] + alpha1*x),-1,1,lwd = 1, col="grey", add=T)
-  }
-  curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+  # Restore graphical settings on exit -------------------------
+  oldpar <- par("mfrow", "cex.main", "cex.lab", "mar")
+  oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
+  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  # ------------------------------------------------------------
 
-  # Plot for elevation and 'behavioural response'
-  p0plot <- p0
-  p1plot <- p1   ;   p1plot[,1] <- NA
-  for(j in 2:J){
-     p0plot[,j] <- p0plot[,j] / (1 - y[,(j-1)])   # NA out some
-     p1plot[,j] <- p1plot[,j] / y[,(j-1)]       # NA out some
-  }
-  matplot(elev, p0plot, xlab = "Elevation", ylab = "Detection (p)",
-    main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)",
-    pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-  matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
+  tryPlot <- try( {
+    # Plots for system state
+    par(mfrow = c(2, 2), cex.main = 1)
+    curve(plogis(beta0 + beta1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "psi", lwd = 2)
+    plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "")
+    curve(plogis(beta0 + beta2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "psi", lwd = 2)
+    plot(forest, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "")
+
+    # Plots for observation process
+    par(mfrow = c(2, 3), cex.main = 1.2, cex.lab = 1.5, mar = c(5,5,3,2))
+    # Plots for elevation, time, 'heterogeneity', and 'behavioural response'
+    # Plots for elevation and time
+    curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+      xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
+      main = "Effects of elev and time")
+    for(j in 1:J){
+      curve(plogis(alpha0 + gamma[j] + alpha1*x),-1,1,lwd = 1, col="grey", add=TRUE)
+    }
+    # Plots for elevation and 'heterogeneity'
+    curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+      xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
+      main = "Effects of elev and site heterogeneity")
+    for(i in 1:M){
+      curve(plogis(alpha0 + eps[i] + alpha1*x),-1,1,lwd = 1, col="grey", add=T)
+    }
+    curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+
+    # Plot for elevation and 'behavioural response'
+    p0plot <- p0
+    p1plot <- p1   ;   p1plot[,1] <- NA
+    for(j in 2:J){
+       p0plot[,j] <- p0plot[,j] / (1 - y[,(j-1)])   # NA out some
+       p1plot[,j] <- p1plot[,j] / y[,(j-1)]       # NA out some
+    }
+    matplot(elev, p0plot, xlab = "Elevation", ylab = "Detection (p)",
+      main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)",
+      pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
+    matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
 
 
-  # Plots for wind speed, time, 'heterogeneity', and 'behavioural response'
-  # Plots for elevation and time
-  curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-    xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
-    main = "Effects of wind and time")
-  for(j in 1:J){
-    curve(plogis(alpha0 + gamma[j] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
-  }
-  # Plots for wind speed and 'heterogeneity'
-  curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-    xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
-    main = "Effects of wind and site heterogeneity")
-  for(i in 1:M){
-    curve(plogis(alpha0 + eps[i] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
-  }
-  curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+    # Plots for wind speed, time, 'heterogeneity', and 'behavioural response'
+    # Plots for elevation and time
+    curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+      xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
+      main = "Effects of wind and time")
+    for(j in 1:J){
+      curve(plogis(alpha0 + gamma[j] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
+    }
+    # Plots for wind speed and 'heterogeneity'
+    curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+      xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
+      main = "Effects of wind and site heterogeneity")
+    for(i in 1:M){
+      curve(plogis(alpha0 + eps[i] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
+    }
+    curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", lwd = 2, add = TRUE)
 
-  # Plot for wind speed and 'behavioural response'
-  matplot(wind, p0plot, xlab = "Wind speed", ylab = "Detection (p)",
-    main = "p ~ elevation at actual elevation \n(red/blue - following/not following det.)",
-    pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-  matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
+    # Plot for wind speed and 'behavioural response'
+    matplot(wind, p0plot, xlab = "Wind speed", ylab = "Detection (p)",
+      main = "p ~ elevation at actual elevation \n(red/blue - following/not following det.)",
+      pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
+    matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 # Output
-return(list(M = M, J = J, mean.occupancy = mean.occupancy, beta0 = beta0, beta1 = beta1, beta2 = beta2, beta3 = beta3, mean.detection = mean.detection, time.effects = time.effects, gamma = gamma, alpha0 = alpha0, alpha1 = alpha1, alpha2 = alpha2, alpha3 = alpha3, sd.lp = sd.lp, eps = eps, b = b, elev = elev, forest = forest, wind = wind, psi = psi, z = z, p = p, p0 = p0, p1 = p1, y = y, sumZ = sumZ, sumZ.obs = sumZ.obs, psi.fs.true = psi.fs.true, psi.fs.obs = psi.fs.obs))
+return(list(M = M, J = J, mean.occupancy = mean.occupancy, beta0 = beta0,
+    beta1 = beta1, beta2 = beta2, beta3 = beta3, mean.detection = mean.detection,
+    time.effects = time.effects, gamma = gamma, alpha0 = alpha0, alpha1 = alpha1,
+    alpha2 = alpha2, alpha3 = alpha3, sd.lp = sd.lp, eps = eps, b = b, 
+    elev = elev, forest = forest, wind = wind, psi = psi, z = z,
+    p = p, p0 = p0, p1 = p1, y = y, sumZ = sumZ, sumZ.obs = sumZ.obs,
+    psi.fs.true = psi.fs.true, psi.fs.obs = psi.fs.obs))
 }
 

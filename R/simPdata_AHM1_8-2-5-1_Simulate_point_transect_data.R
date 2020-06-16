@@ -37,14 +37,18 @@ y <- rbinom(N, 1, p)
 if(show.plot) {
   op <- par(mfrow = c(1,2)) ; on.exit(par(op))
   # Plot the detection function
-  curve(exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.",
-    lwd = 2, main = "Detection function", ylim = c(0,1))
-  text(0.8*B, 0.9, paste("sigma:", sigma))
-  plot(u1, u2, asp = 1, pch = 1, main = "Point transect")
-  points(u1[d <= B], u2[d <= B], pch = 16, col = "black")
-  points(u1[y==1], u2[y==1], pch = 16, col = "blue")
-  points(B, B, pch = "+", cex = 3, col = "red")
-  plotrix::draw.circle(B, B, B)
+  tryPlot <- try( {
+    curve(exp(-x^2/(2*sigma^2)), 0, B, xlab="Distance (x)", ylab="Detection prob.",
+      lwd = 2, main = "Detection function", ylim = c(0,1))
+    text(0.8*B, 0.9, paste("sigma:", sigma))
+    plot(u1, u2, asp = 1, pch = 1, main = "Point transect")
+    points(u1[d <= B], u2[d <= B], pch = 16, col = "black")
+    points(u1[y==1], u2[y==1], pch = 16, col = "blue")
+    points(B, B, pch = "+", cex = 3, col = "red")
+    plotrix::draw.circle(B, B, B)
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 # Put all of the data in a matrix:

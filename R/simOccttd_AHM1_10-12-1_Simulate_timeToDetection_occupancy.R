@@ -51,10 +51,15 @@ ttd[z == 0] <- NA           # Censored if unoccupied
 ttd[ttd.temp >= Tmax] <- NA # Censored if ttd >= Tmax
 
 if(show.plot) {
-  hist(ttd, breaks = length(ttd)/3, col = "gold",
-    main = "Observed distribution of time to detection\n(censored cases (red line) excluded)", xlim = c(0, Tmax),
-    xlab = "Measured time to detection")
-  abline(v = Tmax, col = "red", lwd = 3)
+  tryPlot <- try( {
+    hist(ttd, breaks = length(ttd)/3, col = "gold",
+        main = "Observed distribution of time to detection\n(censored cases (red line) excluded)",
+        xlim = c(0, Tmax),
+        xlab = "Measured time to detection")
+    abline(v = Tmax, col = "red", lwd = 3)
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 # Number of sites where detected

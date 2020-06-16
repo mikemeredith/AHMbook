@@ -52,15 +52,19 @@ if(verbose) {
 # Plot system (state and observation)
 if(show.plot) {
   op <- par(mfrow = c(1,2), cex.main = 0.8) ; on.exit(par(op))
-  plot(Xsite, psi,
-    main = "Occupancy probability (red) and \nrealized presence/absence (black circles)",
-    type = "l", ylim = c(-0.1, 1.1), col = "red", xlab = "Site covariate (Xsite)",
-    lwd = 2, frame = FALSE)
-  points(Xsite, jitter(z, amount = 0.02))
-  plot(Xsurvey[order(x.index)], p[order(x.index)], type = "l", col = "red",
-    main = "Detection probability (red) and \nobserved data (black circles)",
-    xlab = "Survey covariate (Xsurvey)", ylab = "p", ylim = c(-0.1,1.1), lwd = 2, frame = FALSE)
-  points(Xsurvey, jitter(y, amount = 0.02))
+  tryPlot <- try( {
+    plot(Xsite, psi,
+        main = "Occupancy probability (red) and \nrealized presence/absence (black circles)",
+        type = "l", ylim = c(-0.1, 1.1), col = "red", xlab = "Site covariate (Xsite)",
+        lwd = 2, frame = FALSE)
+    points(Xsite, jitter(z, amount = 0.02))
+    plot(Xsurvey[order(x.index)], p[order(x.index)], type = "l", col = "red",
+        main = "Detection probability (red) and \nobserved data (black circles)",
+        xlab = "Survey covariate (Xsurvey)", ylab = "p", ylim = c(-0.1,1.1), lwd = 2, frame = FALSE)
+    points(Xsurvey, jitter(y, amount = 0.02))
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 return(list(M = M, J = J, Xsite = Xsite, Xsurvey = Xsurvey, psi = psi, z = z, p = p, y = y,

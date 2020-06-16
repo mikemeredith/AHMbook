@@ -192,29 +192,33 @@ simDataDK <- function(sqrt.npix = 100, alpha = c(-1,-1), beta = c(6,0.5),
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone = TRUE))
     on.exit({par(oldpar) ; devAskNewPage(oldAsk)})
 
-    # Fig.1
-    raster::plot(raster::subset(s, 'x'), axes = FALSE, box = FALSE, asp=1,
-      main = paste("Inhomogenous Poisson point process:\nIntensity  covariate 'x' and\nlocations of", N.pop, "individuals"))
-    points(loc.pop, pch = 16, cex = 0.5)    # location of the individuals
+    tryPlot <- try( {
+      # Fig.1
+      raster::plot(raster::subset(s, 'x'), axes = FALSE, box = FALSE, asp=1,
+        main = paste("Inhomogenous Poisson point process:\nIntensity  covariate 'x' and\nlocations of", N.pop, "individuals"))
+      points(loc.pop, pch = 16, cex = 0.5)    # location of the individuals
 
-    raster::plot(raster::subset(s, 'w'), axes = FALSE, box = FALSE,  asp=1,
-      main = paste("Presence-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
-    points(loc.det, pch = 16, cex = 0.5)    # location of the individuals
+      raster::plot(raster::subset(s, 'w'), axes = FALSE, box = FALSE,  asp=1,
+        main = paste("Presence-only observations:\nDetection bias covariate 'w' and\nlocations of", N.det, "individuals detected"))
+      points(loc.det, pch = 16, cex = 0.5)    # location of the individuals
 
-    # Fig.2
-    par(mfrow=c(2,2), mar = c(1,1,5,3))
-    raster::plot(raster::subset(squad, 'x'), axes = FALSE, box = FALSE,  asp=1,
-      main = "Mean intensity covariate 'x'\nfor each quadrat")
-    raster::plot(raster::subset(squad, 'w'), axes = FALSE, box = FALSE,  asp=1,
-    main = "Mean detection covariate 'w'\nfor each quadrat")
-    raster::plot(raster::subset(squad, 'N'), axes = FALSE, box = FALSE,  asp=1,
-      main = "True abundance 'N'\nfor each quadrat" )
-    mnc <- rowMeans(counts)
-    mnc[-selQuad] <- NA
-    cnt <- raster::subset(squad, 'N')
-    values(cnt) <- mnc
-    raster::plot(cnt, colNA='darkgrey',axes = FALSE, box = FALSE, asp=1,
-      main = "Mean counts for \neach quadrat surveyed,\ngrey if unsurveyed")
+      # Fig.2
+      par(mfrow=c(2,2), mar = c(1,1,5,3))
+      raster::plot(raster::subset(squad, 'x'), axes = FALSE, box = FALSE,  asp=1,
+        main = "Mean intensity covariate 'x'\nfor each quadrat")
+      raster::plot(raster::subset(squad, 'w'), axes = FALSE, box = FALSE,  asp=1,
+      main = "Mean detection covariate 'w'\nfor each quadrat")
+      raster::plot(raster::subset(squad, 'N'), axes = FALSE, box = FALSE,  asp=1,
+        main = "True abundance 'N'\nfor each quadrat" )
+      mnc <- rowMeans(counts)
+      mnc[-selQuad] <- NA
+      cnt <- raster::subset(squad, 'N')
+      values(cnt) <- mnc
+      raster::plot(cnt, colNA='darkgrey',axes = FALSE, box = FALSE, asp=1,
+        main = "Mean counts for \neach quadrat surveyed,\ngrey if unsurveyed")
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }    # end show.plot
 
   # Output (numeric)

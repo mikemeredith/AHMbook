@@ -30,10 +30,14 @@ fm <- occuRN(~cov3+obscov ~cov2, data=umf)
 Nest <- bup(ranef(fm, K = ), "mean")
 if(show.plots) {
   # par(mfrow = c(1,1)) ## leave it alone
-  plot(data$N, Nest, xlab = "True local abundance",
-    ylab = "Estimated local abundance", frame = FALSE)
-  abline(0,1, lwd = 3)                              # 1:1 line
-  abline(lm(Nest ~ data$N), col = "blue", lwd = 3)  # Regression
+  tryPlot <- try( {
+    plot(data$N, Nest, xlab = "True local abundance",
+      ylab = "Estimated local abundance", frame = FALSE)
+    abline(0,1, lwd = 3)                              # 1:1 line
+    abline(lm(Nest ~ data$N), col = "blue", lwd = 3)  # Regression
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 slope <- coef(lm(Nest ~ data$N))[2]               # Is 1 if model perfect
 return(list(nsites = M, nvisits = J, coef = coef(fm), slope = slope))

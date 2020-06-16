@@ -70,16 +70,20 @@ y <- rbinom(N, 1, p)                                           # detected or not
 
 if(show.plot) {
   op <- par(mar=c(3,3,3,6)) ; on.exit(par(op))
-  image(rasterFromXYZ(cbind(as.matrix(gr),x)), col=topo.colors(10), asp=1, bty='n') # need to convert gr to a matrix
-  rect(0, 0, 2*B, 2*B)  # draw box around the image
-  # draw.circle(B, B, B)
-  points(B, B, pch="+", cex=3)
-  image_scale(x, col=topo.colors(10))
-  # points(u1, u2, pch=20, col='black', cex = 0.8)  # plot points
-  title("Extremely cool figure")         # express your appreciation of all this
-  # points(u1[d <= B], u2[d <= B], pch = 16, col = "black", cex = 1) # in circle but not detected
-  points(u1, u2, pch = 16, col = c("black", "red")[y+1]) # in circle but not detected
-  # points(u1[y==1], u2[y==1], pch = 16, col = "red", cex = 1)     # detected
+  tryPlot <- try( {
+    image(rasterFromXYZ(cbind(as.matrix(gr),x)), col=topo.colors(10), asp=1, bty='n') # need to convert gr to a matrix
+    rect(0, 0, 2*B, 2*B)  # draw box around the image
+    # draw.circle(B, B, B)
+    points(B, B, pch="+", cex=3)
+    image_scale(x, col=topo.colors(10))
+    # points(u1, u2, pch=20, col='black', cex = 0.8)  # plot points
+    title("Extremely cool figure")         # express your appreciation of all this
+    # points(u1[d <= B], u2[d <= B], pch = 16, col = "black", cex = 1) # in circle but not detected
+    points(u1, u2, pch = 16, col = c("black", "red")[y+1]) # in circle but not detected
+    # points(u1[y==1], u2[y==1], pch = 16, col = "red", cex = 1)     # detected
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 # Remove data for individuals not detected
 if(!keep.all){

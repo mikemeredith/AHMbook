@@ -30,10 +30,16 @@ x <- abs(x)          # now it doesn't have direction
 if(show.plot) {
   op <- par(mfrow = c(1,2)) ; on.exit(par(op))
   # Plot the detection function
-  curve(exp(-x^2/(2*sigma^2)), 0, 100, xlab="Distance (x)", ylab="Detection prob.", lwd = 2, main = "Detection function", ylim = c(0,1))
-  text(80, 0.9, paste("sigma:", sigma))
-  hist(abs(xall), nclass=10, xlab = "Distance (x)", col = "grey", main = "True (grey) \nand observed distances (blue)")
-  hist(x, col = "blue", add = TRUE)
+  tryPlot <- try( {
+    curve(exp(-x^2/(2*sigma^2)), 0, 100, xlab="Distance (x)", ylab="Detection prob.",
+        lwd = 2, main = "Detection function", ylim = c(0,1))
+    text(80, 0.9, paste("sigma:", sigma))
+    hist(abs(xall), nclass=10, xlab = "Distance (x)", col = "grey", 
+        main = "True (grey) \nand observed distances (blue)")
+    hist(x, col = "blue", add = TRUE)
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 return(list(N = N, sigma = sigma, xall = xall, x = x))
 }

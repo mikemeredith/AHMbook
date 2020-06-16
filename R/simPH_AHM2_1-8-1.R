@@ -106,7 +106,6 @@ simPH <- function(
     for(i in 1:npop){
       for(t in 1:nyears){
         for(k in 1:nday){
-          # aa[i,t,k] <- (1 / (sigma[t] * sqrt(2 * pi)) ) * exp( -((date.range[k] - mu[i,t])^2) / (2 * sigma[t]^2) )       # Relative population size
           aa[i,t,k] <- dnorm(date.range[k], mu[i,t], sigma[t])
             # Relative population size
           ll[i,t,k] <- n[i,t] * aa[i,t,k] * pp[i,t,k] # Expected counts
@@ -115,34 +114,48 @@ simPH <- function(
     }
 
     # Graphical output
-    # Plot population dynamics and plot of all population sizes
-    par(mfrow = c(2,1), mar = c(5,4,3,1))
-    matplot(1:nyears, t(n), type = "l", lwd = 2, lty = 1, main = "Relative population size (n) for each population and year", ylab = "n", xlab = "Year", frame = FALSE, xaxt='n')
-    tmp <- pretty(1:nyears)
-    tmp[1] <- 1
-    axis(1, at=tmp)
-    plot(table(n), xlab = 'Relative population size', ylab = 'Frequency', main = 'Frequency distribution of relative population size\nfor all sites and years', frame = FALSE)
+    tryPlot <- try( {
+      # Plot population dynamics and plot of all population sizes
+      par(mfrow = c(2,1), mar = c(5,4,3,1))
+      matplot(1:nyears, t(n), type = "l", lwd = 2, lty = 1,
+          main = "Relative population size (n) for each population and year",
+          ylab = "n", xlab = "Year", frame = FALSE, xaxt='n')
+      tmp <- pretty(1:nyears)
+      tmp[1] <- 1
+      axis(1, at=tmp)
+      plot(table(n), xlab = 'Relative population size', ylab = 'Frequency', 
+          main = 'Frequency distribution of relative population size\nfor all sites and years',
+          frame = FALSE)
 
-    # Plot time-series of relative expected abundance for up to 16 populations
-    par(mfrow = c(4,4), mar = c(5,4,3,1))
-    limit <- ifelse(npop < 17, npop, 16)
-    for(i in 1:limit){     # Plot only for 4x4 populations
-      matplot(date.range, t(aa[i,,]), type = "l", lty = 1, lwd = 2, ylim = c(0, max(aa[i,,])), xlab = "Date", ylab = "Rel. abundance", main = paste("Phenology in pop ", i, sep = ''), frame = FALSE)
-    }
+      # Plot time-series of relative expected abundance for up to 16 populations
+      par(mfrow = c(4,4), mar = c(5,4,3,1))
+      limit <- ifelse(npop < 17, npop, 16)
+      for(i in 1:limit){     # Plot only for 4x4 populations
+        matplot(date.range, t(aa[i,,]), type = "l", lty = 1, lwd = 2,
+            ylim = c(0, max(aa[i,,])), xlab = "Date", ylab = "Rel. abundance", 
+            main = paste("Phenology in pop ", i, sep = ''), frame = FALSE)
+      }
 
-    # Plot time-series of relative expected abundance for up to 16 populations
-    par(mfrow = c(4,4), mar = c(5,4,3,1))
-    limit <- ifelse(npop<17, npop, 16)
-    for(i in 1:limit){     # Plot only for 4x4 populations
-      matplot(date.range, t(ll[i,,]), type = "l", lty = 1, lwd = 2, ylim = c(0, max(ll[i,,])), xlab = "Date", ylab = "Exp. abundance", main = paste("Rel. exp. n in pop ", i, sep = ''), frame = FALSE)
-    }
+      # Plot time-series of relative expected abundance for up to 16 populations
+      par(mfrow = c(4,4), mar = c(5,4,3,1))
+      limit <- ifelse(npop<17, npop, 16)
+      for(i in 1:limit){     # Plot only for 4x4 populations
+        matplot(date.range, t(ll[i,,]), type = "l", lty = 1, lwd = 2,
+            ylim = c(0, max(ll[i,,])), xlab = "Date", ylab = "Exp. abundance",
+            main = paste("Rel. exp. n in pop ", i, sep = ''), frame = FALSE)
+      }
 
-    # Plot time-series of counts (= relative, realized abundance) for up to 16 populations
-    par(mfrow = c(4,4), mar = c(5,4,3,1))
-    limit <- ifelse(npop<17, npop, 16)
-    for(i in 1:limit){     # Plot only for 4x4 populations
-      matplot(t(date[i,,]), t(C[i,,]), type = "b", lty = 1, lwd = 2, ylim = c(0, max(C[i,,])), xlab = "Date", ylab = "Counts", main = paste("Pop ", i, "(mean n =", round(mean(n[i,])), ")"), frame = FALSE)
-    }
+      # Plot time-series of counts (= relative, realized abundance) for up to 16 populations
+      par(mfrow = c(4,4), mar = c(5,4,3,1))
+      limit <- ifelse(npop<17, npop, 16)
+      for(i in 1:limit){     # Plot only for 4x4 populations
+        matplot(t(date[i,,]), t(C[i,,]), type = "b", lty = 1, lwd = 2,
+            ylim = c(0, max(C[i,,])), xlab = "Date", ylab = "Counts",
+            main = paste("Pop ", i, "(mean n =", round(mean(n[i,])), ")"), frame = FALSE)
+      }
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
   # Numerical output
   return(list(

@@ -193,57 +193,61 @@ if(type=="det/nondet"){
   # (2) Species-specific and community responses of detection to wind
   if(show.plot){
     par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
-    # (1) Species-specific and community responses of occupancy to 'habitat'
-    curve(plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
-    xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
-    for(k in 2:nspecies){
-      curve(plogis(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
-    }
-    curve(plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+    tryPlot <- try( {
+      # (1) Species-specific and community responses of occupancy to 'habitat'
+      curve(plogis(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of occupancy to habitat",
+      xlab = "Habitat", ylab = "Occupancy probability (psi)", ylim = c(0,1))
+      for(k in 2:nspecies){
+        curve(plogis(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
+      }
+      curve(plogis(mu.lpsi + mu.beta.lpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
 
-    # (2) Species-specific and community responses of detection to 'wind'
-    curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
-    xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
-    for(k in 2:nspecies){
-      curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
-    }
-    curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+      # (2) Species-specific and community responses of detection to 'wind'
+      curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+      xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
+      for(k in 2:nspecies){
+        curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
+      }
+      curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
 
-    # More plots
-    # (3) True presence/absence
-    # (4) Observed detection frequencies
-    # (5) Sites where a species was missed
-    # (6) True and observed histogram of site-specific species richness
-    par(mfrow = c(2,2), cex.axis = 1.3, cex.lab = 1.3)
-    mapPalette1 <- colorRampPalette(c("white", "black"))
-    mapPalette2 <- colorRampPalette(c("white", "yellow", "orange", "red"))
-    # (3) True presence/absence matrix (z) for all species
-    # mapPalette was 2 before
-    image(x = 1:nspecies, y = 1:nsites, z = t(z), col = mapPalette1(4), main =
-    paste("True presence/absence (z) matrix\n (finite-sample N species =",
-    Ntotal.fs,")"), frame = TRUE, xlim = c(0, nspecies+1),
-    ylim = c(0, nsites+1), xlab = "Species", ylab = "Sites")
+      # More plots
+      # (3) True presence/absence
+      # (4) Observed detection frequencies
+      # (5) Sites where a species was missed
+      # (6) True and observed histogram of site-specific species richness
+      par(mfrow = c(2,2), cex.axis = 1.3, cex.lab = 1.3)
+      mapPalette1 <- colorRampPalette(c("white", "black"))
+      mapPalette2 <- colorRampPalette(c("white", "yellow", "orange", "red"))
+      # (3) True presence/absence matrix (z) for all species
+      # mapPalette was 2 before
+      image(x = 1:nspecies, y = 1:nsites, z = t(z), col = mapPalette1(4), main =
+      paste("True presence/absence (z) matrix\n (finite-sample N species =",
+      Ntotal.fs,")"), frame = TRUE, xlim = c(0, nspecies+1),
+      ylim = c(0, nsites+1), xlab = "Species", ylab = "Sites")
 
-    # (4) Observed detection frequency for all species
-    image(x = 1:nspecies, y = 1:nsites, z = t(y.sum.all), col = mapPalette2(100),
-      main = paste("Observed detection frequencies"),
-      xlim = c(0, nspecies+1), ylim = c(0, nsites+1),
-      frame = TRUE, xlab = "Species", ylab = "Sites")
+      # (4) Observed detection frequency for all species
+      image(x = 1:nspecies, y = 1:nsites, z = t(y.sum.all), col = mapPalette2(100),
+        main = paste("Observed detection frequencies"),
+        xlim = c(0, nspecies+1), ylim = c(0, nsites+1),
+        frame = TRUE, xlab = "Species", ylab = "Sites")
 
-    # (5) Sites where a species was missed
-    image(x = 1:nspecies, y = 1:nsites, z = t(missed.sites), col = mapPalette1(2),
-      main = paste("Matrix of missed presences\n (obs. N species =", Ntotal.obs,")"),
-      frame = TRUE, xlim = c(0, nspecies+1), ylim = c(0, nsites+1), xlab = "Species",
-      ylab = "Sites")
+      # (5) Sites where a species was missed
+      image(x = 1:nspecies, y = 1:nsites, z = t(missed.sites), col = mapPalette1(2),
+        main = paste("Matrix of missed presences\n (obs. N species =", Ntotal.obs,")"),
+        frame = TRUE, xlim = c(0, nspecies+1), ylim = c(0, nsites+1), xlab = "Species",
+        ylab = "Sites")
 
-    # (6) True and observed distribution of site-specific species richness
-    # plot(table(S.true), col = "red", xlab = "Number of species per site",
-      # xlim = c(0, max(S.true)), ylab = "Frequency",
-      # main = "True (red) vs. observed (blue) \n number of species per site")
-    # points(table(S.obs+(nspecies/100)), col = "blue")
-    histCount(S.obs, S.true,  xlab = "Number of species per site",
-      main = "True (red) vs. observed (blue) \n number of species per site")
-    # See file "histCount_helper.R" for details of this function.
+      # (6) True and observed distribution of site-specific species richness
+      # plot(table(S.true), col = "red", xlab = "Number of species per site",
+        # xlim = c(0, max(S.true)), ylab = "Frequency",
+        # main = "True (red) vs. observed (blue) \n number of species per site")
+      # points(table(S.obs+(nspecies/100)), col = "blue")
+      histCount(S.obs, S.true,  xlab = "Number of species per site",
+        main = "True (red) vs. observed (blue) \n number of species per site")
+      # See file "histCount_helper.R" for details of this function.
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   # Output
@@ -317,52 +321,56 @@ if(type=="counts"){
   # (2) Species-specific and community responses of detection to wind
   if(show.plot){
     par(mfrow = c(1,2), mar = c(5,5,5,3), cex.axis = 1.3, cex.lab = 1.3)
-    # (1) Species-specific and community responses of occupancy to 'habitat'
-    curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
-    ylab = "Expected abundance (lambda)")
-    for(k in 1:nspecies){
-      curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
-    }
-    curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+    tryPlot <- try( {
+      # (1) Species-specific and community responses of occupancy to 'habitat'
+      curve(exp(beta0[1] + beta1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of lambda to habitat", xlab = "Habitat",
+      ylab = "Expected abundance (lambda)")
+      for(k in 1:nspecies){
+        curve(exp(beta0[k] + beta1[k] * x), -2, 2, add = TRUE)
+      }
+      curve(exp(mu.loglam + mu.beta.loglam * x), -2, 2, col = "red", lwd = 3, add = TRUE)
 
-    # (2) Species-specific and community responses of detection to 'wind'
-    curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
-    xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
-    for(k in 2:nspecies){
-      curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
-    }
-    curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+      # (2) Species-specific and community responses of detection to 'wind'
+      curve(plogis(alpha0[1] + alpha1[1] * x), -2, 2, main = "Species-specific (black) and community (red) \n response of detection to wind",
+      xlab = "Wind", ylab = "Detection probability (p)", ylim = c(0,1))
+      for(k in 2:nspecies){
+        curve(plogis(alpha0[k] + alpha1[k] * x), -2, 2, add = TRUE)
+      }
+      curve(plogis(mu.lp + mu.beta.lp * x), -2, 2, col = "red", lwd = 3, add = TRUE)
 
-    # More plots
-    # (3) True abundance N (log10 + 1)
-    # (4) Observed detection frequencies (log10 + 1)
-    # (5) Ratio of max count to true N
-    # (6) log(max count) vs. log (true N)
+      # More plots
+      # (3) True abundance N (log10 + 1)
+      # (4) Observed detection frequencies (log10 + 1)
+      # (5) Ratio of max count to true N
+      # (6) log(max count) vs. log (true N)
 
-    par(mfrow = c(2,2), mar = c(5,6,4,2), cex.axis = 1.3, cex.lab = 1.3)
-    mapPalette <- colorRampPalette(c("yellow", "orange", "red"))
-    # (3) True abundance matrix (log(N+1)) for all species
-    # mapPalette was 2 before
-    image(x = 1:nspecies, y = 1:nsites, z = log10(t(N)+1), col = mapPalette(100),
-     main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = TRUE, xlim = c(0, nspecies+1),
-    zlim = c(0, log10(max(N))), xlab = "Species", ylab = "Sites")
-    # (4) Observed maximum counts for all species
-    image(x = 1:nspecies, y = 1:nsites, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
-      xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
-    # (5) Ratio of max count to true N
-    ratio <- ymax.obs/N
-    ratio[ratio == "NaN"] <- 1
-    image(x = 1:nspecies, y = 1:nsites, z = t(ratio), col = mapPalette(100),
-      main = paste("Ratio of max count to true abundance (N)"),
-      xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites",
-      zlim = c(0, 1))
+      par(mfrow = c(2,2), mar = c(5,6,4,2), cex.axis = 1.3, cex.lab = 1.3)
+      mapPalette <- colorRampPalette(c("yellow", "orange", "red"))
+      # (3) True abundance matrix (log(N+1)) for all species
+      # mapPalette was 2 before
+      image(x = 1:nspecies, y = 1:nsites, z = log10(t(N)+1), col = mapPalette(100),
+       main =   paste("True log(abundance) (log10(N)) matrix\n (finite-sample N species =", sum(occurring.in.sample),")"), frame = TRUE, xlim = c(0, nspecies+1),
+      zlim = c(0, log10(max(N))), xlab = "Species", ylab = "Sites")
+      # (4) Observed maximum counts for all species
+      image(x = 1:nspecies, y = 1:nsites, z = log10(t(ymax.obs)+1), col = mapPalette(100), main = paste("Observed maximum counts (log10 + 1)"),
+        xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites", zlim = c(0, log10(max(N))))
+      # (5) Ratio of max count to true N
+      ratio <- ymax.obs/N
+      ratio[ratio == "NaN"] <- 1
+      image(x = 1:nspecies, y = 1:nsites, z = t(ratio), col = mapPalette(100),
+        main = paste("Ratio of max count to true abundance (N)"),
+        xlim = c(0, nspecies+1), frame = TRUE, xlab = "Species", ylab = "Sites",
+        zlim = c(0, 1))
 
-    # (6) True N and observed max count versus 'habitat'
-    lims <- c(0, log10(max(N+1)))
-    plot(log(N), log(ymax.obs), xlab = "True abundance (log10(N+1))",
-     ylab = "Observed max count \n(log10(max+1))", xlim = lims, ylim = lims,
-     main = "Observed vs. true N (log10 scale)" )
-    abline(0,1)
+      # (6) True N and observed max count versus 'habitat'
+      lims <- c(0, log10(max(N+1)))
+      plot(log(N), log(ymax.obs), xlab = "True abundance (log10(N+1))",
+       ylab = "Observed max count \n(log10(max+1))", xlim = lims, ylim = lims,
+       main = "Observed vs. true N (log10 scale)" )
+      abline(0,1)
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   # Output

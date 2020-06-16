@@ -119,23 +119,27 @@ simPOP <- function(
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
-    par(mfrow = c(1,3))
-    hist(lambda, breaks = 100, main = 'lambda', col = 'grey')
-    hist(gamma, breaks = 100, main = 'gamma', col = 'grey')
-    hist(p, breaks = 100, main = 'p', col = 'grey')
+    tryPlot <- try( {
+      par(mfrow = c(1,3))
+      hist(lambda, breaks = 100, main = 'lambda', col = 'grey')
+      hist(gamma, breaks = 100, main = 'gamma', col = 'grey')
+      hist(p, breaks = 100, main = 'p', col = 'grey')
 
-    par(mfrow = c(1, 3))
-    hist(N, breaks = 100, main = 'N', col = 'grey')
-    hist(C, breaks = 100, main = 'C', col = 'grey')
-    plot(N, C, xlab = 'True N', ylab = 'Observed C', frame = FALSE)
-    abline(0,1)
+      par(mfrow = c(1, 3))
+      hist(N, breaks = 100, main = 'N', col = 'grey')
+      hist(C, breaks = 100, main = 'C', col = 'grey')
+      plot(N, C, xlab = 'True N', ylab = 'Observed C', frame = FALSE)
+      abline(0,1)
 
-    par(mfrow = c(2, 2))
-    ylim <- range(c(N, C))
-    matplot(t(N), type = 'l', lty = 1, main = 'Trajectories of true N', frame = FALSE, ylim = ylim)
-    matplot(t(C), type = 'l', lty = 1, main = 'Trajectories of observed C', frame = FALSE, ylim = ylim)
-    plot(table(N[,1]), main = 'Initial N', frame = FALSE)
-    plot(table(N[,T]), main = 'Final N', frame = FALSE)
+      par(mfrow = c(2, 2))
+      ylim <- range(c(N, C))
+      matplot(t(N), type = 'l', lty = 1, main = 'Trajectories of true N', frame = FALSE, ylim = ylim)
+      matplot(t(C), type = 'l', lty = 1, main = 'Trajectories of observed C', frame = FALSE, ylim = ylim)
+      plot(table(N[,1]), main = 'Initial N', frame = FALSE)
+      plot(table(N[,T]), main = 'Final N', frame = FALSE)
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
   # Numeric output
   return(list(

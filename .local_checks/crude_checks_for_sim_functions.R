@@ -319,6 +319,11 @@ for(i in 1:nreps) {
   # checkTotal(simMultMix())
   checkTotal(simMultMix(), 11.5825, 6, halt)
 
+## simFrogDisease ##
+  set.seed(123)
+  # checkTotal(simFrogDisease())
+  checkTotal(simFrogDisease(), 7.122865, 6, halt)
+
   # AHM2 Chapter 3
   # --------------
 ## simCJS ##

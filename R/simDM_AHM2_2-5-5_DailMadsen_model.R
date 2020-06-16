@@ -80,7 +80,7 @@ simDM <- function(nsites = 50, nsurveys = 3, nyears = 5,
         frame = FALSE, xlab = 'Year', ylab = 'Average p')
       hist(N[,1], main = 'Distribution of N in first year', breaks = 50, col = 'grey')
       hist(N[,nyears], main = 'Distribution of N in last year', breaks = 50, col = 'grey')
-    }, silent = TRUE )
+    }, silent = TRUE)
     if(inherits(tryPlot, "try-error"))
       tryPlotError(tryPlot)
   }

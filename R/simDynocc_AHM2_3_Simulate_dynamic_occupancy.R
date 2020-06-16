@@ -10,7 +10,7 @@ simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = N
     sd.lphi.lgamma.site = 0,
     range.p = c(0.1, 0.9), beta.Xp = 0,
     range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0), trend.sd.site = c(0, 0),
-    trend.sd.survey = c(0, 0), trend.sd.site.survey = c(0, 0), show.plot = TRUE) {
+    trend.sd.survey = c(0, 0), trend.sd.site.survey = c(0, 0), show.plots = TRUE) {
   #
   # Written by Marc Kery, 4 Dec 2014 - 4 December 2018
   #
@@ -236,102 +236,106 @@ simDynocc<- function(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = N
   avg.p <- colMeans(apply(p, c(1,3), mean))
 
   # (5) Plots of stuff
-  if(show.plot){
+  if(show.plots){
     # Restore graphical settings on exit
     oldpar <- par("mfrow", "mar", "cex.lab", "cex.axis")
     oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
     on.exit({par(oldpar); devAskNewPage(oldAsk)})
 
-    # ------ Plot A ---------
-    par(mfrow = c(2, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
-    # Get predicted covariate relationships and plot them in single graph
-    pred.cov <- seq(-2, 2, length.out = 100)
-    psi.pred <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * pred.cov)
-    phi.pred <- plogis(mean(qlogis(mean.phi)) + beta.Xphi * pred.cov)
-    gamma.pred <- plogis(mean(qlogis(mean.gamma)) + beta.Xgamma * pred.cov)
-    p.pred <- plogis(mean(qlogis(mean.p)) + beta.Xp * pred.cov)
+    tryPlot <- try( {
+      # ------ Plot A ---------
+      par(mfrow = c(2, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
+      # Get predicted covariate relationships and plot them in single graph
+      pred.cov <- seq(-2, 2, length.out = 100)
+      psi.pred <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * pred.cov)
+      phi.pred <- plogis(mean(qlogis(mean.phi)) + beta.Xphi * pred.cov)
+      gamma.pred <- plogis(mean(qlogis(mean.gamma)) + beta.Xgamma * pred.cov)
+      p.pred <- plogis(mean(qlogis(mean.p)) + beta.Xp * pred.cov)
 
-    plot(pred.cov, psi.pred, type = 'n', xlim = c(-2, 2), ylim = c(0,1),
-      main = 'Covariate relationships', xlab = 'Covariate value',
-      ylab = 'Predicted probability', frame = FALSE, las=1)
-    lines(pred.cov, psi.pred, type = 'l', col = 3, lwd = 3, lty=1)
-    lines(pred.cov, phi.pred, type = 'l', col = 4, lwd = 3, lty=2)
-    lines(pred.cov, gamma.pred, type = 'l', col = 1, lwd = 3, lty=3)
-    lines(pred.cov, p.pred, type = 'l', col = 2, lwd = 1, lty=1)
-    legend('top', legend = c('psi1', 'phi', 'gamma', 'p'),
-      col = c(3,4,1,2), lty = c(1,2,3,1), lwd = c(3,3,3,1),
-      inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
+      plot(pred.cov, psi.pred, type = 'n', xlim = c(-2, 2), ylim = c(0,1),
+        main = 'Covariate relationships', xlab = 'Covariate value',
+        ylab = 'Predicted probability', frame = FALSE, las=1)
+      lines(pred.cov, psi.pred, type = 'l', col = 3, lwd = 3, lty=1)
+      lines(pred.cov, phi.pred, type = 'l', col = 4, lwd = 3, lty=2)
+      lines(pred.cov, gamma.pred, type = 'l', col = 1, lwd = 3, lty=3)
+      lines(pred.cov, p.pred, type = 'l', col = 2, lwd = 1, lty=1)
+      legend('top', legend = c('psi1', 'phi', 'gamma', 'p'),
+        col = c(3,4,1,2), lty = c(1,2,3,1), lwd = c(3,3,3,1),
+        inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
 
-    # Within-season pattern of detection (= product of availability and detection)
-    # (ignoring the other terms in the model for detection)
-    matplot(visit, p.occasion, type = 'l', lty = 1, lwd = 2,
-      main = 'Within-season pattern in p over the years \n(only occasion terms)',
-      xlab = 'Survey', ylab = 'Detection probability',
-      ylim = c(0,1), frame = FALSE, xaxt='n')
-    axis(1, at=1:nsurveys)
+      # Within-season pattern of detection (= product of availability and detection)
+      # (ignoring the other terms in the model for detection)
+      matplot(visit, p.occasion, type = 'l', lty = 1, lwd = 2,
+        main = 'Within-season pattern in p over the years \n(only occasion terms)',
+        xlab = 'Survey', ylab = 'Detection probability',
+        ylim = c(0,1), frame = FALSE, xaxt='n')
+      axis(1, at=1:nsurveys)
 
-    # Histogram of detection
-    hist(p, col = 'lightgrey', xlim = c(0,1), main = 'Detection probability p')
+      # Histogram of detection
+      hist(p, col = 'lightgrey', xlim = c(0,1), main = 'Detection probability p')
 
-    # Plot realised and apparent proportion of occupied sites
-    plot(year, avg.p, type = "n", xlab = "Year", ylab = "Probability",
-      xlim = c(1,nyears), ylim = c(0,1), frame.plot = FALSE, las = 1, xaxt='n',
-      main = 'True occupancy (finite-sample), \nobserved occupancy (prop. sites occupied) and average p')
-    axis(1, 1:nyears)
-    lines(year, apply(z, 2, mean), type = "l", col = 2, lwd = 2, lty = 1)
-    lines(year, psi.app, type = "l", col = 1, lwd = 2, lty=2)
-    lines(year, avg.p , type = "l", col = 2, lwd = 2, lty = 3)
-    if(!is.na(year.of.impact)) {
-      abline(v=year.of.impact+0.5, col='grey', lwd=2)
-      text(year.of.impact+0.5, 0, "impact", adj=c(0.5, 0.5))#pos=1, offset=0)
-    }
-    legend('top', legend = c('True psi', 'Observed psi', 'Detection'),
-      col = c(2,1,2), lty = c(1,2,3), lwd = 2,
-      inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
+      # Plot realised and apparent proportion of occupied sites
+      plot(year, avg.p, type = "n", xlab = "Year", ylab = "Probability",
+        xlim = c(1,nyears), ylim = c(0,1), frame.plot = FALSE, las = 1, xaxt='n',
+        main = 'True occupancy (finite-sample), \nobserved occupancy (prop. sites occupied) and average p')
+      axis(1, 1:nyears)
+      lines(year, apply(z, 2, mean), type = "l", col = 2, lwd = 2, lty = 1)
+      lines(year, psi.app, type = "l", col = 1, lwd = 2, lty=2)
+      lines(year, avg.p , type = "l", col = 2, lwd = 2, lty = 3)
+      if(!is.na(year.of.impact)) {
+        abline(v=year.of.impact+0.5, col='grey', lwd=2)
+        text(year.of.impact+0.5, 0, "impact", adj=c(0.5, 0.5))#pos=1, offset=0)
+      }
+      legend('top', legend = c('True psi', 'Observed psi', 'Detection'),
+        col = c(2,1,2), lty = c(1,2,3), lwd = 2,
+        inset=c(0, -0.15), bty='n', xpd=NA, horiz=TRUE)
 
-    # ------ Plot B ---------
-    # Plot of population sizes (ever occupied, occupied per year, true and observed)
-    # And comparison with annual vals of colonisation, persistence and detection
-    par(mfrow = c(1, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
+      # ------ Plot B ---------
+      # Plot of population sizes (ever occupied, occupied per year, true and observed)
+      # And comparison with annual vals of colonisation, persistence and detection
+      par(mfrow = c(1, 2), mar = c(5,5,5,3), cex.lab = 1.2, cex.axis = 1.2)
 
-    # Annual average of colonisation, persistence and detection
-    plot(1:(nyears-1), avg.gamma, type = "n", xlab = "Year or Yearly interval",
-      ylab = "Probability", xlim = c(0.5, nyears), ylim = c(0,1),
-      las = 1, xaxt='n', frame.plot = FALSE,
-      main = 'Average annual persistence,\ncolonization, and detection')
-    axis(1, at=1:nyears)
-    lines(1:(nyears-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
-    lines(1:(nyears-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
-    lines(1:nyears, avg.p, type = "o", pch=16, col = 2, lwd = 2)
-    if(!is.na(year.of.impact)) {
-      abline(v=year.of.impact-0.5, col='grey', lwd=2)
-      text(year.of.impact-0.5, 0, "impact", pos=1, offset=0)
-    }
-    legend('top', c("phi", "gamma", "p"),
-      lty=c(3,2,1), lwd=2, col=c(4,1,2),
-      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
+      # Annual average of colonisation, persistence and detection
+      plot(1:(nyears-1), avg.gamma, type = "n", xlab = "Year or Yearly interval",
+        ylab = "Probability", xlim = c(0.5, nyears), ylim = c(0,1),
+        las = 1, xaxt='n', frame.plot = FALSE,
+        main = 'Average annual persistence,\ncolonization, and detection')
+      axis(1, at=1:nyears)
+      lines(1:(nyears-1), avg.phi, type = "o", pch=16, col = 4, lwd = 2, lty=3)
+      lines(1:(nyears-1), avg.gamma, type = "o", pch=16, col = 1, lwd = 2, lty=2)
+      lines(1:nyears, avg.p, type = "o", pch=16, col = 2, lwd = 2)
+      if(!is.na(year.of.impact)) {
+        abline(v=year.of.impact-0.5, col='grey', lwd=2)
+        text(year.of.impact-0.5, 0, "impact", pos=1, offset=0)
+      }
+      legend('top', c("phi", "gamma", "p"),
+        lty=c(3,2,1), lwd=2, col=c(4,1,2),
+        inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
-    # True and observed number of occupied sites per year and overall (ever)
-    plot(1, 1, type = "n", xlab = "Year",
-      ylab = "Number of sites", xlim = c(0.5, nyears+1.5), xaxt='n',
-      ylim = range(c(0, n.occ.ever, n.occ.obs)), frame.plot = FALSE,
-      las = 1, main = 'True and obs. number of occupied sites \n per year and for all years combined (ever)')
-    axis(1, at=1:nyears)
-    end <- nyears/2 + 0.5
-    mid <- mean(c(0.5, end))
-    segments(0.5, n.occ.ever, end, n.occ.ever, lwd=2, col=2)
-    text(mid, n.occ.ever, "True ever", pos=3, xpd=TRUE)
-    segments(0.5, n.occ.ever.obs, end, n.occ.ever.obs, lwd=2, lty=2)
-    text(mid, n.occ.ever.obs, "Observed ever", pos=1, xpd=TRUE)
-    points(1:nyears, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
-    points(1:nyears, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
-    if(!is.na(year.of.impact)) {
-      abline(v=year.of.impact+0.5, col='grey', lwd=2)
-      text(year.of.impact+0.5, 0, "impact", pos=1, offset=0)
-    }
-    legend('topright', legend = c('True annual', 'Obs. annual'),
-      col = c(2,1), pch = c(16, 16), lty = c(1,1), pt.cex=1.5,
-      lwd = 3, bty = 'n')
+      # True and observed number of occupied sites per year and overall (ever)
+      plot(1, 1, type = "n", xlab = "Year",
+        ylab = "Number of sites", xlim = c(0.5, nyears+1.5), xaxt='n',
+        ylim = range(c(0, n.occ.ever, n.occ.obs)), frame.plot = FALSE,
+        las = 1, main = 'True and obs. number of occupied sites \n per year and for all years combined (ever)')
+      axis(1, at=1:nyears)
+      end <- nyears/2 + 0.5
+      mid <- mean(c(0.5, end))
+      segments(0.5, n.occ.ever, end, n.occ.ever, lwd=2, col=2)
+      text(mid, n.occ.ever, "True ever", pos=3, xpd=TRUE)
+      segments(0.5, n.occ.ever.obs, end, n.occ.ever.obs, lwd=2, lty=2)
+      text(mid, n.occ.ever.obs, "Observed ever", pos=1, xpd=TRUE)
+      points(1:nyears, n.occ, type = "b", col = 2, pch = 16, cex = 1.5, lwd=3)
+      points(1:nyears, n.occ.obs, type = "b", col = 1, pch=20, lty=2, cex = 1.5, lwd=3)
+      if(!is.na(year.of.impact)) {
+        abline(v=year.of.impact+0.5, col='grey', lwd=2)
+        text(year.of.impact+0.5, 0, "impact", pos=1, offset=0)
+      }
+      legend('topright', legend = c('True annual', 'Obs. annual'),
+        col = c(2,1), pch = c(16, 16), lty = c(1,1), pt.cex=1.5,
+        lwd = 3, bty = 'n')
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   # Return data

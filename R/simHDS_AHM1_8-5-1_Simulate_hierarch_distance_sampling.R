@@ -103,29 +103,37 @@ if(discard0)
 if(show.plot) {
   if(type=="line"){       # For line transect
     op <- par(mfrow = c(1, 3)) ; on.exit(par(op))
-    hist(data[,"d"], col = "lightblue", breaks = 20, main =
-      "Frequency of distances", xlab = "Distance")
-    ttt <- table(data[,1])
-    n <- rep(0, nsites)
-    n[as.numeric(rownames(ttt))] <- ttt
-    plot(habitat, n, main = "Observed counts (n) vs. habitat")
-    plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    tryPlot <- try( {
+      hist(data[,"d"], col = "lightblue", breaks = 20, main =
+        "Frequency of distances", xlab = "Distance")
+      ttt <- table(data[,1])
+      n <- rep(0, nsites)
+      n[as.numeric(rownames(ttt))] <- ttt
+      plot(habitat, n, main = "Observed counts (n) vs. habitat")
+      plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   if(type=="point"){       # For point transect
     op <- par(mfrow = c(2,2)) ; on.exit(par(op))
-    plot(data[,"u"], data[,"v"], pch = 16, main =
-      "Located individuals in point transects", xlim = c(0, 2*B),
-      ylim = c(0, 2*B), col = data[,1], asp = 1)
-    points(B, B, pch = "+", cex = 3, col = "black")
-    plotrix::draw.circle(B, B, B)
-    hist(data[,"d"], col = "lightblue", breaks = 20, main =
-      "Frequency of distances", xlab = "Distance")
-    ttt <- table(data[,1])
-    n <- rep(0, nsites)
-    n[as.numeric(rownames(ttt))] <- ttt
-    plot(habitat, n, main = "Observed counts (n) vs. habit")
-    plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    tryPlot <- try( {
+      plot(data[,"u"], data[,"v"], pch = 16, main =
+        "Located individuals in point transects", xlim = c(0, 2*B),
+        ylim = c(0, 2*B), col = data[,1], asp = 1)
+      points(B, B, pch = "+", cex = 3, col = "black")
+      plotrix::draw.circle(B, B, B)
+      hist(data[,"d"], col = "lightblue", breaks = 20, main =
+        "Frequency of distances", xlab = "Distance")
+      ttt <- table(data[,1])
+      n <- rep(0, nsites)
+      n[as.numeric(rownames(ttt))] <- ttt
+      plot(habitat, n, main = "Observed counts (n) vs. habit")
+      plot(wind, n, main = "Observed counts (n) vs. wind speed")
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 }
 

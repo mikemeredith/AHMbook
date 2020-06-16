@@ -33,17 +33,21 @@ RFoptions(seed=NA)
 # Correlation function
 if(show.plots){
   oldpar <- par(mfrow = c(1,2), mar = c(5,5,4,2), "cex.main") ; on.exit(par(oldpar))
-  dis <- seq(0.01, 20, by = 0.01)
-  corr <- exp(-dis/theta)
-  plot(dis, corr, type = "l", xlab = "Distance", ylab = "Correlation", ylim = c(0,1), col = "blue", lwd = 2)
-  text(0.8*max(dis), 0.8, labels = paste("theta:", theta))
+  tryPlot <- try( {
+    dis <- seq(0.01, 20, by = 0.01)
+    corr <- exp(-dis/theta)
+    plot(dis, corr, type = "l", xlab = "Distance", ylab = "Correlation", ylim = c(0,1), col = "blue", lwd = 2)
+    text(0.8*max(dis), 0.8, labels = paste("theta:", theta))
 
-  # Random field
-  # image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
-  par(mar = c(3,2,5,1))
-  raster::plot(rasterFromXYZ(cbind(grid, field)), col=topo.colors(20),
-  main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1, legend=FALSE, box=FALSE)
-  box()
+    # Random field
+    # image(x, y, field,col=topo.colors(20), main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1)
+    par(mar = c(3,2,5,1))
+    raster::plot(rasterFromXYZ(cbind(grid, field)), col=topo.colors(20),
+    main = paste("Gaussian random field with \n negative exponential correlation (theta =", theta, ")"), cex.main = 1, legend=FALSE, box=FALSE)
+    box()
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 # Output

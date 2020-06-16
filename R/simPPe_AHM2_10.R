@@ -1,7 +1,7 @@
 
 # AHM2 Chapter 10
 
-simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X = 10, M = 250, beta = 1, quads.along.side = 6) {
+simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X = 10, M = 250, beta = 1, quads.along.side = 6, show.plots = TRUE) {
   #
   # Name means 'SIMulate Point Pattern Educational version'
 
@@ -110,76 +110,84 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   E_z <- round(mean(zac), 2)      # proportion occupied quadrats
 
   # ------------------ Visualizations ---------------------------
-  #
-  # par(mfrow = c(1, 3), mar = c(2,2,5,2), cex.main = 1.8, cex.axis = 1.2)
-  oldpar <- par(mfrow = c(1, 3), mar = c(4,2,5,2), cex.main = 1.8, cex.axis = 1.2) ; on.exit(par(oldpar))
+  if(show.plots) {
+    oldpar <- par(mfrow = c(1, 3), mar = c(4,2,5,2), cex.main = 1.8, cex.axis = 1.2) ; on.exit(par(oldpar))
 
-  # *** Fig. 1: Original point pattern
-  # Random field of X with activity-centers overlaid
-  image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10),
-    # main = paste("Point pattern with average intensity, lambda =", round(lambda_pp, 5), "\nwith ncore and buffer area"),
-    main = "Point pattern with\ncore and buffer area",
-    xlab = "", ylab = "", axes = FALSE, asp = 1)
-    mtext(paste("Mean intensity (lambda) =", round(lambda_pp, 5)), side=1)
-    polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
-  points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
-  # points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
+    tryPlot <- try( {
+      # *** Fig. 1: Original point pattern
+      # Random field of X with activity-centers overlaid
+      image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10),
+          main = "Point pattern with\ncore and buffer area",
+          xlab = "", ylab = "", axes = FALSE, asp = 1)
+      mtext(paste("Mean intensity (lambda) =", round(lambda_pp, 5)), side=1)
+      polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width),
+            c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), 
+            lwd = 2, lty = 1)
+      points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
+      # points(u1, u2, pch=20, col='black', cex = 1.2)  # plot points
 
-  # *** Fig. 2: Show abundance and presence/absence in each quadrat on original landscape ***
-  # Covariate 1: the Gaussian random field with autocorrelation
-  # Reproduce random field with activity centers
-  # image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = paste("Abundance N, \nE(N) = ", round(E_N, 5), sep = ''), xlab = "", ylab = "", axes = FALSE, asp = 1)
-  image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Abundance, N",  xlab = "", ylab = "", axes = FALSE, asp = 1)
-    mtext(paste0("Mean(N) = ", E_N, ", var(N) = ", round(var(c(Nac)), 2)), side=1)
-  polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
-  # Add activity centers
-  points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
-  # Overlay survey quadrats
-  for(i in 1:length(breaks)){
-     for(k in 1:length(breaks)){
-     segments(breaks[i], breaks[k], rev(breaks)[i], breaks[k])
-     segments(breaks[i], breaks[k], breaks[i], rev(breaks)[k])
-     }
-  }
-  # Print abundance into each quadrat
-  for(i in 1:length(mid.pt)){
-    for(k in 1:length(mid.pt)){
-     text(mid.pt[i], mid.pt[k], Nac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
-    }
-  }
+      # *** Fig. 2: Show abundance and presence/absence in each quadrat on original landscape ***
+      # Covariate 1: the Gaussian random field with autocorrelation
+      # Reproduce random field with activity centers
+      image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Abundance, N",
+          xlab = "", ylab = "", axes = FALSE, asp = 1)
+      mtext(paste0("Mean(N) = ", E_N, ", var(N) = ", round(var(c(Nac)), 2)), side=1)
+      polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width),
+          c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
+      # Add activity centers
+      points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
+      # Overlay survey quadrats
+      for(i in 1:length(breaks)){
+         for(k in 1:length(breaks)){
+           segments(breaks[i], breaks[k], rev(breaks)[i], breaks[k])
+           segments(breaks[i], breaks[k], breaks[i], rev(breaks)[k])
+         }
+      }
+      # Print abundance into each quadrat
+      for(i in 1:length(mid.pt)){
+        for(k in 1:length(mid.pt)){
+          text(mid.pt[i], mid.pt[k], Nac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
+        }
+      }
 
-  # Figure 3 for presence/absence of activity centers (= distribution)
-  # Reproduce random field with activity centers
-  image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Occurrence, z", xlab = "", ylab = "", axes = FALSE, asp = 1)
-  mtext(paste("Mean(z) =", E_z), side=1)
-  polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width), c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
-  # Add activity centers
-  points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
-  # Overlay quadrats
-  for(i in 1:length(breaks)){
-     for(k in 1:length(breaks)){
-     segments(breaks[i], breaks[k], rev(breaks)[i], breaks[k])
-     segments(breaks[i], breaks[k], breaks[i], rev(breaks)[k])
-     }
-  }
-  # Print presence/absence into each quadrat
-  for(i in 1:length(mid.pt)){
-    for(k in 1:length(mid.pt)){
-     text(mid.pt[i], mid.pt[k], zac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
-    }
-  }
+      # Figure 3 for presence/absence of activity centers (= distribution)
+      # Reproduce random field with activity centers
+      image(rasterFromXYZ(cbind(grid, c(field))), col=topo.colors(10), main = "Occurrence, z",
+          xlab = "", ylab = "", axes = FALSE, asp = 1)
+      mtext(paste("Mean(z) =", E_z), side=1)
+      polygon(c(buffer.width, size.core+buffer.width, size.core+buffer.width, buffer.width),
+          c(buffer.width, buffer.width, size.core+buffer.width, size.core+buffer.width), lwd = 2, lty = 1)
+      # Add activity centers
+      points(u[,1], u[,2], pch=20, col='black', cex = 1.2)  # plot points
+      # Overlay quadrats
+      for(i in 1:length(breaks)){
+         for(k in 1:length(breaks)){
+           segments(breaks[i], breaks[k], rev(breaks)[i], breaks[k])
+           segments(breaks[i], breaks[k], breaks[i], rev(breaks)[k])
+         }
+      }
+      # Print presence/absence into each quadrat
+      for(i in 1:length(mid.pt)){
+        for(k in 1:length(mid.pt)){
+          text(mid.pt[i], mid.pt[k], zac[i,k], cex =4^(0.8-0.5*log10(quads.along.side)), col='red')
+        }
+      }
 
-  # Mike: Shade UNoccupied quadrats (which have abundance N = 0 or occurrence z = 0)
-  for(i in 1:(length(breaks)-1)){
-    for(k in 1:(length(breaks)-1)){
-      if(zac[i,k] == 1) # grey-out UNoccupied quads
-        next
-      polygon(c(breaks[i], breaks[i+1], breaks[i+1], breaks[i]),
-        c(breaks[k], breaks[k], breaks[k+1], breaks[k+1]),
-        col = adjustcolor("black", 0.6))
-     }
+      # Mike: Shade UNoccupied quadrats (which have abundance N = 0 or occurrence z = 0)
+      for(i in 1:(length(breaks)-1)){
+        for(k in 1:(length(breaks)-1)){
+          if(zac[i,k] == 1) # grey-out UNoccupied quads
+            next
+          polygon(c(breaks[i], breaks[i+1], breaks[i+1], breaks[i]),
+              c(breaks[k], breaks[k], breaks[k+1], breaks[k+1]),
+              col = adjustcolor("black", 0.6))
+        }
+      }
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
-
+  
 # Numerical output
 return(list(
   # ----------------- arguments input -----------------------

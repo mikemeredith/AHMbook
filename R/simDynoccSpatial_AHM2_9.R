@@ -10,7 +10,7 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
       range.p = c(0.4, 0.4), beta.Xp = 0,
       theta.XAC = 5000, beta.XAC = c(0, 0, 0, 0), beta.Xautolog = c(0, 0),
       trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
-      seed.XAC = NA, seed = NULL, ask.plot = TRUE, verbose=TRUE) {
+      seed.XAC = NA, seed = NULL, show.plots= TRUE, ask.plot = TRUE, verbose=TRUE) {
   #
   #      Written by Marc Kéry, 2014-2018
   #
@@ -118,9 +118,11 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
   stopifNegative(trend.sd.survey)
   # ----------------------------------------------------------------
   # Restore graphical settings on exit -----------------------------
-  oldpar <- par("mfrow", "mar", "cex.main", "cex.lab", "cex.axis")
-  oldAsk <- devAskNewPage(ask = ask.plot && dev.interactive(orNone=TRUE))
-  on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  if(show.plots) {
+    oldpar <- par("mfrow", "mar", "cex.main", "cex.lab", "cex.axis")
+    oldAsk <- devAskNewPage(ask = ask.plot && dev.interactive(orNone=TRUE))
+    on.exit({par(oldpar); devAskNewPage(oldAsk)})
+  }
   # ----------------------------------------------------------------
 
   # Create grid
@@ -172,40 +174,65 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
   mean.gamma <- runif(n = nyears-1, min = min(range.gamma), max = max(range.gamma))
   mean.p <- runif(n = nyears, min = min(range.p), max = max(range.p))
 
-  # Plot effects of autocovariate on (year-specific) phi and gamma
-  par(mfrow = c(1, 2))
-  curve(plogis(qlogis(mean.phi[1]) + beta.Xautolog[1] * x), 0, 1, main = "Persistence: \nphi ~ Year + Autocovariate", xlab = "Autocov. (prop. occupied neighb.)", ylab = "phi", ylim = c(0,1), frame = FALSE)
-  for(k in 2:(nyears-1)){
-     curve(plogis(qlogis(mean.phi[k])+beta.Xautolog[1]*x),0,1,add=TRUE)
-  }
 
-  curve(plogis(qlogis(mean.gamma[1]) + beta.Xautolog[2] * x), 0, 1, main = "Colonization: \ngamma ~ Year + Autocovariate", xlab = "Autocovariate (prop. occupied neighb.)", ylab = "gamma", ylim = c(0,1), frame = FALSE)
-  for(k in 2:(nyears-1)){
-     curve(plogis(qlogis(mean.gamma[k])+beta.Xautolog[2]*x),0,1,add=TRUE)
-  }
-
-  # Simulate true system dynamics
-  par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
-
-  # Plot random field covariate XAC
-  # rows are in x, columns in y direction
-  image(1:side, 1:side, XAC, col=topo.colors(100), main = paste("Gaussian random field XAC with \n neg. exponential correlation (range =", theta.XAC, ")"), xlab = 'x', ylab = 'y')
 
   # (a) Simulate state process parameters: initial state (first year)
   psi[,,1] <- plogis(qlogis(mean.psi1) + beta.Xpsi1 * Xpsi1 +
      beta.XAC[1] * XAC) # psi1
-  image(1:side, 1:side, psi[,,1], col=topo.colors(100), main = paste("Initial occupancy probability"), xlab = 'x', ylab = 'y')
 
   # (b) Simulate state in first year
   z[,,1] <- rbinom(M, 1, psi[,,1])  # Initial occurrence state
-  image(1:side, 1:side, z[,,1], col=c("white", "black"), main = paste("Initial presence/absence (true system state z):\n black = occupied, white = unoccupied"), xlab = 'x', ylab = 'y')
-  abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
 
   # Compute value of autocovariate after first year = proportion of neighbours occupied
   # first vectorize and then put into matrix again
   Xautovec <- amatrix %*% c(z[,,1])
   Xauto[,,1] <- matrix(Xautovec/nneigh, ncol = side) # Put back in matrix by column again
-  image(1:side, 1:side, Xauto[,,1], col=topo.colors(100), main = "Autocovariate between year 1 and year 2", xlab = 'x', ylab = 'y')
+  
+  # Do the pre-loop plots
+  # ---------------------
+  if(show.plots) {
+    tryPlot <- try( {
+      # Plot effects of autocovariate on (year-specific) phi and gamma
+      par(mfrow = c(1, 2))
+      curve(plogis(qlogis(mean.phi[1]) + beta.Xautolog[1] * x), 0, 1, 
+          main = "Persistence: \nphi ~ Year + Autocovariate", xlab = "Autocov. (prop. occupied neighb.)",
+          ylab = "phi", ylim = c(0,1), frame = FALSE)
+      for(k in 2:(nyears-1)){
+         curve(plogis(qlogis(mean.phi[k])+beta.Xautolog[1]*x),0,1,add=TRUE)
+      }
+
+      curve(plogis(qlogis(mean.gamma[1]) + beta.Xautolog[2] * x), 0, 1, 
+          main = "Colonization: \ngamma ~ Year + Autocovariate",
+          xlab = "Autocovariate (prop. occupied neighb.)", ylab = "gamma", ylim = c(0,1), frame = FALSE)
+      for(k in 2:(nyears-1)){
+         curve(plogis(qlogis(mean.gamma[k])+beta.Xautolog[2]*x),0,1,add=TRUE)
+      }
+
+      # Simulate true system dynamics
+      par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
+
+      # Plot random field covariate XAC
+      # rows are in x, columns in y direction
+      image(1:side, 1:side, XAC, col=topo.colors(100), 
+          main = paste("Gaussian random field XAC with \n neg. exponential correlation (range =", theta.XAC, ")"), 
+          xlab = 'x', ylab = 'y')
+
+      image(1:side, 1:side, psi[,,1], col=topo.colors(100),
+          main = paste("Initial occupancy probability"), xlab = 'x', ylab = 'y')
+
+      image(1:side, 1:side, z[,,1], col=c("white", "black"), 
+          main = paste("Initial presence/absence (true system state z):\n black = occupied, white = unoccupied"),
+          xlab = 'x', ylab = 'y')
+      abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
+
+      image(1:side, 1:side, Xauto[,,1], col=topo.colors(100), 
+          main = "Autocovariate between year 1 and year 2", xlab = 'x', ylab = 'y')
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error")) {
+      show.plots <- FALSE
+      tryPlotError(tryPlot)
+    }
+  }
 
   # (c) Simulate state process parameters: time steps 2:nyears
   for(k in 2:nyears){
@@ -217,23 +244,36 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
       beta.Xautolog[1] * Xauto[,,k-1])
     gamma[,,k-1] <- plogis(qlogis(mean.gamma[k-1]) + beta.Xgamma * Xgamma[,,k-1] + beta.XAC[3] * XAC +
       beta.Xautolog[2] * Xauto[,,k-1])
-    image(1:side, 1:side, phi[,,k-1], col=topo.colors(100),
-      main = paste("Persistence between year", k-1, "and year", k), xlab = 'x', ylab = 'y')
-    image(1:side, 1:side, gamma[,,k-1], col=topo.colors(100),
-      main = paste("Colonization between year", k-1, "and year", k), xlab = 'x', ylab = 'y')
 
     # Compute latent states and plot
     muZ[,,k] <- z[,,k-1]*phi[,,k-1] + (1-z[,,k-1])*gamma[,,k-1]
     z[,,k] <- rbinom(M, 1, muZ[,,k])
-    image(1:side, 1:side, z[,,k], col=c("white", "black"),
-      main = paste('Presence/absence (z) in year', k, ':\n black = occupied, white = unoccupied'),
-      xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
 
     # Compute autocovariate and plot
     Xautovec <- amatrix %*% c(z[,,k])
     Xauto[,,k] <- matrix(Xautovec/nneigh, ncol = side) # re-assemble by column
-    image(1:side, 1:side, Xauto[,,k], col=topo.colors(100), main = paste("Autocovariate between year", k, "and year", k+1), xlab = 'x', ylab = 'y')
+    
+    # Do the in-loop plots
+    # --------------------
+    if(show.plots) {
+      tryPlot <- try( {
+        image(1:side, 1:side, phi[,,k-1], col=topo.colors(100),
+              main = paste("Persistence between year", k-1, "and year", k), xlab = 'x', ylab = 'y')
+        image(1:side, 1:side, gamma[,,k-1], col=topo.colors(100),
+              main = paste("Colonization between year", k-1, "and year", k), xlab = 'x', ylab = 'y')
+        image(1:side, 1:side, z[,,k], col=c("white", "black"),
+            main = paste('Presence/absence (z) in year', k, ':\n black = occupied, white = unoccupied'),
+            xlab = 'x', ylab = 'y')
+        abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
+        image(1:side, 1:side, Xauto[,,k], col=topo.colors(100),
+            main = paste("Autocovariate between year", k, "and year", k+1), xlab = 'x', ylab = 'y')
+      }, silent = TRUE)
+      if(inherits(tryPlot, "try-error")) {
+        show.plots <- FALSE
+        tryPlotError(tryPlot)
+      }
+    }
+
   }
 
   # (d) Observation process parameters
@@ -274,24 +314,32 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
   nocc <- apply(z, 3, sum)
   nocc.obs <- apply(zobs, 3, sum)
 
-  # (4) More plots comparing true states and observations
-  # Plot realised and apparent occupancy
-  par(mfrow = c(1,1))
-  plot(year, apply(z, 3, mean), type = "l", xlab = "Year", ylab = "Occupancy or Detection prob.", col = "red", xlim = c(0,nyears+1), ylim = c(0,1), lwd = 2, lty = 1, frame.plot = FALSE, las = 1)
-  lines(year, mean.p, type = "l", col = "red", lwd = 2, lty = 2)
+  # Do the post-loop plots
+  # ----------------------
   psi.app <- apply(apply(y, c(1,2,4), max), 3, mean)
-  lines(year, psi.app, type = "l", col = "black", lwd = 2)
-  text(0.8*nyears, 0.1, labels = "red solid - true occupancy prob.\n red dashed - detection prob.\n black - observed proportion occupied", cex = 1)
+  if(show.plots) {
+    tryPlot <- try( {
+      # (4) More plots comparing true states and observations
+      # Plot realised and apparent occupancy
+      par(mfrow = c(1,1))
+      plot(year, apply(z, 3, mean), type = "l", xlab = "Year", ylab = "Occupancy or Detection prob.", col = "red", xlim = c(0,nyears+1), ylim = c(0,1), lwd = 2, lty = 1, frame.plot = FALSE, las = 1)
+      lines(year, mean.p, type = "l", col = "red", lwd = 2, lty = 2)
+      lines(year, psi.app, type = "l", col = "black", lwd = 2)
+      text(0.8*nyears, 0.1, labels = "red solid - true occupancy prob.\n red dashed - detection prob.\n black - observed proportion occupied", cex = 1)
 
-  # Plots comparing true and observed latent states
-  par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
-  for(k in 1:nyears){
-    image(1:side, 1:side, z[,,k], col=c("white", "black"), main = paste('Presence/absence (z) in year', k), xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
-    image(1:side, 1:side, zobs[,,k], col=c("white", "black"), main = paste('Ever_detected (zobs) in year', k), xlab = 'x', ylab = 'y')
-    abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
+      # Plots comparing true and observed latent states
+      par(mfrow = c(2,2), mar = c(5,4,5,2), cex.main = 1.3, cex.lab = 1.5, cex.axis = 1.2)
+      for(k in 1:nyears){
+        image(1:side, 1:side, z[,,k], col=c("white", "black"), main = paste('Presence/absence (z) in year', k), xlab = 'x', ylab = 'y')
+        abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
+        image(1:side, 1:side, zobs[,,k], col=c("white", "black"), main = paste('Ever_detected (zobs) in year', k), xlab = 'x', ylab = 'y')
+        abline(h = 0:side+0.5, v = 0:side+0.5, col = "lightgrey")
+      }
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
-
+  
   # Compute values of naive autocovariate (observed prop.
   #     of occupied neighbouring cells)
   Xautoobs <- array(NA, dim = dim(zobs))

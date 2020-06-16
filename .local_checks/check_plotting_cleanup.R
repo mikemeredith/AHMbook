@@ -173,7 +173,7 @@ tmp <- simPH()  # 4 pages
 testPlot() # ok
 tmp <- simPH(show.plot=FALSE)  # ok
 
-# AHM2 AHM1 Chapter 2
+# AHM2 Chapter 2
 # ----------
 # tmp <- simDM0()  # 0 pages
 
@@ -181,8 +181,9 @@ tmp <- simDM()  # 1 page
 testPlot() # ok
 tmp <- simDM(show.plot=FALSE)  # ok
 
-tmp <- simMultMix()  # 1 page
-testPlot() # ok
+# tmp <- simMultMix()  # 0 page
+
+# tmp <- simFrogDisease()  # 0 page
 
 # AHM2 Chapter 3
 # ----------

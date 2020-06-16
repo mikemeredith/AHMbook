@@ -62,16 +62,22 @@ for(s in 1:nsites){
   y <- rbinom(N[s], 1, p)
 
   if(s <= show.plots) {
-    img<- rasterFromXYZ(cbind(gr,z))
-    image(img, col=topo.colors(10))
-    #draw.circle(3,3,B)
-    image_scale(z,col=topo.colors(10))
-    points(u1,u2,pch=16,col='black')
+    tryPlot <- try( {
+      img <- rasterFromXYZ(cbind(gr,z))
+      image(img, col=topo.colors(10))
+      #draw.circle(3,3,B)
+      image_scale(z,col=topo.colors(10))
+      points(u1,u2,pch=16,col='black')
 
-    # points(u1[d<= B], u2[d<= B], pch = 16, col = "black")
-    points(u1[y==1], u2[y==1], pch = 16, col = "red")
-    points(B, B,   ,pch = "+", cex = 3)
-    # draw.circle(3, 3,   B)
+      # points(u1[d<= B], u2[d<= B], pch = 16, col = "black")
+      points(u1[y==1], u2[y==1], pch = 16, col = "red")
+      points(B, B,   ,pch = "+", cex = 3)
+      # draw.circle(3, 3,   B)
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error")) {
+      show.plots <- 0 # stop further plotting attempts
+      tryPlotError(tryPlot)
+    }
   }
 
   if(sum(y)>0) {

@@ -74,18 +74,22 @@ for(j in 1:nsubunits){
 # Visualisation of covariate relationships of psi, theta and p
 if(show.plot) {
   op <- par(mfrow = c(1,3), mar = c(5,5,5,2), cex.lab = 1.5, cex.axis = 1.5) ; on.exit(par(op))
-  plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = FALSE)
-  curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
-  plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = FALSE)
-  for(j in 1:nsubunits){
-     curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
-     beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
-  }
-  plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = FALSE)
-  for(k in 1:nreps){
-     curve(plogis(qlogis(mean.p) + p.time.effect[k] +
-     beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
-  }
+  tryPlot <- try( {
+    plot(covA, psi, xlab = "Unit covariate A", ylab = "psi", ylim = c(0,1), main = "Large-scale occupancy probability (psi)", frame = FALSE)
+    curve(plogis(qlogis(mean.psi) + beta.Xpsi * x), -2, 2, col = "red", lwd = 3, add = TRUE)
+    plot(covB, theta, xlab = "Unit-subunit covariate B", ylab = "theta", ylim = c(0,1), main = "Small-scale occupancy probability/availability \n(theta) (red - time variation)", frame = FALSE)
+    for(j in 1:nsubunits){
+       curve(plogis(qlogis(mean.theta) + theta.time.effect[j] +
+       beta.Xtheta * x), -2, 2, lwd = 2, col = "red", add = T)
+    }
+    plot(covC, p, xlab = "Unit-subunit-rep covariate C", ylab = "p", ylim = c(0,1), main = "Detection probability (p) \n (red - replicate variation)", frame = FALSE)
+    for(k in 1:nreps){
+       curve(plogis(qlogis(mean.p) + p.time.effect[k] +
+       beta.Xp * x), -2, 2, lwd = 2, col = "red", add = T)
+    }
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 # Sample three nested Bernoulli distributions
 # with probabilities psi, z*theta and a * p

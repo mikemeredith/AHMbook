@@ -12,7 +12,7 @@ To recreate the data sets used in the book with R 3.6.0 or later, include \code{
 }
 \usage{
 simDSM(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
-    nsurveys = 2, xlim = c(-0.5, 3.5), ylim = c(-0.5, 4.5), show.plot = TRUE)
+    nsurveys = 2, xlim = c(-0.5, 3.5), ylim = c(-0.5, 4.5), show.plots = TRUE)
 }
 
 \arguments{
@@ -34,7 +34,7 @@ the number of replicate surveys along the transect.
   \item{xlim, ylim}{
 the extent of the (rectangular) study area
 }
-  \item{show.plot}{
+  \item{show.plots}{
 if TRUE, summary plots are displayed.
 }
 }

@@ -92,42 +92,52 @@ if(show.plots){
   on.exit({par(oldpar); devAskNewPage(oldAsk)})
   # --------------------------------------------------------------
 
-  # Plot lambda as function of covariates (excluding spatial field)
-  plot(BerneseOberland$elevation, lam0, cex = 1, pch = 16,
-    main = "Expected counts (lambda) without spatial field", xlab = "Elevation",
-    ylab = "lambda excl. spatial field", frame = FALSE, col = rgb(0, 0, 0, 0.3))
-  # Plot lambda as function of covariates (with spatial field)
-  plot(BerneseOberland$elevation, lam, cex = 1, pch = 16,
-    main = "Expected counts (lambda) with effect of spatial field", xlab = "Elevation",
-    ylab = "lambda incl. spatial field", frame = FALSE, col = rgb(0, 0, 0, 0.3))
+  tryPlot <- try( {
+    # Plot lambda as function of covariates (excluding spatial field)
+    plot(BerneseOberland$elevation, lam0, cex = 1, pch = 16,
+        main = "Expected counts (lambda) without spatial field", xlab = "Elevation",
+        ylab = "lambda excl. spatial field", frame = FALSE, col = rgb(0, 0, 0, 0.3))
+    # Plot lambda as function of covariates (with spatial field)
+    plot(BerneseOberland$elevation, lam, cex = 1, pch = 16,
+        main = "Expected counts (lambda) with effect of spatial field", xlab = "Elevation",
+        ylab = "lambda incl. spatial field", frame = FALSE, col = rgb(0, 0, 0, 0.3))
 
-  # Plot detection as a function of the two covariates
-  par(mfrow = c(1,2), cex.main = 1.5)
-  plot(wind, p, ylim = c(0,1), cex = 1, main = "Detection (p) ~ Wind speed",
-    frame = FALSE, col = rgb(0,0,0,0.3), pch = 16)
-  noforest<- forest < -1.34
-  points(wind[noforest,], p[noforest,], col = 'blue', pch = 16, cex = 1)
-  legend('topright', 'blue: sites with no forest')
-  plot(BerneseOberland$forest, apply(p, 1, mean), ylim = c(0,1), cex = 1, main = "Detection (p) ~ Forest cover", frame = FALSE, col = rgb(0,0,0,0.3), pch = 16)
+    # Plot detection as a function of the two covariates
+    par(mfrow = c(1,2), cex.main = 1.5)
+    plot(wind, p, ylim = c(0,1), cex = 1, main = "Detection (p) ~ Wind speed",
+      frame = FALSE, col = rgb(0,0,0,0.3), pch = 16)
+    noforest<- forest < -1.34
+    points(wind[noforest,], p[noforest,], col = 'blue', pch = 16, cex = 1)
+    legend('topright', 'blue: sites with no forest')
+    plot(BerneseOberland$forest, apply(p, 1, mean), ylim = c(0,1), cex = 1,
+        main = "Detection (p) ~ Forest cover", frame = FALSE, col = rgb(0,0,0,0.3), pch = 16)
 
-  # Summary set of plots
-  par(mfrow = c(2, 3), mar = c(2,2,4,6))
-  r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y,
-    z = BerneseOberland$elevation))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE,
-    main = "Elevation (metres)")
-  r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y,
-    z = BerneseOberland$forest))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = "Forest cover (%)")
-  r <- raster::rasterFromXYZ(data.frame(x = s$gr[,1], y = s$gr[,2], z = c(s$field)))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = "Spatial effect (neg.exp. corr.)")
-  r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y, z = N))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = paste("Abundance (N, truncated at", truncN, ")"), zlim = c(0, truncN))
-  r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y, z = apply(p, 1, mean)))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = "Average detection probability")
-  r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y, z = apply(y, 1, max)))
-  raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = paste("Max count (truncated at", truncN, ")\n with surveyed quadrats"), zlim = c(0, truncN))
-  points(BerneseOberland$x[surveyed.sites], BerneseOberland$y[surveyed.sites],pch = 16, col = "red", cex = 0.8)
+    # Summary set of plots
+    par(mfrow = c(2, 3), mar = c(2,2,4,6))
+    r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y,
+        z = BerneseOberland$elevation))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE,
+        main = "Elevation (metres)")
+    r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y,
+        z = BerneseOberland$forest))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = "Forest cover (%)")
+    r <- raster::rasterFromXYZ(data.frame(x = s$gr[,1], y = s$gr[,2], z = c(s$field)))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, main = "Spatial effect (neg.exp. corr.)")
+    r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y, z = N))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE,
+        main = paste("Abundance (N, truncated at", truncN, ")"), zlim = c(0, truncN))
+    r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y,
+        z = apply(p, 1, mean)))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE, 
+        main = "Average detection probability")
+    r <- raster::rasterFromXYZ(data.frame(x = BerneseOberland$x, y = BerneseOberland$y, z = apply(y, 1, max)))
+    raster::plot(r, col = topo.colors(20), axes = FALSE, box = FALSE,
+        main = paste("Max count (truncated at", truncN, ")\n with surveyed quadrats"), zlim = c(0, truncN))
+    points(BerneseOberland$x[surveyed.sites], BerneseOberland$y[surveyed.sites],
+        pch = 16, col = "red", cex = 0.8)
+  }, silent = TRUE)
+  if(inherits(tryPlot, "try-error"))
+    tryPlotError(tryPlot)
 }
 
 # Output

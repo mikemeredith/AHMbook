@@ -29,7 +29,7 @@ simDynocc(nsites = 250, nyears = 10, nsurveys = 3, year.of.impact = NA,
   range.p = c(0.1, 0.9), beta.Xp = 0,
   range.beta1.survey = c(0, 0), range.beta2.survey = c(0, 0),
   trend.sd.site = c(0, 0), trend.sd.survey = c(0, 0),
-  trend.sd.site.survey = c(0, 0), show.plot = TRUE)
+  trend.sd.site.survey = c(0, 0), show.plots = TRUE)
 }
 \arguments{
   \item{nsites}{
@@ -98,7 +98,7 @@ initial and final values of sd of normal distribution to model logit-normal nois
   \item{trend.sd.site.survey}{
 initial and final values of sd of normal distribution to model logit-normal noise in p at the site/year/survey = ‘survey’ level; if they are different, a linear trend is assumed over time.
 }
-  \item{show.plot}{
+  \item{show.plots}{
 If TRUE, plots of results are displayed; set to FALSE if running many simulations.
 }
 }

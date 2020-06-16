@@ -83,26 +83,30 @@ simDemoDynocc<- function(nsites = 100, nyears = 10, nvisits = 5, psi1 = 0.6,
     # Visualization by two graphs
     oldpar <- par(mfrow = c(1, 2), mar = c(5, 5, 4, 2), cex.lab = 1.5)
       on.exit(par(oldpar))
-    plot(1, 0, type = 'n', ylim = c(0,1), frame = FALSE,
-      xlab = "Year", ylab = "Probability", xlim = c(1, nyears), las = 1,
-      main = 'Local survival, recruitment and detection', xaxt='n')
-    axis(1, 1:nyears)
-    lines(1:(nyears-1), phi, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
-    lines(1:(nyears-1), r, type = 'o', pch=16, lwd = 2, col = 2, lty=3)
-    lines(1:nyears, p, type = 'o', pch=16, lwd = 2, col = 1)
-    legend('top', c("survival", "recruitment", "detection"),
-      lty=c(2,3,1), lwd=2, col=c(4,2,1), #pch=16,
-      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
+    tryPlot <- try( {
+      plot(1, 0, type = 'n', ylim = c(0,1), frame = FALSE,
+          xlab = "Year", ylab = "Probability", xlim = c(1, nyears), las = 1,
+          main = 'Local survival, recruitment and detection', xaxt='n')
+      axis(1, 1:nyears)
+      lines(1:(nyears-1), phi, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
+      lines(1:(nyears-1), r, type = 'o', pch=16, lwd = 2, col = 2, lty=3)
+      lines(1:nyears, p, type = 'o', pch=16, lwd = 2, col = 1)
+      legend('top', c("survival", "recruitment", "detection"),
+          lty=c(2,3,1), lwd=2, col=c(4,2,1), #pch=16,
+          inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
 
-    plot(1:nyears, nocc.true, type = 'n', frame = FALSE, xlab = "Year",
-      ylab = "Population size", xlim = c(1, nyears), ylim = c(0, nsites), las = 1,
-      main = 'True and observed population size', xaxt='n')
-    axis(1, 1:nyears)
-    lines(1:nyears, nocc.true, type = 'o', pch=16, lwd = 2, col = 2, lty=1)
-    lines(1:nyears, nocc.obs, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
-    legend('top', c("true", "observed"),
-      lty=c(1,2), lwd=2, col=c(2,4),
-      inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
+      plot(1:nyears, nocc.true, type = 'n', frame = FALSE, xlab = "Year",
+          ylab = "Population size", xlim = c(1, nyears), ylim = c(0, nsites), las = 1,
+          main = 'True and observed population size', xaxt='n')
+      axis(1, 1:nyears)
+      lines(1:nyears, nocc.true, type = 'o', pch=16, lwd = 2, col = 2, lty=1)
+      lines(1:nyears, nocc.obs, type = 'o', pch=16, lwd = 2, col = 4, lty=2)
+      legend('top', c("true", "observed"),
+          lty=c(1,2), lwd=2, col=c(2,4),
+          inset=c(0, -0.05), bty='n', xpd=NA, horiz=TRUE)
+    }, silent = TRUE)
+    if(inherits(tryPlot, "try-error"))
+      tryPlotError(tryPlot)
   }
 
   # Return stuff
