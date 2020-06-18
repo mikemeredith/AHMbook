@@ -42,11 +42,16 @@ Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} A
 data(SwissMarbledWhite)
 str(SwissMarbledWhite)
 
-# Impute values for the missing dates:
-smw <- SwissMarbledWhite
-for(t in 3:13) {
-  smw[is.na(smw[, t]), t] <- mean(smw[, t], na.rm=TRUE)
+# Data preparation for AHM2 section 4.13
+y <- as.matrix(SwissMarbledWhite[,14:24])    # Grab detection/nondetection data
+DATE <- as.matrix(SwissMarbledWhite[,3:13])  # Grab survey dates
+for(t in 1:11) {               # Mean-impute date (but don't transform)
+  DATE[is.na(DATE[,t]),t] <- mean(DATE[,t], na.rm=TRUE)
 }
-summary(smw)
+year <- SwissMarbledWhite$year
+nsite <- length(unique(SwissMarbledWhite$site))
+nyear <- length(unique(SwissMarbledWhite$year))
+nsurvey <- ncol(y)
+nobs <- nrow(y)
 }
 \keyword{datasets}

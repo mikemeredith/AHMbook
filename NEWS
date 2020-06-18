@@ -1,3 +1,7 @@
+CHANGES in 0.2.0.9004 (2020-06-18)
+
+  * Added data wrangling code to `SwissMarbledWhite` data set.
+
 CHANGES in 0.2.0.9003 (2020-06-16)
 
   * Added check for plotting error to all `sim*` functions.
