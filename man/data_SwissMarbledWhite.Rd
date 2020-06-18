@@ -49,9 +49,9 @@ for(t in 1:11) {               # Mean-impute date (but don't transform)
   DATE[is.na(DATE[,t]),t] <- mean(DATE[,t], na.rm=TRUE)
 }
 year <- SwissMarbledWhite$year
-nsite <- length(unique(SwissMarbledWhite$site))
-nyear <- length(unique(SwissMarbledWhite$year))
-nsurvey <- ncol(y)
+nsites <- length(unique(SwissMarbledWhite$site))
+nyears <- length(unique(SwissMarbledWhite$year))
+nsurveys <- ncol(y)
 nobs <- nrow(y)
 }
 \keyword{datasets}
