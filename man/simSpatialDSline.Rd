@@ -11,7 +11,8 @@ This simulates line transect distance sampling data with a spatial distribution 
 To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
-simSpatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4, perp=FALSE, show.plots=TRUE)
+simSpatialDSline(N=1000, beta = 1, sigma=0.25, alpha0 = -2, W=1/2, L = 4,
+    perp=FALSE, show.plots=TRUE)
 }
 
 \arguments{

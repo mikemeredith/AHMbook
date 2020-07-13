@@ -1,3 +1,7 @@
+CHANGES in 0.2.0.9005 (2020-07-13)
+
+  * Added note about RNGkind to `sim*` functions using `sample`.
+
 CHANGES in 0.2.0.9004 (2020-06-18)
 
   * Added data wrangling code to `SwissMarbledWhite` data set.

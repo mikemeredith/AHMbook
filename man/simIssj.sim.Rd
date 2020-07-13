@@ -6,6 +6,8 @@ Simulate open distance sampling data for the Island Scrub Jays
 }
 \description{
 Function to simulate open distance sampling data for the Island Scrub Jays, based on Sollmann et al (2015).
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 issj.sim(B, db, lam, sigma, phi, gamma, npoints, nyrs, nbsize = -1.02)

@@ -6,6 +6,8 @@ Simulate HDS time-removal or double-observer data
 }
 \description{
 A general function for simulating hierarchical distance sampling (HDS) data combined with a time-removal (with 3 removal periods) or double-observer protocol, either for a line or a point transect protocol and with method = "removal" or method = "double". Also produces plots of the output.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 simHDStr(type = c("line", "point"), method=c("removal", "double"), nsites = 200,

@@ -5,6 +5,8 @@
 Validates simulated observational data against data-generating values.}
 \description{
 Where species identifications (from photos, recorded calls, etc) is doubtful, it is sometimes feasible for a subset of the data to be validated by experts. Chambert et al (2017) used simulations to investigate the effectiveness of such partial validation. Where a data set with false positives has been simulated and the true status is known, \code{valid_data} compares a subset with truth and returns the number of detections checked per site and the number checked and found to be valid. The function attempts to validate equal numbers of detections at each site (not equal proportions) subject to the actual number of detections and the total number to be validated; if the number of detections is small, all will be validated, otherwise a random sample is used; see Examples.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 valid_data(N, tp, n.valid, prop.valid=FALSE)

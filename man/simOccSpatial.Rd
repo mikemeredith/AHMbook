@@ -18,6 +18,8 @@ Replicated detection/nondetection data are simulated as usual under a Bernoulli 
 \code{y[i,j] ~ Bernoulli(z[i] * p[i,j]) }
 
 Finally, we assume that only a subset of the 2500 quadrats is surveyed. Hence, we allow you to choose the number of quadrats that are surveyed and these will then be randomly placed into the landscape. We then assume that counts will only be available for these surveyed quadrats, i.e., detection/non-detection data from all non-surveyed quadrats will be replaced with NA.
+
+To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
 simOccSpatial(nsurveys = 3, mean.psi = 0.6, beta = c(2, -2),
