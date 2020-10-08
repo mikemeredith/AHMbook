@@ -91,11 +91,12 @@ simDSM <- function(X, Ntotal = 400, sigma = 0.65, beta1 = 1.0,
     Habgrid=gr,           # a 2-column matrix with the coordinates of each pixel
     nPix=nPix,            # the number of pixels in the study area
     N = N,                # true number of individuals per pixel
-    U = U,                # locations of each individual
+    U = U,                # locations of each individual in the population
+    Ucap = Ucap,          # locations of each individual detected at least once
     nind=nind,            # the number of individuals detected at least once
     pixel=pixel)          # a matrix with a column for each survey and a row
         # for each individual detected at least once, with the pixel ID for the
-        # activity centre or NA is the individual was not detected on the survey
+        # activity centre or NA if the individual was not detected on the survey
   )
 }
 
