@@ -14,7 +14,7 @@ image_scale(z, col, x, y = NULL, size = NULL, digits = 2, labels = c("breaks", "
 }
 \arguments{
   \item{z}{
-the values plotted in the image, the \code{z} argument to \code{image}
+a vector of at least 2 numbers which define the range of values for which colors should be plotted; this should be the same as the value of \code{zlim} passed to \code{image} or, if that was not used, the values passed as \code{z}.
 }
   \item{col}{
 a vector of colors, use the same as in the image
