@@ -36,7 +36,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{grid }{the grid corresponding to field}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.
 }
 \author{
 Marc Kéry & Andy Royle

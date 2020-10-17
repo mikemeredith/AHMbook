@@ -128,7 +128,7 @@ A list with the values of the arguments input and the following additional eleme
    \item{umf }{an unmarked data frame object with the simulated data}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.
 
 }
 \author{

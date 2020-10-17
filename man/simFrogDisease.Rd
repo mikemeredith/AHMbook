@@ -56,7 +56,7 @@ A list with the values of the arguments and the following additional elements:
 \item{yI }{sites x years x surveys, number of infected frogs detected}
 }
 \references{
-Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.9.1.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.9.1.
 
 Lips, K.R., Brem, F., Brenes, R., Reeve, J.D., Alford, R.A., Voyles, J., et al., 2006. Emerging infectious disease and the loss of biodiversity in a Neotropical amphibian community. Proc. Natl. Acad. Sci. USA 103, 3165-3170.
 }

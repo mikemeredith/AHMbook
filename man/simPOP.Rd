@@ -97,7 +97,7 @@ A list with the values of the arguments entered and the following additional ele
 \references{
 Sollmann, R. et al. (2015) An open-population hierarchical distance sampling model \emph{Ecology} 96, 325-331.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.7.1.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.7.1.
 }
 \author{
 Marc Kéry & Andy Royle

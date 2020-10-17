@@ -84,7 +84,7 @@ A list with the arguments input and the following additional elements:
  \item{yobs }{detected/non-detected data for each quadrat surveyed, NA for quadrats not surveyed.}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.2.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 9.2.
 
 }
 \author{

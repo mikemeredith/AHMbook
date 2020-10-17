@@ -51,7 +51,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{pixel }{a nind x nsurvey matrix with the pixel ID for the activity center or NA if the individual was not detected on the survey}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.10.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.10.
 }
 \author{
 Marc Kéry, Andy Royle & Mike Meredith

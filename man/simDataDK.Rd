@@ -85,7 +85,7 @@ Dorazio, R.M. (2014) Accounting for imperfect detection and survey bias in stati
 
 Koshkina, V., Wang, Y., Gordon, A., Dorazio, R.M., White, M., & Stone, L. (2017) Integrated species distribution models: combining presence-background data and site-occupany data with imperfect detection. \emph{Methods in Ecology and Evolution}, 8, 420-430.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 10.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 10.
 }
 \author{
 Marc Kéry, Andy Royle & Mike Meredith, based on the code written by Dorazio (2014) and adapted by Koshkina et al. (2017).

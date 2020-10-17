@@ -61,7 +61,7 @@ Mizel et al. (2018)
 \references{
 Mizel, J.D., Schmidt, J.H. and Lindberg, M.S. (2018) Accommodating temporary emigration in spatial distance sampling models. \emph{Journal of Applied Ecology}, 55(3), pp.1456-1464.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.8.4.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 11.8.4.
 }
 \examples{
 data(treeSparrow)

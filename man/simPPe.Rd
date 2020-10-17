@@ -69,7 +69,7 @@ A list with the values of the input arguments and the following additional eleme
  \item{E_z }{average realized occupancy per quadrat}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 10.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 10.
 }
 \author{
 Marc Kéry & Andy Royle.

@@ -9,7 +9,7 @@ Compute results of a Joint Species Distribution Model (JSDM)
 \description{
 Compute pairwise residual correlation in occurrence or abundance in a Joint Species Distribution Model (JSDM) with latent variables.
 
-\code{getLVcorrMat} computes the correlation matrix in residual occurrence or abundance in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2020) chapter 8.
+\code{getLVcorrMat} computes the correlation matrix in residual occurrence or abundance in an latent-variable multi-species occupancy or N-mixture model which has been fit using MCMC (eg, in JAGS or WinBUGS). See Tobler et al. (2019) and Kéry & Royle (2021) chapter 8.
 
 \code{getEcorrMat} computes the correlation matrix for the coefficients of the observed environmental covariates.
 }
@@ -38,7 +38,7 @@ The relevant correlation matrix, species x species; if \code{stat = NULL}, an ar
 \references{
 Tobler, M. et al. (2019) Joint species distribution models with species correlations and imperfect detection. \emph{Ecology}, 100(8), e02754.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.4.2 and 8.5.4.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 8.4.2 and 8.5.4.
 }
 \author{
 Mathias Tobler.

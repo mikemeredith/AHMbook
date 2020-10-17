@@ -1,3 +1,7 @@
+CHANGES in 0.2.0.9008 (2020-10-17)
+
+  * Changed publication date of AHM2 to 2021 everywhere in help files.
+
 CHANGES in 0.2.0.9007 (2020-10-08)
 
   * `simDSM` now returns `Ucap`, needed for plotting.

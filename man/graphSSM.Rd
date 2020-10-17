@@ -25,11 +25,11 @@ The original count data: an individuals x year matrix of counts, no missing valu
 No output, the function is called for plotting.
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} Section 1.6
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} Section 1.6
 
 Kéry, M. & Schaub, M.  (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.6.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.6.
 }
 \author{
 Marc Kéry & Andy Royle, adapted for multivariate SSMs from the SSM graphing function \code{graph.ssm} in Chapter 5 in Kéry & Schaub (2012).

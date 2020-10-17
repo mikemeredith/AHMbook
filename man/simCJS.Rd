@@ -40,7 +40,7 @@ A list with the values of the arguments entered and the following additional ele
 \references{
 Kéry, M. & Schaub, M. (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 3.2.2.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 3.2.2.
 }
 \author{
 Marc Kéry & Andy Royle, based on code written by Michael Schaub for Chapter 7 of Kéry & Schaub (2012).

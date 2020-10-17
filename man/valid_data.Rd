@@ -36,7 +36,7 @@ A list with components:
 Chambert, T., Waddle, J.H., Miller, D.A.W., Walls, S.C., & Nichols, J.D. (2017) A new framework for analysing automated acoustic species-detection data: occupancy estimation and optimization of recordings post-processing. \emph{Methods in Ecology and Evolution}, 9, 560-570.
 %% "analysing" is correct, this is a British journal.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.6.2.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.6.2.
 }
 
 \author{

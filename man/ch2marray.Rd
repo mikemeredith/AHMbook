@@ -22,7 +22,7 @@ An m-array, a (years-1) x years matrix, where element [i, j] contains the number
 \references{
 Kéry and Schaub (2012) \emph{Bayesian population analysis using WinBUGS - a hierarchical perspective}, Academic Press.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 3.4.1
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 3.4.1
 }
 \author{
 Marc Kéry & Andy Royle, modified from code in Kéry and Schaub (2012).

@@ -26,7 +26,7 @@ The data are detection/nondetection data of the Peregrine Falcon (\emph{Falco pe
 Groupe Pèlerin Jura (Réne-Jean Monneret, René Ruffinoni, and colleagues)
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.11.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.11.
 }
 \examples{
 data(FrenchPeregrines)

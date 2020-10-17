@@ -42,7 +42,7 @@ The data set recognizes four observed states: 'nondetection', 'detection of sing
 Swiss Ornithological Institute
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 6.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 6.
 }
 \examples{
 data("SwissEagleOwls")

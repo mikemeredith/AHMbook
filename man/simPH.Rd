@@ -61,7 +61,7 @@ A list with the values of the arguments entered and the following additional ele
 \references{
 Dennis, E.B., et al (2016) Dynamic models for longitudinal butterfly data, \emph{Journal of Agricultural, Biological and Environmental Statistics} 21, 1-21.
 
-Kéry & Royle (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.8.1.
+Kéry & Royle (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.8.1.
 }
 \author{
 Marc Kéry & Andy Royle

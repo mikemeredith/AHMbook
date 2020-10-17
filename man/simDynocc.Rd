@@ -135,7 +135,7 @@ A list with the values of the arguments input and the following additional eleme
   \item{eps3 }{the site/survey/year random effects on detection, a nsites x nsurveys x nyears array}
 }
 \references{
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.
 
 }
 \author{

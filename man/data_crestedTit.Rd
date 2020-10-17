@@ -43,7 +43,7 @@ Swiss Ornithological Institute
 \references{
 Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.
 
-Kéry & Royle (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.
+Kéry & Royle (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.
 }
 \examples{
 data(crestedTit)

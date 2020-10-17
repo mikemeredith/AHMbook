@@ -89,7 +89,7 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
 \references{
 Dail, D. & Madsen, L. (2011) Models for estimating abundance from repeated counts of an open metapopulation. \emph{Biometrics}, 67, 577-587.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.5.
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.5.
 }
 \author{
 Marc Kéry & Andy Royle, based in part on code written by Richard Chandler.

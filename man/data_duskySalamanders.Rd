@@ -27,7 +27,7 @@ Evan Grant and colleagues.
 \references{
 Zipkin, E.F. et al (2014) Modeling structured population dynamics using data from unmarked individuals, \emph{Ecology}, 95(1) 22-29.
 
-Kéry, M. & Royle, J.A. (2020) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.9.2
+Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.9.2
 }
 \examples{
 data(duskySalamanders)
