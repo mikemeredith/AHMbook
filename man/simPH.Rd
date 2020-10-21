@@ -59,7 +59,7 @@ A list with the values of the arguments entered and the following additional ele
 \item{C }{site x year x reps array, simulated counts.}
 }
 \references{
-Dennis, E.B., et al (2016) Dynamic models for longitudinal butterfly data, \emph{Journal of Agricultural, Biological and Environmental Statistics} 21, 1-21.
+Dennis, E.B., et al (2016) Dynamic models for longitudinal butterfly data, \emph{Journal of Agricultural, Biological and Environmental Statistics}, 21, 1-21.
 
 Kéry & Royle (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 1.8.1.
 }

@@ -43,13 +43,13 @@ Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} A
 Mike Meredith.
 }
 \examples{
-# Generate some data for 100 sites:
+# Generate some data for 100 sites
 set.seed(42, kind="Mersenne-Twister")
 z <- rbinom(100, 1, 0.7)  # z[i] == 1 if species present at site 1, 0 otherwise
 tp <- rpois(100, 3*z)     # Number of true detections, 0 if species not present
 N <- tp + rpois(100, 0.5) # Add false positives
 
-# Validate a subset of 150 detections:
+# Validate a subset of 150 detections
 out <- valid_data(N, tp, 150)
 head(tmp <- cbind(z=z, tp=tp, N=N, n=out$n, k=out$k), 10)
 colSums(tmp)
@@ -57,6 +57,6 @@ colSums(tmp)
 # Plot the number validated vs all detections:
 graphics::sunflowerplot(N, out$n, xlab="Number of detections at each site",
   ylab="Number validated")
-  # For sites with <= 2 detections, all are validated; otherwise at least 2 are validated,
-  #   with a 3rd draw from randomly selected sites to bring the total to 150.
+# For sites with <= 2 detections, all are validated; otherwise at least 2 are validated,
+#   with a 3rd draw from randomly selected sites to bring the total to 150.
 }

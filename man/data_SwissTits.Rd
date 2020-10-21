@@ -6,7 +6,7 @@
 Data from the Swiss Breeding Bird Survey for 6 species of tits
 }
 \description{
-The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
+The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of approximately 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
 
 The list \code{SwissTits} has the data for six species of tits from 2004 to 2013. There are some missing values: see Details.
 }
@@ -19,7 +19,7 @@ The list \code{SwissTits} has the data for six species of tits from 2004 to 2013
 \describe{
   \item{\bold{species }}{a data frame with a row for each species and the following columns:
 
-    \enumerate{
+    \itemize{
       \item specid : a numeric species ID based on phylogeny.
       \item latname : a 6-letter abbreviation of the Latin name.
       \item name : the English name.
@@ -27,7 +27,7 @@ The list \code{SwissTits} has the data for six species of tits from 2004 to 2013
 \describe{
   \item{\bold{sites }}{a data frame with a row for each 1x1 km quadrat and the following columns:
 
-    \enumerate{
+    \itemize{
       \item siteID : an alphanumeric site identifier.
       \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
       \item coordy : the y coordinate of the center of the quadrat.
@@ -68,7 +68,7 @@ Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} A
 data(SwissTits)
 str(SwissTits)
 
-# Section 6.9.1, foot of p.257 and top of p.258:
+# Section 6.9.1, foot of p.257 and top of p.258
 # -------------
 y0 <- SwissTits$counts[, , '2013', 'Great tit']
 ( NA.sites <- which(rowSums(is.na(y0)) == 3) ) # Unsurveyed sites

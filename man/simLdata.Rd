@@ -13,7 +13,7 @@ sim.ldata(N = 200, sigma = 30, show.plot = TRUE)
 }
 \arguments{
   \item{N}{
-number of individuals along transect with distance u(-100, 100)
+number of individuals along transect with distance Uniform(-100, 100)
 }
   \item{sigma}{
 scale parameter of half-normal detection function

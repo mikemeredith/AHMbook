@@ -5,7 +5,7 @@
 Simulate time-to-detection occupancy data (single visits)
 }
 \description{
-Function simulates time-to-detection occupancy design data under model of Garrard et al. (2008), also see Bornand et al. (2014)
+Function simulates time-to-detection occupancy design data under the model of Garrard et al. (2008), also see Bornand et al. (2014)
 }
 \usage{
 simOccttd(M = 250, mean.psi = 0.4, mean.lambda = 0.3,
@@ -31,10 +31,10 @@ slope of continuous covariate A on log(lambda)
 maximum search time (in arbitrary units, which are same as response), response will be censored at \code{Tmax}
 }
   \item{show.plot}{
-choose whether to show plots or not. Set to FALSE when running  many simulations.
+choose whether to show plots or not. Set to FALSE when running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 
@@ -63,7 +63,7 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-# Generate data with the default arguments and look at the structure:
+# Generate data with the default arguments and look at the structure
 tmp <- simOccttd()
 str(tmp)
 }

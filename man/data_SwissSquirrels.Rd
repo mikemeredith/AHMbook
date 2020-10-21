@@ -6,7 +6,7 @@
 Data for Red Squirrels in Switzerland from the Swiss breeding bird survey MHB
 }
 \description{
-A file with detection/nondetection data for the Red Squirrel (\emph{Sciurus vulgaris})in 265 1 km2 survey quadrats in Switzerland for 2007, together with covariates. See Examples for code to load the data.
+A file with detection/nondetection data for the Red Squirrel (\emph{Sciurus vulgaris}) in 265 1 km2 survey quadrats in Switzerland for 2007, together with covariates (data for the two remaining among the total of 267 quadrats in that monitoring program were not available). See Examples for code to load the data.
 }
 
 % \usage{data("MHB2014")}
@@ -33,7 +33,7 @@ Swiss Ornithological Institute
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 10.9.
 }
 \examples{
-# To read in the text file:
+# To read in the text file
 fn <- file.path(find.package("AHMbook"), "extdata", "SwissSquirrels.txt")
 data <- read.table(fn, header = TRUE)
 str(data)

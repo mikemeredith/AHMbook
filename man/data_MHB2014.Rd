@@ -6,7 +6,7 @@
 Data from the Swiss Breeding Bird Survey MHB 2014
 }
 \description{
-The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
+The Swiss breeding bird survey ("Monitoring Häufige Brutvögel" MHB) has monitored the populations of approximately 150 common species since 1999. The MHB sample consists of 267 1-km squares that are laid out as a grid across Switzerland. Fieldwork is conducted by about 200 skilled birdwatchers annually, most of them volunteers. Avian populations are monitored using a simplified territory mapping protocol (also called spot-mapping West of the Atlantic), where each square is surveyed up to three times during the breeding season (only twice above the tree line around 2000 m elevation). Surveys are conducted along a transect that does not change over the years and is 4-6 kms in length on average.
 
 The list \code{MHB2014} has the full survey data for the year 2014.
 }
@@ -33,7 +33,7 @@ The list \code{MHB2014} has the full survey data for the year 2014.
 
     \itemize{
       \item siteID : an alphanumeric site identifier.
-      \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system intentionally not specified.
+      \item coordx : the x coordinate of the center of the quadrat; the coordinate reference system is intentionally not specified.
       \item coordy : the y coordinate of the center of the quadrat.
       \item elev : the mean elevation of the quadrat in m.
       \item rlength : the length of the route walked in the quadrat in km.

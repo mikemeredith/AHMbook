@@ -7,7 +7,7 @@
 Simulate count data under the dynamic N-mixture model of Dail-Madsen
 }
 \description{
-Simulation for multiple-visit data (from pcountOpen help file). \code{simDM0} has no covariates while \code{simDM} allows for covariates. Both functions assume constant time intervals between primary periods.
+Simulation for multiple-visit data (from \code{\link[unmarked]{pcountOpen}} help file in package \pkg{unmarked}). \code{simDM0} has no covariates while \code{simDM} allows for covariates. Both functions assume constant time intervals between primary periods.
 }
 \usage{
 simDM0(nsites = 50, nsurveys = 3, nyears = 5,
@@ -67,7 +67,7 @@ the slope of parameter phi (link transformed) on the cov.phi covariate
 the slope of parameter p (link transformed) on the cov.p covariate
 }
   \item{show.plots}{
-if TRUE, plots are produced. Set this to FALSE when running many simulations.
+if TRUE, plots are produced. Set this to FALSE when running simulations.
 }
 }
 

@@ -54,7 +54,7 @@ standard deviation of random site effects (on logit scale)
 constant value of 'behavioral response' leading to 'trap-happiness' (if b > 0) or 'trap shyness' (if b < 0)
 }
   \item{show.plot}{
-if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations
+if TRUE, plots of the data will be displayed; set to FALSE if you are running simulations
 }
 }
 
@@ -86,7 +86,7 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-# Generate data with the default arguments and look at the structure:
+# Generate data with the default arguments and look at the structure
 tmp <- simOcc()
 str(tmp)
 

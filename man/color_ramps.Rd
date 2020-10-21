@@ -22,7 +22,7 @@ These create vectors of \code{n} contiguous colors for use in image and raster p
 
 * diverging green-brown
 
-Sequential ramps go from light to dark, diverging ramps from dark through light to dark. All these ramps are color-blind safe and based on color palettes from \url{http://colorbrewer2.org/} by Cynthia Brewer and colleagues.
+Sequential ramps go from light to dark, diverging ramps from dark through light to dark. All these ramps are color-blind safe and based on color palettes from \url{https://colorbrewer2.org/} by Cynthia Brewer and colleagues.
 }
 \usage{
 rampYOR(n=5, range=1:9, bias=1, ...)

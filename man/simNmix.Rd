@@ -92,10 +92,10 @@ if FALSE, any overdispersion in abundance is modeled by a Poisson log-normal; if
 if TRUE, data are simulated under one specific form of an open population, where N in the first occasion is drawn from the specified mixture distribution and for all further occasions j, we have  N_ij ~ Poisson(N_i(j-1)). With open.N = TRUE, we must have sigma.p.ind = 0, show.plot = FALSE and nvisits >1.
 }
   \item{show.plots}{
- if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+ if TRUE, plots of the data will be displayed; set to FALSE if you are running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 \details{
@@ -113,7 +113,7 @@ Overdispersion in abundance is modeled either as a Poisson-log-normal with a nor
 
 Abundance can be zero-inflated (this is the 'suitability' model). Note that the zero-inflation parameter is called theta here (in unmarked it is called psi). mean.phi is the probability that a site is suitable (i.e., 1 minus the expected proportion of sites with structural zero abundance.
 
-Site covariate 2 can affect both suitability and abundance, while covariate 3 may affect all three levels. Hence, the function permits to simulate the case where a single site covariate affects different levels in the process (e.g., abundance and detection) in opposing directions (as for instance in Kéry, Auk, 2008)
+Site covariate 2 can affect both suitability and abundance, while covariate 3 may affect all three levels. Hence, the function permits to simulate the case where a single site covariate affects different levels in the process (e.g., abundance and detection) in opposing directions (as for instance in Kéry, 2008)
 
 Density-dependent detection can be modeled as a logistic-linear effect of local abundance (centered and log(x+1) transformed). Overdispersion in detection is modeled via normal random effects (the eps terms above) specific to sites, visits, surveys or individuals.
 
@@ -146,11 +146,11 @@ A list with the arguments input and the following additional elements:
 
 }
 \references{
-Royle, J.A. (2004) N-mixture models for estimating population size from spatially replicated counts. \emph{Biometrics} 60, 108-115.
+Royle, J.A. (2004) N-mixture models for estimating population size from spatially replicated counts. \emph{Biometrics}, 60, 108-115.
 
 Royle, J.A., et al (2007) Hierarchical spatial models of abundance and occurrence from imperfect survey data. \emph{Ecological Monographs}, 77, 465-481.
 
-Kéry, M. (2008) Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships, \emph{Auk} 125, 336-345
+Kéry, M. (2008) Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships, \emph{Auk}, 125, 336-345
 
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 6.5.
 }

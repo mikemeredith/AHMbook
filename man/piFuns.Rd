@@ -10,7 +10,8 @@ Compute multinomial cell probabilities
 }
 \description{
 These functions are used internally in the multinomial-Poisson models \code{multinomPois} and \code{gmultmix} in package \pkg{unmarked} to calculate the multinomial cell probabilities from the "raw" detection probabilities. See \link[unmarked]{piFuns}. These functions are customized for the examples in chapter 7 of AHM1 and only allow for 3 capture occasions.
-% See \link[unmarked]{makePiFuns} for functions to construct piFuns with more occasions. %% not yet in CRAN version.
+
+See \link[unmarked]{makePiFuns} for functions to construct piFuns with more occasions.
 }
 \usage{
 instRemPiFun(p)
@@ -29,7 +30,7 @@ a numeric matrix with rows for each site and 3 columns, see Details.
 \details{
 \code{instRemPiFun} defines the relationship between the multinomial cell probabilities and the underlying detection probability parameters in a removal design with 3 sampling periods of unequal length, specifically 2, 3 and 5 minutes. The columns of \code{p} give the detection probabilities per unit time (ie, per minute) for each site and sampling period. See AHM1 Section 7.7. This is the same as the function defined in the Examples section of \link[unmarked]{piFuns} in \pkg{unmarked}.
 
-\code{crPiFun} defines a pi function for capture-recapture design with 3 capture occasions. The columns of \code{p} give the detection probabilities for the three occasions. See AHM1 Section 7.8.5. NOTE that this is not the same as the custom \code{crPiFun} defined in Section 7.9.1.
+\code{crPiFun} defines a pi function for capture-recapture design with 3 capture occasions. The columns of \code{p} give the detection probabilities for the three occasions. See AHM1 Section 7.8.5. \bold{NOTE} that this is not the same as the custom \code{crPiFun} defined in Section 7.9.1.
 
 \code{crPiFun.Mb} defines a pi function for capture-recapture design with 3 capture occasions with a behavioral response. Detection probabilities do not vary with time. Column #1 of \code{p} gives the probability of detection for animals not previously detected; column #3 gives detection probability after the first detection; column #2 is ignored. See AHM1 Section 7.8.2.
 

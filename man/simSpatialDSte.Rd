@@ -41,7 +41,7 @@ probability an individual is available for detection, ie, not temporarily emigra
 exponential correlation in the spatial covariate.
 }
   \item{show.plots}{
-the number of sites for which plots should be displayed.
+the number of sites for which plots should be displayed; set to 0 to suppress plotting.
 }
 }
 

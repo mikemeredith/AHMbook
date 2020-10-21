@@ -24,7 +24,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.0.9008.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.0.9009.tar.gz"  # <-- fix version number here ################
 
 # Pick one to check:
 ## on desktop

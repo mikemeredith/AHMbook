@@ -56,7 +56,7 @@ strip half width or radius of the circle
 whether to discard or keep the data from sites with nobody detected
 }
   \item{show.plot}{
-choose whether to show plots or not. Set to FALSE when running many simulations.
+choose whether to show plots or not. Set to FALSE when running simulations.
 }
 }
 

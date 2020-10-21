@@ -17,7 +17,7 @@ simDemoDynocc(nsites = 100, nyears = 10, nvisits = 5, psi1 = 0.6,
 Number of sites.
 }
   \item{nyears}{
-Number of years (or 'seasons', as they are somewhat confusingly often also called in the occupancy literature).
+Number of years (or 'seasons', as they are somewhat confusingly often called in the occupancy literature).
 }
   \item{nvisits}{
 Number of replicate surveys (= occasions) within a year.
@@ -35,7 +35,7 @@ bounds of uniform distribution from which annual local probability of colonizati
 bounds of uniform distribution from which annual probability of detection is randomly drawn.
 }
   \item{show.plot}{
-If TRUE, plots of results are displayed; set to FALSE if running many simulations.
+If TRUE, plots of results are displayed; set to FALSE if running simulations.
 }
 }
 
@@ -51,7 +51,7 @@ A list with the values of the arguments input and the following additional eleme
   \item{nocc.true }{the observed number of occupied sites, a vector of length nyears}
 }
 \references{
-Roth, T. & Amrhein, V. (2010), Estimating individual survival using territory occupancy data on unmarked animals. \emph{Journal of Applied Ecology}, 47: 386-392.
+Roth, T. & Amrhein, V. (2010), Estimating individual survival using territory occupancy data on unmarked animals. \emph{Journal of Applied Ecology}, 47, 386-392.
 
 Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 4.
 }

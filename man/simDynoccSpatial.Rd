@@ -90,10 +90,10 @@ the seed to be used for simulation of values apart from the spatially structured
 if TRUE, summary plots are displayed.
 }
   \item{ask.plot}{
-If TRUE, pause between plots of results; set to FALSE if running many simulations.
+If TRUE, pause between plots of results; set to FALSE if running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 
@@ -136,11 +136,11 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-# Generate data with the default arguments and look at the structure:
+# Generate data with the default arguments and look at the structure
 tmp <- simDynoccSpatial()
 str(tmp)
 
-\donttest{  # rather slow
+\donttest{# rather slow
 # Large grid, seed.XAC = 88 gives a cool pattern
 str(tmp <- simDynoccSpatial(side = 100, seed.XAC = 88))
 

@@ -43,7 +43,7 @@ Main effect of wind speed on detection probability
 Interaction effect on detection of elevation and wind speed
 }
   \item{show.plot}{
-if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations
+if TRUE, plots of the data will be displayed; set to FALSE if you are running simulations
 }
 }
 

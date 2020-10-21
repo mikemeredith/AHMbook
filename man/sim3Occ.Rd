@@ -61,7 +61,7 @@ SD of logit(p)
 choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 \value{

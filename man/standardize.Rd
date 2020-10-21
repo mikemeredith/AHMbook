@@ -42,7 +42,7 @@ For the default arguments, the object returned will have mean approximately zero
 Mike Meredith, after looking at the code of \code{base::scale}.
 }
 \examples{
-# Generate some fake elevation data:
+# Generate some fake elevation data
 elev <- runif(100, min=100, max=500)
 mean(elev) ; sd(elev)
 str( e <- standardize(elev) )

@@ -25,7 +25,7 @@ data(dragonflies)}
   \item{sex}{a factor indicating the sex of each individual.}
   \item{wing}{wingspan.}
   \item{body}{body length.}
-  \item{mites}{number of mites (ectoparasites) counted.}
+  \item{mites}{number of mites (ectoparasites) counted on each individual.}
   \item{color}{proportion of body yellow as opposed to black.}
   \item{damage}{the number of wings (out of 4) damaged.}
 }

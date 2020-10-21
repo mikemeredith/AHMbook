@@ -105,10 +105,10 @@ sd of normal distribution to model logit-normal noise in p at the site level in 
 sd of normal distribution to model logit-normal noise in p at the occasion level, in the first and the last year, with values for intermediate years interpolated linearly.
 }
   \item{show.plot}{
-if TRUE, plots are produced. Set this to FALSE when running many simulations.
+if TRUE, plots are produced. Set this to FALSE when running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 

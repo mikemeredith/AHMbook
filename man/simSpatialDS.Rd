@@ -27,7 +27,7 @@ sim.spatialDS(N = 1000, beta = 1, sigma = 1, keep.all = FALSE, B = 3,
 total population size in the square
 }
   \item{beta}{
-coefficient of SOMETHING on spatial covariate x
+coefficient for the effect of spatial covariate x on the distribution of individuals
 }
   \item{sigma}{
 scale parameter of detection function

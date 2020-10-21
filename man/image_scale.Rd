@@ -43,13 +43,13 @@ the magnification to be used for axis annotation
 None, used for its plotting side effect.
 }
 \references{
-Royle, J.A., Chandler, R.B., Sollmann, R., & Gardner, B. (2014) \emph{Spatial capture-recapture} Elsevier.
+Royle, J.A., Chandler, R.B., Sollmann, R., & Gardner, B. (2014) \emph{Spatial capture-recapture}, Elsevier.
 }
 \author{
 Andy Royle.
 }
 \note{
-This function appears in the text as \code{image.scale}; renamed here to avoid confusion with generic \code{image} functions.
+This function appears in the book text as \code{image.scale}; renamed here to avoid confusion with generic \code{image} functions.
 }
 
 \examples{

@@ -55,10 +55,10 @@ parameter governing spatial correlation (=1/phi); the larger the value of theta.
 vector of length 2; random seeds used for the random field and the selection of quadrats surveyed respectively.
 }
   \item{show.plots}{
-if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+if TRUE, plots of the data will be displayed; set to FALSE if you are running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 
@@ -91,7 +91,7 @@ Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} A
 Marc Kéry & Andy Royle
 }
 \examples{
-# Generate data with the default arguments and look at the structure:
+# Generate data with the default arguments and look at the structure
 str(dat <- simOccSpatial())
 str(dat <- simOccSpatial(show.plots=FALSE))
 \donttest{

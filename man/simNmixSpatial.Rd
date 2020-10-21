@@ -58,10 +58,10 @@ vector of length 2; random seeds used for the random field and the selection of 
 used to limit the range of values of N displayed in some plots.
 }
   \item{show.plots}{
- if TRUE, plots of the data will be displayed; set to FALSE if you are running many simulations.
+ if TRUE, plots of the data will be displayed; set to FALSE if you are running simulations.
 }
   \item{verbose}{
-if TRUE, output will be written to the Console.
+if TRUE, output will be written to the console.
 }
 }
 

@@ -99,7 +99,7 @@ initial and final values of sd of normal distribution to model logit-normal nois
 initial and final values of sd of normal distribution to model logit-normal noise in p at the site/year/survey = ‘survey’ level; if they are different, a linear trend is assumed over time.
 }
   \item{show.plots}{
-If TRUE, plots of results are displayed; set to FALSE if running many simulations.
+If TRUE, plots of results are displayed; set to FALSE if running simulations.
 }
 }
 
@@ -143,8 +143,7 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-# Generate data with the default arguments and look at the structure:
-
+# Generate data with the default arguments and look at the structure
 tmp <- simDynocc()
 str(tmp)
 

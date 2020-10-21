@@ -6,7 +6,7 @@
 Data for Eurasian lynx from Switzerland and Italy (only Alps).
 }
 \description{
-The data are observations of Eurasian lynx (\emph{Lynx lynx}) confirmed by experts and by the general public (and not confirmed by experts), summarized to 10 x 10 km grid and for 3 occasions during a 'winter' (Nov-Dec, Jan-Feb, Mar-Apr). The observations are classified as 'certain' or 'uncertain', and only the latter are assumed to be contaminated with false positives (but both are subject to false-negative errors). This data set covers the Alps in Switzerland and Italy from 1994 to 2016.
+The data are observations of Eurasian lynx (\emph{Lynx lynx}) confirmed by experts and by the general public (and not confirmed by experts), summarized to a 10 x 10 km grid and for 3 occasions during a 'winter' (Nov-Dec, Jan-Feb, Mar-Apr). The observations are classified as 'certain' or 'uncertain', and only the latter are assumed to be contaminated with false positives (but both are subject to false-negative errors). This data set covers the Alps in Switzerland and Italy from 1994 to 2016.
 }
 
 \usage{data("EurasianLynx")}

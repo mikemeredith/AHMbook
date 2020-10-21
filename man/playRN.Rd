@@ -28,7 +28,7 @@ Expected detection at each survey at each site.
 choose whether to show plots or not. Set to FALSE when using function in simulations.
 }
   \item{verbose}{
-if FALSE, output to the Console will be suppressed.
+if FALSE, output to the console will be suppressed.
 }
 }
 

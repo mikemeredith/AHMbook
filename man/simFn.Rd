@@ -5,7 +5,7 @@
 Simulate a Poisson point process
 }
 \description{
-Simulates animal or plant locations in space according to a homogenous Poisson process. This process is characterized by the intensity, which is the average number of points per unit area. The resulting point pattern is then discretized to obtain abundance data and  presence/absence (or occurrence) data. The discretization of space is achieved by choosing the cell size. It is used in AHM1 Section 1.1 to help to understand the relationship between point patterns, abundance data and occurrence data (also called presence/absence or distribution data). For a similar and somewhat more sexy version of this function, see \code{\link{simPPe}}.
+Simulates animal or plant locations in space according to a homogenous Poisson process. This process is characterized by the intensity, which is the average number of points per (very small)unit area. The resulting point pattern is then discretized to obtain abundance data and  presence/absence (or occurrence) data. The discretization of space is achieved by choosing the cell size. It is used in AHM1 Section 1.1 to help to understand the relationship between point patterns, abundance data and occurrence data (also called presence/absence or distribution data). For a similar and somewhat more sexy version of this function, see \code{\link{simPPe}}.
 }
 \usage{
 sim.fn(quad.size = 10, cell.size = 1, intensity = 1, show.plot = TRUE)
@@ -21,7 +21,7 @@ The length of each side of the cells into which the quadrat is divided. The rati
 The average number of points (animals or plants) per unit area.
 }
   \item{show.plot}{
-If TRUE, the results are plotted. Set to FALSE when running many simulations.
+If TRUE, the results are plotted. Set to FALSE when running simulations.
 }
 }
 \value{

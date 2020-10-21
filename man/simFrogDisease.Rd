@@ -5,7 +5,7 @@
 Simulate detection data for diseased frogs
 }
 \description{
-Simulates detection data for an amphibian species affected by the fungal pathogen \emph{Batrachochytrium dendrobatidis}(Lips et al., 2006). Surveys are carried out on  multiple occasions each year. Observers count frogs and record whether they were infected or not. Over time, individuals are subject to mortality and there may also be recruitment of new individuals into the population. Individuals transition between the two states: infected frogs may become uninfected (i.e., can shed the fungus) and vice versa. It also seems reasonable to expect that survival probability differs between the two states.
+Simulates detection data for an amphibian species affected by the fungal pathogen \emph{Batrachochytrium dendrobatidis} (Lips et al., 2006). Surveys are carried out on  multiple occasions each year. Observers count frogs and record whether they were infected or not. Over time, individuals are subject to mortality and there may also be recruitment of new individuals into the population. Individuals transition between the two states: infected frogs may become uninfected (i.e., can shed the fungus) and vice versa. It also seems reasonable to expect that survival probability differs between the two states.
 }
 \usage{
 simFrogDisease(nsites = 100, nyears = 3, nsurveys = 3, alpha.lam = 3,
@@ -58,7 +58,7 @@ A list with the values of the arguments and the following additional elements:
 \references{
 Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 2.9.1.
 
-Lips, K.R., Brem, F., Brenes, R., Reeve, J.D., Alford, R.A., Voyles, J., et al., 2006. Emerging infectious disease and the loss of biodiversity in a Neotropical amphibian community. Proc. Natl. Acad. Sci. USA 103, 3165-3170.
+Lips, K.R., Brem, F., Brenes, R., Reeve, J.D., Alford, R.A., Voyles, J., et al., 2006. Emerging infectious disease and the loss of biodiversity in a Neotropical amphibian community. \emph{Proc. Natl. Acad. Sci. USA}, 103, 3165-3170.
 }
 \author{
 Marc Kéry and Andy Royle

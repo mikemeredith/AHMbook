@@ -60,7 +60,7 @@ Marc Kéry & Andy Royle
 }
 
 \examples{
-# Simulate a data set with the default arguments and look at the structure of the output:
+# Simulate a data set with the default arguments and look at the structure of the output
 set.seed(123)
 tmp <- simHDS()
 str(tmp)

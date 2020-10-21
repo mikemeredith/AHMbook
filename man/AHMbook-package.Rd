@@ -4,10 +4,10 @@
 \docType{package}
 \encoding{UTF-8}
 \title{
-Functions and data for the Book "Applied Hierarchical Modeling in Ecology" Volumes 1 and 2
+Functions and data for the Book \dQuote{Applied Hierarchical Modeling in Ecology} Volumes 1 and 2
 }
 \description{
-Provides functions and data sets needed to run the code given in the two-volume publication, \emph{Applied Hierarchical Modeling in Ecology: analysis of distribution, abundance and species richness in R and BUGS} by Marc Kéry and Andy Royle, Academic Press (Vol 1, 2016; Vol 2, 2021).
+Provides functions and data sets needed to replicate the analyses shown in the two-volume publication, \emph{Applied Hierarchical Modeling in Ecology: analysis of distribution, abundance and species richness in R and BUGS} by Marc Kéry and Andy Royle, Academic Press (Vol 1, 2016; Vol 2, 2021).
 }
 \details{
 
@@ -17,7 +17,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 
 \section{AHM1 - Chapter 1}{
   \describe{
-  \item{\code{\link{sim.fn}}}{ Simulate a Poisson point process and illustrate the fundamental relationships between intensity, abundance and occurrence (AHM1 - section 1.1)}
+  \item{\code{\link{sim.fn}}}{ Simulate a homogeneous Poisson point process and illustrate the fundamental relationships between intensity, abundance and occurrence (AHM1 - section 1.1)}
   } }
 
 \section{AHM1 - Chapter 4}{
@@ -32,7 +32,7 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
   \item{\code{\link{plot_Nmix_resi}}}{ Do diagnostic plots for one binomial N-mixture model fitted with all three mixture distributions currently available in unmarked: Poisson, negative binomial and zero-inflated Poisson (AHM1 - 6.9.3)}
   \item{\code{\link{map.Nmix.resi}}}{ Produce a map of the residuals from a binomial N-mixture model (see Section AHM1 - 6.9.3)}
   \item{\code{\link{simpleNmix}}}{ Simulate count data under a very simple version of the binomial mixture model, with time for space substitution (AHM1 - 6.12)}
-  \item{\code{\link{playRN}}}{ Play Royle-Nichols (RN) model: generate count data under the binomial N-mixture model of Royle (2004),  then 'degrade' the data to detection/nondetection and fit the RN model using unmarked and estimate site-specific abundance (AHM1 - 6.13.1)   }
+  \item{\code{\link{playRN}}}{ Play Royle-Nichols (RN) model: generate count data under the binomial N-mixture model of Royle (2004),  then 'degrade' the data to detection/nondetection and fit the RN model using \pkg{unmarked} and estimate site-specific abundance (AHM1 - 6.13.1)   }
   } }
 
 \section{AHM1 - Chapter 7}{
@@ -74,16 +74,16 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 \section{AHM2 - Chapter 1}{
   \describe{
   \item{\code{\link{simNpC}}}{ Simulate data on abundance (N), detection probability (p) and resulting counts (C) under a counting process with imperfect detection  (AHM2 - 1.2)}
-  \item{\code{\link{simPOP}}}{ Simulate count data under a demographic state-space, or Dial-Madsen, model (AHM2 - 1.7.1)}
+  \item{\code{\link{simPOP}}}{ Simulate count data under a demographic state-space, or Dail-Madsen, model (no robust design) (AHM2 - 1.7.1)}
   \item{\code{\link{simPH}}}{ Simulate count data with phenological curves within a year (AHM2 - 1.8.1)}
   \item{\code{\link{graphSSM}}}{ Plot trajectories of counts and latent abundance from a fitted Gaussian state-space model (AHM2 - 1.6.1)}
   } }
 
 \section{AHM2 - Chapter 2}{
   \describe{
-  \item{\code{\link{simDM0}}}{ Simulate count data from a Dail-Madsen model, no covariates (AHM2 - 2.5.1)}
-  \item{\code{\link{simDM}}}{  Simulate count data from a Dail-Madsen model, with covariates (AHM2 - 2.5.5)}
-  \item{\code{\link{simMultMix}}}{  Simulate "removal" data from a multinomial-mixture model (AHM2 - 2.7.1)}
+  \item{\code{\link{simDM0}}}{ Simulate count data from a Dail-Madsen model under a robust design, no covariates (AHM2 - 2.5.1)}
+  \item{\code{\link{simDM}}}{  Simulate count data from a Dail-Madsen model under a robust design, with covariates (AHM2 - 2.5.5)}
+  \item{\code{\link{simMultMix}}}{  Simulate \dQuote{removal} count data from a multinomial-mixture model (AHM2 - 2.7.1)}
   \item{\code{\link{simFrogDisease}}}{  Simulate detection data for diseased frogs (AHM2 - 2.9.1)}
   } }
 
