@@ -408,7 +408,7 @@ for(i in 1:nreps) {
     3.48, 3.74, 3.34, 2.66, 2.37, 1.81, 1.63, 1.54, 1.24, 0.79), ncol=2)
   set.seed(123)
   # checkTotal(simDSM(X, show.plot=FALSE))
-  chk <- c(99.5555, 99.3373)
+  chk <- c(93.0540, 92.8487)
   checkTotal(simDSM(X, show.plot=FALSE), chk[i], 4, halt)
 }
 

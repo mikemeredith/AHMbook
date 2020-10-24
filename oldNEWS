@@ -1,3 +1,37 @@
+CHANGES in 0.2.0.9008 (2020-10-17)
+
+  * Changed publication date of AHM2 to 2021 everywhere in help files.
+
+CHANGES in 0.2.0.9007 (2020-10-08)
+
+  * `simDSM` now returns `Ucap`, needed for plotting.
+
+CHANGES in 0.2.0.9006 (2020-07-16)
+
+  * Corrected note about RNGkind for `simNmixSpatial` and `simOccSpatial`.
+
+CHANGES in 0.2.0.9005 (2020-07-13)
+
+  * Added note about RNGkind to `sim*` functions using `sample`.
+
+CHANGES in 0.2.0.9004 (2020-06-18)
+
+  * Added data wrangling code to `SwissMarbledWhite` data set.
+
+CHANGES in 0.2.0.9003 (2020-06-16)
+
+  * Added check for plotting error to all `sim*` functions.
+
+  * Functions `simDynoccSpatial`, `simPPe` and `simSpatialDSline` get a `show.plots` argument.
+
+CHANGES in 0.2.0.9002 (2020-06-15)
+
+  * Added check for plotting error to `simDM`. Thanks to Jonathan Cohen for reporting this.
+
+CHANGES in 0.2.0.9001 (2020-06-13)
+
+  * Added `simFrogDisease` function.
+
 CHANGES in 0.1.4.9114 (2020-06-05)
 
   * Corrected section numbers on main help page.

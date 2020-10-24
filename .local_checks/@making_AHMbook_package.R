@@ -24,7 +24,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.0.9009.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.1.tar.gz"  # <-- fix version number here ################
 
 # Pick one to check:
 ## on desktop
@@ -48,8 +48,8 @@ library(AHMbook)
 tmp <- simNmix()
 data <-  simNmix(nsites = 130, nvisits = 2, mean.lam = 120, mean.p = 0.7,
             sigma.lam = 0.6, sigma.p.site = 0.26,  sigma.p.survey = 0.37,
-	          show.plot = TRUE)
-
+            show.plot = TRUE)
+str(data)
 
 
 example(simDSM)
@@ -60,6 +60,7 @@ example(BerneseOberland)
 data(MesoCarnivores)
 str(MesoCarnivores)
 # display the species names:
+data(SwissAtlasHa)
 dimnames(SwissAtlasHa$counts)[[3]]
 
 str(simPH())
