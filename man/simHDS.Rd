@@ -6,7 +6,13 @@
 Simulate data under hierarchical distance sampling protocol (line or point)
 }
 \description{
-Function simulates hierarchical distance sampling (HDS) data under either a line or a point transect protocol.
+The function simulates hierarchical distance sampling (HDS) data under either a line or a point transect protocol. At each site, it works with a strip of width \code{B*2} (for line transects) or a circle of radius \code{B} inscribed in a square of side \code{B*2} (for point transects).
+
+The state process is simulated by first drawing a covariate value, "habitat", for each site from a Normal(0, 1) distribution. This is used in a log-linear regression with arguments \code{mean.lambda} and \code{beta.lam} to calculate the expected number of animals, lambda, in each strip or square.
+
+For line transects, the distance from the line is drawn from a Uniform(0, B) distribution. For point transects, the animals are distributed randomly over the square before calculating the distance of each from the point. Observations of animals further than B from the point are discarded.
+
+A detection covariate, "wind", for each site is drawn from a Uniform(-2, 2) distribution. This is used in a log-linear regression with arguments \code{mean.sigma} and \code{beta.sig} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated as Bernoulli trials with probability of success decreasing with distance from the line or point.
 }
 \usage{
 simHDS(type=c("line", "point"), nsites = 100, mean.lambda = 2, beta.lam = 1,

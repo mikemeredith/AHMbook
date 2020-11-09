@@ -64,12 +64,12 @@ for(i in 1:nsites){
     u1 <- r*cos(angle) + B
     u2 <- r*sin(angle) + B
 
-    d <- sqrt((u1 - B)^2 + (u2-B)^2)
+    d <- sqrt((u1 - B)^2 + (u2-B)^2)  ## d == r ! This block is all cruft
     N.true[i] <- sum(d<= B) # Population size inside of count circle, should be N[i] here.
     gs <- rpois(N[i], lambda.group) + 1
     groupsize <-c(groupsize,gs)
     sigma.vec <- exp(alpha0 + alpha1*(gs-1))
-    # For counting individuals on a circle so we truncate p here
+    # For counting individuals on a circle so we truncate p here ## cruft
     p <- ifelse(d<(B), 1, 0)*exp(-d*d/(2*(sigma.vec^2)))
     y <- rbinom(N[i], 1, p)
     # Subset to "captured" individuals only

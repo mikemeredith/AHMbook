@@ -106,7 +106,7 @@ for(i in 1:nsites){
      u1<-  r*cos(angle) + B
      u2<-  r*sin(angle) + B
 
-    d <- sqrt((u1 - B)^2 + (u2-B)^2)
+    d <- sqrt((u1 - B)^2 + (u2-B)^2)  ## d == r ! Cruft...
     M.true[i] <- sum(d<= B)    # Population size inside of count circle
     gs <- rpois(M[i], lambda.group) + 1
     sigma.vec <- exp(alpha0 + alpha1*(gs-1))

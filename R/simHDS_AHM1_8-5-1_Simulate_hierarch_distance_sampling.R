@@ -129,7 +129,7 @@ if(show.plot) {
       ttt <- table(data[,1])
       n <- rep(0, nsites)
       n[as.numeric(rownames(ttt))] <- ttt
-      plot(habitat, n, main = "Observed counts (n) vs. habit")
+      plot(habitat, n, main = "Observed counts (n) vs. habitat")
       plot(wind, n, main = "Observed counts (n) vs. wind speed")
     }, silent = TRUE)
     if(inherits(tryPlot, "try-error"))
@@ -138,6 +138,8 @@ if(show.plot) {
 }
 
 # Output
-list(type = type, nsites = nsites, mean.lambda = mean.lambda, beta.lam = beta.lam, mean.sigma = mean.sigma, beta.sig = beta.sig, B = B, data=data, habitat=habitat, wind=wind, N = N, N.true = N.true )
+list(type = type, nsites = nsites, mean.lambda = mean.lambda, beta.lam = beta.lam,
+    mean.sigma = mean.sigma, beta.sig = beta.sig, B = B, data=data, habitat=habitat,
+    wind=wind, N = N, N.true = N.true )
 }
 

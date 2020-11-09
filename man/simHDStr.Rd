@@ -7,6 +7,14 @@ Simulate HDS time-removal or double-observer data
 \description{
 A general function for simulating hierarchical distance sampling (HDS) data combined with a time-removal (with 3 removal periods) or double-observer protocol, either for a line or a point transect protocol and with method = "removal" or method = "double". Also produces plots of the output.
 
+At each site, it works with a strip of width \code{B*2} (for line transects) or a circle of radius \code{B} (for point transects).
+
+The state process is simulated by first drawing a covariate value, "habitat", for each site from a Normal(0, 1) distribution. This is used in a log-linear regression with arguments \code{beta0} and \code{beta1} to calculate the expected number of groups in each strip or circle. Group size is simulated by first drawing from a Poisson distribution with parameter \code{lambda.group} then adding 1.
+
+For line transects, the distance from the line is drawn from a Uniform(0, B) distribution. For point transects, the distance from the point is simulated from B*sqrt(Uniform(0,1)), which ensures a uniform distribution over the circle.
+
+The group size is used in a log-linear regression with arguments \code{alpha0} and \code{alpha1} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated according to the selected protocol.
+
 To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
 }
 \usage{
@@ -20,7 +28,7 @@ simHDStr(type = c("line", "point"), method=c("removal", "double"), nsites = 200,
 The type of distance transect, either "line" or "point".
 }
   \item{method}{
-Is the method time-removal ("removal") or double-observer ("double")
+Is the method time-removal ("removal") or double-observer ("double")?
 }
   \item{nsites}{
 Number of sites (spatial replication)

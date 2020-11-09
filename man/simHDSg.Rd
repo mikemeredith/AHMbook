@@ -7,6 +7,14 @@ Simulate data under HDS protocol with groups
 }
 \description{
 Simulates hierarchical distance sampling (HDS) data for groups under either a line or a point transect protocol and using a half-normal detection function (Buckland et al. 2001).
+
+At each site, it works with a strip of width \code{B*2} (for line transects) or a circle of radius \code{B} (for point transects).
+
+The state process is simulated by first drawing a covariate value, "habitat", for each site from a Normal(0, 1) distribution. This is used in a log-linear regression with arguments \code{beta0} and \code{beta1} to calculate the expected number of groups in each strip or circle. Group size is simulated by first drawing from a Poisson distribution with parameter \code{lambda.group} then adding 1.
+
+For line transects, the distance from the line is drawn from a Uniform(0, B) distribution. For point transects, the distance from the point is simulated from B*sqrt(Uniform(0,1)), which ensures a uniform distribution over the circle.
+
+The group size is used in a log-linear regression with arguments \code{alpha0} and \code{alpha1} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated as Bernoulli trials with probability of success decreasing with distance from the line or point.
 }
 \usage{
 simHDSg(type = c("line", "point"), nsites = 100, lambda.group = 0.75,

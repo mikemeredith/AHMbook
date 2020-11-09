@@ -1,3 +1,12 @@
+
+CHANGES in 0.2.2.9000 (2020-11-09)
+
+  * Additional information added to the Descriptions of `simHDS*` functions.
+
+CHANGES in 0.2.2 (2020-10-26)
+
+  * Removed insecure URL.
+
 CHANGES in 0.2.1 (2020-10-24)
 
   * Changed publication date of AHM2 to 2021 everywhere in help files.

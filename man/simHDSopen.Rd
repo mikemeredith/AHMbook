@@ -5,7 +5,15 @@
 Simulate open hierarchical distance sampling data
 }
 \description{
-Simulates distance sampling data from a multi-season (or multi-year) model, incorporating habitat and detection covariates, temporary emigration, and a trend in abundance or density.
+Simulates distance sampling data for multiple replicate surveys in a multi-season (or multi-year) model, incorporating habitat and detection covariates, temporary emigration, and a trend in abundance or density.
+
+At each site, it works with a strip of width \code{B*2} (for line transects) or a circle of radius \code{B} (for point transects).
+
+The state process is simulated by first drawing a covariate value, "habitat", for each site from a Normal(0, 1) distribution. This is used in a log-linear regression with arguments \code{mean.lam}, \code{beta.lam} and \code{beta.trend} to calculate the expected number of animals, lambda, in each strip or circle for each year. Site- and year-specific abundances are drawn from a Poisson distribution with mean lambda. The number available for capture at each replicate survey is simulated as a binomial distribution with probability \code{phi}.
+
+For line transects, the distance from the line is drawn from a Uniform(0, B) distribution. For point transects, the distance from the point is simulated from B*sqrt(Uniform(0,1)), which ensures a uniform distribution over the circle.
+
+A detection covariate, "wind", for each survey is drawn from a Uniform(-2, 2) distribution. This is used in a log-linear regression with arguments \code{mean.sig} and \code{beta.sig} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated as Bernoulli trials with probability of success decreasing with distance from the line or point.
 }
 \usage{
 simHDSopen(type=c("line", "point"), nsites = 100,
