@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.2.9001 (2020-11-25)
+
+  * Minor corrections to help files.
+
 CHANGES in 0.2.2.9000 (2020-11-09)
 
   * Additional information added to the Descriptions of `simHDS*` functions.

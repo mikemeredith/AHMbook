@@ -146,8 +146,9 @@ if(type=="det/nondet"){
 
   # Draw species-specific intercepts and slopes from their normal distributions
   # Build up linear predictors for occupancy and detection
-  mu.lpsi <- ifelse(mean.psi == '1', 500, qlogis(mean.psi))
-  mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
+  # qlogis(1) returns Inf, replace with 500
+  mu.lpsi <- ifelse(mean.psi == 1, 500, qlogis(mean.psi))
+  mu.lp <- ifelse(mean.p == 1, 500, qlogis(mean.p))
 
   beta0 <- rnorm(nspecies, mu.lpsi, sig.lpsi)           # occupancy intercept
   beta1 <- rnorm(nspecies, mu.beta.lpsi, sig.beta.lpsi) # occupancy slope on habitat
@@ -280,7 +281,7 @@ if(type=="counts"){
   # Draw species-specific intercepts and slopes from their normal distributions
   # Build up linear predictors for occupancy and detection
   mu.loglam <- log(mean.lambda)
-  mu.lp <- ifelse(mean.p == '1', 500, qlogis(mean.p))
+  mu.lp <- ifelse(mean.p == 1, 500, qlogis(mean.p))
 
   beta0 <- rnorm(nspecies, mu.loglam, sig.loglam)           # lambda intercept
   beta1 <- rnorm(nspecies, mu.beta.loglam, sig.beta.loglam) # lambda slope on habitat

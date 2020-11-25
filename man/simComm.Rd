@@ -5,7 +5,7 @@
 Simulate community occupancy or community abundance data
 }
 \description{
-Simulate detection/nondetection or count data, respectively, under a community occupancy or abundance model with random species effects for psi/lambda and p (both including effects of one covariate, 'habitat' for psi/lambda and 'wind speed' for p) (introduced in AHM1 - 11.2)
+Simulate detection/nondetection or count data, respectively, under a community occupancy or abundance model with random species effects for psi or lambda and p (both including effects of one covariate, 'habitat' for psi or lambda and 'wind speed' for p) (introduced in AHM1 - 11.2)
 }
 \usage{
 simComm(type = c("det/nondet", "counts"), nsites = 30, nreps = 3, nspecies = 100,
@@ -27,28 +27,28 @@ number of replicate samples (occasions or repeated measurements)
 total number of species in the area that is sampled by these sites (regional species pool)
 }
   \item{mean.psi}{
-community mean of occupancy probability over all species in community (probability scale)
+community mean of occupancy probability over all species in community (probability scale); ignored if \code{type = "counts"}.
 }
   \item{sig.lpsi}{
- community standard deviation of logit(occupancy probability intercept)
+ community standard deviation of logit(occupancy probability intercept); ignored if \code{type = "counts"}.
 }
   \item{mu.beta.lpsi}{
- community mean of the effects of 'habitat' covariate on occupancy probability
+ community mean of the effects of 'habitat' covariate on occupancy probability; ignored if \code{type = "counts"}.
 }
   \item{sig.beta.lpsi}{
-community standard deviation of the effects of 'habitat' covariate on occupancy probability
+community standard deviation of the effects of 'habitat' covariate on occupancy probability; ignored if \code{type = "counts"}.
 }
   \item{mean.lambda}{
-community mean of expected abundance over all species in superpopulation
+community mean of expected abundance over all species in superpopulation; ignored if \code{type = "det/nondet"}.
 }
   \item{sig.loglam}{
-community standard deviation of log(lambda intercept)
+community standard deviation of log(lambda intercept); ignored if \code{type = "det/nondet"}.
 }
   \item{mu.beta.loglam}{
- community mean of the effects of 'habitat' covariate on log(lambda)
+ community mean of the effects of 'habitat' covariate on log(lambda); ignored if \code{type = "det/nondet"}.
 }
   \item{sig.beta.loglam}{
-community standard deviation of the effects of 'habitat' covariate on expected abundance
+community standard deviation of the effects of 'habitat' covariate on expected abundance; ignored if \code{type = "det/nondet"}.
 }
   \item{mean.p}{
 community mean of detection probability over all species in superpopulation (probability scale)
@@ -67,9 +67,9 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 }
 }
 \details{
-Function simulates data from repeated sampling of a metacommunity (or spatially structured community) according the model of Dorazio & Royle (JASA, 2005) for type = "det/nondet" (this is the default) or under the model of Yamaura et al. (2012) for type = "counts".
+Function simulates data from repeated sampling of a metacommunity (or spatially structured community) according to the model of Dorazio & Royle (JASA, 2005) for \code{type = "det/nondet"} (this is the default) or under the model of Yamaura et al. (2012) for \code{type = "counts"}.
 
-Occupancy probability (psi) or expected abundance (lambda) can be made dependent on a continuous site covariate 'habitat', while detection probability can be made dependent an observational covariate 'wind'. Both intercept and slope of the two log-linear or logistic regressions (for occupancy or expected abundance, respectively, and for detection) are simulated as draws from a normal distribution with  mean and standard deviation that can be selected using function arguments.
+Occupancy probability (psi) or expected abundance (lambda) can be made dependent on a continuous site covariate 'habitat', while detection probability can be made dependent an observational covariate 'wind'. Both intercept and slope of the two log-linear or logistic regressions (for occupancy or expected abundance, respectively, and for detection) are simulated as draws from a normal distribution with mean and standard deviation that can be selected using function arguments.
 
 Specifically, the data are simulated under the following linear models:
 
