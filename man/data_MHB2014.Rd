@@ -17,7 +17,7 @@ The list \code{MHB2014} has the full survey data for the year 2014.
 \code{MHB2014} is a list with 5 elements:
 
 \describe{
-  \item{\bold{species }}{a data frame with row for 158 species, including 13 species not recorded in the year 2014, and the following columns:
+  \item{\bold{species }}{a data frame with rows for 158 species, including 15 species not recorded in the year 2014, and the following columns:
 
     \itemize{
       \item specid : a numeric species ID based on phylogeny.
