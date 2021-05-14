@@ -1,4 +1,10 @@
 
+CHANGES in 0.2.2.9002 (2021-05-14)
+
+  * Fixed "data length differs..." warning in zinit.Rd Examples; see Ripley's email 2021-05-13.
+
+  * Updated URL for SwissMarbledWhite data set.
+
 CHANGES in 0.2.2.9001 (2020-11-25)
 
   * Minor corrections to help files.

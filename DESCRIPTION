@@ -1,8 +1,8 @@
 Package: AHMbook
 Type: Package
 Title: Functions and Data for the Book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2
-Version: 0.2.2.9001
-Date: 2021-11-25
+Version: 0.2.2.9002
+Date: 2021-05-14
 Depends: R (>= 2.10)
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda, unmarked (>= 0.12.2), mvtnorm, spdep
 Suggests:
@@ -46,7 +46,7 @@ Authors@R: c(
   person("Swiss Ornithological Institute", role="dtc", comment="<https://www.vogelwarte.ch>"),
   person("UK Butterfly Monitoring Scheme (UKBMS)", role=c("dtc", "cph"), comment="UKmarbledWhite, <https://www.ceh.ac.uk/our-science/projects/uk-butterfly-monitoring-scheme>"))
 BugReports: https://github.com/mikemeredith/AHMbook/issues
-Description: Provides functions and data sets to accompany the two volume publication 'Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS' by Marc Kéry and Andy Royle: volume 1 (2016, ISBN: 978-0-12-801378-6) and volume 2 (2021, ISBN: 978-0-12-809585-0), <https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook>.
+Description: Provides functions and data sets to accompany the two volume publication 'Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS' by Marc Kéry and Andy Royle: volume 1 (2016, ISBN: 978-0-12-801378-6) and volume 2 (2021, ISBN: 978-0-12-809585-0), <https://www.mbr-pwrc.usgs.gov/pubanalysis/keryroylebook/>.
 License: GPL (>=3)
 Copyright: file COPYRIGHTS
 NeedsCompilation: no

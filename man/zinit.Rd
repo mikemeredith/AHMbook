@@ -28,6 +28,6 @@ Marc Kéry & Andy Royle
 
 \examples{
 # Generate a fake capture history
-( ch <- matrix(rbinom(60, 1, 0.5), 6, 5) )
+( ch <- matrix(rbinom(30, 1, 0.5), 6, 5) )
 zinit(ch)
 }

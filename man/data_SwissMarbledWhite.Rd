@@ -25,7 +25,7 @@ A data frame with 1337 rows and the following columns:
 \source{
 Biodiversity Monitoring Program in the canton of Aargau, Switzerland (Courtesy Isabelle Flöss, Abteilung Landschaft und Gewässer des Kanton Aargau). See Appendix C of Roth et al. (2014). %% public domain, CC0
 
-\url{https://figshare.com/articles/Appendix_C_Field_methods_and_analyses_of_the_butterfly_surveys_of_the_Aargau_Biodiversity_Monitoring_Program_/3559965/1}
+\url{https://figshare.com/articles/dataset/Appendix_C_Field_methods_and_analyses_of_the_butterfly_surveys_of_the_Aargau_Biodiversity_Monitoring_Program_/3559965/1}
 
 }
 
