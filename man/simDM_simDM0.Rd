@@ -79,7 +79,7 @@ For \code{simDM0}, a list with the values of the input arguments and the followi
  \item{y }{number detected, nsites x nyears x nsurveys}
  \item{yy }{number detected as a matrix, nsites x (nyears*nsurveys)}
 
-\code{simDM0} has the following additional elements:
+\code{simDM} has the following additional elements:
  \item{cov.lam }{covariate for lambda generated from Uniform(-1, 1), nsites vector}
  \item{cov.gamma }{covariate for gamma generated from Uniform(-1, 1), nsites vector}
  \item{cov.phi }{covariate for phi generated from Uniform(-1, 1), nsites vector}
