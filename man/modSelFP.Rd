@@ -5,7 +5,7 @@
 Model selection results from a list of 'unmarkedFitOccuFP' models
 }
 \description{
-The \pkg{unmarked} functions \code{\link[unmarked]{fitList}} and \code{\link[unmarked]{modSel}} do not currently work for 'unmarkedFitOccuFP' models, so this is a stop-gap function for use until this capability is added. It will be removed from \pkg{AHMbook} once it is included in \pkg{unmarked}.
+The \pkg{unmarked} functions \code{\link[unmarked]{fitList}} and \code{\link[unmarked]{modSel}} do now work for 'unmarkedFitOccuFP' models, so this stop-gap function is deprecated. Use \code{modSel(fitList(fits=mod.list))} instead.
 }
 \usage{
 modSelFP(mod.list)
@@ -24,7 +24,3 @@ A data frame with a row for each model in the input list and columns for number 
 Kéry, M. & Royle, J.A. (2021) \emph{Applied Hierarchical Modeling in Ecology} AHM2 - 7.2.2.
 }
 \author{
-Chris Sutherland.
-}
-
-

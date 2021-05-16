@@ -107,7 +107,6 @@ The functions are listed by chapter below, where AHM1 refers to volume 1 and AHM
 \section{AHM2 - Chapter 7}{
   \describe{
   \item{\code{\link{valid_data}}}{ Partial validation of simulated data with false positives (AHM2 - 7.6.2)}
-  \item{\code{\link{modSelFP}}}{ A stop-gap function for \code{\link[unmarked]{modSel}} for fitted false positive occupancy models  (AHM2 - 7.2.2)}
   } }
 
 \section{AHM2 - Chapter 8}{
