@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.3.9000 (2021-11-14)
+
+  * `simComm` now includes the simulated covariates `habitatat` and `wind` in the output.
+
 CHANGES in 0.2.3 (2021-05-16)
 
   * Fixed: "data length differs..." warning in zinit.Rd Examples (thanks to Prof Ripley's report).

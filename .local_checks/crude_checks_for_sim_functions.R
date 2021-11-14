@@ -280,11 +280,13 @@ for(i in 1:nreps) {
 ## simComm ##
   set.seed(123)
   # checkTotal(simComm(type="count", show.plot=FALSE))
-  checkTotal(simComm(type="count", show.plot=FALSE), 18.111469, 6, halt)
+  tmp <- simComm(type="count", show.plot=FALSE)
+  checkTotal(tmp, 16.536088, 6, halt)
 
   set.seed(123)
   # checkTotal(simComm(type="det", show.plot=FALSE))
-  checkTotal(simComm(type="det", show.plot=FALSE), 14.955703, 6, halt)
+  tmp <- simComm(type="det", show.plot=FALSE)
+  checkTotal(tmp, 13.847473, 6, halt)
 
   # AHM2 Chapter 1
   # --------------

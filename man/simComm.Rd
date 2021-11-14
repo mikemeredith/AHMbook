@@ -107,6 +107,8 @@ A list with the arguments supplied and the following additional elements:
 
 \bold{(1) for \code{type = "det/nondet"} (i.e., community occupancy)}
 
+  \item{habitat}{length \code{nsites} vector with the habitat covariate}
+  \item{wind}{\code{nsites * nreps} matrix with the wind covariate}
   \item{psi}{\code{psi[i, k]} occupancy probability for site i and species k}
   \item{p}{\code{p[i, j, k]} detection probability for site i, occasion j and species k}
   \item{z}{\code{z[i, k]} true presence/absence for site i and species k}
@@ -122,6 +124,8 @@ A list with the arguments supplied and the following additional elements:
 
 \bold{(2) for \code{type = "counts"} (i.e., community count)}
 
+  \item{habitat}{length \code{nsites} vector with the habitat covariate}
+  \item{wind}{\code{nsites * nreps} matrix with the wind covariate}
   \item{lambda}{\code{lambda[i, k]} expected number of individuals for site i and species k}
   \item{p}{\code{p[i, j, k]} detection probability for site i, occasion j and species k}
   \item{N}{\code{N[i, k]} true number present for site i and species k}

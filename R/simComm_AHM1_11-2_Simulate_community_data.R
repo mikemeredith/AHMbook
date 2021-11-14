@@ -252,10 +252,14 @@ if(type=="det/nondet"){
   }
 
   # Output
-  return(list(type=type, nsites=nsites, nreps=nreps, nspecies=nspecies, mean.psi=mean.psi,
+  return(list(
+    # input arguments
+    type=type, nsites=nsites, nreps=nreps, nspecies=nspecies, mean.psi=mean.psi,
     mu.lpsi=mu.lpsi, sig.lpsi=sig.lpsi, mu.beta.lpsi=mu.beta.lpsi,
     sig.beta.lpsi=sig.beta.lpsi, mean.p=mean.p, mu.lp=mu.lp, sig.lp=sig.lp,
-    mu.beta.lp=mu.beta.lp, sig.beta.lp=sig.beta.lp, psi=psi, p=p, z=z,
+    mu.beta.lp=mu.beta.lp, sig.beta.lp=sig.beta.lp,
+    # generated values
+    habitat=habitat, wind=wind, psi=psi, p=p, z=z,
     z.obs = z.obs, y.all=y.all, y.obs=y.obs, y.sum.all=y.sum.all,
     y.sum.obs=y.sum.obs, Ntotal.fs = Ntotal.fs, Ntotal.obs = Ntotal.obs, S.true = S.true, S.obs = S.obs))
 } # endif(type=="det/nondet")
@@ -375,11 +379,15 @@ if(type=="counts"){
   }
 
   # Output
-  return(list(type=type, nsites=nsites, nreps=nreps, nspecies=nspecies,
+  return(list(
+    # input arguments
+    type=type, nsites=nsites, nreps=nreps, nspecies=nspecies,
     mean.lambda=mean.lambda, mu.loglam=mu.loglam, sig.loglam=sig.loglam,
     mu.beta.loglam=mu.beta.loglam, sig.beta.loglam=sig.beta.loglam,
     mean.p=mean.p, mu.lp=mu.lp, sig.lp=sig.lp, mu.beta.lp=mu.beta.lp,
-    sig.beta.lp=sig.beta.lp, lambda=lambda, p=p, N=N, # y.obs=y.obs,
+    sig.beta.lp=sig.beta.lp,
+    # generated values
+    habitat=habitat, wind=wind, lambda=lambda, p=p, N=N, # y.obs=y.obs,
     y.all=y.all, y.obs=y.obs, ymax.obs=ymax.obs, Ntotal.fs=Ntotal.fs,
     Ntotal.obs=Ntotal.obs))
 } # endif(type=="counts")
