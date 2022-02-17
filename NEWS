@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.3.9001 (2022-02-05)
+
+  * Description and contents (in AHMbook-package.Rd) modified to allow inclusion of simulation functions not in the books.
+
 CHANGES in 0.2.3.9000 (2021-11-14)
 
   * `simComm` now includes the simulated covariates `habitatat` and `wind` in the output.
