@@ -41,7 +41,7 @@ export("fitstats", "fitstats2")
 export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
 
 # AHM1 Chapter 8
-export("sim.ldata", "sim.pdata", "simHDS")
+export("sim.ldata", "sim.pdata", "simHDS", "simHDSpoint")
 
 # AHM1 Chapter 9
 export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")

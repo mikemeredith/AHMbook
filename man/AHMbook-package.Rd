@@ -29,6 +29,7 @@ It also has all the utility functions and data sets needed to replicate the anal
     \item{\code{\link{sim.ldata}}}{ Simulate data under a non-hierarchical line transect distance sampling model (AHM1 - 8.2.3)}
     \item{\code{\link{sim.pdata}}}{ Simulate data under a non-hierarchical point transect (= point count) distance sampling model (AHM1 - 8.2.5.1)}
     \item{\code{\link{simHDS}}}{ Simulate data under a hierarchical distance sampling protocol (line or point) (AHM1 - 8.5.1)}
+    \item{\code{\link{simHDSpoint}}}{ A simplified version of \code{simHDS} for point transects only.}
     \item{\code{\link{simHDSg}}}{ Simulate data under a hierarchical distance sampling (HDS) protocol with groups (AHM1 - 9.2.1)}
     \item{\code{\link{simHDStr}}}{ Simulate data under a time-removal/distance sampling design (AHM1 - 9.3.2)}
     \item{\code{\link{simHDSopen}}}{ Simulate open hierarchical distance sampling data (AHM1 - 9.5.4)}
