@@ -18,7 +18,7 @@ This is a simplified (and faster) version of the function simHDS with type="poin
 }
 \usage{
 simHDSpoint(nsites = 100, mean.density = 1, beta.density  = 1,
-    mean.sigma = 20, beta.sig = -0.5, B = 50, discard0=FALSE, show.plots=TRUE)
+    mean.sigma = 20, beta.sig = -5, B = 50, discard0=FALSE, show.plots=TRUE)
 }
 \arguments{
    \item{nsites}{
@@ -51,6 +51,7 @@ choose whether to show plots or not. Set to FALSE when using function in simulat
 A list with the values of the arguments entered and the following additional elements:
 
 \item{data }{simulated distance sampling data: a matrix with a row for each individual detected and 2 columns: site ID and distance from the point in meters. If \code{discard0 = FALSE}, the default, sites with no detections will appear in the matrix with NAs in column 2.}
+\item{counts }{the number of individuals detected at each site}
 \item{habitat }{simulated habitat covariate}
 \item{wind }{simulated detection covariate}
 \item{N }{simulated number of individuals within the circle sampled}
@@ -69,8 +70,10 @@ set.seed(123)
 tmp <- simHDSpoint()
 str(tmp)
 head(tmp$data, 10)
+head(tmp$counts, 10)
 
 tmp <- simHDSpoint(discard0=TRUE)
 str(tmp)
 head(tmp$data)
+head(tmp$counts)
 }

@@ -1,4 +1,9 @@
 
+CHANGES in 0.2.3.9003 (2022-02-18)
+
+  * Tweaks to `simHDSpoint`: changed default for `beta.sig`; use `base::pi` instead of `pi`.
+  * Output from `simHDSpoint` now includes counts of individuals detected at each site.
+
 CHANGES in 0.2.3.9002 (2022-02-17)
 
   * New function `simHDSpoint` added, a simplified version of `simHDS(type="point",...)`.

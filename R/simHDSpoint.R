@@ -9,7 +9,7 @@
 # Function to simulate data under hierarchical distance sampling protocol point transects
 
 simHDSpoint  <- function(nsites = 100, mean.density = 1,
-   beta.density  = 1, mean.sigma = 20, beta.sig = -0.5, B = 50, discard0=FALSE, show.plots=TRUE){
+   beta.density  = 1, mean.sigma = 20, beta.sig = -5, B = 50, discard0=FALSE, show.plots=TRUE){
 #
 # Function simulates hierarchical distance sampling (HDS) data under
 #   a point transect protocol.
@@ -36,7 +36,7 @@ habitat <- rnorm(nsites)                    # habitat covariate
 wind <- runif(nsites, -2, 2)                # wind covariate
 
 # Simulate abundance model (Poisson GLM for N)
-lambda <- exp(log(mean.density) + beta.density*habitat) * pi * B^2 / 1e4 # expected number in circle
+lambda <- exp(log(mean.density) + beta.density*habitat) * base::pi * B^2 / 1e4 # expected number in circle
 N <- rpois(nsites, lambda)                  # site-specific abundances
 
 # Detection probability model (site specific)
@@ -44,6 +44,7 @@ sigma <- exp(log(mean.sigma) + beta.sig*wind)
 
 # Simulate observation model
 dataList <- vector(mode = "list", length = nsites)
+counts <- numeric(nsites)
 
 for(i in 1:nsites){
   if(N[i]==0){
@@ -56,19 +57,20 @@ for(i in 1:nsites){
   # Detection process, half-normal detection function
   p <- exp(-d^2 / (2 * (sigma[i]^2)))  # Detection probability ..
   y <- rbinom(N[i], 1, p)              # Det./non-detection of each individual
+  counts[i] <- sum(y)
   # Subset to "captured" individuals only
   d <- d[y==1]
   if(length(d) == 0)
     d <- NA
 
-  # Compile things into a matrix
+  # Compile things into a list
   dataList[[i]] <- cbind(site=i, d=d)
 }
 
 # convert dataList to a single matrix
 data <- do.call(rbind, dataList)
 
-# Subset to sites at which individuals were captured. You may or may not
+# Subset to sites at which individuals were captured. You rarely
 #  want to do this depending on how the model is formulated so be careful.
 dataNoNA <- data[!is.na(data[,2]),]
 if(discard0)
@@ -77,7 +79,7 @@ if(discard0)
 # Visualisation
 if(show.plots) {
 
-  angle <- runif(nrow(data), 0, 2*pi)
+  angle <- runif(nrow(data), 0, 2*base::pi)
   u <- data[, 'd'] * cos(angle)
   v <- data[, 'd'] * sin(angle)
 
@@ -106,7 +108,7 @@ list( # arguments input
     nsites = nsites, mean.density = mean.density, beta.density = beta.density,
     mean.sigma = mean.sigma, beta.sig = beta.sig, B = B,
     # generated values
-    data = data, habitat = habitat,
+    data = data, counts = counts, habitat = habitat,
     wind = wind, N = N )
 }
 
