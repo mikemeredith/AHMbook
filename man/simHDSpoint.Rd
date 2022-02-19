@@ -12,13 +12,13 @@ The state process is simulated by first drawing a covariate value, "habitat", fo
 
 Animals are assumed to be distributed randomly over the circle, and distances from the point are generated.
 
-A detection covariate, "wind", for each site is drawn from a Uniform(-2, 2) distribution. This is used in a log-linear regression with arguments \code{mean.sigma} and \code{beta.sig} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated as Bernoulli trials with probability of success decreasing with distance from the point.
+A detection covariate, "wind", for each site is drawn from a Uniform(-2, 2) distribution. This is used in a log-linear regression with arguments \code{mean.sigma} and \code{beta.sigma} to calculate the scale parameter, sigma, of the half-normal detection function. Detections are simulated as Bernoulli trials with probability of success decreasing with distance from the point.
 
 This is a simplified (and faster) version of the function simHDS with type="point", but works with densities and with measurements in hectares and meters.
 }
 \usage{
-simHDSpoint(nsites = 100, mean.density = 1, beta.density  = 1,
-    mean.sigma = 20, beta.sig = -5, B = 50, discard0=FALSE, show.plots=TRUE)
+simHDSpoint(nsites = 1000, mean.density = 1, beta.density  = 1,
+    mean.sigma = 20, beta.sigma = -5, B = 60, discard0=FALSE, show.plots=TRUE)
 }
 \arguments{
    \item{nsites}{
@@ -33,7 +33,7 @@ the slope of the log-linear regression for density on a habitat covariate.
   \item{mean.sigma}{
 the expected value of the scale parameter of the half-normal detection function when the wind speed = 0; the intercept of the log-linear regression for sigma is log(mean.sigma).
 }
-  \item{beta.sig}{
+  \item{beta.sigma}{
 the slope of log-linear regression of scale parameter of the half-normal detection function on wind speed.
 }
   \item{B}{
@@ -72,8 +72,11 @@ str(tmp)
 head(tmp$data, 10)
 head(tmp$counts, 10)
 
+# Without 'wind', plots clearly show effect of distance from point
+tmp <- simHDSpoint(beta.sigma=0)
+
 tmp <- simHDSpoint(discard0=TRUE)
 str(tmp)
-head(tmp$data)
+head(tmp$data, 10) # some sites missing, no NAs.
 head(tmp$counts)
 }

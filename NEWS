@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.3.9004 (2022-02-19)
+
+  * Tweaks to plots in `simHDSpoint`: histogram now includes undetected individuals.
+
 CHANGES in 0.2.3.9003 (2022-02-18)
 
   * Tweaks to `simHDSpoint`: changed default for `beta.sig`; use `base::pi` instead of `pi`.
