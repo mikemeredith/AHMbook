@@ -36,9 +36,10 @@ It also has all the utility functions and data sets needed to replicate the anal
     \item{\code{\link{issj.sim}}}{ Simulate data under the open distance sampling protocol for the Island Scrub Jays (AHM1 - 9.7.1)}
     \item{\code{\link{sim.spatialDS}}}{ Simulate data under a basic spatial distance sampling model  (AHM1 - 9.8.3)}
     \item{\code{\link{sim.spatialHDS}}}{ Simulate data under a spatial hierarchical distance sampling model  (AHM1 - 9.8.5)}
+    \item{\code{\link{simIDS}}}{ Simulate data for an integrated distance sampling, point count and occupancy study}
   }  }
 
-  \subsection{Static Occurence using Site-Occupancy Models}{ \describe{
+  \subsection{Static Occurrence using Site-Occupancy Models}{ \describe{
     \item{\code{\link{simOcc}}}{ Simulate detection/nondetection data under static occupancy models under a wide range of conditions (AHM1 - 10.5)}
     \item{\code{\link{sim3Occ}}}{ Simulate detection/nondetection data under a static 3-level occupancy model (AHM1 - 10.10)}
     \item{\code{\link{simOccttd}}}{ Simulate 'timing data' under a static time-to-detection occupancy design (AHM1 - 10.12.1)}
@@ -66,7 +67,7 @@ It also has all the utility functions and data sets needed to replicate the anal
     \item{\code{\link{simCJS}}}{ Simulate individual capture history data under a Cormack-Jolly-Seber (CJS) survival model (AHM2 - 3.2.2)}
   } }
 
-  \subsection{Dynamic Occupancy Model}{ \describe{
+  \subsection{Dynamic Occupancy Models}{ \describe{
     \item{\code{\link{simDynocc}}}{ Simulate detection/nondetection data under a dynamic occupancy model under a wide range of conditions (AHM2 - 4.4)}
     \item{\code{\link{simDemoDynocc}}}{ Simulate detection/nondetection data under a demographic dynamic occupancy model (AHM2 - 4.12)}
   } }

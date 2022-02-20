@@ -14,8 +14,8 @@ importFrom("stats", "as.formula", "coef", "confint", "dbinom",
            "var", "vcov", "cov2cor", "cor", "sd", "aggregate")
 importFrom("utils", "head", "stack", "packageVersion", "data")
 
-importFrom("unmarked", "unmarkedFrameOccu", "occuRN", "bup", "ranef",
-          "coef", "fitted", "residuals", "vcov", "confint")
+importFrom("unmarked", "unmarkedFrameOccu", "unmarkedFramePCount", "unmarkedFrameDS",
+          "occuRN", "bup", "ranef", "coef", "fitted", "residuals", "vcov", "confint")
 importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ",
           "getValues", "image", "addLayer",  "dropLayer", "ncell",
           "values",  "values<-", "xyFromCell", "aggregate", "subset")
@@ -26,65 +26,59 @@ importFrom("coda", "crosscorr")
 importFrom("mvtnorm", "dmvnorm")
 
 
-# AHM1 Chapter 1
-export("sim.fn")
+# Introduction
+export("sim.fn")  # AHM1/1
+export("data.fn")  # AHM1/4
 
-# AHM1 Chapter 4
-export("data.fn")
+# Abundance from Counts: Binomial N-Mixture models
+export("simNmix", "simpleNmix", "playRN")  # AHM1/6
 
-# AHM1 Chapter 6
-export("simNmix", "ppc.plot", "map.Nmix.resi", "simpleNmix", "playRN")
-export("plot_Nmix_resi")
 
-# AHM1 Chapter 7
-export("fitstats", "fitstats2")
-export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")
+# Abundance from Hierarchical Distance Sampling
+export("sim.ldata", "sim.pdata", "simHDS", "simHDSpoint")  # AHM1/8
+export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")  # AHM1/9
+export("simIDS")   # bonus
 
-# AHM1 Chapter 8
-export("sim.ldata", "sim.pdata", "simHDS", "simHDSpoint")
+# Static Occurence using Site-Occupancy Models
+export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc") # AHM1/10
 
-# AHM1 Chapter 9
-export("simHDSg", "simHDStr", "simHDSopen", "issj.sim", "sim.spatialDS", "sim.spatialHDS")
-#  "pcount.spHDS" # now in unmarked
+# Hierarchical Models for Communities
+export("simComm")  # AHM1/11
 
-# AHM1 Chapter 10
-export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc", "spline.prep")
+# Relative Abundance Models for Population Dynamics
+export("simNpC", "simPH", "simPOP")  # AHM2/1
 
-# AHM1 Chapter 11
-export("simComm")
+# Modeling Population Dynamics with Count Data
+export("simDM0", "simDM", "simMultMix", "simFrogDisease")  # AHM2/2
 
-# AHM2 Chapter 1
-export("simNpC", "simPH", "simPOP", "graphSSM")
+# Hierarchical Models of Survival
+export("simCJS")  # AHM2/3
 
-# AHM2 Chapter 2
-export("simDM0", "simDM", "simMultMix", "simFrogDisease")
+# Dynamic Occupancy Models
+export("simDynocc", "simDemoDynocc")  # AHM2/4
 
-# AHM2 Chapter 3
-export("simCJS", "ch2marray")
+# Dynamic Community Models
+export("simDCM")  # AHM2/5
 
-# AHM2 Chapter 4
-export("simDynocc", "simDemoDynocc")
+# Spatial Models of Distribution and Abundance
+export("simDynoccSpatial", "simExpCorrRF")  # AHM2/9
 
-# AHM2 Chapter 6
-export("simDCM")
+# Integrated Models for Multiple Types of Data
+export("simPPe", "simDataDK", "simDataDK1")  # AHM2/10
 
-# AHM2 Chapter 7
-export("valid_data", "modSelFP")
-
-# Chapter 8
-export("getLVcorrMat", "getEcorrMat")
-
-# AHM2 Chapter 9
-export("simDynoccSpatial", "simExpCorrRF")
-
-# AHM2 Chapter 10
-export("simPPe", "simDataDK", "simDataDK1")
-
-# AHM2 Chapter 11
+# Spatially Explicit Distance Sampling
 export("simSpatialDSline", "simSpatialDSte", "simNmixSpatial",
-    "simOccSpatial", "simDSM")
+    "simOccSpatial", "simDSM")  # AHM2/11
 
 # Utilities
+export("ppc.plot", "map.Nmix.resi", "plot_Nmix_resi")       # AHM1/6
+export("fitstats", "fitstats2")                             # AHM1/7
+export("crPiFun", "crPiFun.Mb", "MhPiFun", "instRemPiFun")  # AHM1/7
+export("spline.prep")                                       # AHM1/10
+export("graphSSM")                                          # AHM2/1
+export("ch2marray")                                         # AHM2/3
+export("valid_data", "modSelFP")                            # AHM2/7
+export("getLVcorrMat", "getEcorrMat")                       # AHM2/8
 export("zinit")
 export("bigCrossCorr")
 export("standardize", "standardize2match")

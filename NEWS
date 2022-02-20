@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.3.9005 (2022-02-20)
+
+  *  New function `simIDS` added.
+
 CHANGES in 0.2.3.9004 (2022-02-19)
 
   * Tweaks to plots in `simHDSpoint`: histogram now includes undetected individuals.
