@@ -24,7 +24,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.3.9005.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.3.9006.tar.gz"  # <-- fix version number here ################
 
 # Pick one to check:
 ## on desktop
@@ -43,8 +43,8 @@ system(paste("R CMD INSTALL ", pkg, "--build")) # install and produce the .zip b
 library(AHMbook)
 ?AHMbook
 
-?simIDS
-example(simIDS)
+?simOccCat
+example(simOccCat)
 
 # Check graphics:
 tmp <- simNmix()

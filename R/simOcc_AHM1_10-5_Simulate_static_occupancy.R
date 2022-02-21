@@ -5,9 +5,9 @@
 
 # Function to simulate data for static occupancy models under wide range of conditions
 #   (introduced in AHM1 Section 10.5)
-simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6, 
+simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6,
     beta1 = -2, beta2 = 2, beta3 = 1, mean.detection = 0.3, time.effects = c(-1, 1),
-    alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plot = TRUE){
+    alpha1 = -1, alpha2 = -3, alpha3 = 0, sd.lp = 0.5, b = 2, show.plots = TRUE){
 #
 # Written by Marc Kery, 21 March 2015
 #
@@ -34,7 +34,7 @@ simOcc <- function(M = 267, J = 3, mean.occupancy = 0.6,
 #     sd.lp: standard deviation of random site effects (on logit scale)
 #     b: constant value of 'behavioural response' leading to 'trap-happiness'
 #     (if b > 0) or 'trap shyness' (if b < 0)
-#     show.plot: if TRUE, plots of the data will be displayed;
+#     show.plots: if TRUE, plots of the data will be displayed;
 #        IMPORTANT: has to be set to FALSE if you are running simulations.
 if(FALSE) x <- NULL # Fudge to stop R CMD check complaining about curve
 
@@ -94,7 +94,7 @@ sumZ.obs <- sum(apply(y,1,max))    # Observed number of occ sites
 psi.fs.true <- sum(z) / M          # True proportion of occ. sites in sample
 psi.fs.obs <- mean(apply(y,1,max)) # Observed proportion of occ. sites in sample
 
-if(show.plot){
+if(show.plots){
   # Restore graphical settings on exit -------------------------
   oldpar <- par("mfrow", "cex.main", "cex.lab", "mar")
   oldAsk <- devAskNewPage(ask = dev.interactive(orNone=TRUE))
@@ -172,7 +172,7 @@ if(show.plot){
 return(list(M = M, J = J, mean.occupancy = mean.occupancy, beta0 = beta0,
     beta1 = beta1, beta2 = beta2, beta3 = beta3, mean.detection = mean.detection,
     time.effects = time.effects, gamma = gamma, alpha0 = alpha0, alpha1 = alpha1,
-    alpha2 = alpha2, alpha3 = alpha3, sd.lp = sd.lp, eps = eps, b = b, 
+    alpha2 = alpha2, alpha3 = alpha3, sd.lp = sd.lp, eps = eps, b = b,
     elev = elev, forest = forest, wind = wind, psi = psi, z = z,
     p = p, p0 = p0, p1 = p1, y = y, sumZ = sumZ, sumZ.obs = sumZ.obs,
     psi.fs.true = psi.fs.true, psi.fs.obs = psi.fs.obs))

@@ -41,6 +41,7 @@ export("simIDS")   # bonus
 
 # Static Occurence using Site-Occupancy Models
 export("simOcc", "sim3Occ", "simOccttd", "wigglyOcc") # AHM1/10
+export("simOccCat")  # bonus
 
 # Hierarchical Models for Communities
 export("simComm")  # AHM1/11

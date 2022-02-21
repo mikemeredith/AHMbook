@@ -41,6 +41,7 @@ It also has all the utility functions and data sets needed to replicate the anal
 
   \subsection{Static Occurrence using Site-Occupancy Models}{ \describe{
     \item{\code{\link{simOcc}}}{ Simulate detection/nondetection data under static occupancy models under a wide range of conditions (AHM1 - 10.5)}
+    \item{\code{\link{simOccCat}}}{ As above, but allows simulation of categorical covariates}
     \item{\code{\link{sim3Occ}}}{ Simulate detection/nondetection data under a static 3-level occupancy model (AHM1 - 10.10)}
     \item{\code{\link{simOccttd}}}{ Simulate 'timing data' under a static time-to-detection occupancy design (AHM1 - 10.12.1)}
     \item{\code{\link{wigglyOcc}}}{ Simulate detection/nondetection data under a static occupancy model with really wiggly covariate relationships in occupancy and detection probability (AHM1 - 10.14)}

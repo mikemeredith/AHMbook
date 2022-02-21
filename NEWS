@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.3.9006 (2022-02-21)
+
+  *  New function `simOccCat` added.
+
 CHANGES in 0.2.3.9005 (2022-02-20)
 
   *  New function `simIDS` added.
