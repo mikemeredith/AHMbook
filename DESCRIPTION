@@ -1,8 +1,8 @@
 Package: AHMbook
 Type: Package
 Title: Functions and Data for the Book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2
-Version: 0.2.3.9006
-Date: 2022-02-21
+Version: 0.2.3.9007
+Date: 2022-02-25
 Depends: R (>= 2.10)
 Imports: grDevices, graphics, methods, stats, utils, plotrix, raster, sp, RandomFields, coda, unmarked (>= 0.12.2), mvtnorm, spdep
 Suggests:
@@ -29,6 +29,7 @@ Authors@R: c(
   person("Nicolas", "Strebel", role="dtc"),
   person("Chris", "Sutherland", role=c("ctb", "dtc"), comment="waterVoles"),
   person("Mathias", "Tobler", role="ctb"),
+  person("Gesa", "von Hirschheydt", role="ctb", comment="simOccCat"),
   person("Fridolin", "Zimmermann", role="dtc", comment="EurasianLynx"),
   person("Aargau Biodiversity Monitoring Program (LANAG)", role="dtc", comment("SwissMarbledWhite")),
   person("British Ornithological Trust", role="dtc", comment="willowWarbler, UKmarbledWhite, <https://www.bto.org/>"),

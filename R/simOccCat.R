@@ -36,7 +36,8 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
   # Create categorical covariates with approximately equal sized categories
   HAB <- sample(nHab, M, replace = TRUE)
   OBSvec <- sample(nObs, M*J, replace = TRUE) # No constraint that observers only visit sites once
-
+  OBS <-  matrix(OBSvec, M, J)
+  
   # Create coefficients for HAB factor that sum to 0, calculate HAB effect
   coefHAB <- runif(nHab, 0, range.HAB)
   coefHAB <- coefHAB - mean(coefHAB)  # Now sums to zero
@@ -93,15 +94,35 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
 
     tryPlot <- try( {
       # Plots for system state
-      par(mfrow = c(2, 2), cex.main = 1)
-      curve(plogis(beta0 + beta1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "psi", lwd = 2)
-      plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation", ylab = "")
-      curve(plogis(beta0 + beta2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "psi", lwd = 2)
+      # ----------------------
+      par(mfrow = c(2, 3))
+      # Expected values
+      curve(plogis(beta0 + beta1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+          xlab = "Elevation", ylab = "Expected occupancy probability", lwd = 2,
+          main="Variation of occupancy probability\nwith elevation")
+      abline(h=mean.occupancy, col="blue")
+      
+      curve(plogis(beta0 + beta2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+          xlab = "Forest cover", ylab = "", lwd = 2,
+          main="Variation of occupancy probability\nwith forest cover")
+      abline(h=mean.occupancy, col="blue")
+      
+      plot(x=1:nHab, y=plogis(beta0 + coefHAB), ylim=c(0,1), pch=15, cex=2, col = "red",
+          xlab="Habitat type", ylab="", frame=FALSE,
+          main="Variation of occupancy probability\nbetween habitat types")
+      abline(h=mean.occupancy, col="blue")
+      legend('topleft', bty='n', lty=1, col='blue', legend='mean occupancy')
+      
+      # Simulated values
+      plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation",
+          ylab = "Simulated occupancy probability")
       plot(forest, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Forest cover", ylab = "")
+      plot(jitter(HAB), psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Habitat type", ylab = "")
+      abline(v=(1:(nHab-1))+0.5, col='gray')
 
       # Plots for observation process
-      par(mfrow = c(2, 3), cex.main = 1.2, cex.lab = 1.5, mar = c(5,5,3,2))
-      # Plots for elevation, time, 'heterogeneity', and 'behavioural response'
+      # -----------------------------
+      par(mfrow = c(3, 3)) #, cex.main = 1.2, cex.lab = 1.5, mar = c(5,5,3,2))
       # Plots for elevation and time
       curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
         xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
@@ -109,47 +130,82 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
       for(j in 1:J){
         curve(plogis(alpha0 + gamma[j] + alpha1*x),-1,1,lwd = 1, col="grey", add=TRUE)
       }
-      # Plots for elevation and 'heterogeneity'
-      curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-        xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
-        main = "Effects of elev and site heterogeneity")
-      for(i in 1:M){
-        curve(plogis(alpha0 + eps[i] + alpha1*x),-1,1,lwd = 1, col="grey", add=T)
-      }
-      curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+      abline(h=mean.detection, col="blue")
 
-      # Plot for elevation and 'behavioural response'
-      p0plot <- plogis(logit.p0)
-      p1plot <- plogis(logit.p0 + b)   ;   p1plot[,1] <- NA
-         p0plot[,2:J] <- p0plot[,2:J] / (1 - y[,1:(j-1)])   # NA out some
-         p1plot[,2:J] <- p1plot[,2:J] / y[,1:(j-1)]       # NA out some
-      matplot(elev, p0plot, xlab = "Elevation", ylab = "Detection (p)",
-        main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)",
-        pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-      matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
-
-      # Plots for wind speed, time, 'heterogeneity', and 'behavioural response'
-      # Plots for elevation and time
+      # Plots for wind speed and time
       curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-        xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
+        xlab = "Wind speed", ylab = "", lwd = 2,
         main = "Effects of wind and time")
       for(j in 1:J){
         curve(plogis(alpha0 + gamma[j] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
       }
+      abline(h=mean.detection, col="blue")
+
+      # Plots for observer and time
+      plot(x=1:nObs, y=plogis(alpha0 + coefOBS), ylim=c(0,1), pch=15, col="red",
+          xlab="Observer", ylab="", frame=FALSE,
+          main="Effects of observer and time")
+      for(j in 1:J){
+        points(x=1:nObs, y=plogis(alpha0 + coefOBS + gamma[j]), pch=15, col="grey")
+      }
+      points(x=1:nObs, y=plogis(alpha0 + coefOBS), pch=15, col="red")
+      abline(h=mean.detection, col="blue")
+      legend('topleft', bty='n', lty=1, col='blue', legend='mean detection')
+
+      # Plots for elevation and 'heterogeneity'
+      curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
+        xlab = "Elevation", ylab = "Expected detection (p)", lwd = 2,
+        main = "Elevation and site heterogeneity")
+      for(i in 1:M){
+        curve(plogis(alpha0 + eps[i] + alpha1*x),-1,1,lwd = 1, col="grey", add=T)
+      }
+      curve(plogis(alpha0 + alpha1*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+      abline(h=mean.detection, col="blue")
+
       # Plots for wind speed and 'heterogeneity'
       curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
-        xlab = "Wind speed", ylab = "Expected detection (p)", lwd = 2,
-        main = "Effects of wind and site heterogeneity")
+        xlab = "Wind speed", ylab = "", lwd = 2,
+        main = "Wind and site heterogeneity")
       for(i in 1:M){
         curve(plogis(alpha0 + eps[i] + alpha2*x),-1,1,lwd = 1, col="grey", add=TRUE)
       }
       curve(plogis(alpha0 + alpha2*x), -1, 1, col = "red", lwd = 2, add = TRUE)
+      abline(h=mean.detection, col="blue")
+
+      # Plots for observer and heterogeneity
+      plot(x=1:nObs, y=plogis(alpha0 + coefOBS), ylim=c(0,1), pch=15, col="red",
+          xlab="Observer", ylab="", frame=FALSE,
+          main="Observer and site heterogeneity")
+      for(i in 1:M){
+        points(x=1:nObs, y=plogis(alpha0 + coefOBS + eps[i]), pch=15, col="grey")
+      }
+      points(x=1:nObs, y=plogis(alpha0 + coefOBS), pch=15, col="red")
+      abline(h=mean.detection, col="blue")
+
+      # Plot for elevation and 'behavioural response'
+      p0plot <- plogis(logit.p0)
+      p1plot <- plogis(logit.p0 + b)
+      caught.before <- cbind(FALSE, y[, 1:(J-1)] == 1)
+      p0plot[caught.before] <- NA
+      p1plot[!caught.before] <- NA
+
+      matplot(elev, p0plot, xlab = "Elevation", ylab = "Simulated detections",
+        main = "p ~ elevation\nred=detected before",
+        pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
+      matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
 
       # Plot for wind speed and 'behavioural response'
-      matplot(wind, p0plot, xlab = "Wind speed", ylab = "Detection (p)",
-        main = "p ~ elevation at actual elevation \n(red/blue - following/not following det.)",
-        pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
+      matplot(wind, p0plot, xlab = "Wind speed", ylab = "", main="p ~ wind\n",
+          pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
       matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
+
+      # Plot for observer and 'behavioural response'
+      plot(jitter(OBS), p0plot, xlab = "Observer", ylab = "",
+        main = "p ~ observer\nblue=not detected before",
+        pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
+      points(jitter(OBS), p1plot, pch=16, col="red")
+      abline(v=(1:(nObs-1))+0.5, col='gray')
+
     }, silent = TRUE)
     if(inherits(tryPlot, "try-error"))
       tryPlotError(tryPlot)
@@ -165,7 +221,7 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
       nHab = nHab, range.HAB = range.HAB, nObs = nObs, range.OBS = range.OBS,
       # Generated values
       gamma = gamma, eps = eps, elev = elev, forest = forest, wind = wind,
-      HAB = HAB, OBS = matrix(OBSvec, M, J), coefHAB = coefHAB, coefOBS = coefOBS,
+      HAB = HAB, OBS = OBS, coefHAB = coefHAB, coefOBS = coefOBS,
       psi = psi, z = z, p = p, p0 = plogis(logit.p0), p1 = plogis(logit.p0 + b), y = y,
       sumZ = sumZ, sumZ.obs = sumZ.obs, psi.fs.true = psi.fs.true, psi.fs.obs = psi.fs.obs))
 }
