@@ -138,7 +138,8 @@ if(show.plots){
     matplot(elev, p0plot, xlab = "Elevation", ylab = "Detection (p)",
       main = "p ~ elevation at actual wind speed \n(red/blue - following/not following det.)",
       pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-    matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
+    if(sum(is.finite(p1plot)) > 0)
+      matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
 
 
     # Plots for wind speed, time, 'heterogeneity', and 'behavioural response'
@@ -162,7 +163,8 @@ if(show.plots){
     matplot(wind, p0plot, xlab = "Wind speed", ylab = "Detection (p)",
       main = "p ~ elevation at actual elevation \n(red/blue - following/not following det.)",
       pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-    matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
+    if(sum(is.finite(p1plot)) > 0)
+      matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
   }, silent = TRUE)
   if(inherits(tryPlot, "try-error"))
     tryPlotError(tryPlot)

@@ -1,7 +1,11 @@
 
-CHANGES in 0.2.3.9007 (2022-02-27)
+CHANGES in 0.2.3.9008 (2022-02-25)
 
-  *  Tweaks to plotting routine in `simOccCat`.
+  *  Fixed warnings when no animals detected in `simOcc` and `simOccCat`.
+
+CHANGES in 0.2.3.9007 (2022-02-25)
+
+  *  Additional plots in `simOccCat`.
 
 CHANGES in 0.2.3.9006 (2022-02-21)
 

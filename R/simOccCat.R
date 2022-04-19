@@ -37,7 +37,7 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
   HAB <- sample(nHab, M, replace = TRUE)
   OBSvec <- sample(nObs, M*J, replace = TRUE) # No constraint that observers only visit sites once
   OBS <-  matrix(OBSvec, M, J)
-  
+
   # Create coefficients for HAB factor that sum to 0, calculate HAB effect
   coefHAB <- runif(nHab, 0, range.HAB)
   coefHAB <- coefHAB - mean(coefHAB)  # Now sums to zero
@@ -101,18 +101,18 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
           xlab = "Elevation", ylab = "Expected occupancy probability", lwd = 2,
           main="Variation of occupancy probability\nwith elevation")
       abline(h=mean.occupancy, col="blue")
-      
+
       curve(plogis(beta0 + beta2*x), -1, 1, col = "red", frame.plot = FALSE, ylim = c(0, 1),
           xlab = "Forest cover", ylab = "", lwd = 2,
           main="Variation of occupancy probability\nwith forest cover")
       abline(h=mean.occupancy, col="blue")
-      
+
       plot(x=1:nHab, y=plogis(beta0 + coefHAB), ylim=c(0,1), pch=15, cex=2, col = "red",
           xlab="Habitat type", ylab="", frame=FALSE,
           main="Variation of occupancy probability\nbetween habitat types")
       abline(h=mean.occupancy, col="blue")
       legend('topleft', bty='n', lty=1, col='blue', legend='mean occupancy')
-      
+
       # Simulated values
       plot(elev, psi, frame.plot = FALSE, ylim = c(0, 1), xlab = "Elevation",
           ylab = "Simulated occupancy probability")
@@ -192,18 +192,21 @@ simOccCat <- function(M = 267, J = 3, mean.occupancy = 0.6,
       matplot(elev, p0plot, xlab = "Elevation", ylab = "Simulated detections",
         main = "p ~ elevation\nred=detected before",
         pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-      matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
+      if(sum(is.finite(p1plot)) > 0)
+        matplot(elev, p1plot, pch = 16, col = "red", add = TRUE)
 
       # Plot for wind speed and 'behavioural response'
       matplot(wind, p0plot, xlab = "Wind speed", ylab = "", main="p ~ wind\n",
           pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-      matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
+      if(sum(is.finite(p1plot)) > 0)
+        matplot(wind, p1plot, pch = 16, col = "red", add = TRUE)
 
       # Plot for observer and 'behavioural response'
       plot(jitter(OBS), p0plot, xlab = "Observer", ylab = "",
         main = "p ~ observer\nblue=not detected before",
         pch = 1, ylim = c(0,1), col = "blue", frame.plot = FALSE)
-      points(jitter(OBS), p1plot, pch=16, col="red")
+      if(sum(is.finite(p1plot)) > 0)
+        points(jitter(OBS), p1plot, pch=16, col="red")
       abline(v=(1:(nObs-1))+0.5, col='gray')
 
     }, silent = TRUE)
