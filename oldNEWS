@@ -1,3 +1,40 @@
+CHANGES in 0.2.3.9008 (2022-02-25)
+
+  *  Fixed warnings when no animals detected in `simOcc` and `simOccCat`.
+
+CHANGES in 0.2.3.9007 (2022-02-25)
+
+  *  Additional plots in `simOccCat`.
+
+CHANGES in 0.2.3.9006 (2022-02-21)
+
+  *  New function `simOccCat` added.
+
+CHANGES in 0.2.3.9005 (2022-02-20)
+
+  *  New function `simIDS` added.
+
+CHANGES in 0.2.3.9004 (2022-02-19)
+
+  * Tweaks to plots in `simHDSpoint`: histogram now includes undetected individuals.
+
+CHANGES in 0.2.3.9003 (2022-02-18)
+
+  * Tweaks to `simHDSpoint`: changed default for `beta.sig`; use `base::pi` instead of `pi`.
+  * Output from `simHDSpoint` now includes counts of individuals detected at each site.
+
+CHANGES in 0.2.3.9002 (2022-02-17)
+
+  * New function `simHDSpoint` added, a simplified version of `simHDS(type="point",...)`.
+
+CHANGES in 0.2.3.9001 (2022-02-05)
+
+  * Description and contents (in AHMbook-package.Rd) modified to allow inclusion of simulation functions not in the books.
+
+CHANGES in 0.2.3.9000 (2021-11-14)
+
+  * `simComm` now includes the simulated covariates `habitatat` and `wind` in the output.
+
 
 ROLL-UP to 0.2.3 (2021-05-16)
 

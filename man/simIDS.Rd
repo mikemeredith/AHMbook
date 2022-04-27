@@ -112,9 +112,5 @@ Ken Kellner, Marc Kéry, Mike Meredith
 tmp <- simIDS()
 str(tmp)
 
-# Skip occupancy data generation
-tmp <- simIDS(nsites_OC = 0)
-str(tmp)
-
 }
 

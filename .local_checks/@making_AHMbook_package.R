@@ -14,7 +14,8 @@ checkTnF("AHMbook")
 
 # Install dependencies
 install.packages(c("plotrix", "raster", "RandomFields", "coda",
-    "unmarked", "mvtnorm", "spdep"))
+    "mvtnorm", "spdep"))
+remotes::install_github("rbchan/unmarked")
 
 # For package development
 system("R CMD INSTALL AHMbook") # Use this for a "dev" install.
@@ -24,7 +25,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.3.9008.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.4.tar.gz"  # <-- fix version number here ################
 
 # Pick one to check:
 ## on desktop
