@@ -5,6 +5,7 @@ dir()
 
 # Spelling check
 library(spelling)
+spell_check_package(pkg = "AHMbook")  # Fix any genuine misspellings, then run..
 update_wordlist(pkg = "AHMbook", confirm = TRUE)
 out <- spell_check_package(pkg = "AHMbook")
 
@@ -25,7 +26,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.4.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.5.tar.gz"  # <-- fix version number here ################
 
 # Pick one to check:
 ## on desktop

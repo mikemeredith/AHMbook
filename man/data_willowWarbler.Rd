@@ -6,7 +6,7 @@
 Constant effort site (CES) data for British Willow Warblers
 }
 \description{
-British Willow Warblers (\emph{Phylloscopus trochilus}) caught at a total of 193 ringing (or banding) stations in England, Wales and Scotland. The willow warbler is a small (8–10 g) migratory species that used to be extremely widespread and common throughout Britain, but whose populations have suffered severe declines since the mid-90s. We analyse data from 11 years (1986–1996) before the major population decline.
+British Willow Warblers (\emph{Phylloscopus trochilus}) caught at a total of 193 ringing (or banding) stations in England, Wales and Scotland. The willow warbler is a small (8–10 g) migratory species that used to be extremely widespread and common throughout Britain, but whose populations have suffered severe declines since the mid-90s. We analyze data from 11 years (1986–1996) before the major population decline.
 }
 
 \usage{data("willowWarbler")}

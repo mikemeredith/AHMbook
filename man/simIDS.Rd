@@ -101,6 +101,12 @@ A list with the values of the arguments entered and the following additional ele
 Kéry, M. & Royle, J.A. (2016) \emph{Applied Hierarchical Modeling in Ecology} AHM1 - 8.5.1.
 
 Sólymos, P. et al. (2013) Calibrating indices of avian density from non-standardized survey data: making the most of a messy situation. \emph{Methods in Ecology and Evolution} 4, 1047-1058.
+
+Kéry, M. et al. (2022) Integrated distance sampling models for simple point counts. (Submitted to \emph{Ecology})
+}
+
+\note{
+A function to analyze these data, \code{IDS}, will appear in a future version of \pkg{unmarked}. In the meantime, a devel version can be installed with \code{remotes::install_github("kenkellner/unmarked", ref="IDS")}.
 }
 
 \author{
@@ -111,6 +117,4 @@ Ken Kellner, Marc Kéry, Mike Meredith
 # Simulate a data set with the default arguments and look at the structure of the output
 tmp <- simIDS()
 str(tmp)
-
 }
-
