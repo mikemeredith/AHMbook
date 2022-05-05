@@ -1,11 +1,13 @@
 # Define function for simulating spatially correlated random field
 # AHM2 - 9.2
 
+# Called by functions `simNmixSpatial` and `simOccSpatial`.
+
 # Modified to use package 'fields' if 'RandomFields' is not available.
 
 # In DESCRIPTION file:
 # - add 'fields' to Imports
-# - move RandomFileds from Imports to Suggests
+# - move RandomFields from Imports to Suggests
 
 # In NAMESPACE file:
 # - comment out or delete importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
