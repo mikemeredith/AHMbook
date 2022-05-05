@@ -1,13 +1,5 @@
 
-CHANGES in 0.2.5.9002 (2022-05-05)
-
-  * Fixed: Examples with `simNmixSpatial` and `simOccSpatial` that throw errors with `fields`.
-
-CHANGES in 0.2.5.9001 (2022-05-05)
-
-  * Example output from `simDynoccSpatial` provided as data in `simDynoccSpatialData`.
-
-CHANGES in 0.2.5.9000 (2022-05-04)
+CHANGES in 0.2.6 (2022-05-05)
 
   * `RandomFields` moved to Suggests; when not available, use package `fields` in functions `simExpCorrRF`, `simDynoccSpatial` and `simPPe`.
 
