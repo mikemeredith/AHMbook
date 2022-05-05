@@ -78,7 +78,7 @@ It also has all the utility functions and data sets needed to replicate the anal
   } }
 
   \subsection{Spatial Models of Distribution and Abundance}{ \describe{
-    \item{\code{\link{simDynoccSpatial}}}{ Simulate detection/nondetection data under a dynamic occupancy model with spatial covariate and spatial autocorrelation (AHM2 - 9.6.1.1)}
+    \item{\code{\link{simDynoccSpatial}}}{ Simulate detection/nondetection data under a dynamic occupancy model with spatial covariate and spatial autocorrelation (AHM2 - 9.6.1.1). See also \code{\link{simDynoccSpatialData}}}
     \item{\code{\link{simExpCorrRF}}}{ Simulate data from a Gaussian random field with negative exponential correlation function (AHM2 - 9.2)}
     \item{\code{\link{simOccSpatial}}}{ Simulate detection/nondetection data under a spatial, static occupancy model for a real landscape in the Bernese Oberland (Swiss Alps) (AHM2 - 9.2)}
     \item{\code{\link{simNmixSpatial}}}{ Simulate counts under a spatial, static binomial N-mixture model for a real landscape in the Bernese Oberland (Swiss Alps) (AHM2 - 9.2)}

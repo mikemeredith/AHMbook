@@ -26,7 +26,7 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.5.9000.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.5.9001.tar.gz"  # <-- fix version number here ################
 
 Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = FALSE) # Use if randomFields missing
 
@@ -49,6 +49,7 @@ library(AHMbook)
 
 example(simExpCorrRF)
 example(simDynoccSpatial)
+example(simDynoccSpatialData)
 example(simPPe)
 
 ?simOccCat

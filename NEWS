@@ -1,7 +1,11 @@
 
-CHANGES in 0.2.6 (2022-05-04)
+CHANGES in 0.2.5.9001 (2022-05-05)
 
-  * Removed Dependence on `RandomFields`, replaced with package `fields`.
+  * Example output from `simDynoccSpatial` provided as data in `simDynoccSpatialData`.
+
+CHANGES in 0.2.5.9000 (2022-05-04)
+
+  * `RandomFields` moved to Suggests; when not available, use package `fields` in functions `simExpCorrRF`, `simDynoccSpatial` and `simPPe`.
 
 CHANGES in 0.2.5 (2022-04-20)
 

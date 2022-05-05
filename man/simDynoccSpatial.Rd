@@ -23,6 +23,7 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 
 Previous versions used \pkg{RandomFields}, but that is not currently available on CRAN. If not available, \pkg{fields} will be used, but it cannot deal with large values of \code{side} and \code{theta.XAC}.
 
+See also \code{\link{simDynoccSpatialData}}.
 }
 \usage{
 simDynoccSpatial(side = 50, nyears = 10, nsurveys = 3,
