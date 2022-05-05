@@ -2,6 +2,9 @@
 # 1. Define an R function to generate dynamic presence/absence systems with 'space'
 
 # Code to define a function for simulating data.
+# AHM2 - 9.6.1.1
+
+#### Uses 'fields' instead of 'RandomFields' ####
 
 simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
       mean.psi1 = 0.4, beta.Xpsi1 = 0,
@@ -149,13 +152,25 @@ simDynoccSpatial <- function(side = 50, nyears = 10, nsurveys = 3,
 
   # Create values of 1 spatially autocorrelated covariate XAC
   # Generate correlated random variables in a square
-  RandomFields::RFoptions(seed=seed.XAC)     # Default NA; 88 gives cool pattern
-  XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = theta.XAC),
-      x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
-      ncol = side, byrow = TRUE)  # variance 1
-  if(!is.na(seed.XAC))
-    RandomFields::RFoptions(seed=NA)
-
+  
+  if(requireNamespace("RandomFields", quietly=TRUE)) {
+    RandomFields::RFoptions(seed=seed.XAC)     # Default NA; 88 gives cool pattern
+    XAC <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = 1, scale = theta.XAC),
+        x=xcoord, y=ycoord, grid=TRUE)@data$variable1,
+        ncol = side, byrow = TRUE)  # variance 1
+    if(!is.na(seed.XAC))
+      RandomFields::RFoptions(seed=NA)
+  } else {
+    message("Using package 'fields' instead of 'RandomFields'; see help(simDynoccSpatial).")
+    if(!is.na(seed.XAC))
+      set.seed(seed.XAC)
+    obj <- circulantEmbeddingSetup(grid=list(x=xcoord, y=ycoord), Covariance="Exponential", aRange=theta.XAC)
+    tmp <- try(circulantEmbedding(obj), silent=TRUE)
+    if(inherits(tmp, "try-error"))
+      stop("Simulation of random field failed.\nTry with smaller values for 'side' or 'theta.XAC'.")
+    XAC <- matrix(tmp, ncol = side, byrow = TRUE)
+  }
+ 
   set.seed(seed=seed)  # Default NULL; do this AFTER RFsimulate
 
   # Create four spatially unstructured covariates

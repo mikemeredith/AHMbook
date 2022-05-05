@@ -14,7 +14,7 @@ library(tools)
 checkTnF("AHMbook")
 
 # Install dependencies
-install.packages(c("plotrix", "raster", "RandomFields", "coda",
+install.packages(c("plotrix", "raster", "coda", "fields",
     "mvtnorm", "spdep"))
 remotes::install_github("rbchan/unmarked")
 
@@ -26,7 +26,9 @@ devtools::load_all("AHMbook")
 # ==========================
 unlink(list.files(pattern="Rplots.pdf", recursive=TRUE))
 system("R CMD build AHMbook")  # Produces the .tar.gz
-pkg <- "AHMbook_0.2.5.tar.gz"  # <-- fix version number here ################
+pkg <- "AHMbook_0.2.5.9000.tar.gz"  # <-- fix version number here ################
+
+Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = FALSE) # Use if randomFields missing
 
 # Pick one to check:
 ## on desktop
@@ -44,6 +46,10 @@ system(paste("R CMD INSTALL ", pkg, "--build")) # install and produce the .zip b
 # Try it out:
 library(AHMbook)
 ?AHMbook
+
+example(simExpCorrRF)
+example(simDynoccSpatial)
+example(simPPe)
 
 ?simOccCat
 example(simOccCat)

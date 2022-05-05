@@ -1,4 +1,17 @@
 # Define function for simulating spatially correlated random field
+# AHM2 - 9.2
+
+# Modified to use package 'fields' if 'RandomFields' is not available.
+
+# In DESCRIPTION file:
+# - add 'fields' to Imports
+# - move RandomFileds from Imports to Suggests
+
+# In NAMESPACE file:
+# - comment out or delete importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
+# - add: importFrom("fields", "circulantEmbeddingSetup", "circulantEmbedding")
+
+
 
 # ------------ Start of function definition ----------------
 simExpCorrRF <- function(variance = 1, theta = 1, size = 50, seed = NA, show.plots = TRUE){
@@ -14,9 +27,6 @@ simExpCorrRF <- function(variance = 1, theta = 1, size = 50, seed = NA, show.plo
 # show.plot: if TRUE, plots of the data will be displayed;
 #  set to FALSE if you are running simulations or use inside of other fct's.
 
-# library(raster)
-# library(RandomFields)
-
 # Generate correlated random variables in a square
 step <- 1
 x <- seq(1, size, step)
@@ -24,10 +34,21 @@ y <- seq(1, size, step)
 # grid <- as.matrix(expand.grid(x,y))
 grid <- cbind(x = rep(x, each=size), y = y)
 
-RFoptions(seed=seed)
-# field <- matrix(RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=TRUE)@data$variable1, ncol = size)
-field <- RFsimulate(RMexp(var = variance, scale = theta), x=x, y=y, grid=TRUE)@data$variable1
-RFoptions(seed=NA)
+if(requireNamespace("RandomFields", quietly=TRUE)) {
+  RandomFields::RFoptions(seed=seed)
+  field <- RandomFields::RFsimulate(RandomFields::RMexp(var = variance, scale = theta),
+      x=x, y=y, grid=TRUE)@data$variable1
+  RandomFields::RFoptions(seed=NA)
+} else {
+ message("Using package 'fields' instead of 'RandomFields'; see help(simExpCorrRF).")
+  if(!is.na(seed))
+    set.seed(seed)  # Only for compatibility with RandomFields, better to set seed before calling simExpCommRF
+  obj <- circulantEmbeddingSetup(grid=list(x=x, y=y), Covariance="Exponential", aRange=theta)
+  tmp <- try(circulantEmbedding(obj), silent=TRUE)
+  if(inherits(tmp, "try-error"))
+    stop("Simulation of random field failed.\nTry with smaller values for 'size' or 'theta'.")
+  field <- as.vector(tmp * sqrt(variance))
+}
 
 # Plots
 # Correlation function
@@ -55,5 +76,4 @@ return(list(variance = variance, theta = theta, size = size, seed = seed,
   field = field,
   grid = grid))
 } # ------------ End of function definition ----------------
-
 

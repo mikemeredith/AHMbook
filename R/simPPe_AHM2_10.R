@@ -75,9 +75,18 @@ simPPe <- function(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X
   nsite <- length(mid.pt)^2
 
   # Simulate habitat covariate: a spatially correlated Gaussian random field (i.e., a Gaussian random field with negative exponential corr.)
-  RFoptions(seed=NA)
-  field <- matrix(RFsimulate(RMexp(var = variance.X, scale = theta.X),
-    x=x, y=y, grid=TRUE)@data$variable1, ncol = lscape.size) # MVN r.v. with spatial correlation
+  if(requireNamespace("RandomFields", quietly=TRUE)) {
+    RandomFields::RFoptions(seed=NA)
+    field <- matrix(RandomFields::RFsimulate(RandomFields::RMexp(var = variance.X, scale = theta.X),
+      x=x, y=y, grid=TRUE)@data$variable1, ncol = lscape.size) # MVN r.v. with spatial correlation
+  } else {
+    message("Using package 'fields' instead of 'RandomFields'; see help(simPPe).")
+    obj <- circulantEmbeddingSetup(grid=list(x=x, y=y), Covariance="Exponential", aRange=theta.X)
+    tmp <- try(circulantEmbedding(obj), silent=TRUE)
+    if(inherits(tmp, "try-error"))
+      stop("Simulation of random field failed.\nTry with smaller values for 'lscape.size' or 'theta.X'.")
+    field <- matrix(tmp * sqrt(variance.X), ncol = lscape.size)
+  }
 
   # --------------- Simulate points in the field --------------------
   #

@@ -7,6 +7,8 @@ Create a Gaussian random field with negative exponential correlation
 }
 \description{
 Function creates Gaussian random field with negative exponential correlation and visualizes correlation and random field.
+
+Previous versions used \pkg{RandomFields}, but that is not currently available on CRAN. If not available, \pkg{fields} will be used, but it cannot deal with large values of \code{size} and \code{theta}.
 }
 \usage{
 simExpCorrRF(variance = 1, theta = 1, size = 50, seed = NA, show.plots = TRUE)

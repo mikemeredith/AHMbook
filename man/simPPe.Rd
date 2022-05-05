@@ -13,6 +13,9 @@ There is one habitat covariate X that affects the intensity of the points. X is 
 The intensity of STATIC points (e.g. animal activity centers) may be inhomogeneous and affected by the coefficient beta, which is the log-linear effect of X.
 
 To recreate the data sets used in the book with R 3.6.0 or later, include \code{sample.kind="Rounding"} in the call to \code{set.seed}. This should only be used for reproduction of old results.
+
+Previous versions used \pkg{RandomFields}, but that is not currently available on CRAN. If not available, \pkg{fields} will be used, but it cannot deal with large values of \code{lscape.size} and \code{theta.X}.
+
 }
 \usage{
 simPPe(lscape.size = 150, buffer.width = 25, variance.X = 1, theta.X = 10,
@@ -79,40 +82,10 @@ Marc Kéry & Andy Royle.
 # Nice plot (produces the really nice Fig. 10-2 in the book)
 # RNGkind(sample.kind = "Rounding") # run this for R >= 3.6.0
 set.seed(117, kind="Mersenne-Twister")
-str(dat <- simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1,
-  theta.X = 70, M = 200, beta = 1, quads.along.side = 6))
+try(str(dat <- simPPe(lscape.size = 200, buffer.width = 25, variance.X = 1,
+  theta.X = 70, M = 200, beta = 1, quads.along.side = 6)))  # Fails if RandomFields is not available
 
-\donttest{
-# Smaller study area, fewer individuals (M)
-str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
-  theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
-
-# Stronger habitat heterogeneity (variance.X): more aggregation
-str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 10,
-  theta.X = 10, M = 50, beta = 1, quads.along.side = 6))
-
-# Longer habitat gradient (theta.X)
-str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
-  theta.X = 100, M = 250, beta = 1, quads.along.side = 6))
-
-# No habitat variability (variance.X): homogeneous point process
-str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 0,
-  theta.X = 10, M = 100, beta = 1, quads.along.side = 6))
-# No habitat preference (beta): homogeneous point process
-str(dat <- simPPe(lscape.size = 24, buffer.width = 2, variance.X = 1,
-  theta.X = 10, M = 100, beta = 0, quads.along.side = 6))
-# Habitat heterogeneity at very small scale (theta.X)
-str(dat <- simPPe(lscape.size = 1000, buffer.width = 20, variance.X = 1,
-  theta.X = 0.001, M = 250, beta = 1, quads.along.side = 6))
-
-str(simPPe(M = 1))      # Often produces no point at all
-str(simPPe(M = 10))
-str(simPPe(M = 100))
-str(simPPe(M = 1000))
-
-str(simPPe(M = 20, quads.along.side = 100)) # Lots of small sites
-str(simPPe(M = 20, quads.along.side = 10))
-str(simPPe(M = 20, quads.along.side = 5))
-str(simPPe(M = 20, quads.along.side = 1))   # whole study area is 1 site
+str(dat <- simPPe(lscape.size = 200, buffer.width = 20, variance.X = 1,
+  theta.X = 5, M = 250, beta = 1, quads.along.side = 6))
 }
-}
+

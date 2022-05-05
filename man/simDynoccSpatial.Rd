@@ -20,6 +20,9 @@ Function to simulate detection/nondetection data under a general dynamic site-oc
 * Autologistic effects (beta.Xautolog) in persistence and colonization probability can be chosen, which fits a logistic regression of these parameters on the proportion of occupied neighboring cells (in a queen's or 2nd order neighborhood) during the previous time step.
 
 * Additional detection heterogeneity can be introduced at the site- or the individual survey level, with the possibility of a temporal trend in this heterogeneity. For instance, an annual trend in detection heterogeneity at the site or the survey level is specified by the value in the first and the last year. Hence, trend.sd.site = c(0, 1) will result in a linear trend in the magnitude of site heterogeneity in detection from 0 in the first year to 1 in the last year.
+
+Previous versions used \pkg{RandomFields}, but that is not currently available on CRAN. If not available, \pkg{fields} will be used, but it cannot deal with large values of \code{side} and \code{theta.XAC}.
+
 }
 \usage{
 simDynoccSpatial(side = 50, nyears = 10, nsurveys = 3,
@@ -137,43 +140,8 @@ Marc Kéry & Andy Royle
 
 \examples{
 # Generate data with the default arguments and look at the structure
-tmp <- simDynoccSpatial()
-str(tmp)
+try(str(simDynoccSpatial()))  # Fails if RandomFields is not available
 
-\donttest{# rather slow
-# Large grid, seed.XAC = 88 gives a cool pattern
-str(tmp <- simDynoccSpatial(side = 100, seed.XAC = 88))
+str(simDynoccSpatial(side=50, theta.XAC=1))
 
-# Longer series and no browsing through plots
-str(tmp <- simDynoccSpatial(nyears = 100, ask.plot = FALSE))
-
-# Dynamic system (high variance between years)
-str(tmp <- simDynoccSpatial(range.phi = c(0, 0.8), range.gamma = c(0, 0.6)))
-
-# Time-variation in all potentially time-varying parameters
-str(tmp <- simDynoccSpatial(range.phi = c(0.5, 1), range.gamma = c(0, 0.5),
-  range.p = c(0.1, 0.9)))
-
-# Strong spatial autocorrelation via a spatially structured covariate
-str(tmp <- simDynoccSpatial(beta.XAC = c(1, 1, 1, 1), beta.Xautolog = c(0, 0)))
-
-# Strong spatial autocorrelation via a spatially structured covariate
-str(tmp <- simDynoccSpatial(beta.XAC = c(1, 1, 1, 1), beta.Xautolog = c(2, 2)))
-
-# Strong spatial autocorrelation via a spatially structured covariate
-# but now effect of that spatial field only on colonization and persistence
-str(tmp <- simDynoccSpatial(beta.XAC = c(0, 1, 1, 0), beta.Xautolog = c(0, 0)))
-
-# Can it ever go extinct ???
-str(tmp <- simDynoccSpatial(side = 20, nyears = 20, mean.psi1 = 0.01,
-  range.phi = c(0.1, 0.1), range.gamma = c(0.1, 0.1), beta.Xautolog = c(0, 0)))
-
-# Can it ever go extinct ???   -------> Yes
-str(tmp <- simDynoccSpatial(side = 20, nyears = 10, mean.psi1 = 0.01,
-  range.phi = c(0.3, 0.3), range.gamma = c(0, 0), beta.Xautolog = c(0, 0)), seed = 24)
-
-# Evolution of number of occupied quads
-apply(tmp$z, 3, sum)
-# [1] 2 0 0 0 0 0 0 0 0 0
-}
 }

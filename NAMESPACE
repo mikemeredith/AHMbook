@@ -20,7 +20,8 @@ importFrom("raster", "raster", "extent", "extent<-", "rasterFromXYZ",
           "getValues", "image", "addLayer",  "dropLayer", "ncell",
           "values",  "values<-", "xyFromCell", "aggregate", "subset")
 importFrom("plotrix", "draw.circle")
-importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
+# importFrom("RandomFields", "RFoptions", "RFsimulate", "RMexp")
+importFrom("fields",  "circulantEmbeddingSetup", "circulantEmbedding")
 importFrom("sp", "bubble", "coordinates<-")
 importFrom("coda", "crosscorr")
 importFrom("mvtnorm", "dmvnorm")
