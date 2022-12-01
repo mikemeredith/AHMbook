@@ -1,4 +1,8 @@
 
+CHANGES in 0.2.7 (2022-11-16)
+
+  * Andy Royle takes over as Maintainer.
+
 CHANGES in 0.2.6 (2022-05-05)
 
   * `RandomFields` moved to Suggests; when not available, use package `fields` in functions `simExpCorrRF`, `simDynoccSpatial` and `simPPe`.
